@@ -665,11 +665,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 1
-  cloudProjectId: 
+  cloudProjectId: a63b3892-3c7f-4f9c-b426-ba49101ffc27
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: "\u6771\u65B9\u6E21\u970A\u9332"
+  organizationId: komeijisatorin
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
