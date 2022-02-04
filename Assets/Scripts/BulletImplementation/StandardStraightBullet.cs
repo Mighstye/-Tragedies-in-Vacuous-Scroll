@@ -7,10 +7,11 @@ namespace BulletImplementation
     {
         public Vector3 velocity { get; private set; }
 
-        public void Launch(Vector3 position,Vector3 StartVelocity)
+        public void Launch(Vector3 position,Vector3 startVelocity)
         {
+            ResetBullet();
             transform.position = new Vector3(position.x,position.y,0);
-            velocity = StartVelocity;
+            velocity = startVelocity;
         }
         protected override void AddBehaviors()
         {

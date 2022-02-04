@@ -16,7 +16,7 @@ namespace Control
         //Sprite and Animation related fields
         private float halfSizeX, halfSizeY; //for movement restriction
         private Animator youmuAnimator;
-        private static readonly int HorizontalDirection = Animator.StringToHash("HorizontalDirection");
+        private static readonly int HorizontalDirection = Animator.StringToHash("HorizontalSpeed");
 
         private void Awake()
         {
@@ -43,7 +43,7 @@ namespace Control
             var targetPosition = transform.position + currentSpeed * Time.deltaTime * moveDirection;
             //Clamp the position so that Youmu stays in the movement field.
             targetPosition.x = Mathf.Clamp(targetPosition.x, FieldBoundaries.instance.left + halfSizeX,
-                FieldBoundaries.instance.right - halfSizeY);
+                FieldBoundaries.instance.right - halfSizeX);
             targetPosition.y = Mathf.Clamp(targetPosition.y, FieldBoundaries.instance.down + halfSizeY,
                 FieldBoundaries.instance.up - halfSizeY);
             //Update position
@@ -53,7 +53,7 @@ namespace Control
         public void OnMove(InputAction.CallbackContext context)
         {
             moveDirection = context.ReadValue<Vector2>().normalized;
-            //Todo: decom: youmuAnimator.SetFloat(HorizontalDirection,moveDirection.x);
+            youmuAnimator.SetFloat(HorizontalDirection,moveDirection.x);
         }
 
         public void OnSlow(InputAction.CallbackContext context)
