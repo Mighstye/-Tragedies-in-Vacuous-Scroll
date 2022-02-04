@@ -17,7 +17,8 @@ namespace Control
         private float halfSizeX, halfSizeY; //for movement restriction
         private Animator youmuAnimator;
         private static readonly int HorizontalDirection = Animator.StringToHash("HorizontalSpeed");
-
+        [SerializeField] private GameObject hitBoxGameObject;
+        
         private void Awake()
         {
             if (instance != null)
@@ -36,6 +37,7 @@ namespace Control
             var spriteSize = GetComponent<SpriteRenderer>().bounds.size;
             halfSizeX = spriteSize.x / 2;
             halfSizeY = spriteSize.y / 2;
+            hitBoxGameObject.SetActive(false);
         }
 
         private void Update()
@@ -61,12 +63,12 @@ namespace Control
             if (context.phase is InputActionPhase.Performed)
             {
                 currentSpeed = lowSpeed;
-                //todo: show hit box
+                hitBoxGameObject.SetActive(true);
             }
             else
             {
                 currentSpeed = normalSpeed;
-                //todo: hide hit box
+                hitBoxGameObject.SetActive(false);
             }
         }
     }
