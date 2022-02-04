@@ -1,4 +1,5 @@
 ﻿using System;
+using BulletSystem;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,7 +19,8 @@ namespace Control
         private Animator youmuAnimator;
         private static readonly int HorizontalDirection = Animator.StringToHash("HorizontalSpeed");
         [SerializeField] private GameObject hitBoxGameObject;
-        
+        //Events
+        public Action onYoumuHit;
         private void Awake()
         {
             if (instance != null)
@@ -70,6 +72,18 @@ namespace Control
                 currentSpeed = normalSpeed;
                 hitBoxGameObject.SetActive(false);
             }
+        }
+
+        private void OnCollisionEnter2D(Collision2D col)
+        {
+            if (!col.gameObject.CompareTag("EnemyBullet")) return;
+            var bullet = col.gameObject.GetComponent<Bullet>();
+            if (bullet == null)
+            {
+                Debug.LogWarning("Bullet without bullet component detected!");
+                return;
+            }
+            onYoumuHit?.Invoke();
         }
     }
 }
