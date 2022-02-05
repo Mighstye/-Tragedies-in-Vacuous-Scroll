@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "CardSwitch",
+                    "type": "Button",
+                    "id": "ec7f1b06-bc22-4c80-930e-d575de08b80e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -121,6 +130,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Slow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b5bfc7b5-16bb-49e6-9bde-87565adb90ef",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CardSwitch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
