@@ -2,7 +2,7 @@
 
 namespace CardSystem
 {
-    public class Card: MonoBehaviour
+    public class DeactivatedCardManager : MonoBehaviour
     {
         
     }

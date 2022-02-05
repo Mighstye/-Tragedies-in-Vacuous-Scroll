@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using CardSystem;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectedCardHover : MonoBehaviour
 {
@@ -26,6 +28,11 @@ public class SelectedCardHover : MonoBehaviour
         var color = cardImage.color;
         color=new Color(color.r,color.g,color.b,1.0f);
         cardImage.color = color;
+    }
+
+    public void UpdateSelectedCard(ActiveCard activeCard)
+    {
+        cardImage.sprite = activeCard.gameObject.GetComponent<Image>().sprite;
     }
 
 }

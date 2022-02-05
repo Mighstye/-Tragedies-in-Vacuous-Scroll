@@ -29,6 +29,24 @@
                     "id": "ec7f1b06-bc22-4c80-930e-d575de08b80e",
                     "expectedControlType": "Button",
                     "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CHEAT1",
+                    "type": "Button",
+                    "id": "ea8f30d4-b885-467f-a580-28f9c7dca4e1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CHEAT2",
+                    "type": "Button",
+                    "id": "98f8f243-44ad-4fcc-97e1-437a9f678488",
+                    "expectedControlType": "Button",
+                    "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 }
@@ -139,8 +157,30 @@
                     "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "CardSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e1c260f9-63bc-49df-a5b9-2e8d003783dd",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CHEAT1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8aed4548-74c1-46ae-91ad-862937048bef",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CHEAT2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
