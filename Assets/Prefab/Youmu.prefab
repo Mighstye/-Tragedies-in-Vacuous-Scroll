@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1266481685203663240}
   - component: {fileID: 4743454523266328222}
   - component: {fileID: 1284307068850311091}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Graze
-  m_TagString: Untagged
+  m_TagString: GrazeBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,9 +103,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8444308635454724940}
   - component: {fileID: 8444308635454724941}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 8444308636013612541}
   - component: {fileID: 660914518097578062}
   - component: {fileID: 4286163203433488426}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Youmu
   m_TagString: Player
   m_Icon: {fileID: 0}
