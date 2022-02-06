@@ -16,7 +16,6 @@ namespace BulletSystem
         
             if (!bullet.grazeable) return;
             bullet.grazeable = false;
-            Debug.Log("Graze detected."); //TODO: Delete this
             //TODO: Call graze gauge increase method here
             //TODO: Call graze VFX here
         

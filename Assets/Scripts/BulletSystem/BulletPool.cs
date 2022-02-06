@@ -3,34 +3,11 @@ using UnityEngine.Pool;
 
 namespace BulletSystem
 {
-
-    // This component returns the particle system to the pool when the OnParticleSystemStopped event is received.
-    [RequireComponent(typeof(GameObject))]
-    public class ReturnToPool : MonoBehaviour
-    {
-        public GameObject o;
-        public IObjectPool<GameObject> pool;
-
-        void Start()
-        {
-            //o = GetComponent<GameObject>();
-            //var main = system.main;
-            //main.stopAction = ParticleSystemStopAction.Callback;
-        }
-
-        void onBulletDeathNatural()
-        {
-            // Return to the pool
-            pool.Release(o);
-        }
-    }
-
-    // This example spans a random number of ParticleSystems using a pool so that old systems can be reused.
     public class BulletPool : MonoBehaviour
     {
         public int maxPoolSize;
 
-        public GameObject bullet;
+        public Bullet bullet;
 
         public enum PoolType
         {
@@ -43,49 +20,47 @@ namespace BulletSystem
         // Collection checks will throw errors if we try to release an item that is already in the pool.
         public bool collectionChecks = true;
 
-        IObjectPool<GameObject> m_Pool;
+        private IObjectPool<Bullet> mPool;
 
-        public IObjectPool<GameObject> Pool
+        public IObjectPool<Bullet> pool
         {
             get
             {
-                if (m_Pool == null)
-                {
-                    if (poolType == PoolType.Stack)
-                        m_Pool = new ObjectPool<GameObject>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, collectionChecks, 10, maxPoolSize);
-                    else
-                        m_Pool = new LinkedPool<GameObject>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, collectionChecks, maxPoolSize);
-                }
-                return m_Pool;
+                if (mPool != null) return mPool;
+                if (poolType == PoolType.Stack)
+                    mPool = new ObjectPool<Bullet>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, collectionChecks, 10, maxPoolSize);
+                else
+                    mPool = new LinkedPool<Bullet>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, collectionChecks, maxPoolSize);
+                return mPool;
             }
         }
 
-        GameObject CreatePooledItem()
+        private Bullet CreatePooledItem()
         {
-            var b = Instantiate(bullet);
-
-            var returnToPool = b.AddComponent<ReturnToPool>();
-            returnToPool.o = b;
-            returnToPool.pool = Pool;
-
+            var b = Instantiate(bullet,transform);
+            b.onBulletDeathNatural += () =>
+            {
+                pool.Release(b);
+            };
             return b;
         }
 
         // Called when an item is returned to the pool using Release
-        void OnReturnedToPool(GameObject o)
+        private static void OnReturnedToPool(Bullet o)
         {
             o.gameObject.SetActive(false);
         }
 
         // Called when an item is taken from the pool using Get
-        void OnTakeFromPool(GameObject o)
+        private static void OnTakeFromPool(Bullet o)
         {
             o.gameObject.SetActive(true);
+            o.ResetBullet();
         }
 
         // If the pool capacity is reached then any items returned will be destroyed.
         // We can control what the destroy behavior does, here we destroy the GameObject.
-        void OnDestroyPoolObject(GameObject o)
+        private static void OnDestroyPoolObject(Bullet o)
         {
             Destroy(o.gameObject);
         }

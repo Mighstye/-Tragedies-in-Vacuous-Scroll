@@ -14,8 +14,10 @@ public class CheatEngine : MonoBehaviour
         CardSystemManager.instance.AddActiveCard(cheatCard);
     }
 
+    //Press W to activate
     public void OnCheat2(InputAction.CallbackContext context)
     {
+        if (context.phase is not InputActionPhase.Performed) return;
         
     }
 }

@@ -69,10 +69,10 @@ namespace BulletSystem
         protected virtual bool IsNaturallyDead()
         {
             var pos = transform.position;
-            return (pos.x < FieldBoundaries.instance.left - 3 ||
-                    pos.x > FieldBoundaries.instance.right + 3 ||
-                    pos.y < FieldBoundaries.instance.down - 3 ||
-                    pos.y > FieldBoundaries.instance.up + 3);
+            return (pos.x < FieldBoundaries.instance.left - 1 ||
+                    pos.x > FieldBoundaries.instance.right + 1 ||
+                    pos.y < FieldBoundaries.instance.down - 1 ||
+                    pos.y > FieldBoundaries.instance.up + 1);
         }
 
         /// <summary>

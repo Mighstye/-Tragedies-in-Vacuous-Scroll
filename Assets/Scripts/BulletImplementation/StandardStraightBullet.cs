@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using BulletSystem;
 
 namespace BulletImplementation
 {
-    public class StandardStraightBullet: Bullet
+    public class StandardStraightBullet: Bullet, SimpleBullet
     {
         public Vector3 velocity { get; private set; }
 
