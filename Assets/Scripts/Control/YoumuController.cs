@@ -85,5 +85,13 @@ namespace Control
             }
             onYoumuHit?.Invoke();
         }
+
+        public void OnSpell(InputAction.CallbackContext context)
+        {
+            if (context.phase is not InputActionPhase.Performed) return;
+            //TODO: Invoke Last Word event here, and add other operations if necessary.
+            /*TODO: You may consider to move this method to somewhere else if this method
+            does not require information from Youmu. If you do, change the Event binding in Control Manager.*/
+        }
     }
 }
