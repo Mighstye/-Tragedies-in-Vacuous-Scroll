@@ -29,7 +29,7 @@ This detection window should be opened before onYoumuHit is invoked. There are s
 
 You may use a coroutine to test a flag (e.g. bool isInSPEffect, initially false), and when ever the player presses the C button, the flag is changed to True. This means:
 
-`
+```C#
 for(var i=0; i<detectionWindowLength; i++){
   if(flag){
     /*Invoke sp event
@@ -40,7 +40,7 @@ for(var i=0; i<detectionWindowLength; i++){
   yield return;
 }
 onYoumuHit?.invoke();
-`
+```
 
 2. Prevent another hit from being registered. This should be straight forward, by checking a condition in OnTriggerEnter function.
 
