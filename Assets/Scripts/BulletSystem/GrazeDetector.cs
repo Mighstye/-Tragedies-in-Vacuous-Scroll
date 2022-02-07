@@ -4,6 +4,7 @@ namespace BulletSystem
 {
     public class GrazeDetector : MonoBehaviour
     {
+        private int grazeValue=0;
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (!col.gameObject.CompareTag("EnemyBullet")) return;
@@ -18,7 +19,12 @@ namespace BulletSystem
             bullet.grazeable = false;
             //TODO: Call graze gauge increase method here
             //TODO: Call graze VFX here
-        
+            if (grazeValue < 100)
+            {
+                Debug.Log("Bullet Entered Graze area.");
+                grazeValue += 1;
+                Debug.Log(grazeValue);
+            }
         }
     }
 }
