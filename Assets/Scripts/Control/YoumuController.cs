@@ -83,6 +83,7 @@ namespace Control
                 Debug.LogWarning("Bullet without bullet component detected!");
                 return;
             }
+            
             onYoumuHit?.Invoke();
         }
 
