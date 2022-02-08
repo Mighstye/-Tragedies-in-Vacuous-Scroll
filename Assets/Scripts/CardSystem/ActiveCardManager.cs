@@ -13,15 +13,7 @@ namespace CardSystem
 
         private void Start()
         {
-            currentActiveCards = new List<ActiveCard>();
-            //TODO: following code is for testing, delete the fragment afterwards
-            var cards = cardContainer.gameObject.GetComponentsInChildren<ActiveCard>();
-            foreach (var card in cards)
-            {
-                Debug.Log(card.gameObject.name);
-                currentActiveCards.Add(card);
-            }
-            //END OF FRAGMENT
+            currentActiveCards ??= new List<ActiveCard>();
             if (currentActiveCards.Count <= 0) return;
             selectedCardIndex = 0;
             selectedCard = currentActiveCards[selectedCardIndex];
@@ -53,6 +45,21 @@ namespace CardSystem
             if (currentActiveCards.Count < 1) return;
             selectedCardIndex++;
             if (selectedCardIndex >= currentActiveCards.Count) selectedCardIndex = 0;
+            selectedCard = currentActiveCards[selectedCardIndex];
+        }
+
+        public void RunTest()
+        { 
+            //TODO: following code is for testing, delete the fragment afterwards
+            currentActiveCards = new List<ActiveCard>();
+            var cards = cardContainer.gameObject.GetComponentsInChildren<ActiveCard>();
+            foreach (var card in cards)
+            {
+                Debug.Log(card.gameObject.name);
+                currentActiveCards.Add(card);
+            }
+            if (currentActiveCards.Count <= 0) return;
+            selectedCardIndex = 0;
             selectedCard = currentActiveCards[selectedCardIndex];
         }
         

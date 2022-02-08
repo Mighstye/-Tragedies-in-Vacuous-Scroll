@@ -56,6 +56,7 @@ namespace BulletSystem
         private void OnTakeFromPool(Bullet o)
         {
             o.gameObject.SetActive(true);
+            o.transform.SetParent(ActiveBulletManager.instance.transform);
             o.ResetBullet();
         }
 

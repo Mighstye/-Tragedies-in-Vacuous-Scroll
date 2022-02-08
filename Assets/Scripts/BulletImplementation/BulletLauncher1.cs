@@ -35,8 +35,6 @@ namespace BulletImplementation
                     launchVector *= bulletSpeed;
 
                     var bullet = bulletPool.pool.Get();
-                    bullet.transform.SetParent(this.transform);
-                    ((HomingBullet)bullet).player = player;
                     ((HomingBullet)bullet).idleTime = idleTime;
                     ((HomingBullet)bullet).launchTime = launchTime;
                     ((SimpleBullet)bullet).Launch(transform.position, launchVector);

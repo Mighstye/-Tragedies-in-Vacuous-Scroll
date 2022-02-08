@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using BulletSystem;
+using Control;
 
 namespace BulletImplementation
 {
@@ -13,8 +14,7 @@ namespace BulletImplementation
 
         public float idleTime;
         private float idleTimer;
-
-        public GameObject player;
+        
         private Vector3 homingVector;
 
         public void Launch(Vector3 position, Vector3 startVelocity)
@@ -49,19 +49,14 @@ namespace BulletImplementation
         {
             idleTimer -= Time.deltaTime;
 
-            if (idleTimer <= 0.0f)
-            {
-                return true;
-            }
-
-            return false;
+            return idleTimer <= 0.0f;
         }
 
         private bool AimForPlayer()
         {
-            Vector3 playerPos = player.transform.position;
-            Vector3 bulletPos = this.transform.position;
-            float speed = velocity.magnitude;
+            var playerPos = YoumuController.instance.transform.position;
+            var bulletPos = this.transform.position;
+            var speed = velocity.magnitude*0.7f;
 
             homingVector = (playerPos - bulletPos).normalized * speed;
 
