@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public static Health instance { get; private set; }
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private int health;
 
     public int maxHealth;

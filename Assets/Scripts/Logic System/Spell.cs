@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Spell : MonoBehaviour
 {
+    public static Spell instance { get; private set; }
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private int spell;
 
     public int maxSpell;

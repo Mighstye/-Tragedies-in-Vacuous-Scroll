@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Graze : MonoBehaviour
 {
+    public static Graze instance { get; private set; }
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private int graze = 0;
 
     public int defaultGrazeGain;

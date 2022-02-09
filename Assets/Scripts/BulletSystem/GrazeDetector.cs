@@ -4,8 +4,6 @@ namespace BulletSystem
 {
     public class GrazeDetector : MonoBehaviour
     {
-        public Graze playerGraze;
-
         private int grazeValue=0;
         private void OnTriggerEnter2D(Collider2D col)
         {
@@ -16,11 +14,11 @@ namespace BulletSystem
                 Debug.LogWarning("Found bullet without Bullet script component!");
                 return;
             }
-        
+
             if (!bullet.grazeable) return;
             bullet.grazeable = false;
 
-            if (playerGraze.AddGraze())
+            if (Graze.instance.AddGraze())
             {
                 //TODO: Call graze VFX here
             }
