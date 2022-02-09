@@ -71,6 +71,15 @@ public partial class @Input : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""f73a7cc3-86f0-4166-9940-426d80052d9b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -203,6 +212,17 @@ public partial class @Input : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CHEAT2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5f1420d1-5cd7-41c7-8e73-4db131362a62"",
+                    ""path"": ""<Keyboard>/#(P)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -795,6 +815,7 @@ public partial class @Input : IInputActionCollection2, IDisposable
         m_Player_CardSwitch = m_Player.FindAction("CardSwitch", throwIfNotFound: true);
         m_Player_CHEAT1 = m_Player.FindAction("CHEAT1", throwIfNotFound: true);
         m_Player_CHEAT2 = m_Player.FindAction("CHEAT2", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -871,6 +892,7 @@ public partial class @Input : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_CardSwitch;
     private readonly InputAction m_Player_CHEAT1;
     private readonly InputAction m_Player_CHEAT2;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @Input m_Wrapper;
@@ -880,6 +902,7 @@ public partial class @Input : IInputActionCollection2, IDisposable
         public InputAction @CardSwitch => m_Wrapper.m_Player_CardSwitch;
         public InputAction @CHEAT1 => m_Wrapper.m_Player_CHEAT1;
         public InputAction @CHEAT2 => m_Wrapper.m_Player_CHEAT2;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -904,6 +927,9 @@ public partial class @Input : IInputActionCollection2, IDisposable
                 @CHEAT2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCHEAT2;
                 @CHEAT2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCHEAT2;
                 @CHEAT2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCHEAT2;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -923,6 +949,9 @@ public partial class @Input : IInputActionCollection2, IDisposable
                 @CHEAT2.started += instance.OnCHEAT2;
                 @CHEAT2.performed += instance.OnCHEAT2;
                 @CHEAT2.canceled += instance.OnCHEAT2;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -1084,6 +1113,7 @@ public partial class @Input : IInputActionCollection2, IDisposable
         void OnCardSwitch(InputAction.CallbackContext context);
         void OnCHEAT1(InputAction.CallbackContext context);
         void OnCHEAT2(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
