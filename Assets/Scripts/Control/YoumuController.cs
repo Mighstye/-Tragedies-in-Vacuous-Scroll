@@ -8,7 +8,7 @@ namespace Control
 {
     public class YoumuController : MonoBehaviour
     {
-        public YoumuController instance { get; private set; }
+        public static YoumuController instance { get; private set; }
         //Move related fields
         private Vector3 moveDirection;
         private float currentSpeed;
@@ -24,8 +24,6 @@ namespace Control
         {
             get;
             set;
-            ///Debug.Log("Hit!");
-            ///Health.instance.loseHealth(1);
         }
         private void Awake()
         {

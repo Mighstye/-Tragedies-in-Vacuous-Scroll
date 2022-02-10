@@ -1,7 +1,5 @@
 using UnityEngine;
 
-using Logic System;
-
 namespace BulletSystem
 {
     public class GrazeDetector : MonoBehaviour
@@ -24,7 +22,7 @@ namespace BulletSystem
             {
                 ///Debug.Log("Bullet Entered Graze area.");
                 ///Debug.Log(Graze.instance.get());
-                Graze.instance.AddGraze(1);
+                
                 //TODO: Call graze VFX here
             }
 
