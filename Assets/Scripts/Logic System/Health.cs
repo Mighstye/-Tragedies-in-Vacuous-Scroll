@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Control;
 
 public class Health : MonoBehaviour
 {
@@ -28,6 +27,8 @@ public class Health : MonoBehaviour
         {
             if (!invincible)
             {
+                BulletSystem.ActiveBulletManager.instance.wipe();
+
                 LoseHealth();
                 invincible = true;
                 StartCoroutine(Invincibility());
