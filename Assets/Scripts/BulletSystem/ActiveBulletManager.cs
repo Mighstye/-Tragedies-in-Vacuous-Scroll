@@ -11,5 +11,15 @@ namespace BulletSystem
         {
             instance = this;
         }
+
+        public void wipe()
+        {
+            int nbActiveBullets = this.transform.childCount;
+            for(int i = 0; i < nbActiveBullets; i++)
+            {
+                var bullet = this.transform.GetChild(0).gameObject.GetComponent<Bullet>();
+                bullet.InvokeBulletDeath();
+            }
+        }
     }
 }
