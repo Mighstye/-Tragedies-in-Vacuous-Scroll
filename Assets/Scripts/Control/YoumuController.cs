@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using BulletSystem;
 using Unity.Mathematics;
 using UnityEngine;
@@ -19,6 +20,8 @@ namespace Control
         private Animator youmuAnimator;
         private static readonly int HorizontalDirection = Animator.StringToHash("HorizontalSpeed");
         [SerializeField] private GameObject hitBoxGameObject;
+
+        private bool inInstantSpellCheck;
         //Events
         public Action onYoumuHit
         {
@@ -44,6 +47,7 @@ namespace Control
             halfSizeX = spriteSize.x / 2;
             halfSizeY = spriteSize.y / 2;
             hitBoxGameObject.SetActive(false);
+            inInstantSpellCheck = false;
         }
 
         private void Update()
@@ -80,6 +84,7 @@ namespace Control
 
         private void OnTriggerEnter2D(Collider2D col)
         {
+            if (Health.instance.invincible||inInstantSpellCheck) return;
             if (!col.gameObject.CompareTag("EnemyBullet")) return;
             var bullet = col.gameObject.GetComponent<Bullet>();
             if (bullet == null)
@@ -88,16 +93,24 @@ namespace Control
                 return;
             }
 
-            if (Health.instance.invincible) return;
-            onYoumuHit?.Invoke();
+            StartCoroutine(InstantSpellDelay());
         }
 
-        public void OnSpell(InputAction.CallbackContext context)
+        private IEnumerator InstantSpellDelay()
         {
-            if (context.phase is not InputActionPhase.Performed) return;
-            //TODO: Invoke Last Word event here, and add other operations if necessary.
-            /*TODO: You may consider to move this method to somewhere else if this method
-            does not require information from Youmu. If you do, change the Event binding in Control Manager.*/
+            inInstantSpellCheck = true;
+            for (var i = 0; i < 30; i++)
+            {
+                if (Health.instance.invincible)
+                {
+                    inInstantSpellCheck = false;
+                    yield break;
+                }
+                yield return null;
+            }
+            onYoumuHit?.Invoke();
+            inInstantSpellCheck = false;
         }
+        
     }
 }

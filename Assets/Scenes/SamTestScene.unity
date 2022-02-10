@@ -4037,7 +4037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44aec92f8f196e4c88369f1e64d7b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpell: 0
+  maxSpell: 8
 --- !u!114 &1500221515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4989,8 +4989,8 @@ MonoBehaviour:
     m_ActionName: Player/CHEAT2[/Keyboard/w]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1408765342}
-        m_TargetAssemblyTypeName: Control.YoumuController, Assembly-CSharp
+      - m_Target: {fileID: 1500221514}
+        m_TargetAssemblyTypeName: Spell, Assembly-CSharp
         m_MethodName: OnSpell
         m_Mode: 0
         m_Arguments:

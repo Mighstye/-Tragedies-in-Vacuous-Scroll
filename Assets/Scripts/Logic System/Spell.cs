@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Spell : MonoBehaviour
 {
     public static Spell instance { get; private set; }
 
+    public Action onSpellUse;
     private void Awake()
     {
         instance = this;
@@ -25,7 +28,7 @@ public class Spell : MonoBehaviour
         return spell;
     }
 
-    //consomme le spell si possible, renvoie true si le spell a été consommé, false sinon
+    //consomme le spell si possible, renvoie true si le spell a ï¿½tï¿½ consommï¿½, false sinon
     public bool UseSpell(int s)
     {
         if (spell - s < 0)
@@ -41,7 +44,7 @@ public class Spell : MonoBehaviour
         return UseSpell(1);
     }
 
-    //ajoute du spell si possible, renvoie true si le spell a été ajoutée, false sinon
+    //ajoute du spell si possible, renvoie true si le spell a ï¿½tï¿½ ajoutï¿½e, false sinon
     public bool AddSpell(int s)
     {
         if(spell == maxSpell)
@@ -61,5 +64,14 @@ public class Spell : MonoBehaviour
     public bool AddSpell()
     {
         return AddSpell(1);
+    }
+
+    public void OnSpell(InputAction.CallbackContext context)
+    {
+        if (context.phase is not InputActionPhase.Performed) return;
+        if (spell <= 0) return;
+        UseSpell();
+        onSpellUse?.Invoke();
+        Health.instance.StartInvincible();
     }
 }

@@ -16,6 +16,7 @@ namespace BulletSystem
         private void Start()
         {
             YoumuController.instance.onYoumuHit += Wipe;
+            Spell.instance.onSpellUse += Wipe;
         }
 
 

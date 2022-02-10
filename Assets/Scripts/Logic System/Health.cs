@@ -20,6 +20,8 @@ public class Health : MonoBehaviour
 
     public bool invincible { get; private set; }
 
+    private float invincibleTimer = 0;
+
     private void Start()
     {
         health = maxHealth;
@@ -28,8 +30,7 @@ public class Health : MonoBehaviour
         {
             if (invincible) return;
             LoseHealth();
-            invincible = true;
-            StartCoroutine(Invincibility());
+            StartInvincible();
         };
     }
 
@@ -39,10 +40,17 @@ public class Health : MonoBehaviour
         set;
     }
 
-    IEnumerator Invincibility()
+    private void Update()
     {
-        yield return new WaitForSeconds(invincibilityTime);
-        invincible = false;
+        if (invincible)
+        {
+            invincibleTimer -= Time.deltaTime;
+        }
+
+        if (invincibleTimer <= 0)
+        {
+            invincible = false;
+        }
     }
 
     public int get()
@@ -89,5 +97,11 @@ public class Health : MonoBehaviour
     public bool GainHealth()
     {
         return GainHealth(1);
+    }
+
+    public void StartInvincible()
+    {
+        invincible = true;
+        invincibleTimer = invincibilityTime;
     }
 }
