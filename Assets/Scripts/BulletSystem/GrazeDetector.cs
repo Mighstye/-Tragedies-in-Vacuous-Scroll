@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using Logic System;
+
 namespace BulletSystem
 {
     public class GrazeDetector : MonoBehaviour
