@@ -20,7 +20,13 @@ namespace Control
         private static readonly int HorizontalDirection = Animator.StringToHash("HorizontalSpeed");
         [SerializeField] private GameObject hitBoxGameObject;
         //Events
-        public Action onYoumuHit;
+        public Action onYoumuHit
+        {
+            get;
+            set;
+            ///Debug.Log("Hit!");
+            ///Health.instance.loseHealth(1);
+        }
         private void Awake()
         {
             if (instance != null)
