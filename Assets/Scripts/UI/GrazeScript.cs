@@ -12,14 +12,22 @@ public class GrazeScript : MonoBehaviour
     void Start()
     {
         slider = gameObject.GetComponent<Slider>();
-        slider.value = 0;
+        slider.value = Graze.instance.get();
+
+        Graze.instance.onNeedGrazeRefresh += () =>
+        {
+            refreshDisplay();
+        };
+    }
+
+    private void refreshDisplay()
+    {
+        slider.value = Graze.instance.get();
     }
 
     // Update is called once per frame
     void Update()
     {
-        slider.value += (float)0.1;
-        if (slider.value == 100)
-            slider.value = 0;
+
     }
 }

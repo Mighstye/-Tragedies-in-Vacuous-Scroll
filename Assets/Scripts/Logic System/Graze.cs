@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,12 @@ public class Graze : MonoBehaviour
         return graze;
     }
 
+    public Action onNeedGrazeRefresh
+    {
+        get;
+        set;
+    }
+
     //ajoute de la graze si possible, renvoie true si la graze a été ajoutée, false sinon
     public bool AddGraze(int g)
     {
@@ -33,10 +40,12 @@ public class Graze : MonoBehaviour
         if (graze + g > maxGraze)
         {
             graze = maxGraze;
+            onNeedGrazeRefresh?.Invoke();
             return true;
         }
 
         graze += g;
+        onNeedGrazeRefresh?.Invoke();
         return true;
     }
     public bool AddGraze()
@@ -54,6 +63,7 @@ public class Graze : MonoBehaviour
         }
 
         graze -= g;
+        onNeedGrazeRefresh?.Invoke();
         return true;
     }
     public bool UseGraze()

@@ -80,6 +80,15 @@ public partial class @Input : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""72bfe2a0-9c0c-42a5-a502-6282d50ff5dc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -223,6 +232,17 @@ public partial class @Input : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Spell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26562e64-cfac-43d7-bb92-a065ae88d2a6"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -816,6 +836,7 @@ public partial class @Input : IInputActionCollection2, IDisposable
         m_Player_CHEAT1 = m_Player.FindAction("CHEAT1", throwIfNotFound: true);
         m_Player_CHEAT2 = m_Player.FindAction("CHEAT2", throwIfNotFound: true);
         m_Player_Spell = m_Player.FindAction("Spell", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -893,6 +914,7 @@ public partial class @Input : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_CHEAT1;
     private readonly InputAction m_Player_CHEAT2;
     private readonly InputAction m_Player_Spell;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @Input m_Wrapper;
@@ -903,6 +925,7 @@ public partial class @Input : IInputActionCollection2, IDisposable
         public InputAction @CHEAT1 => m_Wrapper.m_Player_CHEAT1;
         public InputAction @CHEAT2 => m_Wrapper.m_Player_CHEAT2;
         public InputAction @Spell => m_Wrapper.m_Player_Spell;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -930,6 +953,9 @@ public partial class @Input : IInputActionCollection2, IDisposable
                 @Spell.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpell;
                 @Spell.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpell;
                 @Spell.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpell;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -952,6 +978,9 @@ public partial class @Input : IInputActionCollection2, IDisposable
                 @Spell.started += instance.OnSpell;
                 @Spell.performed += instance.OnSpell;
                 @Spell.canceled += instance.OnSpell;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -1114,6 +1143,7 @@ public partial class @Input : IInputActionCollection2, IDisposable
         void OnCHEAT1(InputAction.CallbackContext context);
         void OnCHEAT2(InputAction.CallbackContext context);
         void OnSpell(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

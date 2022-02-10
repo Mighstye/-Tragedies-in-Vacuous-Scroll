@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,8 +30,13 @@ public class Health : MonoBehaviour
             LoseHealth();
             invincible = true;
             StartCoroutine(Invincibility());
-
         };
+    }
+
+    public Action onNeedPlayerRefresh
+    {
+        get;
+        set;
     }
 
     IEnumerator Invincibility()
@@ -50,10 +56,12 @@ public class Health : MonoBehaviour
         if (health - h <= 0)
         {
             health = 0;
+            onNeedPlayerRefresh?.Invoke();
             return false;
         }
 
         health -= h;
+        onNeedPlayerRefresh?.Invoke();
         return true;
     }
     public bool LoseHealth()

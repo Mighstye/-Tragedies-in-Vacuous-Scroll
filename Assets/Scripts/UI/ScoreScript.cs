@@ -11,12 +11,12 @@ public class ScoreScript : MonoBehaviour
     void Start()
     {
         textmesh = gameObject.GetComponent<TextMeshProUGUI>();
-        textmesh.text = "0000000000";
+        textmesh.text = "1234567890";
     }
 
     // Update is called once per frame
     void Update()
     {
-        textmesh.text = "0000000000";
+        textmesh.text = "1234567890";
     }
 }
