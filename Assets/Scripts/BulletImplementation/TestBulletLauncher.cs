@@ -22,8 +22,8 @@ namespace BulletImplementation
         {
             if(frameCounter == x)
             {
-                var bullet = (SimpleBullet)bulletPool.pool.Get();
-                bullet.Launch(transform.position, launchVector);
+                var bullet = bulletPool.pool.Get();
+                ((SimpleBullet)bullet).Launch(transform.position, launchVector);
 
                 frameCounter = 0;
             }

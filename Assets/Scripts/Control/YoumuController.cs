@@ -63,7 +63,7 @@ namespace Control
             moveDirection = context.ReadValue<Vector2>().normalized;
             youmuAnimator.SetFloat(HorizontalDirection,moveDirection.x);
         }
-
+        
         public void OnSlow(InputAction.CallbackContext context)
         {
             if (context.phase is InputActionPhase.Performed)
@@ -87,6 +87,7 @@ namespace Control
                 Debug.LogWarning("Bullet without bullet component detected!");
                 return;
             }
+            
             onYoumuHit?.Invoke();
         }
 

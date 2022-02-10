@@ -21,6 +21,7 @@ namespace CardSystem
 
         private void Start()
         {
+            activeCardManager.RunTest();//TODO: This is for test => Delete
             if (activeCardManager.selectedCard == null)
             {
                 selectedCardHover.gameObject.SetActive(false);
