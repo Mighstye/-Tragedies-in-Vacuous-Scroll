@@ -1,4 +1,5 @@
 ﻿using System;
+using Control;
 using UnityEngine;
 
 namespace BulletSystem
@@ -12,10 +13,16 @@ namespace BulletSystem
             instance = this;
         }
 
-        public void wipe()
+        private void Start()
         {
-            int nbActiveBullets = this.transform.childCount;
-            for(int i = 0; i < nbActiveBullets; i++)
+            YoumuController.instance.onYoumuHit += Wipe;
+        }
+
+
+        private void Wipe()
+        {
+            var nbActiveBullets = this.transform.childCount;
+            for(var i = 0; i < nbActiveBullets; i++)
             {
                 var bullet = this.transform.GetChild(0).gameObject.GetComponent<Bullet>();
                 bullet.InvokeBulletDeath();
