@@ -24,7 +24,6 @@ namespace Control
         {
             get;
             set;
-            ///Don't know where to put these lines
             ///Debug.Log("Hit!");
             ///Health.instance.loseHealth(1);
         }
