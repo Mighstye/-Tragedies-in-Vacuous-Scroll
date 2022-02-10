@@ -18,7 +18,7 @@ public class Health : MonoBehaviour
 
     public float invincibilityTime;
 
-    private bool invincible;
+    public bool invincible { get; private set; }
 
     private void Start()
     {
@@ -26,17 +26,15 @@ public class Health : MonoBehaviour
         invincible = false;
         Control.YoumuController.instance.onYoumuHit += () =>
         {
-            if (!invincible)
-            {
-                LoseHealth();
-                invincible = true;
-                StartCoroutine(Invincibility());
-            }
+            if (invincible) return;
+            LoseHealth();
+            invincible = true;
+            StartCoroutine(Invincibility());
 
         };
     }
 
-    IEnumerator Invincibility()
+    private IEnumerator Invincibility()
     {
         yield return new WaitForSeconds(invincibilityTime);
         invincible = false;
@@ -64,7 +62,7 @@ public class Health : MonoBehaviour
         return LoseHealth(1);
     }
 
-    //ajoute de la vie si possible, renvoie true si la vie a été ajoutée, false sinon
+    //ajoute de la vie si possible, renvoie true si la vie a ï¿½tï¿½ ajoutï¿½e, false sinon
     public bool GainHealth(int h)
     {
         if(health == maxHealth)

@@ -87,7 +87,8 @@ namespace Control
                 Debug.LogWarning("Bullet without bullet component detected!");
                 return;
             }
-            
+
+            if (Health.instance.invincible) return;
             onYoumuHit?.Invoke();
         }
 
