@@ -11,7 +11,6 @@ namespace BulletImplementation
         public int bulletSpeed;
         private float angle = 0;
         public float rotationangle;
-        public float slideDistance;
         public float slideJump;
 
         private Vector3 initpos;

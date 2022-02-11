@@ -15,6 +15,18 @@ public class SpellScript : MonoBehaviour
             // We fill the SpriteRender table with all the concerned SpriteRender
             spells[i - 1] = GameObject.Find("spell" + i).GetComponent<SpriteRenderer>();
         }
+        Spell.instance.onSpellUse += () =>
+        {
+            refreshDisplay();
+        };
+    }
+
+    private void refreshDisplay()
+    {
+        for(int i = Spell.instance.get(); i<spells.Length; i++)
+        {
+            spells[i].enabled = false;
+        }
     }
 
     // Update is called once per frame

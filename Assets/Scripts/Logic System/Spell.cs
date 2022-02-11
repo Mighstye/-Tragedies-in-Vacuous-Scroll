@@ -23,6 +23,12 @@ public class Spell : MonoBehaviour
         spell = maxSpell;
     }
 
+    public Action onNeedSpellRefresh
+    {
+        get;
+        set;
+    }
+
     public int get()
     {
         return spell;
@@ -37,6 +43,7 @@ public class Spell : MonoBehaviour
         }
 
         spell -= s;
+        onNeedSpellRefresh?.Invoke();
         return true;
     }
     public bool UseSpell()
@@ -55,10 +62,12 @@ public class Spell : MonoBehaviour
         if (spell + s > maxSpell)
         {
             spell = maxSpell;
+            onNeedSpellRefresh?.Invoke();
             return true;
         }
 
         spell += s;
+        onNeedSpellRefresh?.Invoke();
         return true;
     }
     public bool AddSpell()
