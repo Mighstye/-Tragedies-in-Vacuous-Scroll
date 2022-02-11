@@ -1,5 +1,33 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6940282347030018761
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
+  m_Name: Vignette
+  m_EditorClassIdentifier: 
+  active: 1
+  color:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 0.06981152, b: 0.069811285, a: 1}
+  center:
+    m_OverrideState: 1
+    m_Value: {x: 0.5, y: 0.5}
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0
+  smoothness:
+    m_OverrideState: 1
+    m_Value: 1
+  rounded:
+    m_OverrideState: 1
+    m_Value: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,9 +41,10 @@ MonoBehaviour:
   m_Name: Global PP Profile
   m_EditorClassIdentifier: 
   components:
+  - {fileID: 2655014093356213821}
   - {fileID: 5110794127389950490}
   - {fileID: 4995830602948704943}
-  - {fileID: 2655014093356213821}
+  - {fileID: -6940282347030018761}
 --- !u!114 &2655014093356213821
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -71,7 +100,7 @@ MonoBehaviour:
     m_Value: 65472
   tint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.531843, b: 0.3339622, a: 1}
+    m_Value: {r: 1, g: 0.29622638, b: 0.30290353, a: 1}
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0
@@ -99,4 +128,4 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.17
+    m_Value: 0.18

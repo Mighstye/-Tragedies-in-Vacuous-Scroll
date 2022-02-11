@@ -28,6 +28,8 @@ namespace Control
             get;
             set;
         }
+
+        public Action onInstantSpellCheck;
         private void Awake()
         {
             if (instance != null)
@@ -99,7 +101,8 @@ namespace Control
         private IEnumerator InstantSpellDelay()
         {
             inInstantSpellCheck = true;
-            for (var i = 0; i < 30; i++)
+            onInstantSpellCheck?.Invoke();
+            for (var i = 0; i < 60; i++)
             {
                 if (Health.instance.invincible)
                 {
