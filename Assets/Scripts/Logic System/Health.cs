@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Health : MonoBehaviour
 {
@@ -13,19 +14,22 @@ public class Health : MonoBehaviour
         instance = this;
     }
 
-    public int health;
+    public int currentHealth { get; private set; }
+
+    [SerializeField] private int startingHealth = 2;
 
     public int maxHealth;
 
     public float invincibilityTime;
 
     public bool invincible { get; private set; }
+    public Action onNeedPlayerRefresh { get; set; }
 
     private float invincibleTimer = 0;
 
     private void Start()
     {
-        health = maxHealth;
+        currentHealth = startingHealth;
         invincible = false;
         Control.YoumuController.instance.onYoumuHit += () =>
         {
@@ -35,12 +39,6 @@ public class Health : MonoBehaviour
         };
     }
 
-    public Action onNeedPlayerRefresh
-    {
-        get;
-        set;
-    }
-
     private void Update()
     {
         if (invincible)
@@ -48,58 +46,24 @@ public class Health : MonoBehaviour
             invincibleTimer -= Time.deltaTime;
         }
 
-        if (invincibleTimer <= 0)
-        {
-            invincible = false;
-        }
+        if (!(invincibleTimer <= 0)) return;
+        invincible = false;
+        Spell.instance.ReenableSpell();
     }
-
-    public int get()
+    
+    
+    private void GainHealth(int h = 1)
     {
-        return health;
+        currentHealth = Mathf.Clamp(currentHealth + h, -1, maxHealth);
     }
-
-    //retire de la vie, renvoie true si le joueur est encore en vie, false sinon
-    public bool LoseHealth(int h)
+    private bool LoseHealth(int h = 1)
     {
-        if (health - h <= 0)
-        {
-            health = 0;
-            onNeedPlayerRefresh?.Invoke();
-            return false;
-        }
-
-        health -= h;
+        GainHealth(-h);
+        if (currentHealth < 0) return true;
+        Spell.instance.SpellResetOnLifeLost();
         onNeedPlayerRefresh?.Invoke();
-        return true;
+        return false;
     }
-    public bool LoseHealth()
-    {
-        return LoseHealth(1);
-    }
-
-    //ajoute de la vie si possible, renvoie true si la vie a �t� ajout�e, false sinon
-    public bool GainHealth(int h)
-    {
-        if(health == maxHealth)
-        {
-            return false;
-        }
-
-        if (health + h > maxHealth)
-        {
-            health = maxHealth;
-            return true;
-        }
-
-        health += h;
-        return true;
-    }
-    public bool GainHealth()
-    {
-        return GainHealth(1);
-    }
-
     public void StartInvincible(float time=0)
     {
         if (time == 0) time = invincibilityTime;

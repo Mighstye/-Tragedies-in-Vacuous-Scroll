@@ -8,7 +8,10 @@ public class Spell : MonoBehaviour
 {
     public static Spell instance { get; private set; }
     public int spellDuration;
+    [SerializeField] private int defaultSpellAmount=3;
+    public int currentSpellAmount { get; private set; }
 
+    public int maxSpell;
     private bool inSpellEffect;
     public Action onSpellUse;
     private void Awake()
@@ -16,72 +19,33 @@ public class Spell : MonoBehaviour
         instance = this;
     }
 
-    private int spell;
-
-    public int maxSpell;
+    
 
     private void Start()
     {
-        spell = maxSpell;
+        currentSpellAmount = defaultSpellAmount;
         inSpellEffect = false;
     }
 
-    public Action onNeedSpellRefresh
-    {
-        get;
-        set;
-    }
+    public Action onNeedSpellRefresh { get; set; }
+    
 
-    public int get()
-    {
-        return spell;
-    }
+   
 
-    //consomme le spell si possible, renvoie true si le spell a �t� consomm�, false sinon
-    public bool UseSpell(int s)
+    private void AddSpell(int s = 1)
     {
-        if (spell - s < 0)
-        {
-            return false;
-        }
-
-        spell -= s;
+        currentSpellAmount = Mathf.Clamp(currentSpellAmount + s, 0, maxSpell);
         onNeedSpellRefresh?.Invoke();
-        return true;
-    }
-    public bool UseSpell()
+    } 
+    private void UseSpell(int s = 1)
     {
-        return UseSpell(1);
-    }
-
-    //ajoute du spell si possible, renvoie true si le spell a �t� ajout�e, false sinon
-    public bool AddSpell(int s)
-    {
-        if(spell == maxSpell)
-        {
-            return false;
-        }
-
-        if (spell + s > maxSpell)
-        {
-            spell = maxSpell;
-            onNeedSpellRefresh?.Invoke();
-            return true;
-        }
-
-        spell += s;
-        onNeedSpellRefresh?.Invoke();
-        return true;
-    }
-    public bool AddSpell()
-    {
-        return AddSpell(1);
+        AddSpell(-s);
     }
 
     public void OnSpell(InputAction.CallbackContext context)
     {
         if (context.phase is not InputActionPhase.Performed) return;
-        if (spell <= 0) return;
+        if (currentSpellAmount <= 0) return;
         TriggerSpell();
     }
 
@@ -89,7 +53,19 @@ public class Spell : MonoBehaviour
     {
         if (inSpellEffect) return;
         UseSpell();
+        inSpellEffect = true;
         onSpellUse?.Invoke();
         Health.instance.StartInvincible(spellDuration);
+    }
+
+    public void ReenableSpell()
+    {
+        inSpellEffect = false;
+    }
+
+    public void SpellResetOnLifeLost()
+    {
+        currentSpellAmount = defaultSpellAmount;
+        onNeedSpellRefresh?.Invoke();
     }
 }

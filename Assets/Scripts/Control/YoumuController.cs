@@ -23,13 +23,9 @@ namespace Control
         public int instantSpellFrame = 60;
         private bool inInstantSpellCheck;
         //Events
-        public Action onYoumuHit
-        {
-            get;
-            set;
-        }
-
+        public Action onYoumuHit;
         public Action onInstantSpellCheck;
+        
         private void Awake()
         {
             if (instance != null)

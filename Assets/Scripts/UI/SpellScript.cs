@@ -5,33 +5,32 @@ using UnityEngine.UI;
 
 public class SpellScript : MonoBehaviour
 {
-    private SpriteRenderer[] spells = new SpriteRenderer[8];
+    private readonly Image[] spells = new Image[8];
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        for(int i=1; i<=spells.Length; i++)
+        var i = 0;
+        foreach(var spellUI in gameObject.GetComponentsInChildren<Image>())
         {
-            // We fill the SpriteRender table with all the concerned SpriteRender
-            spells[i - 1] = GameObject.Find("spell" + i).GetComponent<SpriteRenderer>();
+            spells[i] = spellUI;
+            i++;
         }
-        Spell.instance.onSpellUse += () =>
-        {
-            refreshDisplay();
-        };
+        Spell.instance.onNeedSpellRefresh += RefreshDisplay;
+        RefreshDisplay();
     }
 
-    private void refreshDisplay()
+    private void RefreshDisplay()
     {
-        for(int i = Spell.instance.get(); i<spells.Length; i++)
+        for(var i = Spell.instance.currentSpellAmount; i<spells.Length; i++)
         {
             spells[i].enabled = false;
         }
+
+        for (var i = 0; i < Spell.instance.currentSpellAmount; i++)
+        {
+            spells[i].enabled = true;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
