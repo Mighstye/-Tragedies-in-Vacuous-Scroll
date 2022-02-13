@@ -4101,6 +4101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44aec92f8f196e4c88369f1e64d7b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spellDuration: 3
   maxSpell: 8
 --- !u!114 &1500221515
 MonoBehaviour:
@@ -6759,6 +6760,10 @@ PrefabInstance:
     - target: {fileID: 2481776518491477190, guid: b4570664acd9105459af7826cb925fc9, type: 3}
       propertyPath: m_TagString
       value: GrazeBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 3813950640054963800, guid: b4570664acd9105459af7826cb925fc9, type: 3}
+      propertyPath: m_TagString
+      value: SpellArea
       objectReference: {fileID: 0}
     - target: {fileID: 4286163203433488426, guid: b4570664acd9105459af7826cb925fc9, type: 3}
       propertyPath: m_UseFullKinematicContacts

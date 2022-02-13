@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -99,9 +100,10 @@ public class Health : MonoBehaviour
         return GainHealth(1);
     }
 
-    public void StartInvincible()
+    public void StartInvincible(float time=0)
     {
+        if (time == 0) time = invincibilityTime;
         invincible = true;
-        invincibleTimer = invincibilityTime;
+        invincibleTimer = time;
     }
 }

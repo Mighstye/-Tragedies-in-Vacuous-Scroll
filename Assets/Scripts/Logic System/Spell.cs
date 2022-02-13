@@ -7,7 +7,9 @@ using UnityEngine.InputSystem;
 public class Spell : MonoBehaviour
 {
     public static Spell instance { get; private set; }
+    public int spellDuration;
 
+    private bool inSpellEffect;
     public Action onSpellUse;
     private void Awake()
     {
@@ -21,6 +23,7 @@ public class Spell : MonoBehaviour
     private void Start()
     {
         spell = maxSpell;
+        inSpellEffect = false;
     }
 
     public Action onNeedSpellRefresh
@@ -79,8 +82,14 @@ public class Spell : MonoBehaviour
     {
         if (context.phase is not InputActionPhase.Performed) return;
         if (spell <= 0) return;
+        TriggerSpell();
+    }
+
+    private void TriggerSpell()
+    {
+        if (inSpellEffect) return;
         UseSpell();
         onSpellUse?.Invoke();
-        Health.instance.StartInvincible();
+        Health.instance.StartInvincible(spellDuration);
     }
 }
