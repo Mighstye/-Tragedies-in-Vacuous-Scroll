@@ -25,26 +25,24 @@ namespace VFX
         private IEnumerator StartEffect()
         {
             vignette.active = true;
-            var effectKeepFrame = 30;
+            var effectKeepFrame = YoumuController.instance.instantSpellFrame/2;
             while (vignette.intensity.value < 1 || effectKeepFrame>0)
             {
                 if (vignette.intensity.value<1)
                 {
                     vignette.center.value = camera.WorldToViewportPoint(YoumuController.instance.transform.position);
-                    vignette.intensity.value += 1 / 30.0f;
+                    vignette.intensity.value += 1.0f / effectKeepFrame;
+                    yield return null;
                 }
                 else if (effectKeepFrame>0)
                 {
                     effectKeepFrame -= 1;
-                }
-              
-                if (Health.instance.invincible)
-                {
-                    StartCoroutine(ProgressiveReset(success));
-                    yield break;
+                    yield return null;
                 }
 
-                yield return null;
+                if (!Health.instance.invincible) continue;
+                StartCoroutine(ProgressiveReset(success));
+                yield break;
             }
             
 
@@ -57,7 +55,7 @@ namespace VFX
             vignette.color.value = recoveryColor;
             while (vignette.intensity.value > 0)
             {
-                vignette.intensity.value -= 0.005f;
+                vignette.intensity.value -= 0.01f;
                 yield return null;
             }
             vignette.intensity.value = 0f;

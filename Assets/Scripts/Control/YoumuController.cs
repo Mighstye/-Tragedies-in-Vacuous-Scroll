@@ -20,7 +20,7 @@ namespace Control
         private Animator youmuAnimator;
         private static readonly int HorizontalDirection = Animator.StringToHash("HorizontalSpeed");
         [SerializeField] private GameObject hitBoxGameObject;
-
+        public int instantSpellFrame = 60;
         private bool inInstantSpellCheck;
         //Events
         public Action onYoumuHit
@@ -102,7 +102,7 @@ namespace Control
         {
             inInstantSpellCheck = true;
             onInstantSpellCheck?.Invoke();
-            for (var i = 0; i < 60; i++)
+            for (var i = 0; i < instantSpellFrame; i++)
             {
                 if (Health.instance.invincible)
                 {
