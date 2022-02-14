@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2868993759851281331}
   - component: {fileID: 756554049174886951}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet Death VFX Pool
-  m_TagString: Untagged
+  m_TagString: VFX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

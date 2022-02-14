@@ -484,7 +484,9 @@ MonoBehaviour:
   normalSpeed: 5
   lowSpeed: 3
   hitBoxGameObject: {fileID: 8444308635454724947}
-  instantSpellFrame: 60
+  instantSpellFrame: 30
+  hitBurstVFX: {fileID: 0}
+  hitRecoverySpeed: 3
 --- !u!95 &8444308636013612542
 Animator:
   serializedVersion: 4
@@ -518,9 +520,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.004424095, y: 0.006636302}
+  m_Offset: {x: -0.0050133467, y: 0.0042780363}
   serializedVersion: 2
-  m_Radius: 0.073142685
+  m_Radius: 0.06429872
 --- !u!50 &4286163203433488426
 Rigidbody2D:
   serializedVersion: 4

@@ -4,6 +4,7 @@ using BulletSystem;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 namespace Control
 {
@@ -22,10 +23,17 @@ namespace Control
         [SerializeField] private GameObject hitBoxGameObject;
         public int instantSpellFrame = 60;
         private bool inInstantSpellCheck;
+
+        private bool inHitRecovery;
+
+        [SerializeField]
+        private VisualEffect hitBurstVFX;
+
+        [SerializeField] private float hitRecoverySpeed=1;
         //Events
         public Action onYoumuHit;
         public Action onInstantSpellCheck;
-        
+
         private void Awake()
         {
             if (instance != null)
@@ -46,10 +54,13 @@ namespace Control
             halfSizeY = spriteSize.y / 2;
             hitBoxGameObject.SetActive(false);
             inInstantSpellCheck = false;
+            inHitRecovery = false;
+            hitBurstVFX.enabled = false;
         }
 
         private void Update()
         {
+            if (inHitRecovery) return;
             var targetPosition = transform.position + currentSpeed * Time.deltaTime * moveDirection;
             //Clamp the position so that Youmu stays in the movement field.
             targetPosition.x = Mathf.Clamp(targetPosition.x, FieldBoundaries.instance.left + halfSizeX,
@@ -107,8 +118,36 @@ namespace Control
                 }
                 yield return null;
             }
+            
             onYoumuHit?.Invoke();
             inInstantSpellCheck = false;
+            
+            StartCoroutine(HitRecovery());
+
+        }
+
+        private IEnumerator HitRecovery()
+        {
+            inHitRecovery = true;
+            hitBurstVFX.transform.position = transform.position;
+            hitBurstVFX.enabled = true;
+            hitBurstVFX.Play();
+            transform.position = FieldBoundaries.instance.hitRecoveryStartPos;
+            while ((transform.position - FieldBoundaries.instance.hitRecoveryEndPos).magnitude > 0.1f)
+            {
+                var transform1 = transform;
+                var position = transform1.position;
+                position += (FieldBoundaries.instance.hitRecoveryEndPos - position).normalized *
+                            hitRecoverySpeed * Time.deltaTime;
+                transform1.position = position;
+                yield return null;
+            }
+
+            inHitRecovery = false;
+             hitBurstVFX.Reinit();
+             hitBurstVFX.enabled = false;
+           
+
         }
         
     }

@@ -17,9 +17,14 @@ namespace Control
         public float right { get; private set; }
         public float up { get; private set; }
         public float down { get; private set; }
+        
+        public Vector3 hitRecoveryStartPos { get; private set; }
+        
+        public Vector3 hitRecoveryEndPos { get; private set; }
         [SerializeField] private GameObject upperLeft;
         [SerializeField] private GameObject lowerRight;
-
+        [SerializeField] private GameObject hitRecoveryStartPosition;
+        [SerializeField] private GameObject hitRecoveryEndPosition;
         private void Awake()
         {
             if (instance != null)
@@ -34,8 +39,12 @@ namespace Control
             right = lr.x;
             up = ul.y;
             down = lr.y;
+            hitRecoveryEndPos = hitRecoveryEndPosition.transform.position;
+            hitRecoveryStartPos = hitRecoveryStartPosition.transform.position;
             upperLeft.SetActive(false);
             lowerRight.SetActive(false);
+            hitRecoveryEndPosition.SetActive(false);
+            hitRecoveryStartPosition.SetActive(false);
         }
 
         private void OnDrawGizmos()
