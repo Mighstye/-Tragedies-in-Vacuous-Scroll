@@ -22,21 +22,23 @@ namespace BulletImplementation
             behaviors.Add(SquareShot);
         }
 
-        private Vector3 rotateVector(Vector3 vector3)
+        private Vector3 RotateVector(Vector3 vector3)
         {
             return new Vector3(vector3.x * Mathf.Cos(angle) - vector3.y * Mathf.Sin(angle),
                     vector3.x * Mathf.Sin(angle) + vector3.y * Mathf.Cos(angle), vector3.z);
         }
 
-        private Vector3 slideTransform()
+        private Vector3 SlideTransform()
         {
-            if (initpos == null) initpos = transform.position;
             if (transform.position.x + slideJump > lowerright.transform.position.x || 
                 transform.position.x + slideJump < upperleft.transform.position.x)
             {
                 slideJump = -slideJump;
             }
-            return new Vector3(transform.position.x + slideJump, transform.position.y, transform.position.z);
+
+            var transform1 = transform;
+            var position = transform1.position;
+            return new Vector3(position.x + slideJump, position.y, position.z);
         }
 
         private bool SquareShot()
@@ -55,18 +57,20 @@ namespace BulletImplementation
                 var bulletS = bulletPool.pool.Get();
                 var bulletW = bulletPool.pool.Get();
 
-                north = rotateVector(north);
-                east = rotateVector(east);
-                south = rotateVector(south);
-                west = rotateVector(west);
+                north = RotateVector(north);
+                east = RotateVector(east);
+                south = RotateVector(south);
+                west = RotateVector(west);
 
-                ((SimpleBullet)bulletN).Launch(transform.position, north);
-                ((SimpleBullet)bulletE).Launch(transform.position, east);
-                ((SimpleBullet)bulletS).Launch(transform.position, south);
-                ((SimpleBullet)bulletW).Launch(transform.position, west);
+                var position = transform.position;
+                ((SimpleBullet)bulletN).Launch(position, north);
+                ((SimpleBullet)bulletE).Launch(position, east);
+                ((SimpleBullet)bulletS).Launch(position, south);
+                ((SimpleBullet)bulletW).Launch(position, west);
 
                 angle += rotationangle % (2*Mathf.PI);
-                transform.position = slideTransform();
+                position = SlideTransform();
+                transform.position = position;
 
                 shootTimer = shootFrequency;
             }
