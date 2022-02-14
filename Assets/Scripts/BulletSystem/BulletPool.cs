@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Pool;
+using VFX;
 
 namespace BulletSystem
 {
@@ -41,6 +42,11 @@ namespace BulletSystem
             b.onBulletDeathNatural += () =>
             {
                 pool.Release(b);
+            };
+            b.onBulletDeathManual += () =>
+            {
+                var o = BulletDeathVFXPool.instance.pool.Get();
+                o.gameObject.transform.position = b.transform.position;
             };
             return b;
         }

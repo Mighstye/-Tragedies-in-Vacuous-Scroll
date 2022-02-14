@@ -7197,3 +7197,62 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: b4570664acd9105459af7826cb925fc9, type: 3}
+--- !u!1001 &9082395608131550881
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2868993759851281331, guid: 2d509294a1b8077419b684e5703424b7, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868993759851281331, guid: 2d509294a1b8077419b684e5703424b7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.7528256
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868993759851281331, guid: 2d509294a1b8077419b684e5703424b7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.7466483
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868993759851281331, guid: 2d509294a1b8077419b684e5703424b7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.25326687
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868993759851281331, guid: 2d509294a1b8077419b684e5703424b7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868993759851281331, guid: 2d509294a1b8077419b684e5703424b7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868993759851281331, guid: 2d509294a1b8077419b684e5703424b7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868993759851281331, guid: 2d509294a1b8077419b684e5703424b7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868993759851281331, guid: 2d509294a1b8077419b684e5703424b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868993759851281331, guid: 2d509294a1b8077419b684e5703424b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868993759851281331, guid: 2d509294a1b8077419b684e5703424b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683340415960217272, guid: 2d509294a1b8077419b684e5703424b7, type: 3}
+      propertyPath: m_Name
+      value: Bullet Death VFX Pool
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d509294a1b8077419b684e5703424b7, type: 3}
