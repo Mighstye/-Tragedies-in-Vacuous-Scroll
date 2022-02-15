@@ -4590,7 +4590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 413867136}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1656891149
@@ -4626,7 +4626,7 @@ MonoBehaviour:
   m_ActionsAsset: {fileID: -944628639613478452, guid: 681059e03c0077046b9078984a785421, type: 3}
   m_PointAction: {fileID: 970207600600133996, guid: 681059e03c0077046b9078984a785421, type: 3}
   m_MoveAction: {fileID: -224979825431695975, guid: 681059e03c0077046b9078984a785421, type: 3}
-  m_SubmitAction: {fileID: -2844773928132631575, guid: 681059e03c0077046b9078984a785421, type: 3}
+  m_SubmitAction: {fileID: 4518248408444241484, guid: 681059e03c0077046b9078984a785421, type: 3}
   m_CancelAction: {fileID: -5944695622759404239, guid: 681059e03c0077046b9078984a785421, type: 3}
   m_LeftClickAction: {fileID: -8543006793542472134, guid: 681059e03c0077046b9078984a785421, type: 3}
   m_MiddleClickAction: {fileID: -5846755820675352800, guid: 681059e03c0077046b9078984a785421, type: 3}
@@ -7159,6 +7159,10 @@ PrefabInstance:
     - target: {fileID: 8444308636013612540, guid: b4570664acd9105459af7826cb925fc9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444308636013612543, guid: b4570664acd9105459af7826cb925fc9, type: 3}
+      propertyPath: lowSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8444308636013612543, guid: b4570664acd9105459af7826cb925fc9, type: 3}
       propertyPath: hitBurstVFX
