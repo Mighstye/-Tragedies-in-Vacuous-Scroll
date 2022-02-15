@@ -53,7 +53,7 @@ public class Health : MonoBehaviour
     }
     
     
-    private void GainHealth(int h = 1)
+    public void GainHealth(int h = 1)
     {
         currentHealth = Mathf.Clamp(currentHealth + h, -1, maxHealth);
     }
