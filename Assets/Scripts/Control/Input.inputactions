@@ -21,7 +21,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "CardSwitch",
@@ -66,6 +66,15 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TriggerActiveCard",
+                    "type": "Button",
+                    "id": "208faca8-2689-411f-9ae3-d973a3c8a605",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap,Press",
                     "initialStateCheck": false
                 }
             ],
@@ -265,6 +274,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e2b77e1f-dd67-4afe-bdf2-f701e084b5ac",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "TriggerActiveCard",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

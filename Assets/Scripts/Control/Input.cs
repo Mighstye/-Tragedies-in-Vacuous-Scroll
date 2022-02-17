@@ -43,7 +43,7 @@ public partial class @Input : IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""CardSwitch"",
@@ -88,6 +88,15 @@ public partial class @Input : IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TriggerActiveCard"",
+                    ""type"": ""Button"",
+                    ""id"": ""208faca8-2689-411f-9ae3-d973a3c8a605"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap,Press"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -287,6 +296,17 @@ public partial class @Input : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e2b77e1f-dd67-4afe-bdf2-f701e084b5ac"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""TriggerActiveCard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -881,6 +901,7 @@ public partial class @Input : IInputActionCollection2, IDisposable
         m_Player_CHEAT2 = m_Player.FindAction("CHEAT2", throwIfNotFound: true);
         m_Player_Spell = m_Player.FindAction("Spell", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_TriggerActiveCard = m_Player.FindAction("TriggerActiveCard", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -959,6 +980,7 @@ public partial class @Input : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_CHEAT2;
     private readonly InputAction m_Player_Spell;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_TriggerActiveCard;
     public struct PlayerActions
     {
         private @Input m_Wrapper;
@@ -970,6 +992,7 @@ public partial class @Input : IInputActionCollection2, IDisposable
         public InputAction @CHEAT2 => m_Wrapper.m_Player_CHEAT2;
         public InputAction @Spell => m_Wrapper.m_Player_Spell;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @TriggerActiveCard => m_Wrapper.m_Player_TriggerActiveCard;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1000,6 +1023,9 @@ public partial class @Input : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @TriggerActiveCard.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriggerActiveCard;
+                @TriggerActiveCard.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriggerActiveCard;
+                @TriggerActiveCard.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriggerActiveCard;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1025,6 +1051,9 @@ public partial class @Input : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @TriggerActiveCard.started += instance.OnTriggerActiveCard;
+                @TriggerActiveCard.performed += instance.OnTriggerActiveCard;
+                @TriggerActiveCard.canceled += instance.OnTriggerActiveCard;
             }
         }
     }
@@ -1188,6 +1217,7 @@ public partial class @Input : IInputActionCollection2, IDisposable
         void OnCHEAT2(InputAction.CallbackContext context);
         void OnSpell(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnTriggerActiveCard(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
