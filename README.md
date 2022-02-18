@@ -1,5 +1,23 @@
 # 東方渡霊録～Tragedies in Vacuous Scroll
 
+## CONTROL MAPPING ##
+
+Control rebinding is planned.
+
+Keyboard:
+
+Up-Down-Left-Right arrow: Move
+
+LShift = Slow
+
+Z = Switch active card / Confirm
+
+X = Trigger active card (under dev, unavailable in the latest build)
+
+C = Bomb (Spell)
+
+Esc = Pause, call up menu
+
 ## NOTE ON BULLET SYSTEM
 
 The philosophy of the bullet system is assuming each bullet can change its behavior during its lifetime, therefore allowing bullets to have complex patterns.
