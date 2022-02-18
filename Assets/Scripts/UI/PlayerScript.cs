@@ -18,17 +18,17 @@ public class PlayerScript : MonoBehaviour
             hearts[i] = heartUI;
             i++;
         }
-        Health.instance.onNeedPlayerRefresh += RefreshDisplay;
+        LogicSystemAPI.instance.onNeedPlayerRefresh += RefreshDisplay;
         RefreshDisplay();
     }
 
     private void RefreshDisplay()
     {
-        for(var i = Health.instance.currentHealth; i<hearts.Length; i++)
+        for(var i = LogicSystemAPI.instance.getCurrentHealth(); i<hearts.Length; i++)
         {
             hearts[i].enabled = false;
         }
-        for(var i =0;i< Health.instance.currentHealth; i++)
+        for(var i =0;i< LogicSystemAPI.instance.getCurrentHealth(); i++)
         {
             hearts[i].enabled = true;
         }

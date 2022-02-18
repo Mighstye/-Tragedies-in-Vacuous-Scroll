@@ -14,7 +14,7 @@ public class SpellEffect : MonoBehaviour
 
     private void Start()
     {
-        Spell.instance.onSpellUse += () =>
+        LogicSystemAPI.instance.onSpellUse += () =>
         {
             gameObject.SetActive(true);
             StartCoroutine(StartEffect());
@@ -26,7 +26,7 @@ public class SpellEffect : MonoBehaviour
     private IEnumerator StartEffect()
     {
         spellVFX.Play();
-        yield return new WaitForSeconds(Spell.instance.spellDuration);
+        yield return new WaitForSeconds(LogicSystemAPI.instance.spellDuration);
         spellVFX.Reinit();
         gameObject.SetActive(false);
     }

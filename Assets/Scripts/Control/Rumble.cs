@@ -37,7 +37,7 @@ namespace Control
 
         private IEnumerator LastStandRumble()
         {
-            while (Health.instance.currentHealth <= 0 && Spell.instance.currentSpellAmount <= 0)
+            while (LogicSystemAPI.instance.getCurrentHealth() <= 0 && LogicSystemAPI.instance.getCurrentSpellAmount() <= 0)
             {
                 Gamepad.current.SetMotorSpeeds(0.4f,0.8f);
                 yield return new WaitForSeconds(0.2f);
@@ -53,7 +53,7 @@ namespace Control
         }
         private void Update()
         {
-            if (isInLastStand || Health.instance.currentHealth > 0 || Spell.instance.currentSpellAmount > 0) return;
+            if (isInLastStand || LogicSystemAPI.instance.getCurrentHealth() > 0 || LogicSystemAPI.instance.getCurrentSpellAmount() > 0) return;
             isInLastStand = true;
             StartCoroutine(LastStandRumble());
         }

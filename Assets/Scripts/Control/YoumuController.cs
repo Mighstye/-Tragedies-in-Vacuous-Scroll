@@ -93,7 +93,7 @@ namespace Control
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if (Health.instance.invincible||inInstantSpellCheck) return;
+            if (LogicSystemAPI.instance.isInvincible()||inInstantSpellCheck) return;
             if (!col.gameObject.CompareTag("EnemyBullet")) return;
             var bullet = col.gameObject.GetComponent<Bullet>();
             if (bullet == null)
@@ -111,7 +111,7 @@ namespace Control
             onInstantSpellCheck?.Invoke();
             for (var i = 0; i < instantSpellFrame; i++)
             {
-                if (Health.instance.invincible)
+                if (LogicSystemAPI.instance.isInvincible())
                 {
                     inInstantSpellCheck = false;
                     yield break;

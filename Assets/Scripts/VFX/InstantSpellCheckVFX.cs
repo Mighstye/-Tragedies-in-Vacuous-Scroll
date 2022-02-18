@@ -40,7 +40,7 @@ namespace VFX
                     yield return null;
                 }
 
-                if (!Health.instance.invincible) continue;
+                if (!LogicSystemAPI.instance.isInvincible()) continue;
                 StartCoroutine(ProgressiveReset(success));
                 yield break;
             }

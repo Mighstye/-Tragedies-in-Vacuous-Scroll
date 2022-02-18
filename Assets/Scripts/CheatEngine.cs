@@ -26,6 +26,6 @@ public class CheatEngine : MonoBehaviour
     public void OnCheat2(InputAction.CallbackContext context)
     {
         if (context.phase is not InputActionPhase.Performed) return;
-        Health.instance.GainHealth();
+        LogicSystemAPI.instance.GainHealth();
     }
 }

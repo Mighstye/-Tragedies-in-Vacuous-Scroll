@@ -3,71 +3,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Graze : MonoBehaviour
+namespace Logic_System
 {
-    public static Graze instance { get; private set; }
-
-    private void Awake()
+    public class Graze
     {
-        instance = this;
-    }
+        private int graze = 0;
 
-    private int graze = 0;
+        public int defaultGrazeGain;
+        public int grazeSegmentsNb;
+        public int maxGraze;
 
-    public int defaultGrazeGain;
-    public int grazeSegmentsNb;
-    public int maxGraze;
-
-    public int get()
-    {
-        return graze;
-    }
-
-    public Action onNeedGrazeRefresh
-    {
-        get;
-        set;
-    }
-
-    //ajoute de la graze si possible, renvoie true si la graze a été ajoutée, false sinon
-    public bool AddGraze(int g)
-    {
-        if(graze == maxGraze)
+        public int get()
         {
-            return false;
+            return graze;
         }
 
-        if (graze + g > maxGraze)
+        //ajoute de la graze si possible, renvoie true si la graze a été ajoutée, false sinon
+        public bool AddGraze(int g)
         {
-            graze = maxGraze;
-            onNeedGrazeRefresh?.Invoke();
+            if (graze == maxGraze)
+            {
+                return false;
+            }
+
+            if (graze + g > maxGraze)
+            {
+                graze = maxGraze;
+                LogicSystemAPI.instance.onNeedGrazeRefresh?.Invoke();
+                return true;
+            }
+
+            graze += g;
+            LogicSystemAPI.instance.onNeedGrazeRefresh?.Invoke();
             return true;
         }
 
-        graze += g;
-        onNeedGrazeRefresh?.Invoke();
-        return true;
-    }
-    public bool AddGraze()
-    {
-        return AddGraze(defaultGrazeGain);
-    }
-
-    //consomme la graze si possible, renvoie true si la graze a été consommé, false sinon
-    public bool UseGraze(int nbSegments)
-    {
-        int g = (maxGraze / grazeSegmentsNb) * nbSegments;
-        if (graze - g < 0)
+        //consomme la graze si possible, renvoie true si la graze a été consommé, false sinon
+        public bool UseGraze(int nbSegments)
         {
-            return false;
-        }
+            int g = (maxGraze / grazeSegmentsNb) * nbSegments;
+            if (graze - g < 0)
+            {
+                return false;
+            }
 
-        graze -= g;
-        onNeedGrazeRefresh?.Invoke();
-        return true;
-    }
-    public bool UseGraze()
-    {
-        return UseGraze(1);
+            graze -= g;
+            LogicSystemAPI.instance.onNeedGrazeRefresh?.Invoke();
+            return true;
+        }
     }
 }

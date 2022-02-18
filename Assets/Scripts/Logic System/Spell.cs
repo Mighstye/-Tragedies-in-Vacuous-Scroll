@@ -4,38 +4,25 @@ using UnityEngine.InputSystem;
 
 namespace Logic_System
 {
-    public class Spell : MonoBehaviour
+    public class Spell
     {
-        public static Spell instance { get; private set; }
         public int spellDuration;
-        [SerializeField] private int defaultSpellAmount=3;
+        public int defaultSpellAmount;
         public int currentSpellAmount { get; private set; }
 
         public int maxSpell;
         private bool inSpellEffect;
-        public Action onSpellUse;
-        private void Awake()
-        {
-            instance = this;
-        }
 
-    
-
-        private void Start()
+        public void Start()
         {
             currentSpellAmount = defaultSpellAmount;
             inSpellEffect = false;
         }
 
-        public Action onNeedSpellRefresh { get; set; }
-    
-
-   
-
         private void AddSpell(int s = 1)
         {
             currentSpellAmount = Mathf.Clamp(currentSpellAmount + s, 0, maxSpell);
-            onNeedSpellRefresh?.Invoke();
+            LogicSystemAPI.instance.onNeedSpellRefresh?.Invoke();
         } 
         private void UseSpell(int s = 1)
         {
@@ -54,8 +41,8 @@ namespace Logic_System
             if (inSpellEffect) return;
             UseSpell();
             inSpellEffect = true;
-            onSpellUse?.Invoke();
-            Health.instance.StartInvincible(spellDuration);
+            LogicSystemAPI.instance.onSpellUse?.Invoke();
+            LogicSystemAPI.instance.StartInvincible(spellDuration);
         }
 
         public void ReenableSpell()
@@ -66,7 +53,7 @@ namespace Logic_System
         public void SpellResetOnLifeLost()
         {
             currentSpellAmount = defaultSpellAmount;
-            onNeedSpellRefresh?.Invoke();
+            LogicSystemAPI.instance.onNeedSpellRefresh?.Invoke();
         }
     }
 }

@@ -17,18 +17,18 @@ namespace UI
                 spells[i] = spellUI;
                 i++;
             }
-            Spell.instance.onNeedSpellRefresh += RefreshDisplay;
+            LogicSystemAPI.instance.onNeedSpellRefresh += RefreshDisplay;
             RefreshDisplay();
         }
 
         private void RefreshDisplay()
         {
-            for(var i = Spell.instance.currentSpellAmount; i<spells.Length; i++)
+            for(var i = LogicSystemAPI.instance.getCurrentSpellAmount(); i<spells.Length; i++)
             {
                 spells[i].enabled = false;
             }
 
-            for (var i = 0; i < Spell.instance.currentSpellAmount; i++)
+            for (var i = 0; i < LogicSystemAPI.instance.getCurrentSpellAmount(); i++)
             {
                 spells[i].enabled = true;
             }
