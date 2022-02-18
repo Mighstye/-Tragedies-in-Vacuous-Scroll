@@ -1,42 +1,52 @@
-﻿using System;
-using CardSystem;
+﻿using CardSystem;
+using Control.ActiveCardControl.ControlTypes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace ActiveCardImplementation
 {
-    public class TestCard : ActiveCard
+    public class TestCard : ActiveCard, ISlowTappable,IPreciseChargeable
     {
-        private void Awake()
+        public float slowTapTime { get; set; }
+        public float pressDuration { get; set; }
+        public float releaseDuration { get; set; }
+
+        private void Start()
         {
-            chargeTime = 2f;
-            releaseTime = 1f;
+            slowTapTime = 2;
+            pressDuration = 2;
+            releaseDuration = 2;
         }
 
-        
-        public override void OnCharge(InputAction.CallbackContext context)
+        public void OnSlowTapStarted(InputAction.CallbackContext context)
         {
-            Debug.Log("Charge Started");
+            Debug.Log("Slow Tap Started");
         }
 
-        public override void OnTap(InputAction.CallbackContext context)
+        public void OnSlowTapPerformed(InputAction.CallbackContext context)
         {
-            Debug.Log("Tapped");
-        }
-        
-        public override void OnChargeComplete(InputAction.CallbackContext context)
-        {
-            Debug.Log("Charge Triggered.");
+            Debug.Log("Slow Tap success");
         }
 
-        public override void OnChargeFailed(InputAction.CallbackContext context)
+        public void OnSlowTapCancelled(InputAction.CallbackContext context)
         {
-            Debug.Log("Charge failed.");
+            Debug.Log("Slow Tap fail");
         }
 
-        public override void OnOverCharge(InputAction.CallbackContext context)
+       
+        public void OnPreciseChargeStarted(InputAction.CallbackContext context)
         {
-            Debug.Log("Overcharged.");
+            Debug.Log("Precise Charge Started");
+        }
+
+        public void OnPreciseChargePerformed(InputAction.CallbackContext context)
+        {
+            Debug.Log("Precise Charge Success");
+        }
+
+        public void OnPreciseChargeCancelled(InputAction.CallbackContext context)
+        {
+            Debug.Log("Precise Charge Failed");
         }
     }
 }
