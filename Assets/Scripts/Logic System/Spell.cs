@@ -6,31 +6,23 @@ namespace Logic_System
 {
     public class Spell : MonoBehaviour
     {
-        public static Spell instance { get; private set; }
+        private LogicSystemAPI logic;
         public int spellDuration;
-        [SerializeField] private int defaultSpellAmount=3;
+        [SerializeField] private int defaultSpellAmount = 3;
         public int currentSpellAmount { get; private set; }
 
         public int maxSpell;
         private bool inSpellEffect;
-        public Action onSpellUse;
-        private void Awake()
-        {
-            instance = this;
-        }
 
-    
+        public Action onSpellUse;
+        public Action onNeedSpellRefresh { get; set; }
 
         private void Start()
         {
+            logic=LogicSystemAPI.instance;
             currentSpellAmount = defaultSpellAmount;
             inSpellEffect = false;
         }
-
-        public Action onNeedSpellRefresh { get; set; }
-    
-
-   
 
         private void AddSpell(int s = 1)
         {
@@ -55,7 +47,7 @@ namespace Logic_System
             UseSpell();
             inSpellEffect = true;
             onSpellUse?.Invoke();
-            Health.instance.StartInvincible(spellDuration);
+            logic.Health.StartInvincible(spellDuration);
         }
 
         public void ReenableSpell()

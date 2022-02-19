@@ -8,13 +8,17 @@ using UnityEngine.VFX;
 
 public class SpellEffect : MonoBehaviour
 {
-
+    
     [SerializeField] private VisualEffect spellVFX;
     // Start is called before the first frame update
 
+    private Spell spellRef;
+
     private void Start()
     {
-        Spell.instance.onSpellUse += () =>
+        spellRef = LogicSystemAPI.instance.Spell;
+
+        spellRef.onSpellUse += () =>
         {
             gameObject.SetActive(true);
             StartCoroutine(StartEffect());
@@ -26,7 +30,7 @@ public class SpellEffect : MonoBehaviour
     private IEnumerator StartEffect()
     {
         spellVFX.Play();
-        yield return new WaitForSeconds(Spell.instance.spellDuration);
+        yield return new WaitForSeconds(spellRef.spellDuration);
         spellVFX.Reinit();
         gameObject.SetActive(false);
     }

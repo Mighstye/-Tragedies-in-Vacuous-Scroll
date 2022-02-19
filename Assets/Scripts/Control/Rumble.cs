@@ -8,9 +8,15 @@ namespace Control
 {
     public class Rumble : MonoBehaviour
     {
+        private Health healthRef;
+        private Spell spellRef;
+
         private bool isInLastStand = false;
         private void Start()
         {
+            healthRef = LogicSystemAPI.instance.Health;
+            spellRef = LogicSystemAPI.instance.Spell;
+
             YoumuController.instance.onInstantSpellCheck += () =>
             {
                 StartCoroutine(InstantSpellCheckRumble());
@@ -23,7 +29,6 @@ namespace Control
 
         private static IEnumerator InstantSpellCheckRumble()
         {
-            
             Gamepad.current?.SetMotorSpeeds(0.5f,0.5f);
             yield return new WaitForSeconds(0.3f);
             Gamepad.current?.SetMotorSpeeds(0f,0f);
@@ -38,15 +43,16 @@ namespace Control
 
         private IEnumerator LastStandRumble()
         {
-            while (Health.instance.currentHealth <= 0 && Spell.instance.currentSpellAmount <= 0)
+            if(Gamepad.current==null) yield break;
+            while (healthRef?.currentHealth <= 0 && spellRef?.currentSpellAmount <= 0)
             {
-                Gamepad.current?.SetMotorSpeeds(0.4f,0.8f);
+                Gamepad.current.SetMotorSpeeds(0.4f,0.8f);
                 yield return new WaitForSeconds(0.2f);
-                Gamepad.current?.SetMotorSpeeds(0f,0f);
+                Gamepad.current.SetMotorSpeeds(0f,0f);
                 yield return new WaitForSeconds(0.1f);
-                Gamepad.current?.SetMotorSpeeds(0.8f,0.4f);
+                Gamepad.current.SetMotorSpeeds(0.8f,0.4f);
                 yield return new WaitForSeconds(0.2f);
-                Gamepad.current?.SetMotorSpeeds(0f,0f);
+                Gamepad.current.SetMotorSpeeds(0f,0f);
                 yield return new WaitForSeconds(1.25f);
             }
 
@@ -54,7 +60,7 @@ namespace Control
         }
         private void Update()
         {
-            if (isInLastStand || Health.instance.currentHealth > 0 || Spell.instance.currentSpellAmount > 0) return;
+            if (isInLastStand || healthRef?.currentHealth > 0 || spellRef?.currentSpellAmount > 0) return;
             isInLastStand = true;
             StartCoroutine(LastStandRumble());
         }

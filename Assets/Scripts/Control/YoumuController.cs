@@ -5,6 +5,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
+using Logic_System;
 
 namespace Control
 {
@@ -34,6 +35,8 @@ namespace Control
         public Action onYoumuHit;
         public Action onInstantSpellCheck;
 
+        private Health healthRef;
+
         private void Awake()
         {
             if (instance != null)
@@ -46,6 +49,8 @@ namespace Control
 
         private void Start()
         {
+            healthRef = LogicSystemAPI.instance.Health;
+
             currentSpeed = normalSpeed;
             youmuAnimator = GetComponent<Animator>();
             //Get the size of the sprite (bounding box)
@@ -93,7 +98,7 @@ namespace Control
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if (Health.instance.invincible||inInstantSpellCheck) return;
+            if (healthRef.invincible||inInstantSpellCheck) return;
             if (!col.gameObject.CompareTag("EnemyBullet")) return;
             var bullet = col.gameObject.GetComponent<Bullet>();
             if (bullet == null)
@@ -111,7 +116,7 @@ namespace Control
             onInstantSpellCheck?.Invoke();
             for (var i = 0; i < instantSpellFrame; i++)
             {
-                if (Health.instance.invincible)
+                if (healthRef.invincible)
                 {
                     inInstantSpellCheck = false;
                     yield break;

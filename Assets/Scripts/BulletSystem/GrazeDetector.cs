@@ -1,12 +1,21 @@
+using System;
 using UnityEngine;
+using Logic_System;
 
 namespace BulletSystem
 {
     public class GrazeDetector : MonoBehaviour
     {
-        ///private int grazeValue=0;
+        private Graze grazeRef;
+
+        private void Start()
+        {
+            grazeRef = LogicSystemAPI.instance.Graze;
+        }
+
         private void OnTriggerEnter2D(Collider2D col)
         {
+            
             if (!col.gameObject.CompareTag("EnemyBullet")) return;
             var bullet = col.gameObject.GetComponent<Bullet>();
             if (bullet == null)
@@ -18,7 +27,7 @@ namespace BulletSystem
             if (!bullet.grazeable) return;
             bullet.grazeable = false;
 
-            if (Graze.instance.AddGraze())
+            if (grazeRef.AddGraze())
             {
                 ///Debug.Log("Bullet Entered Graze area.");
                 ///Debug.Log(Graze.instance.get());

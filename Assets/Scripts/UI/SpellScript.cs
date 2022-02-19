@@ -8,27 +8,31 @@ namespace UI
     {
         private readonly Image[] spells = new Image[8];
 
+        private Spell spellRef;
+
         // Start is called before the first frame update
         private void Start()
         {
+            spellRef = LogicSystemAPI.instance.Spell;
+
             var i = 0;
             foreach(var spellUI in gameObject.GetComponentsInChildren<Image>())
             {
                 spells[i] = spellUI;
                 i++;
             }
-            Spell.instance.onNeedSpellRefresh += RefreshDisplay;
+            spellRef.onNeedSpellRefresh += RefreshDisplay;
             RefreshDisplay();
         }
 
         private void RefreshDisplay()
         {
-            for(var i = Spell.instance.currentSpellAmount; i<spells.Length; i++)
+            for(var i = spellRef.currentSpellAmount; i<spells.Length; i++)
             {
                 spells[i].enabled = false;
             }
 
-            for (var i = 0; i < Spell.instance.currentSpellAmount; i++)
+            for (var i = 0; i < spellRef?.currentSpellAmount; i++)
             {
                 spells[i].enabled = true;
             }
