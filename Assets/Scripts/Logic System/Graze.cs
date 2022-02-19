@@ -13,6 +13,8 @@ namespace Logic_System
         public int grazeSegmentsNb;
         public int maxGraze;
 
+        public Action onNeedGrazeRefresh { get; set; }
+
         public int get()
         {
             return graze;
@@ -29,13 +31,17 @@ namespace Logic_System
             if (graze + g > maxGraze)
             {
                 graze = maxGraze;
-                LogicSystemAPI.instance.onNeedGrazeRefresh?.Invoke();
+                onNeedGrazeRefresh?.Invoke();
                 return true;
             }
 
             graze += g;
-            LogicSystemAPI.instance.onNeedGrazeRefresh?.Invoke();
+            onNeedGrazeRefresh?.Invoke();
             return true;
+        }
+        public bool AddGraze()
+        {
+            return AddGraze(defaultGrazeGain);
         }
 
         //consomme la graze si possible, renvoie true si la graze a été consommé, false sinon
@@ -48,8 +54,12 @@ namespace Logic_System
             }
 
             graze -= g;
-            LogicSystemAPI.instance.onNeedGrazeRefresh?.Invoke();
+            onNeedGrazeRefresh?.Invoke();
             return true;
+        }
+        public bool UseGraze()
+        {
+            return UseGraze(1);
         }
     }
 }

@@ -8,9 +8,15 @@ namespace Control
 {
     public class Rumble : MonoBehaviour
     {
+        private Health healthRef;
+        private Spell spellRef;
+
         private bool isInLastStand = false;
         private void Start()
         {
+            healthRef = LogicSystemAPI.instance.Health;
+            spellRef = LogicSystemAPI.instance.Spell;
+
             YoumuController.instance.onInstantSpellCheck += () =>
             {
                 StartCoroutine(InstantSpellCheckRumble());
@@ -37,7 +43,7 @@ namespace Control
 
         private IEnumerator LastStandRumble()
         {
-            while (LogicSystemAPI.instance.getCurrentHealth() <= 0 && LogicSystemAPI.instance.getCurrentSpellAmount() <= 0)
+            while (healthRef?.currentHealth <= 0 && spellRef?.currentSpellAmount <= 0)
             {
                 Gamepad.current.SetMotorSpeeds(0.4f,0.8f);
                 yield return new WaitForSeconds(0.2f);
@@ -53,7 +59,7 @@ namespace Control
         }
         private void Update()
         {
-            if (isInLastStand || LogicSystemAPI.instance.getCurrentHealth() > 0 || LogicSystemAPI.instance.getCurrentSpellAmount() > 0) return;
+            if (isInLastStand || healthRef?.currentHealth > 0 || spellRef?.currentSpellAmount > 0) return;
             isInLastStand = true;
             StartCoroutine(LastStandRumble());
         }

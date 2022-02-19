@@ -22,6 +22,8 @@ namespace Logic_System
         
         private float invincibleTimer = 0;
 
+        public Action onNeedPlayerRefresh { get; set; }
+
         public void Start()
         {
             currentHealth = startingHealth;
@@ -43,7 +45,7 @@ namespace Logic_System
 
             if (!(invincibleTimer <= 0)) return;
             invincible = false;
-            LogicSystemAPI.instance.ReenableSpell();
+            LogicSystemAPI.instance.Spell.ReenableSpell();
         }
 
 
@@ -55,8 +57,8 @@ namespace Logic_System
         {
             GainHealth(-h);
             if (currentHealth < 0) return true;
-            LogicSystemAPI.instance.SpellResetOnLifeLost();
-            LogicSystemAPI.instance.onNeedPlayerRefresh?.Invoke();
+            LogicSystemAPI.instance.Spell.SpellResetOnLifeLost();
+            onNeedPlayerRefresh?.Invoke();
             return false;
         }
         public void StartInvincible(float time = 0)

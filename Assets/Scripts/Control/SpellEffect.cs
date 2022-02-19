@@ -12,9 +12,13 @@ public class SpellEffect : MonoBehaviour
     [SerializeField] private VisualEffect spellVFX;
     // Start is called before the first frame update
 
+    private Spell spellRef;
+
     private void Start()
     {
-        LogicSystemAPI.instance.onSpellUse += () =>
+        spellRef = LogicSystemAPI.instance.Spell;
+
+        spellRef.onSpellUse += () =>
         {
             gameObject.SetActive(true);
             StartCoroutine(StartEffect());

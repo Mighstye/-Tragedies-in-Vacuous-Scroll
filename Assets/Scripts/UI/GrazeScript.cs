@@ -2,19 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Logic_System;
 
 public class GrazeScript : MonoBehaviour
 {
 
     private Slider slider;
 
+    private Graze grazeRef;
+
     // Start is called before the first frame update
     void Start()
     {
-        slider = gameObject.GetComponent<Slider>();
-        slider.value = LogicSystemAPI.instance.getGraze();
+        grazeRef = LogicSystemAPI.instance.Graze;
 
-        LogicSystemAPI.instance.onNeedGrazeRefresh += () =>
+        slider = gameObject.GetComponent<Slider>();
+        slider.value = grazeRef.get();
+
+        grazeRef.onNeedGrazeRefresh += () =>
         {
             refreshDisplay();
         };
@@ -22,7 +27,7 @@ public class GrazeScript : MonoBehaviour
 
     private void refreshDisplay()
     {
-        slider.value = LogicSystemAPI.instance.getGraze();
+        slider.value = grazeRef.get();
     }
 
     // Update is called once per frame

@@ -13,6 +13,9 @@ namespace Logic_System
         public int maxSpell;
         private bool inSpellEffect;
 
+        public Action onSpellUse;
+        public Action onNeedSpellRefresh { get; set; }
+
         public void Start()
         {
             currentSpellAmount = defaultSpellAmount;
@@ -22,7 +25,7 @@ namespace Logic_System
         private void AddSpell(int s = 1)
         {
             currentSpellAmount = Mathf.Clamp(currentSpellAmount + s, 0, maxSpell);
-            LogicSystemAPI.instance.onNeedSpellRefresh?.Invoke();
+            onNeedSpellRefresh?.Invoke();
         } 
         private void UseSpell(int s = 1)
         {
@@ -41,8 +44,8 @@ namespace Logic_System
             if (inSpellEffect) return;
             UseSpell();
             inSpellEffect = true;
-            LogicSystemAPI.instance.onSpellUse?.Invoke();
-            LogicSystemAPI.instance.StartInvincible(spellDuration);
+            onSpellUse?.Invoke();
+            LogicSystemAPI.instance.Health.StartInvincible(spellDuration);
         }
 
         public void ReenableSpell()
@@ -53,7 +56,7 @@ namespace Logic_System
         public void SpellResetOnLifeLost()
         {
             currentSpellAmount = defaultSpellAmount;
-            LogicSystemAPI.instance.onNeedSpellRefresh?.Invoke();
+            onNeedSpellRefresh?.Invoke();
         }
     }
 }

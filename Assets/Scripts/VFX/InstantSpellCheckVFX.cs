@@ -4,6 +4,7 @@ using Control;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using Logic_System;
 
 namespace VFX
 {
@@ -40,7 +41,7 @@ namespace VFX
                     yield return null;
                 }
 
-                if (!LogicSystemAPI.instance.isInvincible()) continue;
+                if (!LogicSystemAPI.instance.Health.invincible) continue;
                 StartCoroutine(ProgressiveReset(success));
                 yield break;
             }

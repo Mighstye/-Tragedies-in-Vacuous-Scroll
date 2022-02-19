@@ -18,7 +18,7 @@ namespace BulletSystem
             if (!bullet.grazeable) return;
             bullet.grazeable = false;
 
-            if (LogicSystemAPI.instance.AddGraze())
+            if (LogicSystemAPI.instance.Graze.AddGraze())
             {
                 ///Debug.Log("Bullet Entered Graze area.");
                 ///Debug.Log(Graze.instance.get());
