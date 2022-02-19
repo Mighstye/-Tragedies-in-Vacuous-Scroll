@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using CardSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Logic_System;
 
 public class CheatEngine : MonoBehaviour
 {

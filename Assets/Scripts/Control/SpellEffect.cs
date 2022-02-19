@@ -30,7 +30,7 @@ public class SpellEffect : MonoBehaviour
     private IEnumerator StartEffect()
     {
         spellVFX.Play();
-        yield return new WaitForSeconds(LogicSystemAPI.instance.spellDuration);
+        yield return new WaitForSeconds(spellRef.spellDuration);
         spellVFX.Reinit();
         gameObject.SetActive(false);
     }

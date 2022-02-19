@@ -8,11 +8,11 @@ using UnityEngine.Serialization;
 
 namespace Logic_System
 {
-    public class Health
+    public class Health : MonoBehaviour
     {
         public int currentHealth { get; private set; }
 
-        public int startingHealth;
+        [SerializeField] private int startingHealth = 2;
 
         public int maxHealth;
 
@@ -24,7 +24,7 @@ namespace Logic_System
 
         public Action onNeedPlayerRefresh { get; set; }
 
-        public void Start()
+        private void Start()
         {
             currentHealth = startingHealth;
             invincible = false;
@@ -36,7 +36,7 @@ namespace Logic_System
             };
         }
 
-        public void Update()
+        private void Update()
         {
             if (invincible)
             {

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Logic_System
 {
-    public class Graze
+    public class Graze : MonoBehaviour
     {
         private int graze = 0;
 

@@ -4,10 +4,10 @@ using UnityEngine.InputSystem;
 
 namespace Logic_System
 {
-    public class Spell
+    public class Spell : MonoBehaviour
     {
         public int spellDuration;
-        public int defaultSpellAmount;
+        [SerializeField] private int defaultSpellAmount = 3;
         public int currentSpellAmount { get; private set; }
 
         public int maxSpell;
@@ -16,7 +16,7 @@ namespace Logic_System
         public Action onSpellUse;
         public Action onNeedSpellRefresh { get; set; }
 
-        public void Start()
+        private void Start()
         {
             currentSpellAmount = defaultSpellAmount;
             inSpellEffect = false;
