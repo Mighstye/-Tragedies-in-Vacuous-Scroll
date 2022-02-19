@@ -6,6 +6,7 @@ namespace Logic_System
 {
     public class Spell : MonoBehaviour
     {
+        private LogicSystemAPI logic;
         public int spellDuration;
         [SerializeField] private int defaultSpellAmount = 3;
         public int currentSpellAmount { get; private set; }
@@ -18,6 +19,7 @@ namespace Logic_System
 
         private void Start()
         {
+            logic=LogicSystemAPI.instance;
             currentSpellAmount = defaultSpellAmount;
             inSpellEffect = false;
         }
@@ -45,7 +47,7 @@ namespace Logic_System
             UseSpell();
             inSpellEffect = true;
             onSpellUse?.Invoke();
-            LogicSystemAPI.instance.Health.StartInvincible(spellDuration);
+            logic.Health.StartInvincible(spellDuration);
         }
 
         public void ReenableSpell()

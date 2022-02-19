@@ -8,7 +8,7 @@ using UnityEngine.VFX;
 
 public class SpellEffect : MonoBehaviour
 {
-
+    
     [SerializeField] private VisualEffect spellVFX;
     // Start is called before the first frame update
 

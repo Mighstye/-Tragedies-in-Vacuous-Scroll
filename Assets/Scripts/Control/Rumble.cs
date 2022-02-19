@@ -29,20 +29,21 @@ namespace Control
 
         private static IEnumerator InstantSpellCheckRumble()
         {
-            Gamepad.current.SetMotorSpeeds(0.5f,0.5f);
+            Gamepad.current?.SetMotorSpeeds(0.5f,0.5f);
             yield return new WaitForSeconds(0.3f);
-            Gamepad.current.SetMotorSpeeds(0f,0f);
+            Gamepad.current?.SetMotorSpeeds(0f,0f);
         }
 
         private static IEnumerator HitRumble()
         {
-            Gamepad.current.SetMotorSpeeds(0.6f,0.8f);
+            Gamepad.current?.SetMotorSpeeds(0.6f,0.8f);
             yield return new WaitForSeconds(0.5f);
-            Gamepad.current.SetMotorSpeeds(0f,0f);
+            Gamepad.current?.SetMotorSpeeds(0f,0f);
         }
 
         private IEnumerator LastStandRumble()
         {
+            if(Gamepad.current==null) yield break;
             while (healthRef?.currentHealth <= 0 && spellRef?.currentSpellAmount <= 0)
             {
                 Gamepad.current.SetMotorSpeeds(0.4f,0.8f);

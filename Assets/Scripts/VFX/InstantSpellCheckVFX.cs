@@ -10,12 +10,14 @@ namespace VFX
 {
     public class InstantSpellCheckVFX : MonoBehaviour
     {
+        private Health healthRef;
         private Vignette vignette;
         [SerializeField] private Camera camera;
         [SerializeField] private Color success = Color.green;
         [SerializeField] private Color other = Color.red;
         private void Start()
         {
+            healthRef = LogicSystemAPI.instance.Health;
             GetComponent<Volume>().profile.TryGet<Vignette>(out vignette);
             vignette.active = false;
             YoumuController.instance.onInstantSpellCheck += () =>
@@ -41,7 +43,7 @@ namespace VFX
                     yield return null;
                 }
 
-                if (!LogicSystemAPI.instance.Health.invincible) continue;
+                if (!healthRef.invincible) continue;
                 StartCoroutine(ProgressiveReset(success));
                 yield break;
             }

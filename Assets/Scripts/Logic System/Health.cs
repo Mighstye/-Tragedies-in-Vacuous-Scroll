@@ -10,6 +10,7 @@ namespace Logic_System
 {
     public class Health : MonoBehaviour
     {
+        private LogicSystemAPI logic;
         public int currentHealth { get; private set; }
 
         [SerializeField] private int startingHealth = 2;
@@ -26,6 +27,7 @@ namespace Logic_System
 
         private void Start()
         {
+            logic = LogicSystemAPI.instance;
             currentHealth = startingHealth;
             invincible = false;
             Control.YoumuController.instance.onYoumuHit += () =>
@@ -45,7 +47,7 @@ namespace Logic_System
 
             if (!(invincibleTimer <= 0)) return;
             invincible = false;
-            LogicSystemAPI.instance.Spell.ReenableSpell();
+           logic.Spell.ReenableSpell();
         }
 
 
@@ -57,7 +59,7 @@ namespace Logic_System
         {
             GainHealth(-h);
             if (currentHealth < 0) return true;
-            LogicSystemAPI.instance.Spell.SpellResetOnLifeLost();
+            logic.Spell.SpellResetOnLifeLost();
             onNeedPlayerRefresh?.Invoke();
             return false;
         }
