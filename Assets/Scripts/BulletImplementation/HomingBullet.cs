@@ -5,7 +5,7 @@ using Control;
 
 namespace BulletImplementation
 {
-    public class HomingBullet : Bullet, SimpleBullet
+    public class HomingBullet : Bullet, ISimpleBullet
     {
         public Vector3 velocity { get; private set; }
 
@@ -69,6 +69,13 @@ namespace BulletImplementation
             return false;
         }
 
-
+        public override Vector3 getVelocity()
+        {
+            if(homingVector != null)
+            {
+                return homingVector;
+            }
+            return velocity;
+        }
     }
 }

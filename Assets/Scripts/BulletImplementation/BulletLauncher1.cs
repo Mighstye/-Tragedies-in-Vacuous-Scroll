@@ -35,7 +35,7 @@ namespace BulletImplementation
                 var bullet = bulletPool.pool.Get();
                 ((HomingBullet)bullet).idleTime = idleTime;
                 ((HomingBullet)bullet).launchTime = launchTime;
-                ((SimpleBullet)bullet).Launch(transform.position, launchVector);
+                ((ISimpleBullet)bullet).Launch(transform.position, launchVector);
             }
 
             shootTimer = shootFrequency;

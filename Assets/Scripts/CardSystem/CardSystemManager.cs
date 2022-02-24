@@ -33,6 +33,7 @@ namespace CardSystem
             }
             else
             {
+                selectedCardHover.UpdateSelectedCard(activeCardManager.selectedCard);
                 onSelectedCardChange?.Invoke(activeCardManager.selectedCard);
             }
 
@@ -55,7 +56,6 @@ namespace CardSystem
                 selectedCardHover.gameObject.SetActive(false);
                 return;
             }
-
             selectedCardHover.gameObject.SetActive(true);
             selectedCardHover.UpdateSelectedCard(activeCardManager.selectedCard);
             onSelectedCardChange?.Invoke(activeCardManager.selectedCard);

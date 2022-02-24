@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 168577981}
   - component: {fileID: 168577983}
   m_Layer: 5
-  m_Name: c2
+  m_Name: Beam Parry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -426,9 +426,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 168577978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d729f36de7644ddbaa62e8d771da67d, type: 3}
+  m_Script: {fileID: 11500000, guid: baa731f9b441bf145b0c33f8a33a9b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPoolsContainer: {fileID: 414795964}
+  bulletParriedPool: {fileID: 825094991}
 --- !u!224 &196187842 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4151080719997965447, guid: 0acab54653cfc50459e3c8ec3ad5e2f1, type: 3}
@@ -565,7 +567,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2098387908}
+  m_Father: {fileID: 414795964}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &413867136
@@ -702,6 +704,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 413867136}
   m_CullTransparentMesh: 1
+--- !u!1 &414795963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 414795964}
+  m_Layer: 0
+  m_Name: Bullet Pools
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &414795964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414795963}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 412788265}
+  - {fileID: 1797415576}
+  m_Father: {fileID: 2098387908}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &432495178
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2173,6 +2208,54 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4151080719997965447, guid: 0acab54653cfc50459e3c8ec3ad5e2f1, type: 3}
   m_PrefabInstance: {fileID: 5770089655830452314}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &825094989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 825094990}
+  - component: {fileID: 825094991}
+  m_Layer: 0
+  m_Name: Parried Bullet Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &825094990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825094989}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2098387908}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &825094991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825094989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cef5d7de0ad99245a41b4ac4e073f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPoolSize: 500
+  bullet: {fileID: -5567558274052807204, guid: 0b7a540e85a4ab44daaf32d2aba5b875, type: 3}
+  poolType: 1
+  collectionChecks: 1
 --- !u!1 &836412360
 GameObject:
   m_ObjectHideFlags: 0
@@ -5547,7 +5630,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2098387908}
+  m_Father: {fileID: 414795964}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1822785404 stripped
@@ -6766,10 +6849,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 412788265}
-  - {fileID: 1797415576}
   - {fileID: 2084676218}
   - {fileID: 2021281591}
+  - {fileID: 414795964}
+  - {fileID: 825094990}
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

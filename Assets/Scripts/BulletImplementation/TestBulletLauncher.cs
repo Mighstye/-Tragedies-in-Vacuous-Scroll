@@ -3,10 +3,6 @@ using BulletSystem;
 
 namespace BulletImplementation
 {
-    public interface SimpleBullet
-    {
-        public void Launch(Vector3 pos, Vector3 velocity);
-    }
     public class TestBulletLauncher : BulletLauncher
     {
         public Vector3 launchVector;
@@ -23,7 +19,7 @@ namespace BulletImplementation
             if(frameCounter == x)
             {
                 var bullet = bulletPool.pool.Get();
-                ((SimpleBullet)bullet).Launch(transform.position, launchVector);
+                ((ISimpleBullet)bullet).Launch(transform.position, launchVector);
 
                 frameCounter = 0;
             }
