@@ -1,7 +1,9 @@
-﻿namespace CardSystem
+﻿using UnityEngine;
+
+namespace CardSystem
 {
-    public class PassiveCard: Card
+    public abstract class PassiveCard: Card
     {
-        
+
     }
 }
