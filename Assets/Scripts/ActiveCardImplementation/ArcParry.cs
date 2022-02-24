@@ -1,12 +1,14 @@
-﻿using CardSystem;
-using Control.ActiveCardControl.ControlTypes;
+using CardSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using BulletSystem;
+using Control;
 
 namespace ActiveCardImplementation
 {
-    public class TestCard : ActiveCard
+    public class ArcParry : ActiveCard
     {
+
         public override void OnPreciseChargeCancelled(InputAction.CallbackContext context)
         {
             Debug.Log("OnPreciseChargeCancelled");
@@ -44,7 +46,7 @@ namespace ActiveCardImplementation
 
         public override void OnTapPerformed(InputAction.CallbackContext context)
         {
-            Debug.Log("OnTapPerformed");
+           
         }
     }
 }
