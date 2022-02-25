@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 using VFX;
+using System;
 
 namespace BulletSystem
 {
@@ -9,6 +10,9 @@ namespace BulletSystem
         public int maxPoolSize;
 
         public Bullet bullet;
+
+        public delegate void instantiateBulletParryDelegate(Bullet b);
+        public instantiateBulletParryDelegate instantiateBulletParry; 
 
         public enum PoolType
         {
@@ -48,6 +52,19 @@ namespace BulletSystem
                 var o = BulletDeathVFXPool.instance.pool.Get();
                 o.gameObject.transform.position = b.transform.position;
             };
+
+            if(instantiateBulletParry == null)
+            {
+                b.onBulletPary += () =>
+                {
+                    b.InvokeBulletDeath();
+                };
+            }
+            else
+            {
+                instantiateBulletParry(b);
+            }
+
             return b;
         }
 

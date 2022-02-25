@@ -4,7 +4,7 @@ using BulletSystem;
 
 namespace BulletImplementation
 {
-    public class StandardStraightBullet: Bullet, ISimpleBullet
+    public class StandardStraightPary: Bullet, ISimplePary
     {
         public Vector3 velocity { get; private set; }
 

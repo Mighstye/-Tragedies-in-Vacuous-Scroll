@@ -63,10 +63,10 @@ namespace BulletImplementation
                 west = RotateVector(west);
 
                 var position = transform.position;
-                ((SimpleBullet)bulletN).Launch(position, north);
-                ((SimpleBullet)bulletE).Launch(position, east);
-                ((SimpleBullet)bulletS).Launch(position, south);
-                ((SimpleBullet)bulletW).Launch(position, west);
+                ((ISimpleBullet)bulletN).Launch(position, north);
+                ((ISimpleBullet)bulletE).Launch(position, east);
+                ((ISimpleBullet)bulletS).Launch(position, south);
+                ((ISimpleBullet)bulletW).Launch(position, west);
 
                 angle += rotationangle % (2*Mathf.PI);
                 
