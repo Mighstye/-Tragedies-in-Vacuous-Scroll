@@ -20,7 +20,7 @@ namespace BulletSystem
         }
 
 
-        private void Wipe()
+        public void Wipe()
         {
             var nbActiveBullets = this.transform.childCount;
             for(var i = 0; i < nbActiveBullets; i++)
