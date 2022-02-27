@@ -69,8 +69,9 @@ namespace BulletImplementation
                 ((ISimpleBullet)bulletW).Launch(position, west);
 
                 angle += rotationangle % (2*Mathf.PI);
-                position = SlideTransform();
-                transform.position = position;
+                
+                //position = SlideTransform();
+                //transform.position = position;
 
                 shootTimer = shootFrequency;
             }
