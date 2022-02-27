@@ -5,46 +5,58 @@ using UnityEngine.InputSystem;
 
 namespace ActiveCardImplementation
 {
-    public class TestCard : ActiveCard
+    public class TestCard : ActiveCard, ISlowTappable, IPreciseChargeable, ITappable
     {
-        public override void OnPreciseChargeCancelled(InputAction.CallbackContext context)
+        public float tapTime { get; set; }
+        public float slowTapTime { get; set; }
+        public float pressDuration { get; set; }
+        public float releaseDuration { get; set; }
+        private void Start()
         {
-            Debug.Log("OnPreciseChargeCancelled");
+            tapTime = 0.5f;
+            slowTapTime = 2;
+            pressDuration = 2;
+            releaseDuration = 2;
         }
 
-        public override void OnPreciseChargePerformed(InputAction.CallbackContext context)
+        public void OnPreciseChargeCancelled(InputAction.CallbackContext context)
         {
-            Debug.Log("OnPreciseChargePerformed");
+            throw new System.NotImplementedException();
         }
 
-        public override void OnPreciseChargeStarted(InputAction.CallbackContext context)
+        public void OnPreciseChargePerformed(InputAction.CallbackContext context)
         {
-            Debug.Log("OnPreciseChargeStarted");
+            throw new System.NotImplementedException();
         }
 
-        public override void OnSlowTapCancelled(InputAction.CallbackContext context)
+        public void OnPreciseChargeStarted(InputAction.CallbackContext context)
         {
-            Debug.Log("OnSlowTapCancelled");
+            throw new System.NotImplementedException();
         }
 
-        public override void OnSlowTapPerformed(InputAction.CallbackContext context)
+        public void OnSlowTapCancelled(InputAction.CallbackContext context)
         {
-            Debug.Log("OnSlowTapPerformed");
+            throw new System.NotImplementedException();
         }
 
-        public override void OnSlowTapStarted(InputAction.CallbackContext context)
+        public void OnSlowTapPerformed(InputAction.CallbackContext context)
         {
-            Debug.Log("OnSlowTapStarted");
+            throw new System.NotImplementedException();
         }
 
-        public override void OnTapCancelled(InputAction.CallbackContext context)
+        public void OnSlowTapStarted(InputAction.CallbackContext context)
         {
-            Debug.Log("OnTapCancelled");
+            throw new System.NotImplementedException();
         }
 
-        public override void OnTapPerformed(InputAction.CallbackContext context)
+        public void OnTapCancelled(InputAction.CallbackContext context)
         {
-            Debug.Log("OnTapPerformed");
+            throw new System.NotImplementedException();
+        }
+
+        public void OnTapPerformed(InputAction.CallbackContext context)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

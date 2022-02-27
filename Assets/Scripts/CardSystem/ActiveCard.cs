@@ -1,30 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using Control.ActiveCardControl.ControlTypes;
+using Logic_System;
 
 namespace CardSystem
 {
-    public abstract class ActiveCard: Card, ISlowTappable, IPreciseChargeable, ITappable
+    public abstract class ActiveCard: Card
     {
-        public float tapTime { get; set; }
-        public float slowTapTime { get; set; }
-        public float pressDuration { get; set; }
-        public float releaseDuration { get; set; }
+        protected int grazeCostSegment = 1; //DEFAULT VALUE
 
-        private void Start()
+        protected bool useCard()
         {
-            tapTime = 0.5f;
-            slowTapTime = 2;
-            pressDuration = 2;
-            releaseDuration = 2;
+            if (!(LogicSystemAPI.instance.Graze.get() >= grazeCostSegment)) return false;
+            else
+            {
+                LogicSystemAPI.instance.Graze.UseGraze(grazeCostSegment);
+                return true;
+            }
         }
-        public abstract void OnSlowTapStarted(InputAction.CallbackContext context);
-        public abstract void OnSlowTapPerformed(InputAction.CallbackContext context);
-        public abstract void OnSlowTapCancelled(InputAction.CallbackContext context);
-        public abstract void OnPreciseChargeStarted(InputAction.CallbackContext context);
-        public abstract void OnPreciseChargePerformed(InputAction.CallbackContext context);
-        public abstract void OnPreciseChargeCancelled(InputAction.CallbackContext context);
-        public abstract void OnTapPerformed(InputAction.CallbackContext context);
-        public abstract void OnTapCancelled(InputAction.CallbackContext context);
     }
 }

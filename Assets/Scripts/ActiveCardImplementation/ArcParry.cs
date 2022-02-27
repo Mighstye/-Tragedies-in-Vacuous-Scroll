@@ -1,52 +1,83 @@
 using CardSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Control.ActiveCardControl.ControlTypes;
+using System.Collections.Generic;
 using BulletSystem;
+using Utils;
 using Control;
 
 namespace ActiveCardImplementation
 {
-    public class ArcParry : ActiveCard
+    public class ArcParry : ActiveCard, ISlowTappable, IPreciseChargeable, ITappable
     {
+        public float tapTime { get; set; }
+        public float slowTapTime { get; set; }
+        public float pressDuration { get; set; }
+        public float releaseDuration { get; set; }
+        private MultiPurposeCollider utilCollider;
+        private List<Bullet> bullets;
+        private Transform youmuTransform;
 
-        public override void OnPreciseChargeCancelled(InputAction.CallbackContext context)
+        private void Start()
         {
-            Debug.Log("OnPreciseChargeCancelled");
+            tapTime = 0.5f;
+            slowTapTime = 2;
+            pressDuration = 2;
+            releaseDuration = 2;
+            grazeCostSegment = 2;
+            utilCollider = GameObject.Find("MultiPurposeCollider").GetComponent<MultiPurposeCollider>();
         }
 
-        public override void OnPreciseChargePerformed(InputAction.CallbackContext context)
+        void ISlowTappable.OnSlowTapStarted(InputAction.CallbackContext context)
         {
-            Debug.Log("OnPreciseChargePerformed");
+            throw new System.NotImplementedException();
         }
 
-        public override void OnPreciseChargeStarted(InputAction.CallbackContext context)
+        void ISlowTappable.OnSlowTapPerformed(InputAction.CallbackContext context)
         {
-            Debug.Log("OnPreciseChargeStarted");
+            throw new System.NotImplementedException();
         }
 
-        public override void OnSlowTapCancelled(InputAction.CallbackContext context)
+        void ISlowTappable.OnSlowTapCancelled(InputAction.CallbackContext context)
         {
-            Debug.Log("OnSlowTapCancelled");
+            throw new System.NotImplementedException();
         }
 
-        public override void OnSlowTapPerformed(InputAction.CallbackContext context)
+        public void OnPreciseChargeStarted(InputAction.CallbackContext context)
         {
-            Debug.Log("OnSlowTapPerformed");
+            throw new System.NotImplementedException();
         }
 
-        public override void OnSlowTapStarted(InputAction.CallbackContext context)
+        public void OnPreciseChargePerformed(InputAction.CallbackContext context)
         {
-            Debug.Log("OnSlowTapStarted");
+            throw new System.NotImplementedException();
         }
 
-        public override void OnTapCancelled(InputAction.CallbackContext context)
+        public void OnPreciseChargeCancelled(InputAction.CallbackContext context)
         {
-            Debug.Log("OnTapCancelled");
+            throw new System.NotImplementedException();
         }
 
-        public override void OnTapPerformed(InputAction.CallbackContext context)
+        public void OnTapPerformed(InputAction.CallbackContext context)
         {
-           
+            if (useCard()) Parry();
+        }
+
+        public void OnTapCancelled(InputAction.CallbackContext context)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void Parry()
+        {
+            bullets = new List<Bullet>(utilCollider.Get());
+            youmuTransform = YoumuController.instance.transform;
+            foreach (Bullet bul in bullets)
+            {
+                float angle = Vector2.Angle((Vector2)youmuTransform.position, (Vector2)bul.transform.position);
+                if (angle <= 45) bul.onBulletPary();
+            }
         }
     }
 }
