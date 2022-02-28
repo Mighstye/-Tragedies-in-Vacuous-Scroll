@@ -20,6 +20,11 @@ namespace Logic_System
             return graze;
         }
 
+        public float getNbSegment()
+        {
+            return (graze / (maxGraze / grazeSegmentsNb));
+        }
+
         //ajoute de la graze si possible, renvoie true si la graze a été ajoutée, false sinon
         public bool AddGraze(int g)
         {

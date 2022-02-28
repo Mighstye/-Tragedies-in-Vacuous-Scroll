@@ -15,6 +15,8 @@ namespace ActiveCardImplementation
         public float slowTapTime { get; set; }
         public float pressDuration { get; set; }
         public float releaseDuration { get; set; }
+        [SerializeField] public int angle;
+        [SerializeField] public int cost;
         private MultiPurposeCollider utilCollider;
         private List<Bullet> bullets;
         private Transform youmuTransform;
@@ -25,7 +27,7 @@ namespace ActiveCardImplementation
             slowTapTime = 2;
             pressDuration = 2;
             releaseDuration = 2;
-            grazeCostSegment = 2;
+            grazeCostSegment = cost;
             utilCollider = GameObject.Find("MultiPurposeCollider").GetComponent<MultiPurposeCollider>();
         }
 
@@ -45,8 +47,8 @@ namespace ActiveCardImplementation
             youmuTransform = YoumuController.instance.transform;
             foreach (Bullet bul in bullets)
             {
-                float angle = Vector2.Angle((Vector2)youmuTransform.position, (Vector2)bul.transform.position);
-                if (angle <= 45 && bul.transform.position.y > youmuTransform.position.y) bul.onBulletPary();
+                float angleBetween = Vector2.Angle((Vector2)youmuTransform.position, (Vector2)bul.transform.position);
+                if (angleBetween <= angle && bul.transform.position.y > youmuTransform.position.y) bul.onBulletPary();
             }
         }
     }

@@ -25,6 +25,8 @@ namespace Logic_System
 
         public Action onNeedPlayerRefresh { get; set; }
 
+        public Action onPlayerDeath { get; set; }
+
         private void Start()
         {
             logic = LogicSystemAPI.instance;
@@ -33,8 +35,16 @@ namespace Logic_System
             Control.YoumuController.instance.onYoumuHit += () =>
             {
                 if (invincible) return;
-                LoseHealth();
-                StartInvincible();
+                if (LoseHealth())
+                {
+                    if (currentHealth == 0) onNeedPlayerRefresh?.Invoke();
+                    onPlayerDeath?.Invoke();
+                    return;
+                }
+                else
+                {
+                    StartInvincible();
+                }
             };
         }
 
@@ -58,7 +68,7 @@ namespace Logic_System
         private bool LoseHealth(int h = 1)
         {
             GainHealth(-h);
-            if (currentHealth < 0) return true;
+            if (currentHealth <= 0) return true;
             logic.Spell.SpellResetOnLifeLost();
             onNeedPlayerRefresh?.Invoke();
             return false;

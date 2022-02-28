@@ -7,9 +7,15 @@ namespace BossBehaviour
     {
         public static PhaseTimer instance { get; private set; }
         public Action onPhaseTimeoutReached;
+
+        //Display Action
+        public Action onNeedTimeoutRefreshDisplay;
+        public Action onNeedTimerRefreshDisplay;
+        public Action onPhaseEndDisplay;
+
         public string phaseName { get; set; }
-        [SerializeField] private float currentPhaseTimeout;
-        [SerializeField] private float phaseTimer;
+        [SerializeField] public float currentPhaseTimeout;
+        [SerializeField] public float phaseTimer;
 
         private bool timeoutReached ;
         private void Awake()
@@ -28,14 +34,18 @@ namespace BossBehaviour
             phaseTimer = timeout;
             phaseName = pName;
             timeoutReached = false;
+            onNeedTimeoutRefreshDisplay?.Invoke();
+            onNeedTimerRefreshDisplay?.Invoke();
         }
 
         private void Update()
         {
             if (timeoutReached) return;
             phaseTimer -= Time.deltaTime;
+            onNeedTimerRefreshDisplay?.Invoke();
             if (!(phaseTimer <= 0)) return;
             onPhaseTimeoutReached?.Invoke();
+            onPhaseEndDisplay?.Invoke();
             timeoutReached = true;
         }
     }

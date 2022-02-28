@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Logic_System;
+using Control;
 
 public class GrazeScript : MonoBehaviour
 {
-
-    private Slider slider;
+    private Image graze;
 
     private Graze grazeRef;
 
@@ -16,8 +16,8 @@ public class GrazeScript : MonoBehaviour
     {
         grazeRef = LogicSystemAPI.instance.Graze;
 
-        slider = gameObject.GetComponent<Slider>();
-        slider.value = grazeRef.get();
+        graze = gameObject.GetComponent<Image>();
+        graze.fillAmount = (float)grazeRef.get() / 100;
 
         grazeRef.onNeedGrazeRefresh += () =>
         {
@@ -27,12 +27,12 @@ public class GrazeScript : MonoBehaviour
 
     private void refreshDisplay()
     {
-        slider.value = grazeRef.get();
+        graze.fillAmount = (float)grazeRef.get() / 100;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        gameObject.transform.position = YoumuController.instance.transform.position;
     }
 }

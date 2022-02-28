@@ -11,12 +11,8 @@ namespace CardSystem
 
         protected bool useCard()
         {
-            if ((LogicSystemAPI.instance.Graze.get() / (LogicSystemAPI.instance.Graze.maxGraze / LogicSystemAPI.instance.Graze.grazeSegmentsNb)) < grazeCostSegment) return false;
-            else
-            {
-                LogicSystemAPI.instance.Graze.UseGraze(grazeCostSegment);
-                return true;
-            }
+            if (LogicSystemAPI.instance.Graze.UseGraze(grazeCostSegment)) return true;
+            return false;
         }
     }
 }
