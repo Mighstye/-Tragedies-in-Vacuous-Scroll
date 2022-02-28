@@ -9,7 +9,7 @@ using Control;
 
 namespace ActiveCardImplementation
 {
-    public class ArcParry : ActiveCard, ISlowTappable, IPreciseChargeable, ITappable
+    public class ArcParry : ActiveCard, ITappable
     {
         public float tapTime { get; set; }
         public float slowTapTime { get; set; }
@@ -29,44 +29,14 @@ namespace ActiveCardImplementation
             utilCollider = GameObject.Find("MultiPurposeCollider").GetComponent<MultiPurposeCollider>();
         }
 
-        void ISlowTappable.OnSlowTapStarted(InputAction.CallbackContext context)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        void ISlowTappable.OnSlowTapPerformed(InputAction.CallbackContext context)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        void ISlowTappable.OnSlowTapCancelled(InputAction.CallbackContext context)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void OnPreciseChargeStarted(InputAction.CallbackContext context)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void OnPreciseChargePerformed(InputAction.CallbackContext context)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void OnPreciseChargeCancelled(InputAction.CallbackContext context)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public void OnTapPerformed(InputAction.CallbackContext context)
         {
-            if (useCard()) Parry();
+            if (useCard() == true) Parry();
         }
 
         public void OnTapCancelled(InputAction.CallbackContext context)
         {
-            throw new System.NotImplementedException();
+            return;
         }
 
         private void Parry()
@@ -76,7 +46,7 @@ namespace ActiveCardImplementation
             foreach (Bullet bul in bullets)
             {
                 float angle = Vector2.Angle((Vector2)youmuTransform.position, (Vector2)bul.transform.position);
-                if (angle <= 45) bul.onBulletPary();
+                if (angle <= 45 && bul.transform.position.y > youmuTransform.position.y) bul.onBulletPary();
             }
         }
     }
