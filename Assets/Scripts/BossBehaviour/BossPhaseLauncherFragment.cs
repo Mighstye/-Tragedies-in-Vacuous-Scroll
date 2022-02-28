@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using BulletSystem;
 using UnityEngine;
-using UnityEngine.WSA;
+using UnityEngine.XR.WSA;
 
 namespace BossBehaviour
 {
