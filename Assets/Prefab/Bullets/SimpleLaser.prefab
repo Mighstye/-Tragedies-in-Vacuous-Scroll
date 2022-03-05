@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6051722112814427128}
-  - component: {fileID: 6789127240548327047}
+  - component: {fileID: 7353767977276791256}
   - component: {fileID: 6996476641902316699}
   - component: {fileID: -5992835450641620472}
   m_Layer: 7
@@ -32,9 +32,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!120 &6789127240548327047
+--- !u!120 &7353767977276791256
 LineRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -55,7 +55,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 440f9bae6d3866a4e841e1b140b77884, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,7 +129,7 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 3
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
@@ -150,9 +150,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   homingTime: 3
-  transitionTime: 0
+  transitionTime: 5
   laserTime: 0
-  laserWidth: 0
+  laserWidth: 10
   launcher: {fileID: 0}
 --- !u!68 &-5992835450641620472
 EdgeCollider2D:

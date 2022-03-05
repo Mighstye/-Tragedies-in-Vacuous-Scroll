@@ -45,7 +45,6 @@ namespace BulletImplementation
             laserLine = GetComponent<LineRenderer>();
             laserLine.startWidth = laserWidth;
             laserLine.endWidth = laserWidth;
-            laserLine.material.color = Color.grey;
 
             col = GetComponent<EdgeCollider2D>();
             col.enabled = false;
@@ -69,9 +68,16 @@ namespace BulletImplementation
             var PlayerPos = YoumuController.instance.transform.position;
             startPos = launcher.transform.position;
 
-            var homingVector = (PlayerPos - startPos);
+            var homingVector = (PlayerPos - startPos).normalized;
 
-            endPos = PlayerPos + homingVector * 10;
+            endPos = PlayerPos;
+            while(FieldBoundaries.instance.left < PlayerPos.x && 
+                   PlayerPos.x < FieldBoundaries.instance.right||
+                  FieldBoundaries.instance.down < PlayerPos.y && 
+                  PlayerPos.y < FieldBoundaries.instance.up)
+            {
+                endPos += homingVector;
+            }
 
             laserLine.SetPosition(0, startPos);
             laserLine.SetPosition(1, endPos);
@@ -90,7 +96,6 @@ namespace BulletImplementation
                 updateCollider();
                 col.enabled = true;
                 grazeable = true;
-                laserLine.material.color = Color.red;
                 return true;
             }
             return false;

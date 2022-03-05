@@ -20,7 +20,7 @@ public class TimeScript : MonoBehaviour
         targetTime = 0;
         time = 0;
 
-        timerReff = BossBehaviour.PhaseTimer.instance;
+        timerReff = PhaseTimer.instance;
 
         timerReff.onNeedTimeoutRefreshDisplay += () =>
         {
