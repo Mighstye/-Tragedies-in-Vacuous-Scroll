@@ -12,7 +12,7 @@ LShift = Slow
 
 Z = Switch active card / Confirm
 
-X = Trigger active card (under dev, unavailable in the latest build)
+X = Trigger active card 
 
 C = Bomb (Spell)
 
@@ -71,3 +71,12 @@ onYoumuHit?.invoke();
 2. All bullets on the screen should be returned to bulletpool. It might be good, when getting a bullet from the bulletpool, to reassign its parent (e.g. from bulletpool to bulletlauncher, calling bullet.transform.SetParent(Transform parent), then all the children of bulletlauncher will be bullets on the screen and you can iterate through them with bulletLauncher.transform.GetComponentsInChildren<Type of Bullet>(), invoking thier onBulletDeathManual event. When returning the bullet, you will also need to reassign the parent to bulletPool. 
 
 3. A more interesting effect can be achieved by using an object with circle collider 2D as trigger. Set its initial radius to 0 and deactivate it. When a wiping effect is invoked, set it to active and expand its radius (for a duration of time). whenever a bullet enters the circle collider, this object calls the bullet's onBulletDeathManual. You may test with other effect e.g. wipe from bottom to top. After the end of the effect, reset the object.
+
+## Note on boss FSM system ##
+ 
+The Finite State Machine system of bosses is developped based on the Unity Animator, by using State Machine Behaviour. The system has multiple layers to organize boss phases and sub phases. Here we define the layers of the system, from top to bottom:
+  
+  1. Phase : A Phase signifies a spell-card attack or a non spell-card attack. A phase is purely organizational, it contains no information about how the boss moves during phase and what types of bullet it shoots. It does keep track of how a phase should end. A phase can have one of the two types: Endure or InflictDamage. Endure means the phases ends when a timer runs out. InflictDamage, in addition, the player can deplete the Hp of the phase to end the phase earlier. 
+  2. Sub-phase : A Sub-phase defines how a phase is carried out. A sub phase state may have two different components that may: enable bullet launcher, or moving the boss sprite (as well as the launchers). 
+ 
+ Since it is not possible to reference scene objects directly in Animator, we must create intermediate objects to keep track of the objects, and in Animator they will be referenced by indexing. 
