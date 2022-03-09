@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class move1 : BossPhaseMovementFragment
 {
-    [SerializeField] private float speed = 5;
+    [SerializeField] private float speed = 3;
     private Vector3 moveVector = Vector3.right;
     [SerializeField] private int halfPeriodCount = 5;
     [SerializeField] private int currentHalfPeriodCounter;
@@ -33,6 +33,7 @@ public class move1 : BossPhaseMovementFragment
 
             moveVector = -moveVector;
             currentHalfPeriodCounter -= 1;
+            bossController.animationLib.AnimationMove(moveVector.x);
         }
         bossController.transform.position += Time.deltaTime * moveVector* speed;
         

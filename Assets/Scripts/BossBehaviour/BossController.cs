@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using YaotomeBehaviour;
 
 namespace BossBehaviour
 {
@@ -8,6 +9,7 @@ namespace BossBehaviour
     {
         public static BossController instance { get;private set; }
         private Animator animator;
+        public AnimationLib animationLib;
         private Collider2D hitBox;
         public int currentPhaseMaxHp;
         [SerializeField] private int currentHp;
@@ -26,8 +28,10 @@ namespace BossBehaviour
 
         private void Start()
         {
+            animationLib = new YaotomeAnimLib();
             animator = GetComponent<Animator>();
             hitBox = GetComponent<Collider2D>();
+            animationLib.animator = animator;
         }
 
         private void Update()
