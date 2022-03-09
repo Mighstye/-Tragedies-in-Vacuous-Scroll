@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c700427e73380d48aed6d77d6e5d455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
   halfPeriodCount: 2
   currentHalfPeriodCounter: 0
 --- !u!91 &9100000
