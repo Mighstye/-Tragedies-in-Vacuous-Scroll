@@ -77,5 +77,4 @@ public abstract class BossPhase : StateMachineBehaviour
         bossController.onHpDepleted += phaseEnd;
     }
     
-    
 }

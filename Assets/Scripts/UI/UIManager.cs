@@ -2,24 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Logic_System;
+using Game_Manager;
 
 public class UIManager : MonoBehaviour
 {
 
     public GameObject pauseObject;
     public GameObject gameOverObject;
+    public GameObject WinObject;
+    public GameObject WinPostMenuObject;
     bool paused;
+    bool gameFinished = false;
+    private GameManagerAPI gameManagerAPI;
     // Start is called before the first frame update
     void Start()
     {
         pauseObject.SetActive(false);
         gameOverObject.SetActive(false);
+        WinObject.SetActive(false);
+        WinPostMenuObject.SetActive(false);
+        gameManagerAPI = GameManagerAPI.instance;
         paused = false;
 
-        LogicSystemAPI.instance.Health.onPlayerDeath += () =>
+        gameManagerAPI.onLoose += () =>
         {
+            gameFinished = true;
             GameOver();
+        };
+
+        gameManagerAPI.onWin += () =>
+        {
+            gameFinished = true;
+            Win();
         };
     }
 
@@ -27,7 +41,7 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Onpause");
         if (context.phase is not InputActionPhase.Performed) return;
-        if (LogicSystemAPI.instance.Health.currentHealth <= 0) return;
+        if (gameFinished) return;
         if (paused)
             unPause();
         else
@@ -40,15 +54,55 @@ public class UIManager : MonoBehaviour
         else
         {
             Time.timeScale = 1.0f;
-            gameOverObject.SetActive(false);
+            DisableAllMenu();
         }
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        gameManagerAPI.mainMenu();
     }
 
-    public void GameOver()
+    public void Continue()
     {
-        Time.timeScale = 0f;
+        if (paused) { unPause(); }
+        else
+        {
+            Time.timeScale = 1.0f;
+            DisableAllMenu();
+        }
+        gameManagerAPI.nextFight();
+    }
+
+    public void Restart()
+    {
+        if (paused) { unPause(); }
+        else
+        {
+            Time.timeScale = 1.0f;
+            DisableAllMenu();
+        }
+        gameManagerAPI.restart();
+    }
+
+    private void DisableAllMenu()
+    {
+        pauseObject.SetActive(false);
+        gameOverObject.SetActive(false);
+        WinObject.SetActive(false);
+        WinPostMenuObject.SetActive(false);
+    }
+
+    public void WinContinueButton()
+    {
+        WinObject.SetActive(false);
+        WinPostMenuObject.SetActive(true);
+    }
+
+    private void GameOver()
+    {
         gameOverObject.SetActive(true);
+    }
+
+    private void Win()
+    {
+        WinObject.SetActive(true);
     }
 
     public void Pause()
@@ -63,11 +117,5 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1.0f;
         pauseObject.SetActive(false);
         paused = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
