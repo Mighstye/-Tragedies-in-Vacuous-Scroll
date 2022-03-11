@@ -32,7 +32,7 @@ namespace Game_Manager
             };
             currentFightName = gameObject.scene.name;
             nextFightName = currentFightName.Remove(currentFightName.Length - 1) + (Convert.ToInt32(currentFightName[5].ToString()) + 1).ToString();
-            // ^ This get next scene name for the next fight
+            // ^ This get the next scene name for the next fight
         }
 
         public void endFight(bool victory)
@@ -51,6 +51,8 @@ namespace Game_Manager
                 SceneManager.LoadScene(nextFightName);
             }catch(Exception e)
             {
+                // If there is no next scene -> Means the player reached the end of the game
+                // Ending cinematic + game end + credits ...
                 Debug.Log(nextFightName + " not found !");
                 SceneManager.LoadScene("MainMenu");
             }
