@@ -6,7 +6,7 @@ namespace CardSystem
 {
     public class ActiveCardManager : MonoBehaviour
     {
-        public List<ActiveCard> currentActiveCards { get; private set; }
+        private List<ActiveCard> currentActiveCards = new List<ActiveCard>();
         [SerializeField] private Transform cardContainer;
         public ActiveCard selectedCard { get; private set; }
         private int selectedCardIndex;
@@ -51,16 +51,15 @@ namespace CardSystem
         public void RunTest()
         { 
             //TODO: following code is for testing, delete the fragment afterwards
-            currentActiveCards = new List<ActiveCard>();
             var cards = cardContainer.gameObject.GetComponentsInChildren<ActiveCard>();
             foreach (var card in cards)
             {
-                Debug.Log(card.gameObject.name);
                 currentActiveCards.Add(card);
             }
             if (currentActiveCards.Count <= 0) return;
             selectedCardIndex = 0;
             selectedCard = currentActiveCards[selectedCardIndex];
+            Debug.Log(selectedCard.gameObject.name);
         }
         
         

@@ -10,7 +10,7 @@ namespace Logic_System
         private int graze = 0;
 
         public int defaultGrazeGain;
-        public int grazeSegmentsNb;
+        public int grazeSegments;
         public int maxGraze;
 
         public Action onNeedGrazeRefresh { get; set; }
@@ -20,12 +20,11 @@ namespace Logic_System
             return graze;
         }
 
-        public float getNbSegment()
+        public float GetSegment()
         {
-            return (graze / (maxGraze / grazeSegmentsNb));
+            return (graze / (maxGraze / (float)grazeSegments));
         }
-
-        //ajoute de la graze si possible, renvoie true si la graze a été ajoutée, false sinon
+        
         public bool AddGraze(int g)
         {
             if (graze == maxGraze)
@@ -48,11 +47,10 @@ namespace Logic_System
         {
             return AddGraze(defaultGrazeGain);
         }
-
-        //consomme la graze si possible, renvoie true si la graze a été consommé, false sinon
-        public bool UseGraze(int nbSegments)
+        
+        public bool UseGraze(int nbSegments = 1)
         {
-            int g = (maxGraze / grazeSegmentsNb) * nbSegments;
+            var g = (maxGraze / grazeSegments) * nbSegments;
             if (graze - g < 0)
             {
                 return false;
@@ -61,10 +59,6 @@ namespace Logic_System
             graze -= g;
             onNeedGrazeRefresh?.Invoke();
             return true;
-        }
-        public bool UseGraze()
-        {
-            return UseGraze(1);
         }
     }
 }

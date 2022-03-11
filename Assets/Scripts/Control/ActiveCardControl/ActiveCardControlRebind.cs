@@ -51,18 +51,18 @@ namespace Control.ActiveCardControl
                 ApplyBindingOverride(new InputBinding{overrideInteractions = interactionString});
         }
 
-        private string ConstructTapString(ITappable tappable)
+        private static string ConstructTapString(ITappable tappable)
         {
             return string.Format(TapString, tappable.tapTime);
         }
 
-        private string ConstructPreciseChargeString(IPreciseChargeable preciseChargeable)
+        private static string ConstructPreciseChargeString(IPreciseChargeable preciseChargeable)
         {
             return string.Format(PreciseChargeString, preciseChargeable.pressDuration,
                 preciseChargeable.releaseDuration);
         }
 
-        private string ConstructSlowTapString(ISlowTappable slowTappable)
+        private static string ConstructSlowTapString(ISlowTappable slowTappable)
         {
             return string.Format(SlowTapString, slowTappable.slowTapTime);
         }

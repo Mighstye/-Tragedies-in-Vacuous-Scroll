@@ -7,12 +7,11 @@ namespace CardSystem
 {
     public abstract class ActiveCard: Card
     {
-        protected int grazeCostSegment = 1; //DEFAULT VALUE
+        public int grazeCostSegment = 1; //DEFAULT VALUE
 
         protected bool useCard()
         {
-            if (LogicSystemAPI.instance.Graze.UseGraze(grazeCostSegment)) return true;
-            return false;
+            return LogicSystemAPI.instance.Graze.UseGraze(grazeCostSegment);
         }
     }
 }

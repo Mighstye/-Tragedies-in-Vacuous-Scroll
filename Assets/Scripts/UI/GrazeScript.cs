@@ -19,13 +19,10 @@ public class GrazeScript : MonoBehaviour
         graze = gameObject.GetComponent<Image>();
         graze.fillAmount = (float)grazeRef.get() / 100;
 
-        grazeRef.onNeedGrazeRefresh += () =>
-        {
-            refreshDisplay();
-        };
+        grazeRef.onNeedGrazeRefresh += RefreshDisplay;
     }
 
-    private void refreshDisplay()
+    private void RefreshDisplay()
     {
         graze.fillAmount = (float)grazeRef.get() / 100;
     }

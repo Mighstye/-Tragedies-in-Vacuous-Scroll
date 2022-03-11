@@ -1,5 +1,6 @@
 ﻿using System;
 using Control;
+using Control.ActiveCardControl;
 using Control.ActiveCardControl.ControlTypes;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,10 +14,11 @@ namespace CardSystem
         public static CardSystemManager instance { get; private set; }
         [SerializeField] private ActiveCardManager activeCardManager;
         [SerializeField] private PassiveCardManager passiveCardManager;
-        [SerializeField] private SelectedCardHover selectedCardHover;
-        private float chargeTimer = 0;
-        private bool chargeStarted = false;
+        [SerializeField] private UISelectedCardControl selectedCardHover;
+        
         public Action<ActiveCard> onSelectedCardChange;
+
+        private bool isFirstFrame = true;
 
 
         private void Awake()
@@ -34,22 +36,19 @@ namespace CardSystem
             else
             {
                 selectedCardHover.UpdateSelectedCard(activeCardManager.selectedCard);
-                onSelectedCardChange?.Invoke(activeCardManager.selectedCard);
             }
-
-            chargeStarted = false;
-
-
         }
 
         private void Update()
         {
-            if (chargeStarted) chargeTimer += Time.deltaTime;
+            if (!isFirstFrame) return;
+            onSelectedCardChange?.Invoke(activeCardManager.selectedCard);
+            isFirstFrame = false;
         }
 
         public void OnCardSwitch(InputAction.CallbackContext context)
         {
-            if (context.phase is not InputActionPhase.Performed || chargeStarted) return;
+            if (context.phase is not InputActionPhase.Performed) return;
             activeCardManager.SelectNext();
             if (activeCardManager.selectedCard == null)
             {
