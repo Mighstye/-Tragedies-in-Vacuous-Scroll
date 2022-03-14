@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Control.ActiveCardControl.ControlTypes;
 using System.Collections.Generic;
+using System.Linq;
 using BulletSystem;
 using Utils;
 using Control;
@@ -45,10 +46,12 @@ namespace ActiveCardImplementation
         {
             bullets = new List<Bullet>(utilCollider.Get());
             youmuTransform = YoumuController.instance.transform;
-            foreach (Bullet bul in bullets)
+            foreach (var bul in from bul in bullets 
+                     let angleBetween = Vector2.Angle((Vector2)youmuTransform.position,
+                         (Vector2)bul.transform.position) where angleBetween <= angle && 
+                                                                bul.transform.position.y > youmuTransform.position.y select bul)
             {
-                float angleBetween = Vector2.Angle((Vector2)youmuTransform.position, (Vector2)bul.transform.position);
-                if (angleBetween <= angle && bul.transform.position.y > youmuTransform.position.y) bul.onBulletPary();
+                bul.onBulletParry();
             }
         }
     }

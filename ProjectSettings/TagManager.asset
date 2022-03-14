@@ -7,6 +7,9 @@ TagManager:
   - Letterbox
   - EnemyBullet
   - GrazeBox
+  - SpellArea
+  - VFX
+  - FriendlyBullet
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - Player
   - Enemy
   - VFX
-  - 
+  - Friendly
   - 
   - 
   - 

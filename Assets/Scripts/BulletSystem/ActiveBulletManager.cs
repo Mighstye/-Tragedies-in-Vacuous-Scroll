@@ -26,6 +26,7 @@ namespace BulletSystem
             for(var i = 0; i < nbActiveBullets; i++)
             {
                 var bullet = this.transform.GetChild(0).gameObject.GetComponent<Bullet>();
+                if (bullet.gameObject.CompareTag("FriendlyBullet")) return;
                 bullet.InvokeBulletDeath();
             }
         }

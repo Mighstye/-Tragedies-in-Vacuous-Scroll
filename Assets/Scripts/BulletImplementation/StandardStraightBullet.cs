@@ -7,11 +7,7 @@ namespace BulletImplementation
     public class StandardStraightBullet: Bullet, ISimpleBullet
     {
         public Vector3 velocity { get; private set; }
-
-        public override Vector3 getVelocity()
-        {
-            return velocity;
-        }
+        
 
         public void Launch(Vector3 position,Vector3 startVelocity)
         {

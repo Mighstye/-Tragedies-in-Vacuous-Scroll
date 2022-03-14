@@ -17,7 +17,7 @@ namespace BulletSystem
         /// Will also trigger <c>onBulletDeathNatural </c>.
         /// </summary>
         public Action onBulletDeathManual { get; set; }
-        public Action onBulletPary { get; set; }
+        public Action onBulletParry { get; set; }
         //Behavior
         /// <summary>
         /// A behaviour of a bullet should return <c>true</c> at the end of the behaviour and
@@ -40,7 +40,7 @@ namespace BulletSystem
 
         protected abstract void AddBehaviors();
 
-        public abstract Vector3 getVelocity();
+        //public abstract Vector3 getVelocity();
 
         private void Update()
         {

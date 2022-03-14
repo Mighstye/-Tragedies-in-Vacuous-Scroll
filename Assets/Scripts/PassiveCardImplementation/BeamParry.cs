@@ -23,20 +23,20 @@ namespace PassiveCardImplementation
             var pools = bulletPoolsContainer.gameObject.GetComponentsInChildren<BulletPool>();
             foreach (var pool in pools)
             {
-                pool.instantiateBulletParry += instantiateBeamParry;
+                pool.instantiateBulletParry += InstantiateBeamParry;
             }
         }
 
-        private void instantiateBeamParry(Bullet b)
+        private void InstantiateBeamParry(Bullet b)
         {
-            b.onBulletPary += () =>
+            b.onBulletParry += () =>
             {
-                Vector3 velocity = b.getVelocity();
+                //Vector3 velocity = b.;
                 Vector3 position = b.transform.position;
-                b?.onBulletDeathNatural.Invoke();
+                b.onBulletDeathNatural.Invoke();
 
                 var bullet = bulletParriedPool.pool.Get();
-                ((StandardStraightPary)bullet).Launch(position, -velocity);
+                ((StandardStraightParry)bullet).Launch(position, Vector3.zero);
             };
         }
     } 

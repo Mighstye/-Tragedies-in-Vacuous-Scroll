@@ -41,9 +41,9 @@ MonoBehaviour:
   phaseName: Phase 1
   phaseTimer: {fileID: 0}
   bossController: {fileID: 0}
-  phaseType: 1
-  phaseDuration: 20
-  phaseHp: 100
+  phaseType: 0
+  phaseDuration: 60
+  phaseHp: 20
 --- !u!114 &-2359878844995226197
 MonoBehaviour:
   m_ObjectHideFlags: 1

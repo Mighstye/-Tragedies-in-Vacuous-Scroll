@@ -55,7 +55,7 @@ namespace BulletSystem
 
             if(instantiateBulletParry == null)
             {
-                b.onBulletPary += () =>
+                b.onBulletParry += () =>
                 {
                     b.InvokeBulletDeath();
                 };

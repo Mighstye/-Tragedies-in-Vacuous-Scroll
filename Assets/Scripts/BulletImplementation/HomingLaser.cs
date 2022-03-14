@@ -27,11 +27,7 @@ namespace BulletImplementation
         private EdgeCollider2D col;
 
         public BulletLauncher launcher;
-
-        public override Vector3 getVelocity()
-        {
-            return direction;
-        }
+        
 
         public void Launch()
         {

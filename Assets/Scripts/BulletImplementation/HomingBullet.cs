@@ -68,14 +68,6 @@ namespace BulletImplementation
             transform.position += homingVector * Time.deltaTime;
             return false;
         }
-
-        public override Vector3 getVelocity()
-        {
-            if(homingVector != null)
-            {
-                return homingVector;
-            }
-            return velocity;
-        }
+        
     }
 }
