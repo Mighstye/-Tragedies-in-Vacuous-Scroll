@@ -14,6 +14,9 @@ public class SpellEffect : MonoBehaviour
 
     private Spell spellRef;
 
+    public delegate void SpellExecution(Collider2D col);
+
+    private SpellExecution spellExecution;
     private void Start()
     {
         spellRef = LogicSystemAPI.instance.Spell;
@@ -25,6 +28,7 @@ public class SpellEffect : MonoBehaviour
         };
         
         gameObject.SetActive(false);
+        spellExecution = DefaultSpellExecution;
     }
 
     private IEnumerator StartEffect()
@@ -37,11 +41,22 @@ public class SpellEffect : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        spellExecution?.Invoke(col);
+    }
+
+    private static void DefaultSpellExecution(Collider2D col)
+    {
         if (!col.gameObject.CompareTag("EnemyBullet")) return;
         var bullet = col.gameObject.GetComponent<Bullet>();
         if (bullet!=null)
         {
             bullet.InvokeBulletDeath();
         }
+    }
+
+    public void RedefineSpellExecution(SpellExecution exec = null)
+    {
+        if (exec is null) spellExecution = DefaultSpellExecution;
+        spellExecution = exec;
     }
 }
