@@ -40,13 +40,13 @@ public class TimeScript : MonoBehaviour
 
     private void refreshTimer()
     {
-        time = (int)(timerReff.currentPhaseTimeout - timerReff.phaseTimer);
+        time = (int)(timerReff.currentPhaseTimeout * 1000 - timerReff.phaseTimer * 1000);
         refresh();
     }
 
     private void refreshTarget()
     {
-        targetTime = (int)timerReff.currentPhaseTimeout;
+        targetTime = (int)timerReff.currentPhaseTimeout * 1000;
         refresh();
     }
 
@@ -59,8 +59,8 @@ public class TimeScript : MonoBehaviour
 
     private void refresh()
     {
-        timeText = string.Format("{0:D5}", time);
-        targetTimeText = string.Format("{0:D5}", targetTime);
+        timeText = string.Format("{0:D6}", time);
+        targetTimeText = string.Format("{0:D6}", targetTime);
         timevalue.text = timeText;
         targetTimeValue.text = "/" + targetTimeText;
     }

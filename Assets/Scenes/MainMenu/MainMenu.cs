@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayButton()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("SamTestScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Fight1");
     }
 
     public void QuitButton()
