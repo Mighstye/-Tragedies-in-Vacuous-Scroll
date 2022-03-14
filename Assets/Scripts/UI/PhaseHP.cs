@@ -37,7 +37,7 @@ namespace UI
 
        private void Update()
        {
-           transform.position = BossController.instance.transform.position;
+           transform.position = BossBehaviourSystemProxy.instance.bossController.transform.position;
            if (gauge.fillAmount > targetFillRate)
            {
                gauge.fillAmount -= delayedFillSpeed;

@@ -7,9 +7,8 @@ using YaotomeBehaviour;
 
 namespace BossBehaviour
 {
-    public class BossController : MonoBehaviour
+    public abstract class BossController : MonoBehaviour
     {
-        public static BossController instance { get;private set; }
         private Animator animator;
         public AnimationLib animationLib;
         private Collider2D hitBox;
@@ -22,19 +21,17 @@ namespace BossBehaviour
         public BossMotion bossMotion { get; set; }
 
         public Action onHpDepleted;
-
-        private void Awake()
-        {
-            instance = this;
-        }
-
+        
         private void Start()
         {
             animationLib = new YaotomeAnimLib();
             animator = GetComponent<Animator>();
             hitBox = GetComponent<Collider2D>();
+            AssignAnimationLib();
             animationLib.animator = animator;
         }
+
+        protected abstract void AssignAnimationLib();
 
         private void Update()
         {

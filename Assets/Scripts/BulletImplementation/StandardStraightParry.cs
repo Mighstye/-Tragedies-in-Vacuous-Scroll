@@ -36,7 +36,7 @@ namespace BulletImplementation
         {
             var transform1 = transform;
             var position = transform1.position;
-            direction = (BossController.instance.transform.position - position).normalized;
+            direction = (BossBehaviourSystemProxy.instance.bossController.transform.position - position).normalized;
             position += direction * Time.deltaTime * speed;
             transform1.position = position;
             return false;

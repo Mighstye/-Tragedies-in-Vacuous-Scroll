@@ -12,7 +12,7 @@ namespace BossBehaviour
         {
             endFlag = false;
             animator.SetBool(End,false);
-            bossController = BossController.instance;
+            bossController = BossBehaviourSystemProxy.instance.bossController;
             bossController.bossMotion = BossMovementUpdate;
             CustomFragmentStart();
         }

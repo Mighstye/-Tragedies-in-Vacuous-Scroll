@@ -72,7 +72,7 @@ public abstract class BossPhase : StateMachineBehaviour
     {
         
         if (phaseType is not PhaseType.DealDamage) return;
-        bossController = BossController.instance;
+        bossController = BossBehaviourSystemProxy.instance.bossController;
         bossController.SetUpHp(phaseHp);
         bossController.onHpDepleted += phaseEnd;
     }
