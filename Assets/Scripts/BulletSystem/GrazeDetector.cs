@@ -13,7 +13,7 @@ namespace BulletSystem
             grazeRef = LogicSystemAPI.instance.Graze;
         }
 
-        private void OnTriggerEnter2D(Collider2D col)
+        private void OnTriggerExit2D(Collider2D col)
         {
             
             if (!col.gameObject.CompareTag("EnemyBullet")) return;
