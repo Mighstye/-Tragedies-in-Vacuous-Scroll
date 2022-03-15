@@ -11,9 +11,6 @@ namespace BulletSystem
 
         public Bullet bullet;
 
-        public delegate void instantiateBulletParryDelegate(Bullet b);
-        public instantiateBulletParryDelegate instantiateBulletParry; 
-
         public enum PoolType
         {
             Stack,
@@ -53,18 +50,6 @@ namespace BulletSystem
                 var o = BulletDeathVFXPool.instance.pool.Get();
                 o.gameObject.transform.position = b.transform.position;
             };
-
-            if(instantiateBulletParry == null)
-            {
-                b.onBulletParry += () =>
-                {
-                    b.InvokeBulletDeath();
-                };
-            }
-            else
-            {
-                instantiateBulletParry(b);
-            }
 
             return b;
         }

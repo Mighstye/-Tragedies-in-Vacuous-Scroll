@@ -7,6 +7,8 @@ namespace BulletSystem
 {
     public abstract class Bullet : MonoBehaviour, IBullet
     {
+        //Tags
+        public List<BulletTag> bulletTags;
         //Events
         /// <summary>
         /// Invoked when the bullet is considered dead by <c>IsNaturallyDead</c>
@@ -17,7 +19,8 @@ namespace BulletSystem
         /// Will also trigger <c>onBulletDeathNatural </c>.
         /// </summary>
         public Action onBulletDeathManual { get; set; }
-        public Action onBulletParry { get; set; }
+
+        public Action onBulletParry;
         //Behavior
         /// <summary>
         /// A behaviour of a bullet should return <c>true</c> at the end of the behaviour and
@@ -94,6 +97,11 @@ namespace BulletSystem
         {
             onBulletDeathManual?.Invoke();
             onBulletDeathNatural?.Invoke();
+        }
+
+        public void InvokeBulletParry()
+        {
+            onBulletParry?.Invoke();
         }
 
         public void ResetBullet()

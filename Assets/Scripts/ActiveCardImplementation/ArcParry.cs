@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using Control.ActiveCardControl.ControlTypes;
 using System.Collections.Generic;
 using System.Linq;
+using BulletImplementation;
 using BulletSystem;
 using Utils;
 using Control;
@@ -18,6 +19,7 @@ namespace ActiveCardImplementation
         public float releaseDuration { get; set; }
         [SerializeField] public int angle;
         [SerializeField] public int cost;
+        [SerializeField] private BulletPool bulletParriedPool;
         private MultiPurposeCollider utilCollider;
         private List<Bullet> bullets;
         private Transform youmuTransform;
@@ -51,8 +53,20 @@ namespace ActiveCardImplementation
                          (Vector2)bul.transform.position) where angleBetween <= angle && 
                                                                 bul.transform.position.y > youmuTransform.position.y select bul)
             {
-                bul.onBulletParry();
+                ParryBullet(bul);
+                bul.InvokeBulletParry();
+                
             }
+        }
+
+        private void ParryBullet(Bullet bullet)
+        {
+            if (bullet.bulletTags.Any(bulletTag => !BulletInfoRegistry.instance.GetInfo(bulletTag).canBeParried)) return;
+            var position = bullet.transform.position;
+            bullet.onBulletDeathNatural.Invoke();
+
+            var counterBullet = bulletParriedPool.pool.Get();
+            ((StandardStraightParry)counterBullet).Launch(position, Vector3.zero);
         }
     }
 }

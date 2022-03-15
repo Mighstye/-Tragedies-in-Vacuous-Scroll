@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,35 +10,21 @@ namespace PassiveCardImplementation
 {
     public class BeamParry : PassiveCard
     {
-        [SerializeField] private Transform bulletPoolsContainer;
-
-        [SerializeField]  private BulletPool bulletParriedPool;
-
-        void Start()
+        private void OnEnable()
         {
-            // Modification du comportement des Bullet Pools
-
-            // Recuperation des bullet pools
-            List<BulletPool> bulletPools = new List<BulletPool>();
-
-            var pools = bulletPoolsContainer.gameObject.GetComponentsInChildren<BulletPool>();
-            foreach (var pool in pools)
-            {
-                pool.instantiateBulletParry += InstantiateBeamParry;
-            }
+            SetLaserInfo(true);
         }
 
-        private void InstantiateBeamParry(Bullet b)
+        private void OnDisable()
         {
-            b.onBulletParry += () =>
-            {
-                //Vector3 velocity = b.;
-                Vector3 position = b.transform.position;
-                b.onBulletDeathNatural.Invoke();
+            SetLaserInfo(false);
+        }
 
-                var bullet = bulletParriedPool.pool.Get();
-                ((StandardStraightParry)bullet).Launch(position, Vector3.zero);
-            };
+        private static void SetLaserInfo(bool state)
+        {
+            var info = BulletInfoRegistry.instance.GetInfo(BulletTag.Laser);
+            info.canBeParried = state;
+            BulletInfoRegistry.instance.UpdateInfo(BulletTag.Laser,info);
         }
     } 
 }

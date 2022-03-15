@@ -736,8 +736,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa731f9b441bf145b0c33f8a33a9b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPoolsContainer: {fileID: 2098387908}
-  bulletParriedPool: {fileID: 956529083}
 --- !u!1 &170895778
 GameObject:
   m_ObjectHideFlags: 0
@@ -3921,6 +3919,50 @@ MonoBehaviour:
         - localeIdentifier:
             m_Code: ja
           value: 126.92
+--- !u!1 &685609628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 685609629}
+  - component: {fileID: 685609630}
+  m_Layer: 0
+  m_Name: Battle Outcome
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &685609629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685609628}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2101795378}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &685609630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685609628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ff70022c7647a7a18f8ba5cc2a842a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &701121118
 GameObject:
   m_ObjectHideFlags: 0
@@ -11880,6 +11922,51 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5860480620814065070, guid: 2c30977b1e3c213459d838313d8c3825, type: 3}
   m_PrefabInstance: {fileID: 1000182764}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1829414444
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1829414446}
+  - component: {fileID: 1829414445}
+  m_Layer: 0
+  m_Name: Bullet Info
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1829414445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829414444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9167a31cbb34d7f8e5034fd4028ad42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultBulletInfo: {fileID: 11400000, guid: b2c2ec7b080d1ac4192706b6529aa751, type: 2}
+--- !u!4 &1829414446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829414444}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5120747, y: -0.24028622, z: -19.986979}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1837073696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13512,9 +13599,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd99e6169f192a47a83e9f3384340b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: {fileID: 43780358}
-  Spell: {fileID: 1697763040}
-  Graze: {fileID: 957194300}
+  health: {fileID: 43780358}
+  spell: {fileID: 1697763040}
+  graze: {fileID: 957194300}
+  battleOutcome: {fileID: 685609630}
 --- !u!4 &2101795378
 Transform:
   m_ObjectHideFlags: 0
@@ -13530,6 +13618,7 @@ Transform:
   - {fileID: 43780357}
   - {fileID: 1697763039}
   - {fileID: 957194299}
+  - {fileID: 685609629}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14000,6 +14089,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1438012820}
     m_Modifications:
+    - target: {fileID: 5469457027467083084, guid: d41c01c16d59cf84397fa4d6d2b39c3c, type: 3}
+      propertyPath: bulletParriedPool
+      value: 
+      objectReference: {fileID: 956529083}
     - target: {fileID: 5469457027467083186, guid: d41c01c16d59cf84397fa4d6d2b39c3c, type: 3}
       propertyPath: m_Name
       value: c3

@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8787cb325772d994f9be585a35ac5e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletTags: 00000000
   launchTime: 0.3
   idleTime: 0.5
 --- !u!58 &6882932829818920345
