@@ -25,8 +25,7 @@ public class CheatEngine : MonoBehaviour
     public void OnCheat1(InputAction.CallbackContext context)
     {
         if (context.phase is not InputActionPhase.Performed) return;
-        var cheatCard = Instantiate(sample, this.gameObject.transform);
-        CardSystemManager.instance.AddActiveCard(cheatCard);
+        LogicSystemAPI.instance.graze.AddGraze(50);
     }
 
     //Press W to activate

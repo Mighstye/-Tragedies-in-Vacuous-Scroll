@@ -2,7 +2,7 @@
 
 namespace BossBehaviour
 {
-    public abstract class BossPhaseMovementFragment : StateMachineBehaviour
+    public abstract class BossPhaseMovementFragment : BossPhaseFragment
     {
         protected BossController bossController;
         private static readonly int End = Animator.StringToHash("fragmentEndMove");

@@ -6,7 +6,7 @@ using UnityEngine.XR.WSA;
 
 namespace BossBehaviour
 {
-    public abstract class BossPhaseLauncherFragment: StateMachineBehaviour
+    public abstract class BossPhaseLauncherFragment: BossPhaseFragment
     {
         private LauncherIndex launcherIndex;
         [SerializeField] private List<int> launcherIndexNumbers;

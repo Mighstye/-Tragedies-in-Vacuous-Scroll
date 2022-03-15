@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phaseFsmIndexNumber: 0
   phaseName: 
-  phaseTimer: {fileID: 0}
-  bossController: {fileID: 0}
+  phaseEndType: 0
   phaseType: 0
   phaseDuration: 0
   phaseHp: 0
@@ -88,8 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phaseFsmIndexNumber: 0
   phaseName: Phase 1
-  phaseTimer: {fileID: 0}
-  bossController: {fileID: 0}
+  phaseEndType: 0
   phaseType: 0
   phaseDuration: 60
   phaseHp: 20
@@ -107,8 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phaseFsmIndexNumber: 1
   phaseName: Phase 2
-  phaseTimer: {fileID: 0}
-  bossController: {fileID: 0}
+  phaseEndType: 0
   phaseType: 0
   phaseDuration: 5
   phaseHp: 100
@@ -129,7 +126,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0.75
   m_HasExitTime: 0
@@ -151,8 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phaseFsmIndexNumber: 2
   phaseName: Final Phase
-  phaseTimer: {fileID: 0}
-  bossController: {fileID: 0}
+  phaseEndType: 0
   phaseType: 0
   phaseDuration: 60
   phaseHp: 100
@@ -257,7 +253,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0.75
   m_HasExitTime: 0

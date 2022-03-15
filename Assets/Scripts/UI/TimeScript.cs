@@ -6,13 +6,11 @@ using BossBehaviour;
 
 public class TimeScript : MonoBehaviour
 {
-    public TextMeshProUGUI timevalue;
-    public TextMeshProUGUI targetTimeValue;
-    private int targetTime;
-    private int time;
-    private string timeText;
-    private string targetTimeText;
-    private PhaseTimer timerReff;
+    public TextMeshProUGUI timeValue;
+    public TextMeshProUGUI fractionalValue;
+    private float targetTime;
+    private float time;
+    private PhaseTimer timerRef;
 
     // Start is called before the first frame update
     void Start()
@@ -20,48 +18,40 @@ public class TimeScript : MonoBehaviour
         targetTime = 0;
         time = 0;
 
-        timerReff = PhaseTimer.instance;
+        timerRef = PhaseTimer.instance;
 
-        timerReff.onNeedTimeoutRefreshDisplay += () =>
-        {
-            refreshTarget();
-        };
+        timerRef.onNeedTimeoutRefreshDisplay += RefreshTarget;
 
-        timerReff.onNeedTimerRefreshDisplay += () =>
-        {
-            refreshTimer();
-        };
+        timerRef.onNeedTimerRefreshDisplay += RefreshTimer;
 
-        timerReff.onPhaseEndDisplay += () =>
-        {
-            endTimer();
-        };
+        timerRef.onPhaseEndDisplay += EndTimer;
     }
 
-    private void refreshTimer()
+    private void RefreshTimer()
     {
-        time = (int)(timerReff.currentPhaseTimeout * 1000 - timerReff.phaseTimer * 1000);
-        refresh();
+        time = timerRef.phaseTimer;
+        Refresh();
     }
 
-    private void refreshTarget()
+    private void RefreshTarget()
     {
-        targetTime = (int)timerReff.currentPhaseTimeout * 1000;
-        refresh();
+        targetTime = timerRef.currentPhaseTimeout ;
+        Refresh();
     }
 
-    private void endTimer()
+    private void EndTimer()
     {
         time = 0;
         targetTime = 0;
-        refresh();
+        Refresh();
     }
 
-    private void refresh()
+    private void Refresh()
     {
-        timeText = string.Format("{0:D6}", time);
-        targetTimeText = string.Format("{0:D6}", targetTime);
-        timevalue.text = timeText;
-        targetTimeValue.text = "/" + targetTimeText;
+        var decPart = (int)time;
+        var fractionalPart = (int)((time - decPart) * 100);
+        timeValue.text = decPart.ToString("00")+".";
+        fractionalValue.text = fractionalPart.ToString("00");
+
     }
 }
