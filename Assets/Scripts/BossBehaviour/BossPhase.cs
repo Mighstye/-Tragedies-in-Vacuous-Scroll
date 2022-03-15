@@ -15,8 +15,8 @@ public abstract class BossPhase : StateMachineBehaviour
     }
 
     [SerializeField] private int phaseFsmIndexNumber=0;
-    private PhaseIndex phaseFragmentIndex;
-    private GameObject phaseBehaviors;
+    private PhaseIndex phaseIndex;
+    private Animator phaseBehaviors;
     [SerializeField] private string phaseName;
     [SerializeField] private PhaseTimer phaseTimer;
     [SerializeField] private BossController bossController;
@@ -28,14 +28,14 @@ public abstract class BossPhase : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        phaseFragmentIndex = animator.GetComponent<PhaseIndex>();
-        phaseBehaviors = phaseFragmentIndex.phaseStateMachines[phaseFsmIndexNumber];
-        phaseBehaviors.SetActive(true);
+        
+        phaseIndex = animator.GetComponent<PhaseIndex>();
+        phaseBehaviors = phaseIndex.phaseStateMachines[phaseFsmIndexNumber];
+        phaseBehaviors.gameObject.SetActive(true);
         phaseEnd = () => { SetPhaseEndVar(animator, true);};
         SetPhaseEndVar(animator,false);
         InitializeTimer(animator);
         InitializeBossController(animator);
-        phaseBehaviors.SetActive(true);
         OnPhaseStartCustom(animator, stateInfo,layerIndex);
         
     }
@@ -50,7 +50,7 @@ public abstract class BossPhase : StateMachineBehaviour
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         ActiveBulletManager.instance.Wipe();
-        phaseBehaviors.SetActive(false);
+        phaseBehaviors.gameObject.SetActive(false);
         phaseTimer.onPhaseTimeoutReached -= phaseEnd;
         if (bossController is null) return;
         bossController.onHpDepleted -= phaseEnd;

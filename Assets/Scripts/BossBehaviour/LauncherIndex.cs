@@ -10,22 +10,17 @@ namespace BossBehaviour
     {
         [SerializeField] public List<BulletLauncher> launchers;
 
-        private Animator animator;
-
-        private void Start()
-        {
-            animator = GetComponent<Animator>();
-        }
-
         private void OnEnable()
         {
-            foreach (var launcher in launchers)
-            {
-                launcher.gameObject.SetActive(false);
-            }
+            DisableAllLaunchers();
         }
 
         private void OnDisable()
+        {
+            DisableAllLaunchers();
+        }
+
+        private void DisableAllLaunchers()
         {
             foreach (var launcher in launchers)
             {
