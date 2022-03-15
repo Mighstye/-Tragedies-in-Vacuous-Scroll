@@ -26,7 +26,7 @@ namespace Game_Manager
 
         private void Start()
         {
-            LogicSystemAPI.instance.Health.onPlayerDeath += () =>
+            LogicSystemAPI.instance.health.onPlayerDeath += () =>
             {
                 EndFight(false);
             };

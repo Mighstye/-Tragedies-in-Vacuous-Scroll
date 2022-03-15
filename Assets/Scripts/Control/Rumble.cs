@@ -14,8 +14,8 @@ namespace Control
         private bool isInLastStand = false;
         private void Start()
         {
-            healthRef = LogicSystemAPI.instance.Health;
-            spellRef = LogicSystemAPI.instance.Spell;
+            healthRef = LogicSystemAPI.instance.health;
+            spellRef = LogicSystemAPI.instance.spell;
 
             YoumuController.instance.onInstantSpellCheck += () =>
             {

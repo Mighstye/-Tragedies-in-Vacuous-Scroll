@@ -19,7 +19,7 @@ public class SpellEffect : MonoBehaviour
     private SpellExecution spellExecution;
     private void Start()
     {
-        spellRef = LogicSystemAPI.instance.Spell;
+        spellRef = LogicSystemAPI.instance.spell;
 
         spellRef.onSpellUse += () =>
         {

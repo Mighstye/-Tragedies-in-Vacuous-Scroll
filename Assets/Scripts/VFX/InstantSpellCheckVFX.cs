@@ -17,7 +17,7 @@ namespace VFX
         [SerializeField] private Color other = Color.red;
         private void Start()
         {
-            healthRef = LogicSystemAPI.instance.Health;
+            healthRef = LogicSystemAPI.instance.health;
             GetComponent<Volume>().profile.TryGet<Vignette>(out vignette);
             vignette.active = false;
             YoumuController.instance.onInstantSpellCheck += () =>

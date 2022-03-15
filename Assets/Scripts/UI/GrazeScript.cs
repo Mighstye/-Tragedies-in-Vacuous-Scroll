@@ -14,7 +14,7 @@ public class GrazeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        grazeRef = LogicSystemAPI.instance.Graze;
+        grazeRef = LogicSystemAPI.instance.graze;
 
         graze = gameObject.GetComponent<Image>();
         graze.fillAmount = (float)grazeRef.get() / 100;

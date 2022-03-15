@@ -47,7 +47,7 @@ namespace Logic_System
             UseSpell();
             inSpellEffect = true;
             onSpellUse?.Invoke();
-            logic.Health.StartInvincible(spellDuration);
+            logic.health.StartInvincible(spellDuration);
         }
 
         public void ReenableSpell()

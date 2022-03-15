@@ -12,7 +12,7 @@ namespace CardSystem
 
         private void Start()
         {
-            grazeRef = LogicSystemAPI.instance.Graze;
+            grazeRef = LogicSystemAPI.instance.graze;
             grazeRef.onNeedGrazeRefresh += () =>
             {
                 cardImageLight.Charge(grazeRef.GetSegment());

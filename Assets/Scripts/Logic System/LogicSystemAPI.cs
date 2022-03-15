@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Logic_System
 {
@@ -8,12 +9,13 @@ namespace Logic_System
     {
         public static LogicSystemAPI instance { get; private set; }
         
-        public Health Health;
+        public Health health;
 
-        public Spell Spell;
+        public Spell spell;
 
-        public Graze Graze;
+        public Graze graze;
 
+        public BattleOutcome battleOutcome;
         private void Awake()
         {
             instance = this;

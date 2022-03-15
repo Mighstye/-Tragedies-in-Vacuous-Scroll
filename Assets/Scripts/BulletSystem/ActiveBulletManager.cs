@@ -22,10 +22,17 @@ namespace BulletSystem
 
         public void Wipe()
         {
+            /* LEGACY
             var nbActiveBullets = this.transform.childCount;
             for(var i = 0; i < nbActiveBullets; i++)
             {
-                var bullet = this.transform.GetChild(0).gameObject.GetComponent<Bullet>();
+                var bullet = transform.GetChild(0).gameObject.GetComponent<Bullet>();
+                if (bullet.gameObject.CompareTag("FriendlyBullet")) return;
+                bullet.InvokeBulletDeath();
+            } */
+
+            foreach (var bullet in GetComponentsInChildren<Bullet>())
+            {
                 if (bullet.gameObject.CompareTag("FriendlyBullet")) return;
                 bullet.InvokeBulletDeath();
             }

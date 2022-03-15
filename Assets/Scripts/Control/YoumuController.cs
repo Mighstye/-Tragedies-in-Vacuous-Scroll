@@ -49,7 +49,7 @@ namespace Control
 
         private void Start()
         {
-            healthRef = LogicSystemAPI.instance.Health;
+            healthRef = LogicSystemAPI.instance.health;
 
             currentSpeed = normalSpeed;
             youmuAnimator = GetComponent<Animator>();

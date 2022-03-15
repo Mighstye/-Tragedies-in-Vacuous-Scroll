@@ -11,7 +11,7 @@ namespace CardSystem
 
         protected bool useCard()
         {
-            return LogicSystemAPI.instance.Graze.UseGraze(grazeCostSegment);
+            return LogicSystemAPI.instance.graze.UseGraze(grazeCostSegment);
         }
     }
 }

@@ -19,7 +19,7 @@ public class CheatEngine : MonoBehaviour
 
     private void Start()
     {
-        healthRef = LogicSystemAPI.instance.Health;
+        healthRef = LogicSystemAPI.instance.health;
     }
 
     public void OnCheat1(InputAction.CallbackContext context)

@@ -14,7 +14,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        healthRef = LogicSystemAPI.instance.Health;
+        healthRef = LogicSystemAPI.instance.health;
 
         // We fill the SpriteRender table with all the concerned SpriteRender
         var i = 0;

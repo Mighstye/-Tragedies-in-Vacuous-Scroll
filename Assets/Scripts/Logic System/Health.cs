@@ -57,7 +57,7 @@ namespace Logic_System
 
             if (!(invincibleTimer <= 0)) return;
             invincible = false;
-           logic.Spell.ReenableSpell();
+           logic.spell.ReenableSpell();
         }
 
 
@@ -69,7 +69,7 @@ namespace Logic_System
         {
             GainHealth(-h);
             if (currentHealth <= 0) return true;
-            logic.Spell.SpellResetOnLifeLost();
+            logic.spell.SpellResetOnLifeLost();
             onNeedPlayerRefresh?.Invoke();
             return false;
         }

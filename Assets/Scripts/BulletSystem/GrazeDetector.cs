@@ -10,7 +10,7 @@ namespace BulletSystem
 
         private void Start()
         {
-            grazeRef = LogicSystemAPI.instance.Graze;
+            grazeRef = LogicSystemAPI.instance.graze;
         }
 
         private void OnTriggerEnter2D(Collider2D col)

@@ -358,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced8678c0b2470f4693d312e6630170f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 1
+  startingHealth: 5
   maxHealth: 8
   invincibilityTime: 5
 --- !u!1 &66031326
@@ -5600,6 +5600,50 @@ MonoBehaviour:
         - localeIdentifier:
             m_Code: ja
           value: 411.91
+--- !u!1 &920347338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 920347339}
+  - component: {fileID: 920347340}
+  m_Layer: 0
+  m_Name: Battle Outcome
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &920347339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920347338}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2101795378}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &920347340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920347338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ff70022c7647a7a18f8ba5cc2a842a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &956529081
 GameObject:
   m_ObjectHideFlags: 0
@@ -13503,9 +13547,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd99e6169f192a47a83e9f3384340b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: {fileID: 43780358}
-  Spell: {fileID: 1697763040}
-  Graze: {fileID: 957194300}
+  health: {fileID: 43780358}
+  spell: {fileID: 1697763040}
+  graze: {fileID: 957194300}
+  battleOutcome: {fileID: 920347340}
 --- !u!4 &2101795378
 Transform:
   m_ObjectHideFlags: 0
@@ -13521,6 +13566,7 @@ Transform:
   - {fileID: 43780357}
   - {fileID: 1697763039}
   - {fileID: 957194299}
+  - {fileID: 920347339}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -13,7 +13,7 @@ namespace UI
         // Start is called before the first frame update
         private void Start()
         {
-            spellRef = LogicSystemAPI.instance.Spell;
+            spellRef = LogicSystemAPI.instance.spell;
 
             var i = 0;
             foreach(var spellUI in gameObject.GetComponentsInChildren<Image>())
