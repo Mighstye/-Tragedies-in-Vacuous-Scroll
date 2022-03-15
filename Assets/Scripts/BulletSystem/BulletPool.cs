@@ -45,6 +45,7 @@ namespace BulletSystem
             var b = Instantiate(bullet,transform);
             b.onBulletDeathNatural += () =>
             {
+                b.grazeable = false;
                 pool.Release(b);
             };
             b.onBulletDeathManual += () =>

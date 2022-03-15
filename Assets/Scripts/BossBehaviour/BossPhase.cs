@@ -3,32 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using BossBehaviour;
 using BulletSystem;
-using Logic_System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public abstract class BossPhase : StateMachineBehaviour
 {
-    public enum PhaseEndType
+    public enum PhaseType
     {
         DealDamage,
         Endure
-    }
-
-    public enum PhaseType
-    {
-        SpellPhase,
-        NonSpellPhase
     }
 
     [SerializeField] private int phaseFsmIndexNumber=0;
     private PhaseIndex phaseIndex;
     private Animator phaseBehaviors;
     [SerializeField] private string phaseName;
-    private PhaseTimer phaseTimer;
-    private BossController bossController;
-    private BattleOutcome battleOutcome;
-    [SerializeField] public PhaseEndType phaseEndType;
+    [SerializeField] private PhaseTimer phaseTimer;
+    [SerializeField] private BossController bossController;
     [SerializeField] public PhaseType phaseType;
     [SerializeField] private float phaseDuration;
     [SerializeField] private int phaseHp;
@@ -37,18 +28,16 @@ public abstract class BossPhase : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        
         phaseIndex = animator.GetComponent<PhaseIndex>();
         phaseBehaviors = phaseIndex.phaseStateMachines[phaseFsmIndexNumber];
-        phaseBehaviors.enabled = true;
+        phaseBehaviors.gameObject.SetActive(true);
         phaseEnd = () => { SetPhaseEndVar(animator, true);};
         SetPhaseEndVar(animator,false);
         InitializeTimer(animator);
         InitializeBossController(animator);
-        phaseBehaviors.enabled=true;
         OnPhaseStartCustom(animator, stateInfo,layerIndex);
-        if (phaseType is PhaseType.NonSpellPhase) return;
-        battleOutcome = LogicSystemAPI.instance.battleOutcome;
-        battleOutcome.RecordNewPhase(phaseName);
+        
     }
 
     protected virtual void OnPhaseStartCustom(Animator animator, AnimatorStateInfo stateInfo, int layerIndex){}
@@ -61,11 +50,10 @@ public abstract class BossPhase : StateMachineBehaviour
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         ActiveBulletManager.instance.Wipe();
-        phaseBehaviors.enabled = false;
+        phaseBehaviors.gameObject.SetActive(false);
         phaseTimer.onPhaseTimeoutReached -= phaseEnd;
         if (bossController is null) return;
         bossController.onHpDepleted -= phaseEnd;
-        battleOutcome.RegisterCurrentPhase();
 
     }
 
@@ -83,7 +71,8 @@ public abstract class BossPhase : StateMachineBehaviour
 
     private void InitializeBossController(Animator animator)
     {
-        if (phaseEndType is not PhaseEndType.DealDamage) return;
+        
+        if (phaseType is not PhaseType.DealDamage) return;
         bossController = BossBehaviourSystemProxy.instance.bossController;
         bossController.SetUpHp(phaseHp);
         bossController.onHpDepleted += phaseEnd;

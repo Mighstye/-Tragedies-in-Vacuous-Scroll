@@ -29,11 +29,9 @@ namespace BossBehaviour
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             if (fragmentEnd) return;
-            if (FragmentEnd())
-            {
-                fragmentEnd = true;
-                animator.SetBool(End,true);
-            }
+            if (!FragmentEnd()) return;
+            fragmentEnd = true;
+            animator.SetBool(End,true);
         }
 
         protected virtual bool FragmentEnd()
@@ -48,5 +46,7 @@ namespace BossBehaviour
                 launcherIndex.launchers[id].gameObject.SetActive(false);
             }
         }
+        
+        
     }
 }

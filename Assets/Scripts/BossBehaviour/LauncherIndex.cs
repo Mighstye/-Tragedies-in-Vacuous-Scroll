@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using BulletSystem;
 using UnityEngine;
@@ -10,24 +10,18 @@ namespace BossBehaviour
     {
         [SerializeField] public List<BulletLauncher> launchers;
 
-        private Animator animator;
-
-        private void Start()
-        {
-            animator = GetComponent<Animator>();
-        }
-
         private void OnEnable()
         {
-            foreach (var launcher in launchers)
-            {
-                launcher.gameObject.SetActive(false);
-            }
+            DisableAllLaunchers();
         }
 
-        private void Update()
+        private void OnDisable()
         {
-            if (animator.enabled) return;
+            DisableAllLaunchers();
+        }
+
+        private void DisableAllLaunchers()
+        {
             foreach (var launcher in launchers)
             {
                 launcher.gameObject.SetActive(false);
