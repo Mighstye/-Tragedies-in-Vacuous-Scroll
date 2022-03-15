@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using BossBehaviour;
 using BulletSystem;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class BossPhase : StateMachineBehaviour
 {
@@ -13,8 +14,8 @@ public abstract class BossPhase : StateMachineBehaviour
         Endure
     }
 
-    [SerializeField] private int phaseFragmentsFSMIndexNumber=0;
-    private PhaseFragmentIndex phaseFragmentIndex;
+    [SerializeField] private int phaseFsmIndexNumber=0;
+    private PhaseIndex phaseFragmentIndex;
     private Animator phaseBehaviors;
     [SerializeField] private string phaseName;
     [SerializeField] private PhaseTimer phaseTimer;
@@ -27,8 +28,8 @@ public abstract class BossPhase : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        phaseFragmentIndex = animator.GetComponent<PhaseFragmentIndex>();
-        phaseBehaviors = phaseFragmentIndex.phaseStateMachines[phaseFragmentsFSMIndexNumber];
+        phaseFragmentIndex = animator.GetComponent<PhaseIndex>();
+        phaseBehaviors = phaseFragmentIndex.phaseStateMachines[phaseFsmIndexNumber];
         phaseBehaviors.enabled = true;
         phaseEnd = () => { SetPhaseEndVar(animator, true);};
         SetPhaseEndVar(animator,false);

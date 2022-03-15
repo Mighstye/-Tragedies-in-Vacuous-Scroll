@@ -24,18 +24,18 @@ namespace Game_Manager
             instance = this;
         }
 
-        void Start()
+        private void Start()
         {
             LogicSystemAPI.instance.Health.onPlayerDeath += () =>
             {
-                endFight(false);
+                EndFight(false);
             };
             currentFightName = gameObject.scene.name;
             nextFightName = currentFightName.Remove(currentFightName.Length - 1) + (Convert.ToInt32(currentFightName[5].ToString()) + 1).ToString();
             // ^ This get the next scene name for the next fight
         }
 
-        public void endFight(bool victory)
+        public void EndFight(bool victory)
         {
             Time.timeScale = 0f;
             boss.SetActive(false);
@@ -44,7 +44,7 @@ namespace Game_Manager
             else onLoose?.Invoke();
         }
 
-        public void nextFight()
+        public void NextFight()
         {
             try
             {
@@ -58,12 +58,12 @@ namespace Game_Manager
             }
         }
 
-        public void restart()
+        public void Restart()
         {
             SceneManager.LoadScene(currentFightName);
         }
 
-        public void mainMenu()
+        public static void MainMenu()
         {
             SceneManager.LoadScene("MainMenu");
         }

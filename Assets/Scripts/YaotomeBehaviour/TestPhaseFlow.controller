@@ -17,7 +17,7 @@ AnimatorStateMachine:
     m_Position: {x: 460, y: 230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3756895684994524072}
-    m_Position: {x: 600, y: 120, z: 0}
+    m_Position: {x: 520, y: 110, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -39,8 +39,7 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
-  m_StateMachineBehaviours:
-  - {fileID: -2459985329633330500}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -67,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed025ea1aee58b047a8eaad2b388a7bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phaseFragmentsFSMIndexNumber: 0
+  phaseFsmIndexNumber: 0
   phaseName: Phase 1
   phaseTimer: {fileID: 0}
   bossController: {fileID: 0}
@@ -86,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f409627ce804f45b77fa012873cc22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phaseFragmentsFSMIndexNumber: 1
+  phaseFsmIndexNumber: 1
   phaseName: phase 2
   phaseTimer: {fileID: 0}
   bossController: {fileID: 0}

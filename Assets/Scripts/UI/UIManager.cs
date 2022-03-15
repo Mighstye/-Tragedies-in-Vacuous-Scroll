@@ -56,7 +56,7 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 1.0f;
             DisableAllMenu();
         }
-        gameManagerAPI.mainMenu();
+        GameManagerAPI.MainMenu();
     }
 
     public void Continue()
@@ -67,7 +67,7 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 1.0f;
             DisableAllMenu();
         }
-        gameManagerAPI.nextFight();
+        gameManagerAPI.NextFight();
     }
 
     public void Restart()
@@ -78,7 +78,7 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 1.0f;
             DisableAllMenu();
         }
-        gameManagerAPI.restart();
+        gameManagerAPI.Restart();
     }
 
     private void DisableAllMenu()
