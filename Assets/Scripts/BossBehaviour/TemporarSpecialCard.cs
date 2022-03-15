@@ -7,7 +7,7 @@ public class TemporarSpecialCard : MonoBehaviour
 {
     [SerializeField] private Transform ActiveCardsContainer;
     [SerializeField] private ActiveCard SpecialCard;
-    public void ActivateSpecialCard()
+    private void Start()
     {
         // Desactivation temporaire des active cards
 
@@ -15,12 +15,10 @@ public class TemporarSpecialCard : MonoBehaviour
         var cards = ActiveCardsContainer.gameObject.GetComponentsInChildren<ActiveCard>();
         foreach (var card in cards)
         {
-            card.enabled = false;
+            card.gameObject.SetActive(false);
         }
 
         // Activation de la special card
-        Instantiate(SpecialCard);
-
-        SpecialCard.transform.parent = ActiveCardsContainer.transform;
+        SpecialCard.gameObject.SetActive(true);
     }
 }
