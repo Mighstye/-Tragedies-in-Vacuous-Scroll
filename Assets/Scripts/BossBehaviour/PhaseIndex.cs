@@ -6,6 +6,6 @@ namespace BossBehaviour
 {
     public class PhaseIndex : MonoBehaviour
     {
-        public List<Animator> phaseStateMachines = new List<Animator>();
+        public List<GameObject> phaseStateMachines = new List<GameObject>();
     }
 }

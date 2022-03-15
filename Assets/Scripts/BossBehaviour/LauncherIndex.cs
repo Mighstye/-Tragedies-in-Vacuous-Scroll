@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using BulletSystem;
 using UnityEngine;
@@ -25,9 +25,8 @@ namespace BossBehaviour
             }
         }
 
-        private void Update()
+        private void OnDisable()
         {
-            if (animator.enabled) return;
             foreach (var launcher in launchers)
             {
                 launcher.gameObject.SetActive(false);
