@@ -80,3 +80,8 @@ The Finite State Machine system of bosses is developped based on the Unity Anima
   2. Sub-phase : A Sub-phase defines how a phase is carried out. A sub phase state may have two different components that may: enable bullet launcher, or moving the boss sprite (as well as the launchers). 
  
  Since it is not possible to reference scene objects directly in Animator, we must create intermediate objects to keep track of the objects, and in Animator they will be referenced by indexing. 
+  
+  **** IMPORTANT ****
+  To avoid "schrodinger states", transition duration should be set to 0. This allows state exit code to be executed before the enter code of the new state.
+  ![image](https://user-images.githubusercontent.com/62897460/158302891-55e10455-05b8-4461-8193-e3c921678a28.png)
+
