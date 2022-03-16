@@ -22,6 +22,7 @@ namespace PassiveCardImplementation
 
         private static void SetLaserInfo(bool state)
         {
+            while(BulletInfoRegistry.instance is null){}
             var info = BulletInfoRegistry.instance.GetInfo(BulletTag.Laser);
             info.canBeParried = state;
             BulletInfoRegistry.instance.UpdateInfo(BulletTag.Laser,info);

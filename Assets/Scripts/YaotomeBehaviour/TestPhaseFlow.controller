@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phaseFsmIndexNumber: 0
-  phaseName: Phase 1
+  phaseName: Yaotome_P1
   phaseEndType: 0
   phaseType: 0
   phaseDuration: 60
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phaseFsmIndexNumber: 1
-  phaseName: Phase 2
+  phaseName: Yaotome_P2
   phaseEndType: 0
   phaseType: 0
   phaseDuration: 5
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phaseFsmIndexNumber: 2
-  phaseName: Final Phase
+  phaseName: Yaotome_FP
   phaseEndType: 0
   phaseType: 0
   phaseDuration: 60

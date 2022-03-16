@@ -5,6 +5,7 @@ using BossBehaviour;
 using BulletSystem;
 using Logic_System;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Serialization;
 
 public abstract class BossPhase : StateMachineBehaviour
@@ -23,7 +24,7 @@ public abstract class BossPhase : StateMachineBehaviour
     private PhaseIndex phaseIndex;
     private Animator phaseBehaviors;
     [SerializeField] private string phaseName;
-     private PhaseTimer phaseTimer;
+    private PhaseTimer phaseTimer;
      private BossController bossController;
      private BattleOutcome battleOutcome;
      [SerializeField] public PhaseEndType phaseEndType;
@@ -81,7 +82,6 @@ public abstract class BossPhase : StateMachineBehaviour
 
     private void InitializeBossController(Animator animator)
     {
-        
         if (phaseEndType is not PhaseEndType.DealDamage) return;
         bossController = BossBehaviourSystemProxy.instance.bossController;
         bossController.SetUpHp(phaseHp);

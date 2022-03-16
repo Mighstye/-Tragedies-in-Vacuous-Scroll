@@ -17,18 +17,17 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: d7918e2b12316e449996792e31849775
   m_SerializeEntries:
-  - m_GUID: 52748acfb83b3374590793c3643e154b
-    m_Address: GenShinGothic-ExtraLight SDF
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-ja
-    - Locale-en
   - m_GUID: 8f06837ae81c6f94886f71acec5a3111
     m_Address: GenShinGothic-Heavy SDF
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ja
     - Locale-en
+  - m_GUID: 0bc4d269043421046a56d051fb7d661c
+    m_Address: GenShinGothic-P-Bold SDF
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: cee2434807314c341a6bde9a0b18276a, type: 2}
   m_SchemaSet:

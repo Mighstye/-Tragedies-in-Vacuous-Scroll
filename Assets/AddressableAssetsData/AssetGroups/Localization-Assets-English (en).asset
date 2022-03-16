@@ -16,7 +16,12 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: e697c77c94d207b43b52bccc079a50ef
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 52748acfb83b3374590793c3643e154b
+    m_Address: GenShinGothic-ExtraLight SDF
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: cee2434807314c341a6bde9a0b18276a, type: 2}
   m_SchemaSet:
