@@ -27,6 +27,11 @@ namespace UI
 
         private void UpdatePhaseUI(string phaseName, PhaseStatistics statistics)
         {
+            if (phaseName is null)
+            {
+                SetEmpty();
+                return;
+            }
             localizedPhaseName.TableEntryReference = phaseName;
             StartCoroutine(Localize());
             historyText.text = statistics.spellGetCount + "/" + statistics.encounterCount;
@@ -35,6 +40,12 @@ namespace UI
         private void UpdatePhaseName(string s)
         {
             phaseNameText.text = s;
+        }
+
+        private void SetEmpty()
+        {
+            historyText.text = "--/--";
+            phaseNameText.text = "";
         }
 
         private IEnumerator Localize()

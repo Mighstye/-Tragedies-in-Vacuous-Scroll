@@ -45,9 +45,8 @@ public abstract class BossPhase : StateMachineBehaviour
         InitializeTimer(animator);
         InitializeBossController(animator);
         OnPhaseStartCustom(animator, stateInfo,layerIndex);
-        if (phaseType is PhaseType.NonSpellPhase) return;
         battleOutcome = LogicSystemAPI.instance.battleOutcome;
-        battleOutcome.RecordNewPhase(phaseName);
+        battleOutcome.RecordNewPhase(phaseType is PhaseType.NonSpellPhase ? null : phaseName);
     }
 
     protected virtual void OnPhaseStartCustom(Animator animator, AnimatorStateInfo stateInfo, int layerIndex){}

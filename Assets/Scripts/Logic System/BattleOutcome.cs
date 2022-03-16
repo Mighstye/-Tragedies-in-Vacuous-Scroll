@@ -28,14 +28,18 @@ namespace Logic_System
         public void RecordNewPhase(string phaseName)
         {
             currentPhaseName = phaseName;
-            currentPhaseStatistics = new PhaseStatistics();
-            if (outcome.ContainsKey(phaseName)) currentPhaseStatistics = outcome[phaseName];
-            currentPhaseStatistics.IncreaseEncounterCount();
+            if (phaseName is not null)
+            {
+                currentPhaseStatistics = new PhaseStatistics();
+                if (outcome.ContainsKey(phaseName)) currentPhaseStatistics = outcome[phaseName];
+                currentPhaseStatistics.IncreaseEncounterCount();
+            }
             onPhaseStart?.Invoke(phaseName,currentPhaseStatistics);
         }
 
         public void RegisterCurrentPhase()
         {
+            if (currentPhaseName is null) return;
             if (currentPhaseStatistics.SpellGet())
             {
                 currentPhaseStatistics.IncreaseSpellGetCount();
