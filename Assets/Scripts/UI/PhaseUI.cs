@@ -11,6 +11,7 @@ namespace UI
 {
     public class PhaseUI : MonoBehaviour
     {
+        
         [SerializeField] private BattleOutcome battleOutcomeRef;
         [SerializeField] private TextMeshProUGUI phaseNameText;
         [SerializeField] private TextMeshProUGUI historyText;
