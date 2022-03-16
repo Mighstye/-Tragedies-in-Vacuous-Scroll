@@ -57,13 +57,14 @@ public abstract class BossPhase : StateMachineBehaviour
     }
     
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
+    { 
+        battleOutcome.RegisterCurrentPhase();
         ActiveBulletManager.instance.Wipe();
         phaseBehaviors.gameObject.SetActive(false);
         phaseTimer.onPhaseTimeoutReached -= phaseEnd;
         if (bossController is null) return;
         bossController.onHpDepleted -= phaseEnd;
-        battleOutcome.RegisterCurrentPhase();
+       
 
     }
 
@@ -81,7 +82,7 @@ public abstract class BossPhase : StateMachineBehaviour
 
     private void InitializeBossController(Animator animator)
     {
-        if (phaseEndType is not PhaseEndType.DealDamage) return;
+        if (phaseEndType is not PhaseEndType.DealDamage) phaseHp=0;
         bossController = BossBehaviourSystemProxy.instance.bossController;
         bossController.SetUpHp(phaseHp);
         bossController.onHpDepleted += phaseEnd;

@@ -43,7 +43,7 @@ namespace BossBehaviour
             hpDepleted = false;
             currentPhaseMaxHp = maxHp;
             currentHp = maxHp;
-            PhaseHP.instance.SetGaugeFill(1f);
+            PhaseHP.instance.SetGaugeFill(maxHp==0?0f:1f);
         }
 
         private void TakeDamage(int amount)

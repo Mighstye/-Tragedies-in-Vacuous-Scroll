@@ -129,9 +129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phaseFsmIndexNumber: 1
-  phaseName: Yaotome_P3
+  phaseName: Yaotome_P2
   phaseEndType: 1
-  phaseType: 1
+  phaseType: 0
   phaseDuration: 5
   phaseHp: 100
 --- !u!1101 &-1693864300754903421

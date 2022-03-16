@@ -17,6 +17,7 @@ namespace Logic_System
         public PhaseStatistics currentPhaseStatistics { get; private set; }
 
         public Action<string,PhaseStatistics> onPhaseStart;
+        public Action<string, PhaseStatistics> onPhaseEnd;
         private void Start()
         {
             outcome = new Dictionary<string, PhaseStatistics>();
@@ -53,6 +54,7 @@ namespace Logic_System
                 outcome.Add(currentPhaseName,currentPhaseStatistics);
             }
             Debug.Log(currentPhaseName+"      " +GetStatistics(currentPhaseName));
+            onPhaseEnd?.Invoke(currentPhaseName,currentPhaseStatistics);
         }
 
         public PhaseStatistics GetStatistics(string phaseName)
@@ -64,6 +66,7 @@ namespace Logic_System
         {
             if (currentPhaseName is null) return;
             currentPhaseStatistics.RecordSpellUse();
+            
         }
         
         private void RecordHealthLost()
