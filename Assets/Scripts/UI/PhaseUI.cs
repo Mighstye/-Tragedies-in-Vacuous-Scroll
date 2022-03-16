@@ -22,7 +22,6 @@ namespace UI
             battleOutcomeRef = LogicSystemAPI.instance.battleOutcome;
             battleOutcomeRef.onPhaseStart += UpdatePhaseUI;
             localizedPhaseName.TableReference = "Phase Names";
-            localizedPhaseName.StringChanged += UpdatePhaseName;
         }
 
         private void UpdatePhaseUI(string phaseName, PhaseStatistics statistics)

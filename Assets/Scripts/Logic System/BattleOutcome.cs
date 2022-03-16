@@ -62,12 +62,13 @@ namespace Logic_System
 
         private void RecordSpellUse()
         {
+            if (currentPhaseName is null) return;
             currentPhaseStatistics.RecordSpellUse();
         }
         
         private void RecordHealthLost()
         {
-            Debug.Log("HP lost recorded");
+            if (currentPhaseName is null) return;
             currentPhaseStatistics.RecordHealthLost();
         }
 

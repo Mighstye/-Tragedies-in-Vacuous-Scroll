@@ -14,7 +14,7 @@ namespace BulletSystem
         public static BulletInfoRegistry instance { get; private set; }
         private Dictionary<BulletTag, TagInfo> infoRegistry;
         [SerializeField] private DefaultBulletInfo defaultBulletInfo;
-
+        
         private void Awake()
         {
             instance = this;
