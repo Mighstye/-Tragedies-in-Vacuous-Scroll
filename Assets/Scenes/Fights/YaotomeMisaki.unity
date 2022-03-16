@@ -1826,6 +1826,7 @@ GameObject:
   - component: {fileID: 352565888}
   - component: {fileID: 352565890}
   - component: {fileID: 352565889}
+  - component: {fileID: 352565891}
   m_Layer: 0
   m_Name: Boss Name
   m_TagString: Untagged
@@ -1950,6 +1951,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 352565887}
   m_CullTransparentMesh: 1
+--- !u!114 &352565891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352565887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73c7733f47a84b839b1a41d94e35745b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizedBossName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  currentBossName: Yaotome_Misaki
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &377410013
 GameObject:
   m_ObjectHideFlags: 0
@@ -3602,7 +3628,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: ja
-          value: -25.83
+          value: 0
     - rid: 4713508801814462610
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -4597,7 +4623,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: ja
-          value: 122.5
+          value: 0
     - rid: 4713508801814462613
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
