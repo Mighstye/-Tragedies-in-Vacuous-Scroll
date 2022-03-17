@@ -131,7 +131,7 @@ MonoBehaviour:
   phaseFsmIndexNumber: 1
   phaseName: Yaotome_P2
   phaseEndType: 1
-  phaseType: 0
+  phaseType: 1
   phaseDuration: 5
   phaseHp: 100
 --- !u!1101 &-1693864300754903421
