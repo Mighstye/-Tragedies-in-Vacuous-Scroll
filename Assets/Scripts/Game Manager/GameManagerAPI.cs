@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using BulletSystem;
 using Logic_System;
+using CardSystem;
+using TMPro;
 
 namespace Game_Manager
 {
@@ -13,6 +15,9 @@ namespace Game_Manager
         public static GameManagerAPI instance { get; private set; }
 
         public GameObject boss;
+        public GameObject textRewardList;
+        public GameObject activeCard;
+        public GameObject passiveCard;
         public Action onWin;
         public Action onLoose;
 
@@ -26,12 +31,29 @@ namespace Game_Manager
 
         private void Start()
         {
+            //SetActive for cards selected by the player
+            /*
+            foreach(Transform child in activeCard.transform)
+            {
+                Debug.Log(child.name);
+                Card card = child.GetComponent<Card>();
+                if (card is ActiveCard)
+                    if (PlayerInfos.SelectedActiveCard.Contains((ActiveCard)card)) child.gameObject.SetActive(true);
+            }
+            foreach(Transform child in passiveCard.transform)
+            {
+                Debug.Log(child.name);
+                Card card = child.GetComponent<Card>();
+                if (card is PassiveCard)
+                    if (PlayerInfos.SelectedPassiveCard.Contains((PassiveCard)card)) child.gameObject.SetActive(true);
+            }
+            */
+
             LogicSystemAPI.instance.health.onPlayerDeath += () =>
             {
                 EndFight(false);
             };
             currentFightName = gameObject.scene.name;
-            nextFightName = currentFightName.Remove(currentFightName.Length - 1) + (Convert.ToInt32(currentFightName[5].ToString()) + 1).ToString();
             // ^ This get the next scene name for the next fight
         }
 
@@ -42,6 +64,23 @@ namespace Game_Manager
             ActiveBulletManager.instance.Wipe();
             if (victory) onWin?.Invoke();
             else onLoose?.Invoke();
+
+            /*
+            foreach(GameObject c in rewards)
+            {
+                PlayerInfos.unlockC(c.GetComponent<Card>());
+            }
+            */
+        }
+
+        public void generateReward()
+        {
+            //Rewards
+            List<GameObject> rewards = LogicSystemAPI.instance.rewardSystem.getReward();
+            foreach (GameObject reward in rewards)
+            {
+                textRewardList.GetComponent<TextMeshProUGUI>().text = textRewardList.GetComponent<TextMeshProUGUI>().text + reward.name + "\n";
+            }
         }
 
         public void NextFight()

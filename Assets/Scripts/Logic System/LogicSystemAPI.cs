@@ -16,6 +16,8 @@ namespace Logic_System
         public Graze graze;
 
         public BattleOutcome battleOutcome;
+
+        public RewardSystem rewardSystem;
         private void Awake()
         {
             instance = this;

@@ -93,6 +93,7 @@ public class UIManager : MonoBehaviour
     {
         WinObject.SetActive(false);
         WinPostMenuObject.SetActive(true);
+        GameManagerAPI.instance.generateReward();
     }
 
     private void GameOver()
