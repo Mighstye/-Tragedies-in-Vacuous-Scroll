@@ -11,10 +11,12 @@ public class TimeScript : MonoBehaviour
     private float targetTime;
     private float time;
     private PhaseTimer timerRef;
+    private Animation anim;
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animation>();
         targetTime = 0;
         time = 0;
 
@@ -35,6 +37,7 @@ public class TimeScript : MonoBehaviour
 
     private void RefreshTarget()
     {
+        anim.Play("TimerAnim");
         targetTime = timerRef.currentPhaseTimeout ;
         Refresh();
     }
@@ -50,6 +53,10 @@ public class TimeScript : MonoBehaviour
     {
         var decPart = (int)time;
         var fractionalPart = (int)((time - decPart) * 100);
+        if (decPart == 3)
+        {
+            anim.Play("TimerAnimRev");
+        }
         timeValue.text = decPart.ToString("00")+".";
         fractionalValue.text = fractionalPart.ToString("00");
 

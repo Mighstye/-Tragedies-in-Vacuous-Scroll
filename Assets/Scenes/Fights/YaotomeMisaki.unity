@@ -13010,6 +13010,7 @@ GameObject:
   - component: {fileID: 1745341742}
   - component: {fileID: 1745341743}
   - component: {fileID: 1745341744}
+  - component: {fileID: 1745341745}
   m_Layer: 5
   m_Name: Time
   m_TagString: Untagged
@@ -13087,6 +13088,23 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!111 &1745341745
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745341740}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 4d70ef0c48546494abaacacbfadb4b7d, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 4d70ef0c48546494abaacacbfadb4b7d, type: 2}
+  - {fileID: 7400000, guid: 5a8aa2e87fc2dec4aa7c5a22141120ef, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1766478814
 GameObject:
   m_ObjectHideFlags: 0
