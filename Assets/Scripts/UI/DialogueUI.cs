@@ -58,7 +58,8 @@ namespace UI
         public void UpdateUI(DialogueItem dialogueItem)
         {
             StartCoroutine(LocalizeCharacterName(dialogueItem.character));
-            dialogueBubble.sprite = bubbleStyleSet.GetSpriteByEmotion(dialogueItem.emotion);
+            var emotion = dialogueItem.tags.ContainsKey("emotion") ? dialogueItem.tags["emotion"] : null;
+            dialogueBubble.sprite = bubbleStyleSet.GetSpriteByEmotion(emotion);
             dialogueContent.text = dialogueItem.line;
             characterSpriteAnim.SetSprite(dialogueItem);
             StartCoroutine(InitChoices(dialogueItem.choices));

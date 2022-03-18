@@ -8,6 +8,6 @@ namespace DialogueSystem
         public string character;
         public string line;
         public List<Choice> choices;
-        public string emotion;
+        public Dictionary<string,string> tags;
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
+using System.Linq;
 using Ink.Runtime;
 using TMPro;
 using UI;
@@ -132,7 +134,12 @@ namespace DialogueSystem
                 var rawLine = inkStory.Continue().Split("::");
                 currentDialogueItem.character = rawLine[0].Replace(" ","");
                 currentDialogueItem.line = rawLine[1];
-                currentDialogueItem.emotion = inkStory.currentTags.Count>0?inkStory.currentTags[0]:null;
+                //currentDialogueItem.emotion = inkStory.currentTags.Count>0?inkStory.currentTags[0]:null;
+                currentDialogueItem.tags = new Dictionary<string, string>();
+                foreach (var parsedTag in inkStory.currentTags.Select(inkTag => inkTag.Split(":")))
+                {
+                    currentDialogueItem.tags.Add(parsedTag[0],parsedTag[1]);
+                }
                 currentDialogueItem.choices = new List<Choice>();
             }
             else if (!inChoice)

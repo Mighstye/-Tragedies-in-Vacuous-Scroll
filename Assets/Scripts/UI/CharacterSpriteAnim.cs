@@ -26,8 +26,8 @@ namespace UI
             characterSpriteSetList ??= DialogueAssetDatabase.instance.characterSpriteSetList;
             anim ??= GetComponent<Animation>();
             characterSprite ??= GetComponent<Image>();
-            Debug.Log(dialogueItem.character+dialogueItem.emotion);
-            characterSprite.sprite = characterSpriteSetList.GetSprite(dialogueItem.character, dialogueItem.emotion);
+            var emotion = dialogueItem.tags.ContainsKey("emotion") ? dialogueItem.tags["emotion"] : null;
+            characterSprite.sprite = characterSpriteSetList.GetSprite(dialogueItem.character, emotion);
         }
 
         public void Fade()

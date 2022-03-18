@@ -1,7 +1,7 @@
   Misaki::いくたびも
   Youmu::え？
   Misaki::雪の深さを
-  Misaki::たずねけり #rage
+  Misaki::たずねけり #emotion:rage
   * [Youmu:: 幽雅な俳句ですみょん…] ->wenk
   * [Youmu:: どうしていきなり？] ->wenk2
 
