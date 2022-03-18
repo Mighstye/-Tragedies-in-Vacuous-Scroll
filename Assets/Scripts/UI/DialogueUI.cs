@@ -65,15 +65,15 @@ namespace UI
             dialogueContent.text = dialogueItem.line;
             characterSpriteAnim.SetSprite(dialogueItem);
             StartCoroutine(InitChoices(dialogueItem.choices));
-            
-        
         }
 
         public void Show()
         {
             bubbleStyleSet ??= DialogueAssetDatabase.instance.bubbleStyleSet;
+            transform.SetSiblingIndex(transform.parent.childCount-1); //Put this item on top of other dialogue UI
             dialogueUIRoot.SetActive(true);
             characterSpriteAnim.gameObject.SetActive(true);
+            characterSpriteAnim.Restore();
         }
         public void Hide(HideStyle style)
         {

@@ -9,8 +9,10 @@ namespace UI
     {
         private CharacterSpriteSetList characterSpriteSetList;
         private bool faded = false;
-        [SerializeField] private Animation anim;
-        [SerializeField] private Image characterSprite;
+        [SerializeField] private string fadeAnimName;
+        [SerializeField] private string restoreAnimName;
+        private Animation anim;
+        private Image characterSprite;
 
         private void Start()
         {
@@ -31,14 +33,16 @@ namespace UI
         public void Fade()
         {
             if (!gameObject.activeInHierarchy || faded) return;
-            anim.Play("Fade");
+            anim ??= GetComponent<Animation>();
+            anim.Play(fadeAnimName);
             faded = true;
         }
 
         public void Restore()
         {
             if (!gameObject.activeInHierarchy || !faded) return;
-            anim.Play("Restore");
+            anim ??= GetComponent<Animation>();
+            anim.Play(restoreAnimName);
             faded = false;
         }
     }

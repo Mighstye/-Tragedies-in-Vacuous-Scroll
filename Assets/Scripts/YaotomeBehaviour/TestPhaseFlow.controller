@@ -386,5 +386,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 195d23b6d1d045c8acd5e9c1be30dd79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  storyKey: Misaki_1
+  localizedAsset:
+    m_TableReference:
+      m_TableCollectionName: GUID:4273025a8f0f9084aae3b9d374ab433a
+    m_TableEntryReference:
+      m_KeyId: 278985883648
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
   storyAsset: {fileID: 4900000, guid: 7d404a551bd29044b92eafcbd32e4953, type: 3}
   storyOverwrite: 1

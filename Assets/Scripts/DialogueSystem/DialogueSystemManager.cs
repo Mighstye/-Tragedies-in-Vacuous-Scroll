@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Ink.Runtime;
 using TMPro;
 using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Localization;
 
 namespace DialogueSystem
 {
@@ -21,6 +23,7 @@ namespace DialogueSystem
         [SerializeField] private TextAsset dialogueAsset;
         [SerializeField] private Animator bossPhaseFlow;
         [SerializeField] private List<DialogueUIItem> dialogueUIList;
+        private LocalizedAsset<TextAsset> localizedAsset;
         private Story inkStory;
         //TEST
         private DialogueItem currentDialogueItem = new DialogueItem();
@@ -43,11 +46,21 @@ namespace DialogueSystem
             }
         }
 
-        public void Init(TextAsset dialogue)
+        public void Init(LocalizedAsset<TextAsset> asset)
         {
             inDialogue = true;
+            localizedAsset = asset;
             controlManagerRef.SwitchToDialogue();
-            dialogueAsset = dialogue;
+            StartCoroutine(InitLocalizedStory());
+        }
+        
+        private IEnumerator InitLocalizedStory()
+        {
+            
+            var localized = localizedAsset.LoadAssetAsync();
+            yield return localized;
+            if (!localized.IsDone) yield break;
+            dialogueAsset = localized.Result;
             inkStory = new Story(dialogueAsset.text);
             ContinueDialogue();
         }

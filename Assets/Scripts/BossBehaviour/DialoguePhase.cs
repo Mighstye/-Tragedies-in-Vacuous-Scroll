@@ -1,6 +1,8 @@
-﻿using DialogueSystem;
+﻿using System.Collections;
+using DialogueSystem;
 using Logic_System;
 using UnityEngine;
+using UnityEngine.Localization;
 
 namespace BossBehaviour
 {
@@ -8,6 +10,8 @@ namespace BossBehaviour
     {
         private DialogueSystemManager dialogueSystemManagerRef;
         private BattleOutcome battleOutcome;
+        [SerializeField] private string storyKey;
+        [SerializeField] private LocalizedAsset<TextAsset> localizedAsset;
         [SerializeField] private TextAsset storyAsset;
         [SerializeField] private bool storyOverwrite = true;
         private static readonly int PhaseFlowSelectedChoice = Animator.StringToHash("selectedChoice");
@@ -15,11 +19,16 @@ namespace BossBehaviour
             int layerIndex)
         {
             dialogueSystemManagerRef = DialogueSystemManager.instance;
-            if(storyOverwrite) dialogueSystemManagerRef.Init(storyAsset);
             animator.SetInteger(PhaseFlowSelectedChoice,-1);
             battleOutcome = LogicSystemAPI.instance.battleOutcome;
             battleOutcome.RecordNewPhase(null);
+            if (!storyOverwrite) return;
+            localizedAsset.TableReference = "Stories";
+            localizedAsset.TableEntryReference = storyKey;
+            dialogueSystemManagerRef.Init(localizedAsset);
         }
+
+       
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo,
             int layerIndex)
@@ -30,6 +39,7 @@ namespace BossBehaviour
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo,
             int layerIndex)
         {
+            
         }
         
     }
