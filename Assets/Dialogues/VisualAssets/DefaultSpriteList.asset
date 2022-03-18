@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77807f9be78241f3a68cdf41de03fbfd, type: 3}
+  m_Name: DefaultSpriteList
+  m_EditorClassIdentifier: 
+  items:
+  - characterID: Misaki
+    spriteSet: {fileID: 11400000, guid: 712b40aef5c0ac743bf753a81fd32ca3, type: 2}
+  - characterID: Youmu
+    spriteSet: {fileID: 11400000, guid: a3058e8a051e6a34a953b219c4434274, type: 2}

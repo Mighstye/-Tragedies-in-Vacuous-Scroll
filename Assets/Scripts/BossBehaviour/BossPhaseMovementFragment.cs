@@ -25,6 +25,7 @@ namespace BossBehaviour
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo,
             int layerIndex)
         {
+            bossController.bossMotion = null;
             CustomFragmentEnd();
         }
 

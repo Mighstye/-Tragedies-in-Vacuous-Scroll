@@ -57,7 +57,8 @@ public abstract class BossPhase : StateMachineBehaviour
     }
     
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    { 
+    {
+        SetBossIdle();
         battleOutcome.RegisterCurrentPhase();
         ActiveBulletManager.instance.Wipe();
         phaseBehaviors.gameObject.SetActive(false);
@@ -66,6 +67,13 @@ public abstract class BossPhase : StateMachineBehaviour
         bossController.onHpDepleted -= phaseEnd;
        
 
+    }
+
+    private void SetBossIdle()
+    {
+        bossController.bossMotion = null;
+        bossController.animationLib.AnimationMove(0);
+        bossController.SetUpHp(0);
     }
 
     private static void SetPhaseEndVar(Animator animator, bool state)
