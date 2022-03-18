@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,7 @@ namespace Logic_System
     {
         private BattleOutcome stats;
 
-        public GameObject rewardCardOne;
-        public GameObject rewardCardTwo;
+        public CardDropDeck dropTable;
 
         public GameObject bonusCardNoSpell;
         public GameObject bonusCardNoHit;
@@ -19,17 +19,15 @@ namespace Logic_System
             stats = LogicSystemAPI.instance.battleOutcome;
         }
 
-        void CreateDropTable()
-        {
-            
-        }
-
         public List<GameObject> getReward()
         {
+            var random = new System.Random();
+            var reward1 = dropTable.dropDeck[random.Next(dropTable.dropDeck.Count)];
+            var reward2 = dropTable.dropDeck[random.Next(dropTable.dropDeck.Count)];
             var rewards = new List<GameObject>
             {
-                rewardCardOne,
-                rewardCardTwo
+                reward1,
+                reward2
             };
             bool hit = false;
             bool spell = false;

@@ -8,6 +8,7 @@ using BulletImplementation;
 using BulletSystem;
 using Utils;
 using Control;
+using System;
 
 namespace ActiveCardImplementation
 {
@@ -18,7 +19,6 @@ namespace ActiveCardImplementation
         public float pressDuration { get; set; }
         public float releaseDuration { get; set; }
         [SerializeField] public int angle;
-        [SerializeField] public int cost;
         [SerializeField] private BulletPool bulletParriedPool;
         private MultiPurposeCollider utilCollider;
         private List<Bullet> bullets;
@@ -30,7 +30,6 @@ namespace ActiveCardImplementation
             slowTapTime = 2;
             pressDuration = 2;
             releaseDuration = 2;
-            grazeCostSegment = cost;
             utilCollider = GameObject.Find("MultiPurposeCollider").GetComponent<MultiPurposeCollider>();
         }
 

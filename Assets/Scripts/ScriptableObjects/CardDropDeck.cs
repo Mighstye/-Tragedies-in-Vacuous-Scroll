@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using CardSystem;
 
-[CreateAssetMenu(fileName = "DropDeck", menuName = "Scripts/ScriptableObjectsCardDropDeck", order = 1)]
+[CreateAssetMenu(fileName = "DropDeck", menuName = "DropDeck", order = 1)]
 public class CardDropDeck : ScriptableObject
 {
-    public Dictionary<string, List<Card>> dropTable;
+    public List<GameObject> dropDeck;
 }

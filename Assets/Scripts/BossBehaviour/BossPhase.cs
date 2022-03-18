@@ -61,13 +61,13 @@ public abstract class BossPhase : StateMachineBehaviour
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         battleOutcome.RegisterCurrentPhase();
-        OnPhaseEndCustom(animator, stateInfo, layerIndex);
         ActiveBulletManager.instance.Wipe();
         phaseBehaviors.gameObject.SetActive(false);
         phaseTimer.onPhaseTimeoutReached -= phaseEnd;
         if (bossController is null) return;
         bossController.onHpDepleted -= phaseEnd;
-       
+        OnPhaseEndCustom(animator, stateInfo, layerIndex);
+
 
     }
 
