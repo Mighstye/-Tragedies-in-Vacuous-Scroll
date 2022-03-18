@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BulletSystem;
+using DG.Tweening;
 using UI;
 using UnityEngine;
 using YaotomeBehaviour;
@@ -32,7 +33,7 @@ namespace BossBehaviour
         }
 
         protected abstract void AssignAnimationLib();
-
+        
         private void Update()
         {
             bossMotion?.Invoke();

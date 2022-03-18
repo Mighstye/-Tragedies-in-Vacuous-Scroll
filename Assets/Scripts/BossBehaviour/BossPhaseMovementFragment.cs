@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using BulletSystem;
+using DG.Tweening;
+using UnityEngine;
 
 namespace BossBehaviour
 {
     public abstract class BossPhaseMovementFragment : BossPhaseFragment
     {
+        public UpdateMethod updateMethod;
         protected BossController bossController;
         private static readonly int End = Animator.StringToHash("fragmentEndMove");
         private bool endFlag = false;
@@ -13,7 +16,16 @@ namespace BossBehaviour
             endFlag = false;
             animator.SetBool(End,false);
             bossController = BossBehaviourSystemProxy.instance.bossController;
-            bossController.bossMotion = BossMovementUpdate;
+            if (updateMethod is UpdateMethod.Classic)
+            {
+                bossController.bossMotion = BossMovementUpdate;
+            }
+            else
+            {
+                var sequence = DOTween.Sequence();
+                sequence.OnComplete(() => endFlag = true);
+                BossTween(sequence);
+            }
             CustomFragmentStart();
         }
 
@@ -39,6 +51,11 @@ namespace BossBehaviour
             
         }
 
+        protected virtual void BossTween(Sequence sequence)
+        {
+            
+        }
+
         protected virtual bool FragmentEnd()
         {
             return false;
@@ -47,8 +64,9 @@ namespace BossBehaviour
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo,
             int layerIndex)
         {
-            if (endFlag) return;
-            if (!FragmentEnd()) return;
+            if (endFlag && updateMethod is UpdateMethod.Classic) return;
+            if ((!FragmentEnd() || updateMethod is not UpdateMethod.Classic) &&
+                (!endFlag || updateMethod is not UpdateMethod.DoTween)) return;
             animator.SetBool(End,true);
             endFlag = true;
         }

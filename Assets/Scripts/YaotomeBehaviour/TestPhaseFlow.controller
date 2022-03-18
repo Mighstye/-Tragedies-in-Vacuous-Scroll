@@ -117,7 +117,7 @@ MonoBehaviour:
   phaseName: Yaotome_P1
   phaseEndType: 0
   phaseType: 0
-  phaseDuration: 5
+  phaseDuration: 20
   phaseHp: 20
 --- !u!1101 &-2566002460355238231
 AnimatorStateTransition:
@@ -222,13 +222,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: selectedChoice
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: -1
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer

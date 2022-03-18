@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using BossBehaviour;
 using Control;
+using DG.Tweening;
 using UnityEngine;
 
 public class move1 : BossPhaseMovementFragment
@@ -37,6 +38,21 @@ public class move1 : BossPhaseMovementFragment
         }
         bossController.transform.position += Time.deltaTime * moveVector* speed;
         
+    }
+
+    protected override void BossTween(Sequence sequence)
+    {
+        var d = 1f;
+        sequence.
+            Append(bossController.transform.DOMoveX(FieldBoundaries.instance.left+1f,1).
+                OnStart(()=>bossController.animationLib.AnimationMove(-1)))
+            .Append(bossController.transform.DOMoveX(FieldBoundaries.instance.right-1f, 2)
+            .SetLoops(2,LoopType.Yoyo).OnStart(()=>bossController.animationLib.AnimationMove(1))
+            .OnStepComplete(() =>
+            {
+                d = -d;
+                bossController.animationLib.AnimationMove(d);
+            }));
     }
 
     protected override bool FragmentEnd()

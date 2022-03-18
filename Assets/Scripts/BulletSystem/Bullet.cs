@@ -1,12 +1,20 @@
 using System;
 using System.Collections.Generic;
 using Control;
+using DG.Tweening;
 using UnityEngine;
 
 namespace BulletSystem
 {
+    public enum UpdateMethod
+    {
+        Classic,
+        DoTween
+    }
     public abstract class Bullet : MonoBehaviour, IBullet
     {
+        //Update workflow
+        public UpdateMethod updateMethod;
         //Tags
         public List<BulletTag> bulletTags;
         //Events
@@ -32,6 +40,7 @@ namespace BulletSystem
         /// </summary>
         protected readonly List<BulletBehavior> behaviors = new List<BulletBehavior>();
         private int behaviorPointer = 0;
+        protected Sequence animationSequence;
 
         //Graze
         public bool grazeable { get; set; }
@@ -42,8 +51,7 @@ namespace BulletSystem
         }
 
         protected abstract void AddBehaviors();
-
-        //public abstract Vector3 getVelocity();
+        
 
         private void Update()
         {
@@ -51,12 +59,12 @@ namespace BulletSystem
             {
                 onBulletDeathNatural?.Invoke();
             }
-
+            CustomUpdate();
+            if (updateMethod is UpdateMethod.DoTween) return;
             if (behaviors[behaviorPointer] != null && behaviors[behaviorPointer].Invoke())
             {
                 behaviorPointer++;
             }
-            CustomUpdate();
         }
 
         /// <summary>
@@ -106,6 +114,7 @@ namespace BulletSystem
 
         public void ResetBullet()
         {
+            if (updateMethod is UpdateMethod.DoTween) animationSequence.Play();
             grazeable = true;
             behaviorPointer = 0;
         }
