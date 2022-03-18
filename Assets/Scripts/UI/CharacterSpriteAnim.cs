@@ -21,13 +21,12 @@ namespace UI
             characterSprite ??= GetComponent<Image>();
         }
 
-        public void SetSprite(DialogueItem dialogueItem)
+        public void SetSprite(string characterID,string emotion)
         {
             characterSpriteSetList ??= DialogueAssetDatabase.instance.characterSpriteSetList;
             anim ??= GetComponent<Animation>();
             characterSprite ??= GetComponent<Image>();
-            var emotion = dialogueItem.tags.ContainsKey("emotion") ? dialogueItem.tags["emotion"] : null;
-            characterSprite.sprite = characterSpriteSetList.GetSprite(dialogueItem.character, emotion);
+            characterSprite.sprite = characterSpriteSetList.GetSprite(characterID, emotion);
         }
 
         public void Fade()

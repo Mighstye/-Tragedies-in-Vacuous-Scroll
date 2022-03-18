@@ -33,9 +33,7 @@ namespace DialogueSystem
         [SerializeField] private List<DialogueUIItem> dialogueUIList;
         private LocalizedAsset<TextAsset> localizedAsset;
         private Story inkStory;
-        //TEST
         private DialogueItem currentDialogueItem = new DialogueItem();
-
         private bool inDialogue = false;
         private bool inChoice = false;
         private static readonly int PhaseFlowSelectedChoice = Animator.StringToHash("selectedChoice");
@@ -64,7 +62,6 @@ namespace DialogueSystem
         
         private IEnumerator InitLocalizedStory()
         {
-            
             var localized = localizedAsset.LoadAssetAsync();
             yield return localized;
             if (!localized.IsDone) yield break;
@@ -73,7 +70,7 @@ namespace DialogueSystem
             ContinueDialogue();
         }
 
-        public void Exit()
+        private void Exit()
         {
             inDialogue = false;
             inChoice = false;
@@ -90,8 +87,6 @@ namespace DialogueSystem
                 return;
             }
             ContinueDialogue();
-
-           
         }
 
         public void MakeChoice(int choiceID)
@@ -104,6 +99,7 @@ namespace DialogueSystem
 
         private void UpdateUI(bool end = false)
         {
+            //Disable all ui panels if dialogue end is reached
             if (end)
             {
                 foreach (var ui in dialogueUIList)
@@ -112,6 +108,8 @@ namespace DialogueSystem
                 }
                 return;
             }
+
+            var hideStyle = currentDialogueItem.tags.ContainsKey("solo") ? HideStyle.Hide : HideStyle.Fade;
             foreach (var ui in dialogueUIList)
             {
                 if (ui.characterID == currentDialogueItem.character)
@@ -121,36 +119,40 @@ namespace DialogueSystem
                 }
                 else
                 {
-                    ui.characterUI.Hide(HideStyle.Fade);
+                    ui.characterUI.Hide(hideStyle);
                 }
             }
-            
-            
+        }
+
+        private void UpdateCurrentDialogueLine()
+        {
+            var rawLine = inkStory.Continue().Split("::");
+            currentDialogueItem.character = rawLine[0].Replace(" ",""); 
+            currentDialogueItem.line = rawLine[1]; 
+            currentDialogueItem.tags = new Dictionary<string, string>();
+            foreach (var parsedTag in inkStory.currentTags.Select(inkTag => inkTag.Split(":")))
+            {
+                currentDialogueItem.tags.Add(parsedTag[0], parsedTag.Length == 2 ? parsedTag[1] : null);
+            }
+            currentDialogueItem.choices = new List<Choice>();
         }
 
         private void ContinueDialogue() {
             if (inkStory.canContinue)
             {
-                var rawLine = inkStory.Continue().Split("::");
-                currentDialogueItem.character = rawLine[0].Replace(" ","");
-                currentDialogueItem.line = rawLine[1];
-                //currentDialogueItem.emotion = inkStory.currentTags.Count>0?inkStory.currentTags[0]:null;
-                currentDialogueItem.tags = new Dictionary<string, string>();
-                foreach (var parsedTag in inkStory.currentTags.Select(inkTag => inkTag.Split(":")))
-                {
-                    currentDialogueItem.tags.Add(parsedTag[0],parsedTag[1]);
-                }
-                currentDialogueItem.choices = new List<Choice>();
+                UpdateCurrentDialogueLine();
             }
             else if (!inChoice)
             {
-                if (inkStory.currentChoices.Count <= 0) inDialogue=false;
+                if (inkStory.currentChoices.Count <= 0)
+                {
+                    inDialogue=false;
+                }
                 else
                 {
                     inChoice = true;
                     currentDialogueItem.choices = inkStory.currentChoices;
                 }
-                
             }
             else
             {

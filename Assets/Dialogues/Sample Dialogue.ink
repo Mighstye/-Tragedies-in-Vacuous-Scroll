@@ -1,5 +1,5 @@
-  Misaki::いくたびも
-  Youmu::え？
+  Misaki::いくたびも #hideName
+  Youmu::え？ #solo
   Misaki::雪の深さを
   Misaki::たずねけり #emotion:rage
   * [Youmu:: 幽雅な俳句ですみょん…] ->wenk

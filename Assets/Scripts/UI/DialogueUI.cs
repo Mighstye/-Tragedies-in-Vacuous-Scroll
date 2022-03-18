@@ -34,34 +34,39 @@ namespace UI
             
         }
 
-        private IEnumerator InitChoices(List<Choice> currentChoices)
+        private IEnumerator InitChoices(IReadOnlyList<Choice> currentChoices)
         {
+            //Enable used choice UI and update choice text
             for (var i = 0; i < currentChoices.Count; i++)
             {
                 choices[i].transform.parent.gameObject.SetActive(true);
                 choices[i].text = currentChoices[i].text.Split("::")[1];
 
             }
+            //Disable unused choice UI
             for (var i = currentChoices.Count; i < choices.Count; i++)
             {
                 choices[i].transform.parent.gameObject.SetActive(false);
             }
 
             if (currentChoices.Count <= 0) yield break;
-
+            //Sets the default selected choice
             EventSystem.current.SetSelectedGameObject(null);
             yield return new WaitForEndOfFrame();
             EventSystem.current.SetSelectedGameObject(choices[0].transform.parent.gameObject);
-
         }
 
         public void UpdateUI(DialogueItem dialogueItem)
         {
-            StartCoroutine(LocalizeCharacterName(dialogueItem.character));
+            if (dialogueItem.tags.ContainsKey("hideName"))
+            {
+                characterLabel.text = "??????";
+            }else StartCoroutine(LocalizeCharacterName(dialogueItem.character));
+            dialogueContent.text = dialogueItem.line;
+            
             var emotion = dialogueItem.tags.ContainsKey("emotion") ? dialogueItem.tags["emotion"] : null;
             dialogueBubble.sprite = bubbleStyleSet.GetSpriteByEmotion(emotion);
-            dialogueContent.text = dialogueItem.line;
-            characterSpriteAnim.SetSprite(dialogueItem);
+            characterSpriteAnim.SetSprite(dialogueItem.character,emotion);
             StartCoroutine(InitChoices(dialogueItem.choices));
         }
         
@@ -89,7 +94,7 @@ namespace UI
             {
                 case HideStyle.Hide:
                     characterSpriteAnim.gameObject.SetActive(false);
-                    return;
+                    break;
                 case HideStyle.Fade:
                     characterSpriteAnim.Fade();
                     break;
