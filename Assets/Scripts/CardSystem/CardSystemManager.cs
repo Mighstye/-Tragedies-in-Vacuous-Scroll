@@ -12,9 +12,9 @@ namespace CardSystem
     public class CardSystemManager : MonoBehaviour
     {
         public static CardSystemManager instance { get; private set; }
-        [SerializeField] private ActiveCardManager activeCardManager;
-        [SerializeField] private PassiveCardManager passiveCardManager;
-        [SerializeField] private UISelectedCardControl selectedCardHover;
+        [SerializeField] public ActiveCardManager activeCardManager;
+        [SerializeField] public PassiveCardManager passiveCardManager;
+        [SerializeField] public UISelectedCardControl selectedCardHover;
         
         public Action<ActiveCard> onSelectedCardChange;
 
