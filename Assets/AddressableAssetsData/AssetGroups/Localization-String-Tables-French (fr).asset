@@ -30,7 +30,7 @@ MonoBehaviour:
     - Locale-fr
     - Preload
   - m_GUID: 5a57da70c9e6ad24e915d07984e129a8
-    m_Address: Boss Names_fr
+    m_Address: Character Names_fr
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-fr

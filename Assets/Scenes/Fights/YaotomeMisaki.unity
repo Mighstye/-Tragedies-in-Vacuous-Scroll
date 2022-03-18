@@ -6710,10 +6710,12 @@ MonoBehaviour:
   dialogueAsset: {fileID: 4900000, guid: 7d404a551bd29044b92eafcbd32e4953, type: 3}
   bossPhaseFlow: {fileID: 1918328453}
   dialogueUIList:
-  - characterID: Misaki
-    characterUI: {fileID: 1093862961}
   - characterID: Youmu
+    role: 0
     characterUI: {fileID: 4383609737753824766}
+  - characterID: Misaki
+    role: 1
+    characterUI: {fileID: 1093862961}
 --- !u!1 &859586621
 GameObject:
   m_ObjectHideFlags: 0

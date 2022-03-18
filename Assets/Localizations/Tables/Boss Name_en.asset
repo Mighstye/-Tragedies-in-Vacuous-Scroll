@@ -22,6 +22,10 @@ MonoBehaviour:
     m_Localized: Misaki Yaotome
     m_Metadata:
       m_Items: []
+  - m_Id: 424184985075712
+    m_Localized: Youmu Konpaku
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -10,10 +10,16 @@ using UnityEngine.Localization;
 
 namespace DialogueSystem
 {
+    public enum DialogueUIRole
+    {
+        Protagonist,
+        Antagonist
+    }
     [Serializable]
     public struct DialogueUIItem
     {
         [SerializeField]public string characterID;
+        [SerializeField] public DialogueUIRole role;
         [SerializeField]public DialogueUI characterUI;
     }
     public class DialogueSystemManager : MonoBehaviour

@@ -14,7 +14,7 @@ namespace UI
 
         private void Start()
         {
-            localizedBossName.TableReference = "Boss Names";
+            localizedBossName.TableReference = "Character Names";
             nameLabel = GetComponent<TextMeshProUGUI>();
             UpdateBossName(currentBossName); //Test
         }

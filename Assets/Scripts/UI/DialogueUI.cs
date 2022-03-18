@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using DialogueSystem;
 using Ink.Runtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.UI;
-using UnityEngine.Serialization;
+using UnityEngine.Localization;
 using UnityEngine.UI;
 
 namespace UI
@@ -28,7 +26,7 @@ namespace UI
         [SerializeField] private Image dialogueBubble;
         [SerializeField] private TextMeshProUGUI dialogueContent;
         [SerializeField] private List<TextMeshProUGUI> choices;
-        
+        private LocalizedString localizedCharacterName = new LocalizedString();
 
         private void Start()
         {
@@ -59,12 +57,20 @@ namespace UI
 
         public void UpdateUI(DialogueItem dialogueItem)
         {
-            
-            characterLabel.text = dialogueItem.character;
+            StartCoroutine(LocalizeCharacterName(dialogueItem.character));
             dialogueBubble.sprite = bubbleStyleSet.GetSpriteByEmotion(dialogueItem.emotion);
             dialogueContent.text = dialogueItem.line;
             characterSpriteAnim.SetSprite(dialogueItem);
             StartCoroutine(InitChoices(dialogueItem.choices));
+        }
+        
+        private IEnumerator LocalizeCharacterName(string key)
+        {
+            localizedCharacterName.TableReference = "Character Names";
+            localizedCharacterName.TableEntryReference = key;
+            var localizedString = localizedCharacterName.GetLocalizedStringAsync();
+            yield return localizedString;
+            if(localizedString.IsDone)characterLabel.text=localizedString.Result;
         }
 
         public void Show()

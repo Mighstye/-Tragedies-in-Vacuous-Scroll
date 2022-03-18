@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
   m_Name: Boss Name Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: Boss Names
+  m_TableCollectionName: Character Names
   m_TableCollectionNameGuidString: fbf88be2e7ec5d547b92eae8ab73083f
   m_Entries:
   - m_Id: 13679378432
-    m_Key: Yaotome_Misaki
+    m_Key: Misaki
+    m_Metadata:
+      m_Items: []
+  - m_Id: 424184985075712
+    m_Key: Youmu
     m_Metadata:
       m_Items: []
   m_Metadata:
