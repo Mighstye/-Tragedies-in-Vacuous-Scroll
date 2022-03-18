@@ -25,9 +25,9 @@ namespace UI
         {
             Init(testPhaseCount);
             battleOutcomeRef = LogicSystemAPI.instance.battleOutcome;
-            battleOutcomeRef.onPhaseEnd += (s,phaseStatistics)=>
+            battleOutcomeRef.onPhaseStart += (s,phaseStatistics)=>
             {
-                PassPhase();
+                ConsumePhase(s);
             };
         }
 
@@ -50,8 +50,9 @@ namespace UI
             }
         }
 
-        private void PassPhase()
+        private void ConsumePhase(string phaseName)
         {
+            if (phaseName is null) return;
             if (phasePointer <= 0) return;
             phasePointer--;
             icons[phasePointer].SetActive(false);
