@@ -12,7 +12,8 @@ namespace Utils
 
         private void Start()
         {
-            collider = gameObject.GetComponentInChildren<Collider2D>();
+            collider = gameObject.GetComponent<Collider2D>();
+            this.gameObject.SetActive(false);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -25,6 +26,7 @@ namespace Utils
             }
         }
 
+        /*
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (!collision.gameObject.CompareTag("EnemyBullet")) return;
@@ -33,6 +35,12 @@ namespace Utils
             {
                 bullets.Remove(bullet);
             }
+        }
+        */
+
+        public void ClearList()
+        {
+            bullets.Clear();
         }
 
         public List<Bullet> Get()

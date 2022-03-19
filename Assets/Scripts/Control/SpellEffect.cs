@@ -56,7 +56,7 @@ public class SpellEffect : MonoBehaviour
 
     public void RedefineSpellExecution(SpellExecution exec = null)
     {
-        if (exec is null) spellExecution = DefaultSpellExecution;
+        exec ??= DefaultSpellExecution;
         spellExecution = exec;
     }
 }

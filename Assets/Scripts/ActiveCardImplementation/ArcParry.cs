@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using CardSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -32,7 +33,7 @@ namespace ActiveCardImplementation
 
         public void OnTapPerformed(InputAction.CallbackContext context)
         {
-            if (useCard() == true) Parry();
+            if (useCard()) StartCoroutine(Parry());
         }
 
         public void OnTapCancelled(InputAction.CallbackContext context)
@@ -40,19 +41,22 @@ namespace ActiveCardImplementation
             return;
         }
 
-        private void Parry()
+        private IEnumerator Parry()
         {
-            bullets = new List<Bullet>(utilCollider.Get());
+            utilCollider.gameObject.SetActive(true);
             youmuTransform = YoumuController.instance.transform;
+            yield return new WaitForSeconds(0.01f);
+            bullets = new List<Bullet>(utilCollider.Get());
             foreach (var bul in from bul in bullets 
-                     let angleBetween = Vector2.Angle((Vector2)youmuTransform.position,
-                         (Vector2)bul.transform.position) where angleBetween <= angle && 
+                     let angleBetween = Vector2.Angle(Vector2.up,
+                         bul.transform.position-youmuTransform.position) where angleBetween <= angle && 
                                                                 bul.transform.position.y > youmuTransform.position.y select bul)
             {
                 ParryBullet(bul);
                 bul.InvokeBulletParry();
-                
             }
+            utilCollider.ClearList();
+            utilCollider.gameObject.SetActive(false);
         }
 
         private void ParryBullet(Bullet bullet)

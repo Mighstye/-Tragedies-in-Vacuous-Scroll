@@ -57,7 +57,7 @@ namespace BulletSystem
         // Called when an item is returned to the pool using Release
         private void OnReturnedToPool(Bullet o)
         {
-            o.transform.SetParent(this.transform);
+            o.transform.SetParent(transform);
             o.gameObject.SetActive(false);
         }
 
