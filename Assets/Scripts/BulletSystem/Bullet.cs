@@ -103,6 +103,7 @@ namespace BulletSystem
         /// </summary>
         public void InvokeBulletDeath()
         {
+            if (!gameObject.activeInHierarchy) return;
             onBulletDeathManual?.Invoke();
             onBulletDeathNatural?.Invoke();
         }

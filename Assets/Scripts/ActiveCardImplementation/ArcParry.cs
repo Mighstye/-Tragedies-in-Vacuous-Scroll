@@ -1,3 +1,4 @@
+using System;
 using CardSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,15 +9,13 @@ using BulletImplementation;
 using BulletSystem;
 using Utils;
 using Control;
+using UnityEditor;
 
 namespace ActiveCardImplementation
 {
     public class ArcParry : ActiveCard, ITappable
     {
         public float tapTime { get; set; }
-        public float slowTapTime { get; set; }
-        public float pressDuration { get; set; }
-        public float releaseDuration { get; set; }
         [SerializeField] public int angle;
         [SerializeField] public int cost;
         [SerializeField] private BulletPool bulletParriedPool;
@@ -27,9 +26,6 @@ namespace ActiveCardImplementation
         private void Start()
         {
             tapTime = 0.5f;
-            slowTapTime = 2;
-            pressDuration = 2;
-            releaseDuration = 2;
             grazeCostSegment = cost;
             utilCollider = GameObject.Find("MultiPurposeCollider").GetComponent<MultiPurposeCollider>();
         }
@@ -63,10 +59,16 @@ namespace ActiveCardImplementation
         {
             if (bullet.bulletTags.Any(bulletTag => !BulletInfoRegistry.instance.GetInfo(bulletTag).canBeParried)) return;
             var position = bullet.transform.position;
-            bullet.onBulletDeathNatural.Invoke();
-
+            bullet.InvokeBulletDeath();
             var counterBullet = bulletParriedPool.pool.Get();
             ((StandardStraightParry)counterBullet).Launch(position, Vector3.zero);
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (!EditorApplication.isPlaying) return;
+            Handles.DrawWireArc(YoumuController.instance.transform.position,Vector3.forward,
+                Quaternion.AngleAxis(-angle,Vector3.forward)*Vector3.up,angle*2,2f,0.2f);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Utils
 {
     public class MultiPurposeCollider : MonoBehaviour
     {
-        private Collider2D collider;
+        public new Collider2D collider { get; private set; }
         protected List<Bullet> bullets = new List<Bullet>();
 
         private void Start()
