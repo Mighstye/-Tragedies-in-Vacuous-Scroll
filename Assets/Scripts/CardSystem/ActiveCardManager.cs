@@ -82,11 +82,14 @@ namespace CardSystem
             {
                 SetActiveStateAll(pool==poolType,pool);
             }
+
+            selectedCardIndex = 0;
+            selectedCard = labeledPools[currentActivatedPoolType][selectedCardIndex];
         }
 
         public void SelectNext()
         {
-            if (labeledPools[currentActivatedPoolType].Count <= 1) return;
+            if (labeledPools[currentActivatedPoolType].Count < 1) return;
             selectedCardIndex++;
             if (selectedCardIndex >= labeledPools[currentActivatedPoolType].Count) selectedCardIndex = 0;
             selectedCard = labeledPools[currentActivatedPoolType][selectedCardIndex];
