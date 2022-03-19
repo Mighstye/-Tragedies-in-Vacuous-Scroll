@@ -41,7 +41,11 @@ namespace VFX
 
         private void Awake()
         {
-            instance = this;
+            instance ??= this;
+            if (instance != this)
+            {
+                Destroy(gameObject);
+            }
         }
 
         private BulletDeathVFX CreatePooledItem()

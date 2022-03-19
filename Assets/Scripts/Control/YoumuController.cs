@@ -39,12 +39,11 @@ namespace Control
 
         private void Awake()
         {
-            if (instance != null)
+            instance ??= this;
+            if (instance != this)
             {
-                Debug.LogWarning("Singleton YoumuController may already have an instance @"+
-                                 instance.gameObject.name);
+                Destroy(gameObject);
             }
-            instance = this;
         }
 
         private void Start()

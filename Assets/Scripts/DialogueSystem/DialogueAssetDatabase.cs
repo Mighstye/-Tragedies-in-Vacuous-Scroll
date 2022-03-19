@@ -11,7 +11,11 @@ namespace DialogueSystem
         public CharacterSpriteSetList characterSpriteSetList;
         private void Awake()
         {
-            instance = this;
+            instance ??= this;
+            if (instance != this)
+            {
+                Destroy(gameObject);
+            }
         }
         
         

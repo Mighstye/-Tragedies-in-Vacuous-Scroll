@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
+using BossBehaviour;
 using Ink.Runtime;
 using TMPro;
 using UI;
@@ -18,7 +19,7 @@ namespace DialogueSystem
         Antagonist
     }
     [Serializable]
-    public struct DialogueUIItem
+    public class DialogueUIItem
     {
         [SerializeField]public string characterID;
         [SerializeField] public DialogueUIRole role;
@@ -40,7 +41,11 @@ namespace DialogueSystem
         public int selectedChoice { get; private set; }
         private void Awake()
         {
-            instance = this;
+            instance ??= this;
+            if (instance != this)
+            {
+                Destroy(gameObject);
+            }
         }
 
         private void Start()
@@ -163,6 +168,16 @@ namespace DialogueSystem
             if (!inDialogue)
             {
                 Exit();
+            }
+        }
+
+        public void AssignUI(BossAsset bossAsset)
+        {
+            foreach (var dialogueUIItem in dialogueUIList.Where(dialogueUIItem =>
+                         dialogueUIItem.role is DialogueUIRole.Antagonist))
+            {
+                dialogueUIItem.characterID = bossAsset.characterID;
+                return;
             }
         }
         

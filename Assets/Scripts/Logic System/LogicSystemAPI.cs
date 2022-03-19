@@ -18,7 +18,11 @@ namespace Logic_System
         public BattleOutcome battleOutcome;
         private void Awake()
         {
-            instance = this;
+            instance ??= this;
+            if (instance != this)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

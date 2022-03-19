@@ -39,6 +39,7 @@ namespace BossBehaviour
             bossMotion?.Invoke();
         }
 
+        
         public void SetUpHp(int maxHp)
         {
             hpDepleted = false;

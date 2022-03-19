@@ -7,6 +7,7 @@ namespace BossBehaviour
     {
         public string characterID;
         public int spellCount;
-        
+        public GameObject bossPrefab;
+        public Sprite spellSprite;
     }
 }

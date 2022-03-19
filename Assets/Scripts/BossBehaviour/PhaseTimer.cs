@@ -20,7 +20,11 @@ namespace BossBehaviour
         private bool timeoutReached ;
         private void Awake()
         {
-            instance = this;
+            instance ??= this;
+            if (instance != this)
+            {
+                Destroy(gameObject);
+            }
         }
 
         private void Start()

@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6533,7 +6533,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859586621}
   m_Enabled: 1
-  m_Alpha: 0.8
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -15677,6 +15677,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3893763865494570254, guid: 3549ab6a5a5688d45b974298043c43bb, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3893763865739420659, guid: 3549ab6a5a5688d45b974298043c43bb, type: 3}
       propertyPath: m_Name
       value: Test Boss
@@ -15753,6 +15757,14 @@ PrefabInstance:
       propertyPath: ActiveCardsContainer
       value: 
       objectReference: {fileID: 1438012820}
+    - target: {fileID: 3893763866788787394, guid: 3549ab6a5a5688d45b974298043c43bb, type: 3}
+      propertyPath: specialActiveCards.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893763866788787394, guid: 3549ab6a5a5688d45b974298043c43bb, type: 3}
+      propertyPath: specialActiveCards.Array.data[0]
+      value: 
+      objectReference: {fileID: 1074829952}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3549ab6a5a5688d45b974298043c43bb, type: 3}
