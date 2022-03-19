@@ -89,6 +89,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e053882b92633c346a7d902d0fcb6a96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grazeCostSegment: 1
+  grazeCostSegment: 2
   angle: 45
-  cost: 2
+  bulletParriedPool: {fileID: 0}

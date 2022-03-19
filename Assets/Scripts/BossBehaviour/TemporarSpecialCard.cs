@@ -6,22 +6,27 @@ using CardSystem;
 public class TemporarSpecialCard : MonoBehaviour
 {
     [SerializeField] private Transform ActiveCardsContainer;
-    [SerializeField] private ActiveCard SpecialCard;
-    [SerializeField] private GameObject ActiveCardManagerObj;
+    [SerializeField] private GameObject SpecialCard;
+    [SerializeField] private GameObject ActiveCardManagerGameObject;
+    [SerializeField] private GameObject SelectedCardControl;
+    private UISelectedCardControl UISCC;
     private ActiveCardManager ACM;
     private void Start()
     {
-        ACM = ActiveCardManagerObj.GetComponent<ActiveCardManager>();
-        // Recuperation des active cards
-        var cards = ActiveCardsContainer.gameObject.GetComponentsInChildren<ActiveCard>();
-        foreach (var card in cards)
+        UISCC = SelectedCardControl.GetComponent<UISelectedCardControl>();
+        ACM = ActiveCardManagerGameObject.GetComponent<ActiveCardManager>();
+        // Desactivation des actives cards
+        foreach (Transform child in ActiveCardsContainer)
         {
-            card.gameObject.SetActive(false);
-            ACM.Remove(card);
+            ACM.Remove(child.gameObject.GetComponent<ActiveCard>());
+            child.gameObject.SetActive(false);;
         }
 
-        // Activation de la special card
-        SpecialCard.gameObject.SetActive(true);
-        ACM.Add(SpecialCard);
+        //Activation de la special cards
+        SpecialCard.transform.SetParent(ActiveCardsContainer, false);
+        SpecialCard.SetActive(true);
+        ACM.Add(SpecialCard.GetComponent<ActiveCard>());
+        ACM.SelectNext();
+        UISCC.UpdateSelectedCard(SpecialCard.GetComponent<ActiveCard>());
     }
 }

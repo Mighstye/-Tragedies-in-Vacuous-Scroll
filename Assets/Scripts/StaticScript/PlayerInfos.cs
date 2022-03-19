@@ -1,54 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using CardSystem;
-using ActiveCardImplementation;
-using PassiveCardImplementation;
 
-public static class PlayerInfos
+namespace PlayerInfosAPI
 {
-    public static List<ActiveCard> UnlockedActiveCard { get; private set; }
-    public static List<PassiveCard> UnlockedPassiveCard { get; private set; }
-    public static List<ActiveCard> SelectedActiveCard { get; private set; }
-    public static List<PassiveCard> SelectedPassiveCard { get; private set; }
-
-    static PlayerInfos()
+    public class PlayerInfos : MonoBehaviour
     {
-        unlockC(new ArcParry());
-        unlockC(new BeamParry());
-        select(new ArcParry());
-    }
+        public List<GameObject> UnlockedActiveCard;
+        public List<GameObject> UnlockedPassiveCard;
+        public List<GameObject> SelectedActiveCard;
+        public List<GameObject> SelectedPassiveCard;
+        public CardList cardList;
 
-    public static void unlockC(Card c)
-    {
-        if (c is ActiveCard) 
-            if(!UnlockedActiveCard.Contains((ActiveCard)c)) UnlockedActiveCard.Add((ActiveCard)c);
-        if (c is PassiveCard)
-            if(!UnlockedPassiveCard.Contains((PassiveCard)c)) UnlockedPassiveCard.Add((PassiveCard)c);
-    }
+        public static PlayerInfos instance { get; private set; }
 
-    public static void lockC(Card c)
-    {
-        if (c is ActiveCard) 
-            UnlockedActiveCard.Remove((ActiveCard)c);
-        if (c is PassiveCard) 
-            UnlockedPassiveCard.Remove((PassiveCard)c);
-    }
+        private void Awake()
+        {
+            instance = this;
+        }
 
-    public static void select(Card c)
-    {
-        if (c is ActiveCard) 
-            if(!SelectedActiveCard.Contains((ActiveCard)c)) SelectedActiveCard.Add((ActiveCard)c);
-        if (c is PassiveCard) 
-            if(!SelectedPassiveCard.Contains((PassiveCard)c)) SelectedPassiveCard.Add((PassiveCard)c);
-    }
+        private void Start()
+        {
+            UnlockedActiveCard = new List<GameObject>();
+            UnlockedPassiveCard = new List<GameObject>();
+            SelectedActiveCard = new List<GameObject>();
+            SelectedPassiveCard = new List<GameObject>();
+            unlockC(cardList.active[0]);
+            select(cardList.active[0]);
+        }
 
-    public static void unselect(Card c)
-    {
-        if (c is ActiveCard) 
-            SelectedActiveCard.Remove((ActiveCard)c);
-        if (c is PassiveCard) 
-            SelectedPassiveCard.Remove((PassiveCard)c);
+        public void unlockC(GameObject c)
+        {
+            if (c.GetComponent<ActiveCard>() != null)
+                if (!UnlockedActiveCard.Contains(c)) UnlockedActiveCard.Add(c);
+            if (c.GetComponent<PassiveCard>() != null)
+                if (!UnlockedPassiveCard.Contains(c)) UnlockedPassiveCard.Add(c);
+        }
+
+        public void lockC(GameObject c)
+        {
+            if (c.GetComponent<ActiveCard>() != null)
+                UnlockedActiveCard.Remove(c);
+            if (c.GetComponent<PassiveCard>() != null)
+                UnlockedPassiveCard.Remove(c);
+        }
+
+        public void select(GameObject c)
+        {
+            if (c.GetComponent<ActiveCard>() != null)
+                if (!SelectedActiveCard.Contains(c)) SelectedActiveCard.Add(c);
+            if (c.GetComponent<PassiveCard>() != null)
+                if (!SelectedPassiveCard.Contains(c)) SelectedPassiveCard.Add(c);
+        }
+
+        public void unselect(GameObject c)
+        {
+            if (c.GetComponent<ActiveCard>() != null)
+                SelectedActiveCard.Remove(c);
+            if (c.GetComponent<PassiveCard>() != null)
+                SelectedPassiveCard.Remove(c);
+        }
     }
 }

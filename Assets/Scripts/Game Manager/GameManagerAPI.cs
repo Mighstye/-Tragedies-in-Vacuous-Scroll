@@ -5,8 +5,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using BulletSystem;
 using Logic_System;
-using CardSystem;
+using PlayerInfosAPI;
 using TMPro;
+using CardSystem;
 
 namespace Game_Manager
 {
@@ -20,7 +21,16 @@ namespace Game_Manager
         public GameObject passiveCard;
         public Action onWin;
         public Action onLoose;
+        public GameObject ActiveCardManagerGameObject;
+        public GameObject PassiveCardManagerGameObject;
+        public GameObject SelectedCardControl;
+        public GameObject ActiveCardSelection_ButtonSection;
+        public GameObject PassiveCardSelection_ButtonSection;
+        public GameObject CardButtonPrefab;
 
+        private UISelectedCardControl UISCC;
+        private ActiveCardManager ACM;
+        private PassiveCardManager PCM;
         private string nextFightName;
         private string currentFightName;
 
@@ -31,23 +41,26 @@ namespace Game_Manager
 
         private void Start()
         {
+            UISCC = SelectedCardControl.GetComponent<UISelectedCardControl>();
+            ACM = ActiveCardManagerGameObject.GetComponent<ActiveCardManager>();
+            PCM = PassiveCardManagerGameObject.GetComponent<PassiveCardManager>();
             //SetActive for cards selected by the player
-            /*
-            foreach(Transform child in activeCard.transform)
+            foreach (GameObject obj in PlayerInfos.instance.SelectedActiveCard)
             {
-                Debug.Log(child.name);
-                Card card = child.GetComponent<Card>();
-                if (card is ActiveCard)
-                    if (PlayerInfos.SelectedActiveCard.Contains((ActiveCard)card)) child.gameObject.SetActive(true);
+                Debug.Log("New Card instance " + obj.name);
+                var newObj = Instantiate(obj, activeCard.transform, false);
+                ACM.Add(newObj.GetComponent<ActiveCard>());
+                ACM.SelectNext();
+                UISCC.UpdateSelectedCard(newObj.GetComponent<ActiveCard>());
+                newObj.SetActive(true);
             }
-            foreach(Transform child in passiveCard.transform)
+            foreach (GameObject obj in PlayerInfos.instance.SelectedPassiveCard)
             {
-                Debug.Log(child.name);
-                Card card = child.GetComponent<Card>();
-                if (card is PassiveCard)
-                    if (PlayerInfos.SelectedPassiveCard.Contains((PassiveCard)card)) child.gameObject.SetActive(true);
+                Debug.Log("New Card instance " + obj.name);
+                var newObj = Instantiate(obj, passiveCard.transform, false);
+                PCM.Add(newObj.GetComponent<PassiveCard>());
+                newObj.SetActive(true);
             }
-            */
 
             LogicSystemAPI.instance.health.onPlayerDeath += () =>
             {
@@ -65,15 +78,16 @@ namespace Game_Manager
             if (victory) onWin?.Invoke();
             else onLoose?.Invoke();
 
-            /*
+            var rewards = generateReward();
             foreach(GameObject c in rewards)
             {
-                PlayerInfos.unlockC(c.GetComponent<Card>());
+                PlayerInfos.instance.unlockC(c);
             }
-            */
+            generateArrangeCardSection();
+            
         }
 
-        public void generateReward()
+        public List<GameObject> generateReward()
         {
             //Rewards
             List<GameObject> rewards = LogicSystemAPI.instance.rewardSystem.getReward();
@@ -81,20 +95,44 @@ namespace Game_Manager
             {
                 textRewardList.GetComponent<TextMeshProUGUI>().text = textRewardList.GetComponent<TextMeshProUGUI>().text + reward.name + "\n";
             }
+            return rewards;
+        }
+
+        public void generateArrangeCardSection()
+        {
+            int index = 0;
+            foreach(GameObject obj in PlayerInfos.instance.UnlockedActiveCard)
+            {
+                GameObject newObj = Instantiate(CardButtonPrefab, ActiveCardSelection_ButtonSection.transform, false);
+                newObj.transform.position += new Vector3(0, -0.5f*index, 0);
+                CardButtonScript script = newObj.GetComponent<CardButtonScript>();
+                script.associatedGameObject = obj;
+                index++;
+            }
+            index = 0;
+            foreach (GameObject obj in PlayerInfos.instance.UnlockedPassiveCard)
+            {
+                GameObject newObj = Instantiate(CardButtonPrefab, PassiveCardSelection_ButtonSection.transform, false);
+                newObj.transform.position += new Vector3(0, -0.5f*index, 0);
+                CardButtonScript script = newObj.GetComponent<CardButtonScript>();
+                script.associatedGameObject = obj;
+                index++;
+            }
+        }
+
+        public void selectCard(GameObject obj)
+        {
+            PlayerInfos.instance.select(obj);
+        }
+
+        public void unSelectCard(GameObject obj)
+        {
+            PlayerInfos.instance.unselect(obj);
         }
 
         public void NextFight()
         {
-            try
-            {
-                SceneManager.LoadScene(nextFightName);
-            }catch(Exception e)
-            {
-                // If there is no next scene -> Means the player reached the end of the game
-                // Ending cinematic + game end + credits ...
-                Debug.Log(nextFightName + " not found !");
-                SceneManager.LoadScene("MainMenu");
-            }
+            SceneManager.LoadScene(currentFightName + "1");
         }
 
         public void Restart()
