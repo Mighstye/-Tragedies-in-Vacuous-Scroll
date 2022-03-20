@@ -2,6 +2,7 @@
 using UnityEngine.InputSystem;
 using Control.ActiveCardControl.ControlTypes;
 using Logic_System;
+using System.Collections;
 
 namespace CardSystem
 {
@@ -9,9 +10,34 @@ namespace CardSystem
     {
         public int grazeCostSegment = 1; //DEFAULT VALUE
 
+        public float coolDownTime = 3; //DEFAULT VALUE
+
+        private bool coolDown = false;
+
+        public string activeDesc;
+
+        public ActiveCard()
+        {
+            activeDesc = "Active card description";
+            description = "Active :\n" + activeDesc;
+        }
+
         protected bool useCard()
         {
-            return LogicSystemAPI.instance.graze.UseGraze(grazeCostSegment);
+            if (coolDown) return false;
+            if (LogicSystemAPI.instance.graze.UseGraze(grazeCostSegment))
+            {
+                coolDown = true;
+                StartCoroutine(CoolDown());
+                return true;
+            }
+            return false;
+        }
+
+        IEnumerator CoolDown()
+        {
+            yield return new WaitForSeconds(coolDownTime);
+            coolDown = false;
         }
     }
 }

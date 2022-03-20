@@ -16,22 +16,18 @@ namespace Game_Manager
         public static GameManagerAPI instance { get; private set; }
 
         public GameObject boss;
-        public GameObject textRewardList;
         public GameObject activeCard;
         public GameObject passiveCard;
         public Action onWin;
         public Action onLoose;
+        public GameObject parriedPool;
         public GameObject ActiveCardManagerGameObject;
         public GameObject PassiveCardManagerGameObject;
         public GameObject SelectedCardControl;
-        public GameObject ActiveCardSelection_ButtonSection;
-        public GameObject PassiveCardSelection_ButtonSection;
-        public GameObject CardButtonPrefab;
-
         private UISelectedCardControl UISCC;
         private ActiveCardManager ACM;
         private PassiveCardManager PCM;
-        private string nextFightName;
+        public List<GameObject> rewards;
         private string currentFightName;
 
         private void Awake()
@@ -78,46 +74,14 @@ namespace Game_Manager
             if (victory) onWin?.Invoke();
             else onLoose?.Invoke();
 
-            var rewards = generateReward();
-            foreach(GameObject c in rewards)
-            {
-                PlayerInfos.instance.unlockC(c);
-            }
-            generateArrangeCardSection();
-            
+            rewards = generateReward();
         }
 
         public List<GameObject> generateReward()
         {
             //Rewards
-            List<GameObject> rewards = LogicSystemAPI.instance.rewardSystem.getReward();
-            foreach (GameObject reward in rewards)
-            {
-                textRewardList.GetComponent<TextMeshProUGUI>().text = textRewardList.GetComponent<TextMeshProUGUI>().text + reward.name + "\n";
-            }
-            return rewards;
-        }
-
-        public void generateArrangeCardSection()
-        {
-            int index = 0;
-            foreach(GameObject obj in PlayerInfos.instance.UnlockedActiveCard)
-            {
-                GameObject newObj = Instantiate(CardButtonPrefab, ActiveCardSelection_ButtonSection.transform, false);
-                newObj.transform.position += new Vector3(0, -0.5f*index, 0);
-                CardButtonScript script = newObj.GetComponent<CardButtonScript>();
-                script.associatedGameObject = obj;
-                index++;
-            }
-            index = 0;
-            foreach (GameObject obj in PlayerInfos.instance.UnlockedPassiveCard)
-            {
-                GameObject newObj = Instantiate(CardButtonPrefab, PassiveCardSelection_ButtonSection.transform, false);
-                newObj.transform.position += new Vector3(0, -0.5f*index, 0);
-                CardButtonScript script = newObj.GetComponent<CardButtonScript>();
-                script.associatedGameObject = obj;
-                index++;
-            }
+            List<GameObject> reward = LogicSystemAPI.instance.rewardSystem.getReward();
+            return reward;
         }
 
         public void selectCard(GameObject obj)
@@ -128,6 +92,16 @@ namespace Game_Manager
         public void unSelectCard(GameObject obj)
         {
             PlayerInfos.instance.unselect(obj);
+        }
+
+        public void unlockCard(GameObject obj)
+        {
+            PlayerInfos.instance.unlockC(obj);
+        }
+
+        public void lockCard(GameObject obj)
+        {
+            PlayerInfos.instance.lockC(obj);
         }
 
         public void NextFight()
