@@ -90,5 +90,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grazeCostSegment: 2
+  coolDownTime: 3
   angle: 45
-  bulletParriedPool: {fileID: 0}
+  desc: Parry bullet and send them to the boss.

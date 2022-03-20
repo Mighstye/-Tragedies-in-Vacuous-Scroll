@@ -8,7 +8,7 @@ using BulletImplementation;
 using BulletSystem;
 using Utils;
 using Control;
-using System;
+using Game_Manager;
 
 namespace ActiveCardImplementation
 {
@@ -19,10 +19,16 @@ namespace ActiveCardImplementation
         public float pressDuration { get; set; }
         public float releaseDuration { get; set; }
         [SerializeField] public int angle;
-        [SerializeField] private BulletPool bulletParriedPool;
+        public string desc;
+        private BulletPool bulletParriedPool;
         private MultiPurposeCollider utilCollider;
         private List<Bullet> bullets;
         private Transform youmuTransform;
+
+        public ArcParry()
+        {
+            activeDesc = desc;
+        }
 
         private void Start()
         {
@@ -31,6 +37,7 @@ namespace ActiveCardImplementation
             pressDuration = 2;
             releaseDuration = 2;
             utilCollider = GameObject.Find("MultiPurposeCollider").GetComponent<MultiPurposeCollider>();
+            bulletParriedPool = GameManagerAPI.instance.parriedPool.GetComponent<BulletPool>();
         }
 
         public void OnTapPerformed(InputAction.CallbackContext context)

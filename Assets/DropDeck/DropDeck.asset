@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DropDeck
   m_EditorClassIdentifier: 
   dropDeck:
-  - {fileID: 7720012978862166035, guid: d764d8b63f5cb794bb7901b8ba41a33f, type: 3}
   - {fileID: 5469457027467083186, guid: d41c01c16d59cf84397fa4d6d2b39c3c, type: 3}
+  - {fileID: 7720012978862166035, guid: d764d8b63f5cb794bb7901b8ba41a33f, type: 3}

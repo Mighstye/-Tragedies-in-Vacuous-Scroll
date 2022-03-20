@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu/MainMenu.unity
+    guid: c2edbb07a230fff47b6530ec89acbb72
+  - enabled: 1
     path: Assets/Scenes/Fights/YaotomeMisaki.unity
     guid: 046d3fcbc1a117243b4f309edd33e722
   - enabled: 1

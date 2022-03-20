@@ -14,6 +14,14 @@ namespace CardSystem
 
         private bool coolDown = false;
 
+        public string activeDesc;
+
+        public ActiveCard()
+        {
+            activeDesc = "Active card description";
+            description = "Active :\n" + activeDesc;
+        }
+
         protected bool useCard()
         {
             if (coolDown) return false;

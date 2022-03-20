@@ -18,6 +18,12 @@ namespace ActiveCardImplementation
         public float slowTapTime { get; set; }
         public float pressDuration { get; set; }
         public float releaseDuration { get; set; }
+        public string desc;
+
+        public Card2()
+        {
+            activeDesc = desc;
+        }
 
         private void Start()
         {

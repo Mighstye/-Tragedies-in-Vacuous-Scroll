@@ -9,8 +9,7 @@ public class UIManager : MonoBehaviour
     public GameObject pauseObject;
     public GameObject gameOverObject;
     public GameObject WinObject;
-    public GameObject WinPostMenuObject;
-    public GameObject ArrangeCardMenuObject;
+    public GameObject RewardCardMenu;
     bool paused;
     bool gameFinished = false;
     private GameManagerAPI gameManagerAPI;
@@ -89,13 +88,7 @@ public class UIManager : MonoBehaviour
     public void WinContinueButton()
     {
         WinObject.SetActive(false);
-        WinPostMenuObject.SetActive(true);
-    }
-
-    public void ArrangeCardFromWinContinue()
-    {
-        WinPostMenuObject.SetActive(false);
-        ArrangeCardMenuObject.SetActive(true);
+        RewardCardMenu.SetActive(true);
     }
 
     private void GameOver()

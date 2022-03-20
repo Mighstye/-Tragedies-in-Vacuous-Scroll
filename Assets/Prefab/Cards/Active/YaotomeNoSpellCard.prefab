@@ -90,3 +90,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grazeCostSegment: 1
+  coolDownTime: 3
+  desc: Yaotome no Spell Card description
