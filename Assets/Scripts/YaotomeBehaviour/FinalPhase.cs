@@ -12,6 +12,6 @@ public class FinalPhase : BossPhase
 
     protected override void OnPhaseEndCustom(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        GameManagerAPI.instance.EndFight(true);
+        
     }
 }
