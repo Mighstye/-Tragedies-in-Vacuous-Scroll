@@ -89,6 +89,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 789fc12de38834c46b76ceba2e43b705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commonMetadata: {fileID: 11400000, guid: 48b2763cbb93fcf47bf771ec58443ebe, type: 2}
+  localizableMetadata:
+    m_TableReference:
+      m_TableCollectionName: GUID:776554e8d02302e4da2ae5bb184157af
+    m_TableEntryReference:
+      m_KeyId: 277270784294912
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
   grazeCostSegment: 1
   coolDownTime: 3
-  desc: Yaotome no Spell Card description

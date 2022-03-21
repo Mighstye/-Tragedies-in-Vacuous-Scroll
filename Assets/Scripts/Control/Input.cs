@@ -98,6 +98,24 @@ public partial class @Input : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Move1"",
+                    ""type"": ""Value"",
+                    ""id"": ""66e7d43f-c9bc-4a7f-a894-a783f0f84940"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""conf"",
+                    ""type"": ""Button"",
+                    ""id"": ""38badfe6-46c8-414f-baa3-9d45a8119c6e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -307,6 +325,105 @@ public partial class @Input : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""TriggerActiveCard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9c7f3807-1e86-4d80-9e6b-fdb2ef1cfd3c"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Move1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""6ab51176-6999-4335-8fe5-93469bb7e3f5"",
+                    ""path"": ""Dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move1"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""0ab5309b-8c74-4638-ae1f-542cab9248d6"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""557c96ed-655b-4576-b4fe-92b255321c29"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""0649f70f-5d30-44a4-a3ae-79f5972c1bbb"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""331936e1-b570-4cbd-9f1a-b313cc7cf662"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e439431e-46d5-40bc-a019-ed9a106254a2"",
+                    ""path"": ""<XRController>/{Primary2DAxis}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Move1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ea26813-e9d4-4a20-9fe1-7e1c5a84d48e"",
+                    ""path"": ""<Joystick>/stick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Move1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f4b3d5c-b9b7-4d59-9af5-224f38927f53"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""conf"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1027,6 +1144,8 @@ public partial class @Input : IInputActionCollection2, IDisposable
         m_Player_Spell = m_Player.FindAction("Spell", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_TriggerActiveCard = m_Player.FindAction("TriggerActiveCard", throwIfNotFound: true);
+        m_Player_Move1 = m_Player.FindAction("Move1", throwIfNotFound: true);
+        m_Player_conf = m_Player.FindAction("conf", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1110,6 +1229,8 @@ public partial class @Input : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Spell;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_TriggerActiveCard;
+    private readonly InputAction m_Player_Move1;
+    private readonly InputAction m_Player_conf;
     public struct PlayerActions
     {
         private @Input m_Wrapper;
@@ -1122,6 +1243,8 @@ public partial class @Input : IInputActionCollection2, IDisposable
         public InputAction @Spell => m_Wrapper.m_Player_Spell;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @TriggerActiveCard => m_Wrapper.m_Player_TriggerActiveCard;
+        public InputAction @Move1 => m_Wrapper.m_Player_Move1;
+        public InputAction @conf => m_Wrapper.m_Player_conf;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1155,6 +1278,12 @@ public partial class @Input : IInputActionCollection2, IDisposable
                 @TriggerActiveCard.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriggerActiveCard;
                 @TriggerActiveCard.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriggerActiveCard;
                 @TriggerActiveCard.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriggerActiveCard;
+                @Move1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove1;
+                @Move1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove1;
+                @Move1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove1;
+                @conf.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConf;
+                @conf.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConf;
+                @conf.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConf;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1183,6 +1312,12 @@ public partial class @Input : IInputActionCollection2, IDisposable
                 @TriggerActiveCard.started += instance.OnTriggerActiveCard;
                 @TriggerActiveCard.performed += instance.OnTriggerActiveCard;
                 @TriggerActiveCard.canceled += instance.OnTriggerActiveCard;
+                @Move1.started += instance.OnMove1;
+                @Move1.performed += instance.OnMove1;
+                @Move1.canceled += instance.OnMove1;
+                @conf.started += instance.OnConf;
+                @conf.performed += instance.OnConf;
+                @conf.canceled += instance.OnConf;
             }
         }
     }
@@ -1388,6 +1523,8 @@ public partial class @Input : IInputActionCollection2, IDisposable
         void OnSpell(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnTriggerActiveCard(InputAction.CallbackContext context);
+        void OnMove1(InputAction.CallbackContext context);
+        void OnConf(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

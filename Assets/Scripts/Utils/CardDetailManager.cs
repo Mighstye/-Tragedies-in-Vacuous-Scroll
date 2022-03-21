@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CardSystem;
+using Game_Manager;
 using UI;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Utils
 {
@@ -21,6 +24,13 @@ namespace Utils
             }
         }
 
+        public void OnEnable()
+        {
+            this.gameObject.SetActive(true);
+            cardListBank.Init(new List<Card>(
+                GameManagerAPI.instance.rewards.Select(o=>o.GetComponent<Card>())));
+        }
+
         public void Init(List<Card> cards)
         {
             cardListBank.Init(cards);
@@ -29,6 +39,14 @@ namespace Utils
         public Card RetrieveSelectedCard()
         {
             return cardDetailUI.currentSelectedCard;
+        }
+
+        public void PassSelectedCard(InputAction.CallbackContext context)
+
+        {
+            if (context.phase is not InputActionPhase.Performed) return;
+            GameManagerAPI.instance.selectCard(RetrieveSelectedCard().gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 }
