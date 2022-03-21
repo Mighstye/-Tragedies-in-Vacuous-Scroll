@@ -14,6 +14,9 @@ namespace Utils
         public static CardDetailManager instance { get; private set; }
         [SerializeField] private CardDetailUI cardDetailUI;
         [SerializeField] private CircularCardListBank cardListBank;
+        [SerializeField] private GameObject Menu;
+
+        private UIManager UiManager;
 
         private void Awake()
         {
@@ -29,6 +32,7 @@ namespace Utils
             this.gameObject.SetActive(true);
             cardListBank.Init(new List<Card>(
                 GameManagerAPI.instance.rewards.Select(o=>o.GetComponent<Card>())));
+            UiManager = Menu.GetComponent<UIManager>();
         }
 
         public void Init(List<Card> cards)
@@ -46,6 +50,7 @@ namespace Utils
         {
             if (context.phase is not InputActionPhase.Performed) return;
             GameManagerAPI.instance.selectCard(RetrieveSelectedCard().gameObject);
+            UiManager.Continue();
             this.gameObject.SetActive(false);
         }
     }
