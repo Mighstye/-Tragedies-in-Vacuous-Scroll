@@ -4,6 +4,7 @@ using AirFishLab.ScrollingList;
 using CardSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace Utils
 {
@@ -12,10 +13,17 @@ namespace Utils
         [SerializeField]private List<Card> cards;
         [SerializeField]private CircularScrollingList list;
 
-        private void Start()
+        private void OnEnable()
         {
             list ??= GetComponent<CircularScrollingList>();
-            cards = new List<Card>(GetComponentsInChildren<Card>(true));
+        }
+
+        public void Init(List<Card> cardList)
+        {
+            list ??= GetComponent<CircularScrollingList>();
+            cards = cardList;
+            list.Initialize();
+            list.Refresh();
         }
 
         public void UpdateContent(InputAction.CallbackContext context)
@@ -35,10 +43,6 @@ namespace Utils
             return cards.Count;
         }
         
-        private void OnEnable()
-        {
-            list ??= GetComponent<CircularScrollingList>();
-        }
 
         public void MoveOneUnitUp(InputAction.CallbackContext context)
         {
@@ -66,12 +70,6 @@ namespace Utils
                     break;
             }
         }
-
-        public void AddItem(Card c)
-        {
-            c.transform.SetParent(transform);
-            cards.Add(c);
-            list.Refresh(-1);
-        }
+        
     }
 }

@@ -89,6 +89,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e053882b92633c346a7d902d0fcb6a96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commonMetadata: {fileID: 11400000, guid: ed710b25e6f96c6448be37c80fadb60a, type: 2}
+  localizableMetadata:
+    m_TableReference:
+      m_TableCollectionName: GUID:776554e8d02302e4da2ae5bb184157af
+    m_TableEntryReference:
+      m_KeyId: 24442669023232
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
   grazeCostSegment: 1
-  angle: 45
+  angle: 60
   cost: 2
+  bulletParriedPool: {fileID: 0}

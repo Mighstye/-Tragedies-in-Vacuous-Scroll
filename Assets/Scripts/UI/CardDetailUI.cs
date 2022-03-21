@@ -8,6 +8,7 @@ namespace UI
 {
     public class CardDetailUI : MonoBehaviour
     {
+        public Card currentSelectedCard { get; private set; }
         [SerializeField] private CircularScrollingList scrollingList;
         [SerializeField] private GeneralCounterUI costUI;
         [SerializeField] private TextMeshProUGUI cardName;
@@ -18,17 +19,19 @@ namespace UI
         public void OnListCenteredContentChanged(int centeredContentID)
         {
             var content = (Card)scrollingList.listBank.GetListContent(centeredContentID);
+            currentSelectedCard = content;
             StartCoroutine(UpdateContent(content));
         }
 
         private IEnumerator UpdateContent(Card card)
         {
             yield return StartCoroutine(card.LocalizeMetadata());
-            var meta = card.localizedMetadata;
-            costUI.UpdateIcons(meta.cost);
-            cardName.text = meta.cardName;
-            effectTextField.text = meta.effectText;
-            loreTextField.text = meta.loreText;
+            var locMeta = card.localizedMetadata;
+            var commonMeta = card.commonMetadata;
+            costUI.UpdateIcons(commonMeta.cost);
+            cardName.text = locMeta.cardName;
+            effectTextField.text = locMeta.effectText;
+            loreTextField.text = locMeta.loreText;
         }
     }
 }

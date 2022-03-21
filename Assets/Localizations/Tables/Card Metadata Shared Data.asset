@@ -19,9 +19,14 @@ MonoBehaviour:
     m_Key: ard_parry
     m_Metadata:
       m_Items: []
+  - m_Id: 24442669023232
+    m_Key: arc_parry
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items:
     - rid: 4713508965295849509
+    - rid: 4713508965295849531
   m_KeyGenerator:
     rid: 4713508965295849499
   references:
@@ -40,5 +45,15 @@ MonoBehaviour:
           - en
           - fr
           - ja
-        m_TypeString: CardSystem.CardMetadata, Assembly-CSharp, Version=0.0.0.0,
+        m_TypeString: 
+    - rid: 4713508965295849531
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 24442669023232
+          m_TableCodes:
+          - en
+          - fr
+          - ja
+        m_TypeString: CardSystem.CardLocalizableMetadata, Assembly-CSharp, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null

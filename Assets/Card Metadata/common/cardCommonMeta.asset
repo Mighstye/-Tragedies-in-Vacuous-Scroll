@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9d6762afb5c4d06b9d3283e9af4c245, type: 3}
+  m_Name: cardCommonMeta
+  m_EditorClassIdentifier: 
+  key: arc_parry
+  cost: 2
+  cardType: 0
+  cardSprite: {fileID: 21300000, guid: 71c849f38f87e0c45b3b1c3b0c70376e, type: 3}
+  demoVideo: {fileID: 0}
