@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using BossBehaviour;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using BulletSystem;
@@ -15,7 +16,7 @@ namespace Game_Manager
     {
         public static GameManagerAPI instance { get; private set; }
 
-        public GameObject boss;
+        private GameObject boss = null;
         public GameObject activeCard;
         public GameObject passiveCard;
         public Action onWin;
@@ -37,6 +38,7 @@ namespace Game_Manager
 
         private void Start()
         {
+            boss ??= BossBehaviourSystemProxy.instance.bossController.gameObject;
             UISCC = SelectedCardControl.GetComponent<UISelectedCardControl>();
             ACM = ActiveCardManagerGameObject.GetComponent<ActiveCardManager>();
             PCM = PassiveCardManagerGameObject.GetComponent<PassiveCardManager>();

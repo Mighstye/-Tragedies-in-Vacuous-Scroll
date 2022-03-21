@@ -19,11 +19,7 @@ namespace ActiveCardImplementation
         public float pressDuration { get; set; }
         public float releaseDuration { get; set; }
         public string desc;
-
-        public Card2()
-        {
-            activeDesc = desc;
-        }
+        
 
         private void Start()
         {
@@ -35,7 +31,7 @@ namespace ActiveCardImplementation
 
         public void OnTapPerformed(InputAction.CallbackContext context)
         {
-            if (useCard() == true) Use();
+            if (UseCard() == true) Use();
         }
 
         public void OnTapCancelled(InputAction.CallbackContext context)

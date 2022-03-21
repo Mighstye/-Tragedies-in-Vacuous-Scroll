@@ -13,28 +13,19 @@ namespace CardSystem
         public float coolDownTime = 3; //DEFAULT VALUE
 
         private bool coolDown = false;
+        
+        
 
-        public string activeDesc;
-
-        public ActiveCard()
-        {
-            activeDesc = "Active card description";
-            description = "Active :\n" + activeDesc;
-        }
-
-        protected bool useCard()
+        protected bool UseCard()
         {
             if (coolDown) return false;
-            if (LogicSystemAPI.instance.graze.UseGraze(grazeCostSegment))
-            {
-                coolDown = true;
-                StartCoroutine(CoolDown());
-                return true;
-            }
-            return false;
+            if (!LogicSystemAPI.instance.graze.UseGraze(grazeCostSegment)) return false;
+            coolDown = true;
+            StartCoroutine(CoolDown());
+            return true;
         }
 
-        IEnumerator CoolDown()
+        private IEnumerator CoolDown()
         {
             yield return new WaitForSeconds(coolDownTime);
             coolDown = false;

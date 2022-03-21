@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,18 @@ namespace Utils
 {
     public class MultiPurposeCollider : MonoBehaviour
     {
+        public static MultiPurposeCollider instance { get; private set; }
         public new Collider2D collider { get; private set; }
         protected List<Bullet> bullets = new List<Bullet>();
+
+        private void Awake()
+        {
+            instance ??= this;
+            if (instance != this)
+            {
+                Destroy(gameObject);
+            }
+        }
 
         private void Start()
         {

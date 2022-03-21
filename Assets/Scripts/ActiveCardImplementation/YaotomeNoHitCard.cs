@@ -18,12 +18,7 @@ namespace ActiveCardImplementation
         public float slowTapTime { get; set; }
         public float pressDuration { get; set; }
         public float releaseDuration { get; set; }
-        public string desc;
 
-        public YaotomeNoHitCard()
-        {
-            activeDesc = desc;
-        }
 
         private void Start()
         {
@@ -35,7 +30,7 @@ namespace ActiveCardImplementation
 
         public void OnTapPerformed(InputAction.CallbackContext context)
         {
-            if (useCard() == true) Use();
+            if (UseCard() == true) Use();
         }
 
         public void OnTapCancelled(InputAction.CallbackContext context)
@@ -43,7 +38,7 @@ namespace ActiveCardImplementation
             return;
         }
 
-        private void Use()
+        private static void Use()
         {
             Debug.Log("YaotomeNoHitCard used !");
         }

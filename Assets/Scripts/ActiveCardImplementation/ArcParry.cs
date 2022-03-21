@@ -19,28 +19,22 @@ namespace ActiveCardImplementation
     {
         public float tapTime { get; set; }
         [SerializeField] public int angle;
-        public string desc;
         private BulletPool bulletParriedPool;
         private MultiPurposeCollider utilCollider;
         private List<Bullet> bullets;
         private Transform youmuTransform;
 
-        public ArcParry()
-        {
-            activeDesc = desc;
-        }
-
         private void Start()
         {
             tapTime = 0.5f;
-            grazeCostSegment = cost;
-            utilCollider = GameObject.Find("MultiPurposeCollider").GetComponent<MultiPurposeCollider>();
+            grazeCostSegment = commonMetadata.cost;
+            utilCollider = MultiPurposeCollider.instance;
             bulletParriedPool = GameManagerAPI.instance.parriedPool.GetComponent<BulletPool>();
         }
 
         public void OnTapPerformed(InputAction.CallbackContext context)
         {
-            if (useCard()) StartCoroutine(Parry());
+            if (UseCard()) StartCoroutine(Parry());
         }
 
         public void OnTapCancelled(InputAction.CallbackContext context)
