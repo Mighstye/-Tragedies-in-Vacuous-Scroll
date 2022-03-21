@@ -24,7 +24,9 @@ namespace Logic_System
             if (instance != this)
             {
                 Destroy(gameObject);
+                return;
             }
+            DontDestroyOnLoad(gameObject);
         }
     }
 }

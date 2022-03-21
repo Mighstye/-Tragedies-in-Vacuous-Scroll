@@ -16,6 +16,8 @@ namespace Utils
         [SerializeField] private CircularCardListBank cardListBank;
         [SerializeField] private GameObject Menu;
 
+        [SerializeField] private CircularCardListBank listBank;
+        
         private UIManager UiManager;
 
         private void Awake()
@@ -23,11 +25,14 @@ namespace Utils
             instance ??= this;
             if (instance != this)
             {
-                Destroy(this.gameObject);
+                Destroy(gameObject);
+                return;
             }
+            DontDestroyOnLoad(gameObject);
         }
+        
 
-        public void OnEnable()
+        public void Start()
         {
             this.gameObject.SetActive(true);
             cardListBank.Init(new List<Card>(
@@ -42,11 +47,10 @@ namespace Utils
 
         public Card RetrieveSelectedCard()
         {
-            return cardDetailUI.currentSelectedCard;
+            return cardListBank.selectedCard;
         }
 
         public void PassSelectedCard(InputAction.CallbackContext context)
-
         {
             if (context.phase is not InputActionPhase.Performed) return;
             GameManagerAPI.instance.selectCard(RetrieveSelectedCard().gameObject);

@@ -14,7 +14,13 @@ public class CheatEngine : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        instance ??= this;
+        if (instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()

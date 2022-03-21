@@ -45,7 +45,9 @@ namespace VFX
             if (instance != this)
             {
                 Destroy(gameObject);
+                return;
             }
+            DontDestroyOnLoad(gameObject);
         }
 
         private BulletDeathVFX CreatePooledItem()

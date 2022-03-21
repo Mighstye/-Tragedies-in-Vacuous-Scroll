@@ -15,7 +15,9 @@ namespace DialogueSystem
             if (instance != this)
             {
                 Destroy(gameObject);
+                return;
             }
+            DontDestroyOnLoad(gameObject);
         }
         
         

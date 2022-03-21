@@ -21,7 +21,9 @@ namespace BossBehaviour
             if (instance != this)
             {
                 Destroy(gameObject);
+                return;
             }
+            DontDestroyOnLoad(gameObject);
         }
 
         public void Init(BossAsset bossAsset, bool createNew = false)

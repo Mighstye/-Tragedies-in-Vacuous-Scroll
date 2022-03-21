@@ -8,7 +8,6 @@ namespace UI
 {
     public class CardDetailUI : MonoBehaviour
     {
-        public Card currentSelectedCard { get; private set; }
         [SerializeField] private CircularScrollingList scrollingList;
         [SerializeField] private GeneralCounterUI costUI;
         [SerializeField] private TextMeshProUGUI cardName;
@@ -19,7 +18,6 @@ namespace UI
         public void OnListCenteredContentChanged(int centeredContentID)
         {
             var content = (Card)scrollingList.listBank.GetListContent(centeredContentID);
-            currentSelectedCard = content;
             StartCoroutine(UpdateContent(content));
         }
 

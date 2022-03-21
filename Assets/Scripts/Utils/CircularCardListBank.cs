@@ -12,6 +12,7 @@ namespace Utils
     {
         [SerializeField]private List<Card> cards;
         [SerializeField]private CircularScrollingList list;
+        public Card selectedCard { get; private set; }
 
         private void OnEnable()
         {
@@ -20,10 +21,15 @@ namespace Utils
 
         public void Init(List<Card> cardList)
         {
-            list ??= GetComponent<CircularScrollingList>();
+            list = GetComponent<CircularScrollingList>();
             cards = cardList;
             list.Initialize();
-            list.Refresh();
+            list.Refresh(0);
+        }
+
+        public void OnListCenteredContentChanged(int centeredContentID)
+        {
+            selectedCard = GetCard(centeredContentID);
         }
 
         public void UpdateContent(InputAction.CallbackContext context)
@@ -34,6 +40,11 @@ namespace Utils
         }
 
         public override object GetListContent(int index)
+        {
+            return cards[index];
+        }
+
+        public Card GetCard(int index)
         {
             return cards[index];
         }

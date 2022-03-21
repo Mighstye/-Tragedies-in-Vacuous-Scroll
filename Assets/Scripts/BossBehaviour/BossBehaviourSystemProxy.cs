@@ -16,7 +16,9 @@ namespace BossBehaviour
             if (instance != this)
             {
                 Destroy(gameObject);
+                return;
             }
+            DontDestroyOnLoad(gameObject);
         }
         
     }

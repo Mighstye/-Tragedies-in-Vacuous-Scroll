@@ -46,6 +46,7 @@ namespace DialogueSystem
             {
                 Destroy(gameObject);
             }
+            DontDestroyOnLoad(gameObject);
         }
 
         private void Start()

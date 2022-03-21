@@ -2375,6 +2375,7 @@ MonoBehaviour:
   cardDetailUI: {fileID: 530067533}
   cardListBank: {fileID: 1973734577}
   Menu: {fileID: 1817404312}
+  listBank: {fileID: 1973734577}
 --- !u!114 &503649548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8329,6 +8330,38 @@ PrefabInstance:
     - target: {fileID: 99757672655077289, guid: deb0da49e8b0a164ea17b82009e35a77, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 99757672655077298, guid: deb0da49e8b0a164ea17b82009e35a77, type: 3}
+      propertyPath: _setting._initializeOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 99757672655077298, guid: deb0da49e8b0a164ea17b82009e35a77, type: 3}
+      propertyPath: _setting._onCenteredContentChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 99757672655077298, guid: deb0da49e8b0a164ea17b82009e35a77, type: 3}
+      propertyPath: _setting._onCenteredContentChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 99757672655077298, guid: deb0da49e8b0a164ea17b82009e35a77, type: 3}
+      propertyPath: _setting._onCenteredContentChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1973734577}
+    - target: {fileID: 99757672655077298, guid: deb0da49e8b0a164ea17b82009e35a77, type: 3}
+      propertyPath: _setting._onCenteredContentChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 99757672655077298, guid: deb0da49e8b0a164ea17b82009e35a77, type: 3}
+      propertyPath: _setting._onCenteredContentChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnListCenteredContentChanged
+      objectReference: {fileID: 0}
+    - target: {fileID: 99757672655077298, guid: deb0da49e8b0a164ea17b82009e35a77, type: 3}
+      propertyPath: _setting._onCenteredContentChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Utils.CircularCardListBank, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 99757672655077298, guid: deb0da49e8b0a164ea17b82009e35a77, type: 3}
+      propertyPath: _setting._onCenteredContentChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 99757672784871574, guid: deb0da49e8b0a164ea17b82009e35a77, type: 3}
       propertyPath: m_AnchorMax.y

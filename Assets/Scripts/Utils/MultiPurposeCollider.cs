@@ -18,7 +18,9 @@ namespace Utils
             if (instance != this)
             {
                 Destroy(gameObject);
+                return;
             }
+            DontDestroyOnLoad(gameObject);
         }
 
         private void Start()

@@ -27,12 +27,13 @@ namespace Control
         [SerializeField] private GameObject hitRecoveryEndPosition;
         private void Awake()
         {
-            if (instance != null)
+            instance ??= this;
+            if (instance != this)
             {
-                Debug.LogWarning("Singleton FieldBoundaries may already have an instance @"
-                +instance.gameObject.name);
+                Destroy(gameObject);
+                return;
             }
-            instance = this;
+            DontDestroyOnLoad(gameObject);
             var ul = upperLeft.transform.position;
             var lr = lowerRight.transform.position;
             left = ul.x;

@@ -33,7 +33,12 @@ namespace Game_Manager
 
         private void Awake()
         {
-            instance = this;
+            instance ??= this;
+            if (instance != this)
+            {
+                Destroy(gameObject);
+            }
+            DontDestroyOnLoad(gameObject);
         }
 
         private void Start()
