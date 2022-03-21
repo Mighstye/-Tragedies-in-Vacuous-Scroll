@@ -15,7 +15,7 @@ namespace Utils
 
         private void OnEnable()
         {
-            list ??= GetComponent<CircularScrollingList>();
+            list = GetComponent<CircularScrollingList>();
         }
 
         public void Init(List<Card> cardList)

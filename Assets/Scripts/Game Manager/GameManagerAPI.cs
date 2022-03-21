@@ -70,7 +70,7 @@ namespace Game_Manager
 
         public void EndFight(bool victory)
         {
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
             boss.SetActive(false);
             ActiveBulletManager.instance.Wipe();
             if (victory) onWin?.Invoke();

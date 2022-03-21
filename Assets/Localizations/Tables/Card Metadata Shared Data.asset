@@ -62,5 +62,7 @@ MonoBehaviour:
         - m_KeyId: 277270784294912
           m_TableCodes:
           - en
+          - fr
+          - ja
         m_TypeString: CardSystem.CardLocalizableMetadata, Assembly-CSharp, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
