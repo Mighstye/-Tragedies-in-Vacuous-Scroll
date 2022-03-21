@@ -10,6 +10,14 @@ namespace PassiveCardImplementation
 {
     public class BeamParry : PassiveCard
     {
+        public string desc;
+        public BeamParry()
+        {
+            passiveDesc = desc;
+        }
+        private void Start()
+        {
+        }
         private void OnEnable()
         {
             SetLaserInfo(true);

@@ -62,6 +62,11 @@ namespace Logic_System
             return outcome[phaseName];
         }
 
+        public Dictionary<string, PhaseStatistics> GetAllStatistics()
+        {
+            return outcome;
+        }
+
         private void RecordSpellUse()
         {
             if (currentPhaseName is null) return;

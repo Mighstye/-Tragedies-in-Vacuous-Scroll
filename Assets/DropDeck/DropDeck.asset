@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b4b3d8a03f18942867055555fbd996, type: 3}
+  m_Name: DropDeck
+  m_EditorClassIdentifier: 
+  dropDeck:
+  - {fileID: 5469457027467083186, guid: d41c01c16d59cf84397fa4d6d2b39c3c, type: 3}
+  - {fileID: 7720012978862166035, guid: d764d8b63f5cb794bb7901b8ba41a33f, type: 3}

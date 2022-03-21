@@ -11,6 +11,7 @@ using BulletSystem;
 using Utils;
 using Control;
 using UnityEditor;
+using Game_Manager;
 
 namespace ActiveCardImplementation
 {
@@ -18,17 +19,23 @@ namespace ActiveCardImplementation
     {
         public float tapTime { get; set; }
         [SerializeField] public int angle;
-        [SerializeField] public int cost;
-        [SerializeField] private BulletPool bulletParriedPool;
+        public string desc;
+        private BulletPool bulletParriedPool;
         private MultiPurposeCollider utilCollider;
         private List<Bullet> bullets;
         private Transform youmuTransform;
+
+        public ArcParry()
+        {
+            activeDesc = desc;
+        }
 
         private void Start()
         {
             tapTime = 0.5f;
             grazeCostSegment = cost;
             utilCollider = GameObject.Find("MultiPurposeCollider").GetComponent<MultiPurposeCollider>();
+            bulletParriedPool = GameManagerAPI.instance.parriedPool.GetComponent<BulletPool>();
         }
 
         public void OnTapPerformed(InputAction.CallbackContext context)

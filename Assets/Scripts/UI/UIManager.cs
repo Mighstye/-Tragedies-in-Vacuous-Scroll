@@ -6,21 +6,17 @@ using Game_Manager;
 
 public class UIManager : MonoBehaviour
 {
-
     public GameObject pauseObject;
     public GameObject gameOverObject;
     public GameObject WinObject;
-    public GameObject WinPostMenuObject;
+    public GameObject RewardCardMenu;
     bool paused;
     bool gameFinished = false;
     private GameManagerAPI gameManagerAPI;
     // Start is called before the first frame update
     void Start()
     {
-        pauseObject.SetActive(false);
-        gameOverObject.SetActive(false);
-        WinObject.SetActive(false);
-        WinPostMenuObject.SetActive(false);
+        DisableAllMenu();
         gameManagerAPI = GameManagerAPI.instance;
         paused = false;
 
@@ -83,16 +79,16 @@ public class UIManager : MonoBehaviour
 
     private void DisableAllMenu()
     {
-        pauseObject.SetActive(false);
-        gameOverObject.SetActive(false);
-        WinObject.SetActive(false);
-        WinPostMenuObject.SetActive(false);
+        foreach(Transform child in gameObject.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
     }
 
     public void WinContinueButton()
     {
         WinObject.SetActive(false);
-        WinPostMenuObject.SetActive(true);
+        RewardCardMenu.SetActive(true);
     }
 
     private void GameOver()
