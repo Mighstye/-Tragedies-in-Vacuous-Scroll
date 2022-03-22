@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utils;
 
 namespace Control
 {
@@ -9,10 +10,9 @@ namespace Control
     /// <c>Lower Right</c> corner of the movement field.</summary>
     /// <remarks>This class is a Singleton.</remarks>
     /// <remarks>Will display the boundaries when Gizmos is activated</remarks>
-    public class FieldBoundaries : MonoBehaviour
+    public class FieldBoundaries : Singleton<FieldBoundaries>
     {
         
-        public static FieldBoundaries instance { get; private set; }
         public float left { get; private set; }
         public float right { get; private set; }
         public float up { get; private set; }
@@ -25,14 +25,10 @@ namespace Control
         [SerializeField] private GameObject lowerRight;
         [SerializeField] private GameObject hitRecoveryStartPosition;
         [SerializeField] private GameObject hitRecoveryEndPosition;
-        private void Awake()
+
+        protected override void Awake()
         {
-            if (instance != null)
-            {
-                Debug.LogWarning("Singleton FieldBoundaries may already have an instance @"
-                +instance.gameObject.name);
-            }
-            instance = this;
+            base.Awake();
             var ul = upperLeft.transform.position;
             var lr = lowerRight.transform.position;
             left = ul.x;

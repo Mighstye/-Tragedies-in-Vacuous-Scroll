@@ -1,32 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
+using Control;
+using Control.ActiveCardControl;
+using Control.ActiveCardControl.ControlTypes;
+using UI.SelectedCardHover;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.LowLevel;
-using UnityEngine.Serialization;
+using UnityEngine.InputSystem.Interactions;
+using Utils;
+using Debug = UnityEngine.Debug;
 
 namespace CardSystem
 {
-    public class CardSystemManager : MonoBehaviour
+    public class CardSystemManager : Singleton<CardSystemManager>
     {
-        public static CardSystemManager instance { get; private set; }
-        [SerializeField] private ActiveCardManager activeCardManager;
-        [SerializeField] private PassiveCardManager passiveCardManager;
-        [SerializeField] private SelectedCardHover selectedCardHover;
+        [SerializeField] public ActiveCardManager activeCardManager;
+        [SerializeField] public PassiveCardManager passiveCardManager;
+        [SerializeField] public UISelectedCardControl selectedCardHover;
+        
+        public Action<ActiveCard> onSelectedCardChange;
 
-        private void Awake()
-        {
-            instance = this;
-        }
+        private bool isFirstFrame = true;
 
         private void Start()
         {
-            activeCardManager.RunTest();//TODO: This is for test => Delete
+            activeCardManager.RunTest(); //TODO: This is for test => Delete
             if (activeCardManager.selectedCard == null)
             {
                 selectedCardHover.gameObject.SetActive(false);
             }
-            
+            else
+            {
+                selectedCardHover.UpdateSelectedCard(activeCardManager.selectedCard);
+            }
+        }
+
+        private void Update()
+        {
+            if (!isFirstFrame) return;
+            onSelectedCardChange?.Invoke(activeCardManager.selectedCard);
+            isFirstFrame = false;
         }
 
         public void OnCardSwitch(InputAction.CallbackContext context)
@@ -40,11 +52,45 @@ namespace CardSystem
             }
             selectedCardHover.gameObject.SetActive(true);
             selectedCardHover.UpdateSelectedCard(activeCardManager.selectedCard);
+            onSelectedCardChange?.Invoke(activeCardManager.selectedCard);
         }
 
         public void AddActiveCard(ActiveCard card)
         {
             activeCardManager.Add(card);
+        }
+
+        public void OnTriggerActiveCard(InputAction.CallbackContext context)
+        {
+            var activeCard = activeCardManager.selectedCard;
+            switch (context.action.phase)
+            {
+                case InputActionPhase.Performed when context.interaction is TapInteraction:
+                    (activeCard as ITappable)?.OnTapPerformed(context);
+                    break;
+                case InputActionPhase.Canceled when context.interaction is TapInteraction:
+                    (activeCard as ITappable)?.OnTapCancelled(context);
+                    break;
+                case InputActionPhase.Started when context.interaction is PreciseChargeInteraction:
+                    (activeCard as IPreciseChargeable)?.OnPreciseChargeStarted(context);
+                    break;
+                case InputActionPhase.Performed when context.interaction is PreciseChargeInteraction:
+                    (activeCard as IPreciseChargeable)?.OnPreciseChargePerformed(context);
+                    break;
+                case InputActionPhase.Canceled when context.interaction is PreciseChargeInteraction:
+                    (activeCard as IPreciseChargeable)?.OnPreciseChargeCancelled(context);
+                    break;
+                case InputActionPhase.Performed when context.interaction is SlowTapInteraction:
+                    (activeCard as ISlowTappable)?.OnSlowTapPerformed(context);
+                    break;
+                case InputActionPhase.Canceled when context.interaction is SlowTapInteraction:
+                    (activeCard as ISlowTappable)?.OnSlowTapCancelled(context);
+                    break;
+                case InputActionPhase.Started when context.interaction is SlowTapInteraction:
+                    (activeCard as ISlowTappable)?.OnSlowTapStarted(context);
+                    break;
+
+            }
         }
     }
 }

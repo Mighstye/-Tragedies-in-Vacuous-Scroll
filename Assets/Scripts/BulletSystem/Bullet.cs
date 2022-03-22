@@ -1,12 +1,22 @@
 using System;
 using System.Collections.Generic;
 using Control;
+using DG.Tweening;
 using UnityEngine;
 
 namespace BulletSystem
 {
+    public enum UpdateMethod
+    {
+        Classic,
+        DoTween
+    }
     public abstract class Bullet : MonoBehaviour, IBullet
     {
+        //Update workflow
+        public UpdateMethod updateMethod;
+        //Tags
+        public List<BulletTag> bulletTags;
         //Events
         /// <summary>
         /// Invoked when the bullet is considered dead by <c>IsNaturallyDead</c>
@@ -17,6 +27,8 @@ namespace BulletSystem
         /// Will also trigger <c>onBulletDeathNatural </c>.
         /// </summary>
         public Action onBulletDeathManual { get; set; }
+
+        public Action onBulletParry;
         //Behavior
         /// <summary>
         /// A behaviour of a bullet should return <c>true</c> at the end of the behaviour and
@@ -28,6 +40,7 @@ namespace BulletSystem
         /// </summary>
         protected readonly List<BulletBehavior> behaviors = new List<BulletBehavior>();
         private int behaviorPointer = 0;
+        protected Sequence animationSequence;
 
         //Graze
         public bool grazeable { get; set; }
@@ -38,6 +51,7 @@ namespace BulletSystem
         }
 
         protected abstract void AddBehaviors();
+        
 
         private void Update()
         {
@@ -45,12 +59,12 @@ namespace BulletSystem
             {
                 onBulletDeathNatural?.Invoke();
             }
-
+            CustomUpdate();
+            if (updateMethod is UpdateMethod.DoTween) return;
             if (behaviors[behaviorPointer] != null && behaviors[behaviorPointer].Invoke())
             {
                 behaviorPointer++;
             }
-            CustomUpdate();
         }
 
         /// <summary>
@@ -89,12 +103,19 @@ namespace BulletSystem
         /// </summary>
         public void InvokeBulletDeath()
         {
+            if (!gameObject.activeInHierarchy) return;
             onBulletDeathManual?.Invoke();
             onBulletDeathNatural?.Invoke();
         }
 
+        public void InvokeBulletParry()
+        {
+            onBulletParry?.Invoke();
+        }
+
         public void ResetBullet()
         {
+            if (updateMethod is UpdateMethod.DoTween) animationSequence.Play();
             grazeable = true;
             behaviorPointer = 0;
         }

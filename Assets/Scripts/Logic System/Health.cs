@@ -6,69 +6,78 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class Health : MonoBehaviour
+namespace Logic_System
 {
-    public static Health instance { get; private set; }
-
-    private void Awake()
+    public class Health : MonoBehaviour
     {
-        instance = this;
-    }
+        private LogicSystemAPI logic;
+        public int currentHealth { get; private set; }
 
-    public int currentHealth { get; private set; }
+        [SerializeField] private int startingHealth = 2;
 
-    [SerializeField] private int startingHealth = 2;
+        public int maxHealth;
 
-    public int maxHealth;
+        public float invincibilityTime;
 
-    public float invincibilityTime;
+        public bool invincible { get; private set; }
+        
+        private float invincibleTimer = 0;
 
-    public bool invincible { get; private set; }
-    public Action onNeedPlayerRefresh { get; set; }
+        public Action onNeedPlayerRefresh { get; set; }
 
-    private float invincibleTimer = 0;
+        public Action onPlayerDeath { get; set; }
 
-    private void Start()
-    {
-        currentHealth = startingHealth;
-        invincible = false;
-        Control.YoumuController.instance.onYoumuHit += () =>
+        private void Start()
         {
-            if (invincible) return;
-            LoseHealth();
-            StartInvincible();
-        };
-    }
-
-    private void Update()
-    {
-        if (invincible)
-        {
-            invincibleTimer -= Time.deltaTime;
+            logic = LogicSystemAPI.instance;
+            currentHealth = startingHealth;
+            invincible = false;
+            Control.YoumuController.instance.onYoumuHit += () =>
+            {
+                if (invincible) return;
+                if (LoseHealth())
+                {
+                    if (currentHealth == 0) onNeedPlayerRefresh?.Invoke();
+                    onPlayerDeath?.Invoke();
+                    return;
+                }
+                else
+                {
+                    StartInvincible();
+                }
+            };
         }
 
-        if (!(invincibleTimer <= 0)) return;
-        invincible = false;
-        Spell.instance.ReenableSpell();
-    }
-    
-    
-    public void GainHealth(int h = 1)
-    {
-        currentHealth = Mathf.Clamp(currentHealth + h, -1, maxHealth);
-    }
-    private bool LoseHealth(int h = 1)
-    {
-        GainHealth(-h);
-        if (currentHealth < 0) return true;
-        Spell.instance.SpellResetOnLifeLost();
-        onNeedPlayerRefresh?.Invoke();
-        return false;
-    }
-    public void StartInvincible(float time=0)
-    {
-        if (time == 0) time = invincibilityTime;
-        invincible = true;
-        invincibleTimer = time;
+        private void Update()
+        {
+            if (invincible)
+            {
+                invincibleTimer -= Time.deltaTime;
+            }
+
+            if (!(invincibleTimer <= 0)) return;
+            invincible = false;
+           logic.spell.ReenableSpell();
+        }
+
+
+        public void GainHealth(int h = 1)
+        {
+            currentHealth = Mathf.Clamp(currentHealth + h, -1, maxHealth);
+        }
+        private bool LoseHealth(int h = 1)
+        {
+            GainHealth(-h);
+            if (currentHealth <= 0) return true;
+            logic.spell.SpellResetOnLifeLost();
+            onNeedPlayerRefresh?.Invoke();
+            return false;
+        }
+        public void StartInvincible(float time = 0)
+        {
+            if (time == 0) time = invincibilityTime;
+            invincible = true;
+            invincibleTimer = time;
+        }
     }
 }

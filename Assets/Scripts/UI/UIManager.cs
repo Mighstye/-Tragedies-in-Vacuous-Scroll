@@ -1,53 +1,118 @@
-using System.Collections;
-using System.Collections.Generic;
+using Game_Manager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class UIManager : MonoBehaviour
+namespace UI
 {
-
-    GameObject pauseObject;
-    bool paused;
-    // Start is called before the first frame update
-    void Start()
+    public class UIManager : MonoBehaviour
     {
-        pauseObject = GameObject.Find("PauseMenu");
-        pauseObject.SetActive(false);
-        paused = false;
-    }
+        public GameObject pauseObject;
+        public GameObject gameOverObject;
+        public GameObject winObject;
+        public GameObject rewardCardMenu;
+        bool paused;
+        bool gameFinished = false;
+        private GameManagerAPI gameManagerAPI;
+        // Start is called before the first frame update
+        void Start()
+        {
+            DisableAllMenu();
+            gameManagerAPI = GameManagerAPI.instance;
+            paused = false;
 
-    public void OnPause(InputAction.CallbackContext context)
-    {
-        if (context.phase is not InputActionPhase.Performed) return;
-        if (paused)
-            unPause();
-        else
-            Pause();
-    }
+            gameManagerAPI.onLoose += () =>
+            {
+                gameFinished = true;
+                GameOver();
+            };
 
-    public void BackToMenu()
-    {
-        unPause();
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
-    }
+            gameManagerAPI.onWin += () =>
+            {
+                gameFinished = true;
+                Win();
+            };
+        }
 
-    public void Pause()
-    {
-        Time.timeScale = 0f;
-        pauseObject.SetActive(true);
-        paused = true;
-    }
+        public void OnPause(InputAction.CallbackContext context)
+        {
+            Debug.Log("Onpause");
+            if (context.phase is not InputActionPhase.Performed) return;
+            if (gameFinished) return;
+            if (paused)
+                UnPause();
+            else
+                Pause();
+        }
 
-    public void unPause()
-    {
-        Time.timeScale = 1.0f;
-        pauseObject.SetActive(false);
-        paused = false;
-    }
+        public void BackToMenu()
+        {
+            if(paused) { UnPause(); }
+            else
+            {
+                Time.timeScale = 1.0f;
+                DisableAllMenu();
+            }
+            GameManagerAPI.MainMenu();
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void Continue()
+        {
+            if (paused) { UnPause(); }
+            else
+            {
+                Time.timeScale = 1.0f;
+                DisableAllMenu();
+            }
+            gameManagerAPI.NextFight();
+        }
+
+        public void Restart()
+        {
+            if (paused) { UnPause(); }
+            else
+            {
+                Time.timeScale = 1.0f;
+                DisableAllMenu();
+            }
+            gameManagerAPI.Restart();
+        }
+
+        private void DisableAllMenu()
+        {
+            foreach(Transform child in gameObject.transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+
+        public void WinContinueButton()
+        {
+            winObject.SetActive(false);
+            rewardCardMenu.SetActive(true);
+        }
+
+        private void GameOver()
+        {
+            gameOverObject.SetActive(true);
+        }
+
+        private void Win()
+        {
+            winObject.SetActive(true);
+        }
+
+        public void Pause()
+        {
+            Time.timeScale = 0f;
+            pauseObject.SetActive(true);
+            paused = true;
+        }
+
+        public void UnPause()
+        {
+            Time.timeScale = 1.0f;
+            pauseObject.SetActive(false);
+            paused = false;
+        }
     }
 }

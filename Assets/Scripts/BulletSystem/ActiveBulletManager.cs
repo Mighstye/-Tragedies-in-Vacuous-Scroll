@@ -1,18 +1,12 @@
 ﻿using System;
 using Control;
 using UnityEngine;
+using Utils;
 
 namespace BulletSystem
 {
-    public class ActiveBulletManager : MonoBehaviour
+    public class ActiveBulletManager : Singleton<ActiveBulletManager>
     {
-        public static ActiveBulletManager instance { get; private set; }
-
-        private void Awake()
-        {
-            instance = this;
-        }
-
         private void Start()
         {
             YoumuController.instance.onYoumuHit += Wipe;
@@ -20,12 +14,20 @@ namespace BulletSystem
         }
 
 
-        private void Wipe()
+        public void Wipe()
         {
+            /* LEGACY
             var nbActiveBullets = this.transform.childCount;
             for(var i = 0; i < nbActiveBullets; i++)
             {
-                var bullet = this.transform.GetChild(0).gameObject.GetComponent<Bullet>();
+                var bullet = transform.GetChild(0).gameObject.GetComponent<Bullet>();
+                if (bullet.gameObject.CompareTag("FriendlyBullet")) return;
+                bullet.InvokeBulletDeath();
+            } */
+
+            foreach (var bullet in GetComponentsInChildren<Bullet>())
+            {
+                if (bullet.gameObject.CompareTag("FriendlyBullet")) return;
                 bullet.InvokeBulletDeath();
             }
         }

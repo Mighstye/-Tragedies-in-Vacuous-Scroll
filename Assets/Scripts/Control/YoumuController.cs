@@ -5,12 +5,13 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
+using Logic_System;
+using Utils;
 
 namespace Control
 {
-    public class YoumuController : MonoBehaviour
+    public class YoumuController : Singleton<YoumuController>
     {
-        public static YoumuController instance { get; private set; }
         //Move related fields
         private Vector3 moveDirection;
         private float currentSpeed;
@@ -34,18 +35,12 @@ namespace Control
         public Action onYoumuHit;
         public Action onInstantSpellCheck;
 
-        private void Awake()
-        {
-            if (instance != null)
-            {
-                Debug.LogWarning("Singleton YoumuController may already have an instance @"+
-                                 instance.gameObject.name);
-            }
-            instance = this;
-        }
+        private Health healthRef;
 
         private void Start()
         {
+            healthRef = LogicSystemAPI.instance.health;
+
             currentSpeed = normalSpeed;
             youmuAnimator = GetComponent<Animator>();
             //Get the size of the sprite (bounding box)
@@ -93,7 +88,7 @@ namespace Control
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if (Health.instance.invincible||inInstantSpellCheck) return;
+            if (healthRef.invincible||inInstantSpellCheck) return;
             if (!col.gameObject.CompareTag("EnemyBullet")) return;
             var bullet = col.gameObject.GetComponent<Bullet>();
             if (bullet == null)
@@ -111,7 +106,7 @@ namespace Control
             onInstantSpellCheck?.Invoke();
             for (var i = 0; i < instantSpellFrame; i++)
             {
-                if (Health.instance.invincible)
+                if (healthRef.invincible)
                 {
                     inInstantSpellCheck = false;
                     yield break;

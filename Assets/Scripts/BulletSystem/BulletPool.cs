@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 using VFX;
+using System;
 
 namespace BulletSystem
 {
@@ -41,6 +42,7 @@ namespace BulletSystem
             var b = Instantiate(bullet,transform);
             b.onBulletDeathNatural += () =>
             {
+                b.grazeable = false;
                 pool.Release(b);
             };
             b.onBulletDeathManual += () =>
@@ -48,13 +50,14 @@ namespace BulletSystem
                 var o = BulletDeathVFXPool.instance.pool.Get();
                 o.gameObject.transform.position = b.transform.position;
             };
+
             return b;
         }
 
         // Called when an item is returned to the pool using Release
         private void OnReturnedToPool(Bullet o)
         {
-            o.transform.SetParent(this.transform);
+            o.transform.SetParent(transform);
             o.gameObject.SetActive(false);
         }
 

@@ -5,16 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/MainMenu/MainMenu.unity
     guid: c2edbb07a230fff47b6530ec89acbb72
-  - enabled: 0
-    path: Assets/Scenes/SampleScene_UiTest.unity
-    guid: e862af42ebaafe54188965d77ec0bb08
   - enabled: 1
-    path: Assets/Scenes/SamTestScene.unity
-    guid: fc136a30c9b7fe245ae8979dd03d140e
-  m_configObjects: {}
+    path: Assets/Scenes/Fights/YaotomeMisaki.unity
+    guid: 046d3fcbc1a117243b4f309edd33e722
+  - enabled: 1
+    path: Assets/Scenes/Fights/YaotomeMisaki1.unity
+    guid: 262cea4159e438c4f8bbef71422e363c
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 53d0b0909e5f2cd4c8916b62dd5b9e9e, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 057ce7c7fceb198459f086dade4c0da0, type: 2}
