@@ -6,23 +6,11 @@ using BulletSystem;
 
 namespace Utils
 {
-    public class MultiPurposeCollider : MonoBehaviour
+    public class MultiPurposeCollider : Singleton<MultiPurposeCollider>
     {
-        public static MultiPurposeCollider instance { get; private set; }
         public new Collider2D collider { get; private set; }
         protected List<Bullet> bullets = new List<Bullet>();
-
-        private void Awake()
-        {
-            instance ??= this;
-            if (instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            DontDestroyOnLoad(gameObject);
-        }
-
+        
         private void Start()
         {
             collider = gameObject.GetComponent<Collider2D>();

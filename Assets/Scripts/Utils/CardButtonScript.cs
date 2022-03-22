@@ -27,7 +27,7 @@ public class CardButtonScript : MonoBehaviour
         buttonText.text = associatedGameObject.name;
     }
 
-    public void onClick()
+    public void OnClick()
     {
         if(!toggled)
         {

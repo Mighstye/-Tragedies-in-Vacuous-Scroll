@@ -9,12 +9,14 @@ using Logic_System;
 using PlayerInfosAPI;
 using TMPro;
 using CardSystem;
+using UI.SelectedCardHover;
+using UnityEngine.Serialization;
+using Utils;
 
 namespace Game_Manager
 {
-    public class GameManagerAPI : MonoBehaviour
+    public class GameManagerAPI : Singleton<GameManagerAPI>
     {
-        public static GameManagerAPI instance { get; private set; }
 
         private GameObject boss = null;
         public GameObject activeCard;
@@ -22,31 +24,21 @@ namespace Game_Manager
         public Action onWin;
         public Action onLoose;
         public GameObject parriedPool;
-        public GameObject ActiveCardManagerGameObject;
-        public GameObject PassiveCardManagerGameObject;
-        public GameObject SelectedCardControl;
+        public GameObject activeCardManagerGameObject;
+        public GameObject passiveCardManagerGameObject;
+        public GameObject selectedCardControl;
         private UISelectedCardControl UISCC;
         private ActiveCardManager ACM;
         private PassiveCardManager PCM;
         public List<GameObject> rewards;
         private string currentFightName;
 
-        private void Awake()
-        {
-            instance ??= this;
-            if (instance != this)
-            {
-                Destroy(gameObject);
-            }
-            DontDestroyOnLoad(gameObject);
-        }
-
         private void Start()
         {
             boss ??= BossBehaviourSystemProxy.instance.bossController.gameObject;
-            UISCC = SelectedCardControl.GetComponent<UISelectedCardControl>();
-            ACM = ActiveCardManagerGameObject.GetComponent<ActiveCardManager>();
-            PCM = PassiveCardManagerGameObject.GetComponent<PassiveCardManager>();
+            UISCC = selectedCardControl.GetComponent<UISelectedCardControl>();
+            ACM = activeCardManagerGameObject.GetComponent<ActiveCardManager>();
+            PCM = passiveCardManagerGameObject.GetComponent<PassiveCardManager>();
             //SetActive for cards selected by the player
             foreach (GameObject obj in PlayerInfos.instance.SelectedActiveCard)
             {
@@ -69,7 +61,7 @@ namespace Game_Manager
             {
                 EndFight(false);
             };
-            currentFightName = gameObject.scene.name;
+            currentFightName = SceneManager.GetActiveScene().name;
             // ^ This get the next scene name for the next fight
         }
 
@@ -113,7 +105,7 @@ namespace Game_Manager
 
         public void NextFight()
         {
-            SceneManager.LoadScene(currentFightName + "1");
+            SceneManager.LoadScene(currentFightName + " 1");
         }
 
         public void Restart()

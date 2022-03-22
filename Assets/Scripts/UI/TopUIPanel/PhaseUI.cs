@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Logic_System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
-using UnityEngine.Localization.Tables;
 
-namespace UI
+namespace UI.TopUIPanel
 {
     public class PhaseUI : MonoBehaviour
     {

@@ -3,9 +3,9 @@ using AirFishLab.ScrollingList;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Utils
+namespace Utils.CircularList
 {
-    [Obsolete]
+    [Obsolete("FAILED EXPERIMENT, DO NOT USE THIS.",true)]
     [RequireComponent(typeof(CircularScrollingList))]
     public class CircularListAdapter : MonoBehaviour
     {

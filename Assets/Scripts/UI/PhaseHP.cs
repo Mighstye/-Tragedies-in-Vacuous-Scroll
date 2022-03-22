@@ -2,27 +2,17 @@
 using BossBehaviour;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 namespace UI
 {
-    public class PhaseHP : MonoBehaviour
+    public class PhaseHP : Singleton<PhaseHP>
     {
 
         [SerializeField] private float targetFillRate = 1;
         [SerializeField] private float delayedFillSpeed = 0.01f;
         
-       public static PhaseHP instance { get; private set; }
        private Image gauge;
-       private void Awake()
-       {
-           instance ??= this;
-           if (instance != this)
-           {
-               Destroy(gameObject);
-               return;
-           }
-           DontDestroyOnLoad(gameObject);
-       }
 
        private void Start()
        {

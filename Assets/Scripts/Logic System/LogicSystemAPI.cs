@@ -2,13 +2,13 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using Utils;
 
 namespace Logic_System
 {
-    public class LogicSystemAPI : MonoBehaviour
+    public class LogicSystemAPI : Singleton<LogicSystemAPI>
     {
-        public static LogicSystemAPI instance { get; private set; }
-        
+
         public Health health;
 
         public Spell spell;
@@ -18,15 +18,5 @@ namespace Logic_System
         public BattleOutcome battleOutcome;
 
         public RewardSystem rewardSystem;
-        private void Awake()
-        {
-            instance ??= this;
-            if (instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            DontDestroyOnLoad(gameObject);
-        }
     }
 }

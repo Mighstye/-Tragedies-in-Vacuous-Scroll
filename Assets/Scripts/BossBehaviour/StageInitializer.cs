@@ -1,30 +1,20 @@
 ﻿using System;
 using DialogueSystem;
 using UI;
+using UI.TopUIPanel;
 using UnityEngine;
+using Utils;
 
 namespace BossBehaviour
 {
-    public class StageInitializer : MonoBehaviour
+    public class StageInitializer : Singleton<StageInitializer>
     {
-        public static StageInitializer instance { get; private set; }
         [SerializeField]private BossBehaviourSystemProxy proxyRef;
         [SerializeField]private DialogueSystemManager dialogueSystemManagerRef;
         [SerializeField]private BossNameUI bossNameUIRef;
         [SerializeField]private BossSpellAnim bossSpellAnimRef;
         [SerializeField]private BossPhaseCountUI phaseCountUIRef;
         [SerializeField]private GameObject bossObjectRef;
-
-        private void Awake()
-        {
-            instance ??= this;
-            if (instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            DontDestroyOnLoad(gameObject);
-        }
 
         public void Init(BossAsset bossAsset, bool createNew = false)
         {

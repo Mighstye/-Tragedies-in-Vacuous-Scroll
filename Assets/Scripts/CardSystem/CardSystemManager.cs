@@ -2,16 +2,17 @@
 using Control;
 using Control.ActiveCardControl;
 using Control.ActiveCardControl.ControlTypes;
+using UI.SelectedCardHover;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using Utils;
 using Debug = UnityEngine.Debug;
 
 namespace CardSystem
 {
-    public class CardSystemManager : MonoBehaviour
+    public class CardSystemManager : Singleton<CardSystemManager>
     {
-        public static CardSystemManager instance { get; private set; }
         [SerializeField] public ActiveCardManager activeCardManager;
         [SerializeField] public PassiveCardManager passiveCardManager;
         [SerializeField] public UISelectedCardControl selectedCardHover;
@@ -19,18 +20,6 @@ namespace CardSystem
         public Action<ActiveCard> onSelectedCardChange;
 
         private bool isFirstFrame = true;
-
-
-        private void Awake()
-        {
-            instance ??= this;
-            if (instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            DontDestroyOnLoad(gameObject);
-        }
 
         private void Start()
         {

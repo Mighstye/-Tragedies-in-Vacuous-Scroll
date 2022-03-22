@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
 
-namespace UI
+namespace UI.TopUIPanel
 {
     public class BossNameUI : MonoBehaviour
     {

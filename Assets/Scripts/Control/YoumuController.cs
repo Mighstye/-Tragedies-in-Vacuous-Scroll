@@ -6,12 +6,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 using Logic_System;
+using Utils;
 
 namespace Control
 {
-    public class YoumuController : MonoBehaviour
+    public class YoumuController : Singleton<YoumuController>
     {
-        public static YoumuController instance { get; private set; }
         //Move related fields
         private Vector3 moveDirection;
         private float currentSpeed;
@@ -36,17 +36,6 @@ namespace Control
         public Action onInstantSpellCheck;
 
         private Health healthRef;
-
-        private void Awake()
-        {
-            instance ??= this;
-            if (instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            DontDestroyOnLoad(gameObject);
-        }
 
         private void Start()
         {

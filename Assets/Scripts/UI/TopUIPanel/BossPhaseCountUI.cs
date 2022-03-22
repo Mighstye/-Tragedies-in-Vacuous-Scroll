@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Ink.Parsed;
+﻿using System.Collections.Generic;
 using Logic_System;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace UI.TopUIPanel
 {
     [RequireComponent(typeof(GridLayoutGroup))]
     public class BossPhaseCountUI : MonoBehaviour

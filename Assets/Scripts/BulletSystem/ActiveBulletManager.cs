@@ -1,22 +1,12 @@
 ﻿using System;
 using Control;
 using UnityEngine;
+using Utils;
 
 namespace BulletSystem
 {
-    public class ActiveBulletManager : MonoBehaviour
+    public class ActiveBulletManager : Singleton<ActiveBulletManager>
     {
-        public static ActiveBulletManager instance { get; private set; }
-
-        private void Awake()
-        {
-            instance ??= this;
-            if (instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
-
         private void Start()
         {
             YoumuController.instance.onYoumuHit += Wipe;

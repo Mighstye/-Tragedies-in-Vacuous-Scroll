@@ -5,23 +5,13 @@ using CardSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Logic_System;
+using Utils;
 
-public class CheatEngine : MonoBehaviour
+public class CheatEngine : Singleton<CheatEngine>
 {
     private Health healthRef;
-    public static CheatEngine instance { get; private set; }
     [SerializeField] private ActiveCard sample;
-
-    private void Awake()
-    {
-        instance ??= this;
-        if (instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        DontDestroyOnLoad(gameObject);
-    }
+    
 
     private void Start()
     {

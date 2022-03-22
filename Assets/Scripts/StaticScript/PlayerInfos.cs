@@ -2,23 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CardSystem;
+using Utils;
 
 namespace PlayerInfosAPI
 {
-    public class PlayerInfos : MonoBehaviour
+    public class PlayerInfos : Singleton<PlayerInfos>
     {
         public List<GameObject> UnlockedActiveCard;
         public List<GameObject> UnlockedPassiveCard;
         public List<GameObject> SelectedActiveCard;
         public List<GameObject> SelectedPassiveCard;
         public CardList cardList;
-
-        public static PlayerInfos instance { get; private set; }
-
-        private void Awake()
-        {
-            instance = this;
-        }
 
         private void Start()
         {

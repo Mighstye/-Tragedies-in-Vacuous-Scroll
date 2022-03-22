@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 namespace BulletSystem
 {
@@ -9,16 +10,10 @@ namespace BulletSystem
     {
         [SerializeField] public bool canBeParried;
     }
-    public class BulletInfoRegistry:MonoBehaviour
+    public class BulletInfoRegistry: Singleton<BulletInfoRegistry>
     {
-        public static BulletInfoRegistry instance { get; private set; }
         private Dictionary<BulletTag, TagInfo> infoRegistry;
         [SerializeField] private DefaultBulletInfo defaultBulletInfo;
-        
-        private void Awake()
-        {
-            instance = this;
-        }
 
         private void Start()
         {

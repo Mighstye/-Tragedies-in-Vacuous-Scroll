@@ -3,12 +3,13 @@ using BulletSystem;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.VFX;
+using Utils;
 
 namespace VFX
 {
-    public class BulletDeathVFXPool : MonoBehaviour
+    public class BulletDeathVFXPool : Singleton<BulletDeathVFXPool>
     {
-        public static BulletDeathVFXPool instance { get; private set; }
+
         public int maxPoolSize;
 
         public BulletDeathVFX vfx;
@@ -37,17 +38,6 @@ namespace VFX
                     mPool = new LinkedPool<BulletDeathVFX>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, collectionChecks, maxPoolSize);
                 return mPool;
             }
-        }
-
-        private void Awake()
-        {
-            instance ??= this;
-            if (instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            DontDestroyOnLoad(gameObject);
         }
 
         private BulletDeathVFX CreatePooledItem()

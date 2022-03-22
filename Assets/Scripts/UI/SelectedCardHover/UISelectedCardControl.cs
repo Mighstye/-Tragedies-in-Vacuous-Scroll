@@ -1,8 +1,8 @@
-using System;
+using CardSystem;
 using Logic_System;
 using UnityEngine;
 
-namespace CardSystem
+namespace UI.SelectedCardHover
 {
     public class UISelectedCardControl : MonoBehaviour
     {

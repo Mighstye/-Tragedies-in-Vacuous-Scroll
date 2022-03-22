@@ -1,25 +1,12 @@
 ﻿using System;
 using UnityEngine;
+using Utils;
 
 namespace DialogueSystem
 {
-    public class DialogueAssetDatabase : MonoBehaviour
+    public class DialogueAssetDatabase : Singleton<DialogueAssetDatabase>
     {
-        public static DialogueAssetDatabase instance { get; private set; }
-
         public BubbleStyleSet bubbleStyleSet;
         public CharacterSpriteSetList characterSpriteSetList;
-        private void Awake()
-        {
-            instance ??= this;
-            if (instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            DontDestroyOnLoad(gameObject);
-        }
-        
-        
     }
 }

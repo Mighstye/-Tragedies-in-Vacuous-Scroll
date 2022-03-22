@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Logic_System;
 using UnityEngine;
 
-namespace UI
+namespace UI.TopUIPanel
 {
     public class TopPanelFade : MonoBehaviour
     {

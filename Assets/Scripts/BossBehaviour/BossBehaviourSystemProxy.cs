@@ -1,25 +1,11 @@
 ﻿using System;
 using UnityEngine;
+using Utils;
 
 namespace BossBehaviour
 {
-    public class BossBehaviourSystemProxy : MonoBehaviour
+    public class BossBehaviourSystemProxy : Singleton<BossBehaviourSystemProxy>
     {
-        public static BossBehaviourSystemProxy instance { get;private set; }
-
         public BossController bossController;
-        
-
-        public void Awake()
-        {
-            instance ??= this;
-            if (instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            DontDestroyOnLoad(gameObject);
-        }
-        
     }
 }

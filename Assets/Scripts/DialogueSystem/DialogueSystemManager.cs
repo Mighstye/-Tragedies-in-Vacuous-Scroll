@@ -10,6 +10,7 @@ using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Localization;
+using Utils;
 
 namespace DialogueSystem
 {
@@ -25,10 +26,9 @@ namespace DialogueSystem
         [SerializeField] public DialogueUIRole role;
         [SerializeField]public DialogueUI characterUI;
     }
-    public class DialogueSystemManager : MonoBehaviour
+    public class DialogueSystemManager : Singleton<DialogueSystemManager>
     {
         private ControlManager controlManagerRef;
-        public static DialogueSystemManager instance { get; private set; }
         [SerializeField] private TextAsset dialogueAsset;
         [SerializeField] private Animator bossPhaseFlow;
         [SerializeField] private List<DialogueUIItem> dialogueUIList;
@@ -39,15 +39,6 @@ namespace DialogueSystem
         private bool inChoice = false;
         private static readonly int PhaseFlowSelectedChoice = Animator.StringToHash("selectedChoice");
         public int selectedChoice { get; private set; }
-        private void Awake()
-        {
-            instance ??= this;
-            if (instance != this)
-            {
-                Destroy(gameObject);
-            }
-            DontDestroyOnLoad(gameObject);
-        }
 
         private void Start()
         {

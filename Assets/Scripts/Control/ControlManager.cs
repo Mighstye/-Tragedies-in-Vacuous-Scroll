@@ -3,23 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utils;
 
-public class ControlManager : MonoBehaviour
+public class ControlManager : Singleton<ControlManager>
 {
-    public static ControlManager instance { get; private set; }
     private PlayerInput playerInput;
-
-    private void Awake()
-    {
-        instance ??= this;
-        if (instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        DontDestroyOnLoad(gameObject);
-    }
-
+    
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
