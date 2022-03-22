@@ -1,5 +1,13 @@
 # 東方渡霊録～Tragedies in Vacuous Scroll
 
+## WORDS FROM THE DEVS ##
+
+This is a public project, so you may observe how we created the different systems (so, in short, a case for case study). You may study, reference, or directly use any code that is in the project but the code is not guarantied to work in all situations. This project contains several artistic resource (mostly placeholders, so, yeah), you may use them as long as it comes from this public repository. Note that this repository will not contain the final product, as we intend to protect any further artistic resource added to the project (better sprites, story script, music, pattern design, etc.), there will be a private fork of this project where we continue to add concrete content. 
+
+Though public, the code is initially not meant to be read by non devs, since we have a tight schedule. Therefore, the code is not commented. Some important systems might get commented when we refactor the architecture.
+
+The following sections of this readme are used as dev guides, we do not recommand reading them if you are completely new to Unity as it can be too confusing.
+
 ## CONTROL MAPPING ##
 
 Control rebinding is planned.
