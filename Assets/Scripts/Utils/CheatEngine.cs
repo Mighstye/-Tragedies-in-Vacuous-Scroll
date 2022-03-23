@@ -1,17 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using CardSystem;
+using Logic_System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Logic_System;
 using Utils;
 
 public class CheatEngine : Singleton<CheatEngine>
 {
-    private Health healthRef;
     [SerializeField] private ActiveCard sample;
-    
+    private Health healthRef;
+
 
     private void Start()
     {
@@ -28,6 +25,6 @@ public class CheatEngine : Singleton<CheatEngine>
     public void OnCheat2(InputAction.CallbackContext context)
     {
         if (context.phase is not InputActionPhase.Performed) return;
-       healthRef.GainHealth();
+        healthRef.GainHealth();
     }
 }

@@ -2480,7 +2480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardDetailUI: {fileID: 530067533}
   cardListBank: {fileID: 1973734577}
-  Menu: {fileID: 1817404312}
+  menu: {fileID: 1817404312}
   listBank: {fileID: 1973734577}
 --- !u!114 &503649548
 MonoBehaviour:
@@ -2577,6 +2577,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2643,12 +2644,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -20}
+  m_LocalPosition: {x: -0.06655298, y: 0.037561066, z: -18.792376}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Father: {fileID: 1931369220}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420034
 MonoBehaviour:
@@ -2683,6 +2684,18 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63d9ba6354274a1bb3c187dd187dfdaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &530067533 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 99757673172140461, guid: deb0da49e8b0a164ea17b82009e35a77, type: 3}
@@ -5348,7 +5361,7 @@ Transform:
   - {fileID: 1552837319}
   - {fileID: 235775626}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &810894702
 PrefabInstance:
@@ -8935,14 +8948,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186114444}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55.03, y: 0.06320133, z: 1017.13}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 54.963448, y: 0.1007624, z: 1018.33765}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3440599}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1931369220}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1199671068
 GameObject:
@@ -9746,13 +9759,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382683213}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.06655298, y: 0.037561066, z: 1.2076242}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1931369220}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1408765342 stripped
 MonoBehaviour:
@@ -11332,12 +11345,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656891146}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.06655298, y: 0.037561066, z: 1.2076242}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 1931369220}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1656891150
 MonoBehaviour:
@@ -12526,7 +12539,7 @@ MonoBehaviour:
     m_ActionName: Dialogue/DialogueContinue[/Keyboard/a]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 853927489}
         m_TargetAssemblyTypeName: Control.YoumuController, Assembly-CSharp
         m_MethodName: 
         m_Mode: 0
@@ -12542,9 +12555,9 @@ MonoBehaviour:
     m_ActionName: Dialogue/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1973734577}
-        m_TargetAssemblyTypeName: Utils.CircularCardListBank, Assembly-CSharp
-        m_MethodName: MoveItem
+      - m_Target: {fileID: 503649547}
+        m_TargetAssemblyTypeName: Utils.CardDetailManager, Assembly-CSharp
+        m_MethodName: MoveSelection
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12554,8 +12567,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 66e7d43f-c9bc-4a7f-a894-a783f0f84940
-    m_ActionName: Player/Move1[/Keyboard/r,/Keyboard/f,/Keyboard/d,/Keyboard/g]
+    m_ActionId: 0754ef2c-d978-424a-a1e8-4a4140cac2e1
+    m_ActionName: CardDropSelection/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 503649547}
@@ -12570,8 +12583,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 38badfe6-46c8-414f-baa3-9d45a8119c6e
-    m_ActionName: Player/conf[/Keyboard/t]
+    m_ActionId: 2ff11738-9380-41f7-8648-5fd408d16e0c
+    m_ActionName: CardDropSelection/DialogueContinue[/Keyboard/z]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -13693,6 +13706,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 519420032}
   - {fileID: 1546505897}
   - {fileID: 584193448}
   - {fileID: 1132130422}
@@ -13710,8 +13724,11 @@ Transform:
   - {fileID: 1908175034}
   - {fileID: 733737940}
   - {fileID: 1829414446}
+  - {fileID: 1656891149}
+  - {fileID: 1382683215}
+  - {fileID: 1186114448}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1931369221
 MonoBehaviour:
@@ -15417,7 +15434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3893763865739420669, guid: 3549ab6a5a5688d45b974298043c43bb, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3893763865739420669, guid: 3549ab6a5a5688d45b974298043c43bb, type: 3}
       propertyPath: m_LocalPosition.x

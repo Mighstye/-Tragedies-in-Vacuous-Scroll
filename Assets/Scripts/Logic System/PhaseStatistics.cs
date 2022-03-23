@@ -1,14 +1,11 @@
-﻿using UnityEditorInternal.Profiling.Memory.Experimental;
-using UnityEngine.Localization;
-
-namespace Logic_System
+﻿namespace Logic_System
 {
     public class PhaseStatistics
     {
-        public bool hit { get; private set; }=false;
-        public bool spellUse { get; private set; }=false;
-        public int encounterCount { get; private set; } = 0;
-        public int spellGetCount { get; private set; } = 0;
+        public bool hit { get; private set; }
+        public bool spellUse { get; private set; }
+        public int encounterCount { get; private set; }
+        public int spellGetCount { get; private set; }
 
         public void RecordSpellUse()
         {
@@ -35,7 +32,7 @@ namespace Logic_System
             return !(spellUse || hit);
         }
 
-        
+
         public override string ToString()
         {
             return "Hit=" + hit + "|Spell=" + spellUse + "|" + spellGetCount + "/" + encounterCount;

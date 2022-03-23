@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using AirFishLab.ScrollingList;
 using CardSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 namespace Utils
 {
     public class CircularCardListBank : BaseListBank
     {
-        [SerializeField]private List<Card> cards;
-        [SerializeField]private CircularScrollingList list;
+        [SerializeField] private List<Card> cards;
+        [SerializeField] private CircularScrollingList list;
         public Card selectedCard { get; private set; }
 
         private void OnEnable()
@@ -53,7 +51,7 @@ namespace Utils
         {
             return cards.Count;
         }
-        
+
 
         public void MoveOneUnitUp(InputAction.CallbackContext context)
         {
@@ -81,6 +79,5 @@ namespace Utils
                     break;
             }
         }
-        
     }
 }

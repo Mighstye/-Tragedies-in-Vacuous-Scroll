@@ -15,23 +15,21 @@ namespace UI
         Fade,
         Hide
     }
+
     public class DialogueUI : MonoBehaviour
     {
-        private BubbleStyleSet bubbleStyleSet;
-
-
         [SerializeField] private CharacterSpriteAnim characterSpriteAnim;
         [SerializeField] private GameObject dialogueUIRoot;
         [SerializeField] private TextMeshProUGUI characterLabel;
         [SerializeField] private Image dialogueBubble;
         [SerializeField] private TextMeshProUGUI dialogueContent;
         [SerializeField] private List<TextMeshProUGUI> choices;
-        private LocalizedString localizedCharacterName = new LocalizedString();
+        private BubbleStyleSet bubbleStyleSet;
+        private readonly LocalizedString localizedCharacterName = new();
 
         private void Start()
         {
             bubbleStyleSet = DialogueAssetDatabase.instance.bubbleStyleSet;
-            
         }
 
         private IEnumerator InitChoices(IReadOnlyList<Choice> currentChoices)
@@ -41,13 +39,11 @@ namespace UI
             {
                 choices[i].transform.parent.gameObject.SetActive(true);
                 choices[i].text = currentChoices[i].text.Split("::")[1];
-
             }
+
             //Disable unused choice UI
             for (var i = currentChoices.Count; i < choices.Count; i++)
-            {
                 choices[i].transform.parent.gameObject.SetActive(false);
-            }
 
             if (currentChoices.Count <= 0) yield break;
             //Sets the default selected choice
@@ -59,34 +55,34 @@ namespace UI
         public void UpdateUI(DialogueItem dialogueItem)
         {
             if (dialogueItem.tags.ContainsKey("hideName"))
-            {
                 characterLabel.text = "??????";
-            }else StartCoroutine(LocalizeCharacterName(dialogueItem.character));
+            else StartCoroutine(LocalizeCharacterName(dialogueItem.character));
             dialogueContent.text = dialogueItem.line;
-            
+
             var emotion = dialogueItem.tags.ContainsKey("emotion") ? dialogueItem.tags["emotion"] : null;
             dialogueBubble.sprite = bubbleStyleSet.GetSpriteByEmotion(emotion);
-            characterSpriteAnim.SetSprite(dialogueItem.character,emotion);
+            characterSpriteAnim.SetSprite(dialogueItem.character, emotion);
             StartCoroutine(InitChoices(dialogueItem.choices));
         }
-        
+
         private IEnumerator LocalizeCharacterName(string key)
         {
             localizedCharacterName.TableReference = "Character Names";
             localizedCharacterName.TableEntryReference = key;
             var localizedString = localizedCharacterName.GetLocalizedStringAsync();
             yield return localizedString;
-            if(localizedString.IsDone)characterLabel.text=localizedString.Result;
+            if (localizedString.IsDone) characterLabel.text = localizedString.Result;
         }
 
         public void Show()
         {
             bubbleStyleSet ??= DialogueAssetDatabase.instance.bubbleStyleSet;
-            transform.SetSiblingIndex(transform.parent.childCount-1); //Put this item on top of other dialogue UI
+            transform.SetSiblingIndex(transform.parent.childCount - 1); //Put this item on top of other dialogue UI
             dialogueUIRoot.SetActive(true);
             characterSpriteAnim.gameObject.SetActive(true);
             characterSpriteAnim.Restore();
         }
+
         public void Hide(HideStyle style)
         {
             dialogueUIRoot.SetActive(false);

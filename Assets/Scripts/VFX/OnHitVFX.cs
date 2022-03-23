@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using Control;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -7,15 +6,15 @@ using UnityEngine.Rendering.Universal;
 
 public class OnHitVFX : MonoBehaviour
 {
-    private ColorAdjustments colorAdjustments;
     public float effectInLength = 1;
     public float effectKeepLength = 2;
     public float effectOutLength = 1;
+    private ColorAdjustments colorAdjustments;
 
     private void Start()
     {
         var volume = GetComponent<Volume>();
-        volume.profile.TryGet<ColorAdjustments>(out colorAdjustments);
+        volume.profile.TryGet(out colorAdjustments);
         YoumuController.instance.onYoumuHit += () => { StartCoroutine(ApplyEffect()); };
     }
 
@@ -24,7 +23,7 @@ public class OnHitVFX : MonoBehaviour
     {
         while (colorAdjustments.saturation.value > -100f)
         {
-            colorAdjustments.saturation.value -= 100/effectInLength*Time.deltaTime;
+            colorAdjustments.saturation.value -= 100 / effectInLength * Time.deltaTime;
             yield return null;
         }
 
@@ -37,7 +36,7 @@ public class OnHitVFX : MonoBehaviour
 
         while (colorAdjustments.saturation.value < 0)
         {
-            colorAdjustments.saturation.value += 100/effectOutLength*Time.deltaTime;
+            colorAdjustments.saturation.value += 100 / effectOutLength * Time.deltaTime;
             yield return null;
         }
     }

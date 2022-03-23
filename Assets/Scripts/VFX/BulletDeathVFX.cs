@@ -6,11 +6,11 @@ namespace VFX
 {
     public class BulletDeathVFX : MonoBehaviour
     {
-        private VisualEffect vfx;
-
-        private float delay = 1f;
+        private readonly float delay = 1f;
         private float delayTimer;
         public Action onEffectEnd;
+        private VisualEffect vfx;
+
         private void Start()
         {
             vfx = GetComponent<VisualEffect>();
@@ -23,16 +23,14 @@ namespace VFX
                 delayTimer -= Time.deltaTime;
                 return;
             }
+
             if (vfx.aliveParticleCount > 0) return;
             onEffectEnd?.Invoke();
         }
 
         private void OnEnable()
         {
-            if (vfx == null)
-            {
-                vfx = GetComponent<VisualEffect>();
-            }
+            if (vfx == null) vfx = GetComponent<VisualEffect>();
 
             delayTimer = delay;
             vfx.Play();

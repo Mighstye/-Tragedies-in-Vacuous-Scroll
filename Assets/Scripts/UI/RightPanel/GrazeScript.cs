@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using Control;
+using Logic_System;
 using UnityEngine;
 using UnityEngine.UI;
-using Logic_System;
-using Control;
 
 public class GrazeScript : MonoBehaviour
 {
@@ -12,7 +10,7 @@ public class GrazeScript : MonoBehaviour
     private Graze grazeRef;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         grazeRef = LogicSystemAPI.instance.graze;
 
@@ -22,14 +20,14 @@ public class GrazeScript : MonoBehaviour
         grazeRef.onNeedGrazeRefresh += RefreshDisplay;
     }
 
+    // Update is called once per frame
+    private void Update()
+    {
+        gameObject.transform.position = YoumuController.instance.transform.position;
+    }
+
     private void RefreshDisplay()
     {
         graze.fillAmount = (float)grazeRef.get() / 100;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        gameObject.transform.position = YoumuController.instance.transform.position;
     }
 }

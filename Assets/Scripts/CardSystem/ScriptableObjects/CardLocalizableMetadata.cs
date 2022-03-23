@@ -2,7 +2,6 @@
 
 namespace CardSystem
 {
-
     [CreateAssetMenu(fileName = "CardLocMeta", menuName = "CardLocMeta", order = 0)]
     public class CardLocalizableMetadata : ScriptableObject
     {

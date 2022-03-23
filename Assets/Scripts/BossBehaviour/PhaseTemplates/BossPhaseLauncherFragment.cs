@@ -1,29 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using BulletSystem;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.WSA;
 
 namespace BossBehaviour
 {
-    public abstract class BossPhaseLauncherFragment: BossPhaseFragment
+    public abstract class BossPhaseLauncherFragment : BossPhaseFragment
     {
-        private LauncherIndex launcherIndex;
+        private static readonly int End = Animator.StringToHash("fragmentEndLauncher");
         [SerializeField] private List<int> launcherIndexNumbers;
         [SerializeField] private bool disableLaunchersOnExit = true;
-        
-        private static readonly int End = Animator.StringToHash("fragmentEndLauncher");
 
-        private bool fragmentEnd = false;
+        private bool fragmentEnd;
+        private LauncherIndex launcherIndex;
+
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             fragmentEnd = false;
             launcherIndex = animator.GetComponent<LauncherIndex>();
-            animator.SetBool(End,false);
-            foreach (var id in launcherIndexNumbers)
-            {
-                launcherIndex.launchers[id].gameObject.SetActive(true);
-            }
+            animator.SetBool(End, false);
+            foreach (var id in launcherIndexNumbers) launcherIndex.launchers[id].gameObject.SetActive(true);
+        }
+
+        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            if (!disableLaunchersOnExit) return;
+            foreach (var id in launcherIndexNumbers) launcherIndex.launchers[id].gameObject.SetActive(false);
         }
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -31,22 +31,12 @@ namespace BossBehaviour
             if (fragmentEnd) return;
             if (!FragmentEnd()) return;
             fragmentEnd = true;
-            animator.SetBool(End,true);
+            animator.SetBool(End, true);
         }
 
         protected virtual bool FragmentEnd()
         {
             return false;
         }
-        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        {
-            if (!disableLaunchersOnExit) return;
-            foreach (var id in launcherIndexNumbers)
-            {
-                launcherIndex.launchers[id].gameObject.SetActive(false);
-            }
-        }
-        
-        
     }
 }

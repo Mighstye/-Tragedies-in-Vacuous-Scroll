@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using BossBehaviour;
 using Control;
 using DG.Tweening;
@@ -8,9 +6,9 @@ using UnityEngine;
 public class move1 : BossPhaseMovementFragment
 {
     [SerializeField] private float speed = 3;
-    private Vector3 moveVector = Vector3.right;
     [SerializeField] private int halfPeriodCount = 5;
     [SerializeField] private int currentHalfPeriodCounter;
+    private Vector3 moveVector = Vector3.right;
 
     protected override void CustomFragmentStart()
     {
@@ -19,7 +17,6 @@ public class move1 : BossPhaseMovementFragment
 
     protected override void BossMovementUpdate()
     {
-        
         if (bossController.transform.position.x > FieldBoundaries.instance.right ||
             bossController.transform.position.x < FieldBoundaries.instance.left)
         {
@@ -27,8 +24,8 @@ public class move1 : BossPhaseMovementFragment
             position = new Vector3(
                 Mathf.Clamp(
                     position.x,
-                    FieldBoundaries.instance.left+0.1f,
-                    FieldBoundaries.instance.right-0.1f), position.y,
+                    FieldBoundaries.instance.left + 0.1f,
+                    FieldBoundaries.instance.right - 0.1f), position.y,
                 position.z);
             bossController.transform.position = position;
 
@@ -36,23 +33,22 @@ public class move1 : BossPhaseMovementFragment
             currentHalfPeriodCounter -= 1;
             bossController.animationLib.AnimationMove(moveVector.x);
         }
-        bossController.transform.position += Time.deltaTime * moveVector* speed;
-        
+
+        bossController.transform.position += Time.deltaTime * moveVector * speed;
     }
 
     protected override void BossTween(Sequence sequence)
     {
         var d = 1f;
-        sequence.
-            Append(bossController.transform.DOMoveX(FieldBoundaries.instance.left+1f,1).
-                OnStart(()=>bossController.animationLib.AnimationMove(-1)))
-            .Append(bossController.transform.DOMoveX(FieldBoundaries.instance.right-1f, 2)
-            .SetLoops(2,LoopType.Yoyo).OnStart(()=>bossController.animationLib.AnimationMove(1))
-            .OnStepComplete(() =>
-            {
-                d = -d;
-                bossController.animationLib.AnimationMove(d);
-            }));
+        sequence.Append(bossController.transform.DOMoveX(FieldBoundaries.instance.left + 1f, 1)
+                .OnStart(() => bossController.animationLib.AnimationMove(-1)))
+            .Append(bossController.transform.DOMoveX(FieldBoundaries.instance.right - 1f, 2)
+                .SetLoops(2, LoopType.Yoyo).OnStart(() => bossController.animationLib.AnimationMove(1))
+                .OnStepComplete(() =>
+                {
+                    d = -d;
+                    bossController.animationLib.AnimationMove(d);
+                }));
     }
 
     protected override bool FragmentEnd()
@@ -62,6 +58,5 @@ public class move1 : BossPhaseMovementFragment
 
     protected override void CustomFragmentEnd()
     {
-
     }
 }

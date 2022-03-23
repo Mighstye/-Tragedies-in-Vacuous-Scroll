@@ -1,5 +1,5 @@
-using UnityEngine;
 using BulletSystem;
+using UnityEngine;
 
 namespace BulletImplementation
 {
@@ -14,7 +14,7 @@ namespace BulletImplementation
         public float launchTime;
 
         public float shootFrequency;
-        private float shootTimer=0.0f;
+        private float shootTimer;
 
         protected override void AddBehaviors()
         {
@@ -29,7 +29,8 @@ namespace BulletImplementation
 
             for (var i = 0; i < bulletNb; i++)
             {
-                var launchVector = new Vector3(-Mathf.Cos(0.7f + i * (1.7f / (bulletNb - 1))), -Mathf.Sin(0.7f + i * (1.7f / (bulletNb - 1))), 0);
+                var launchVector = new Vector3(-Mathf.Cos(0.7f + i * (1.7f / (bulletNb - 1))),
+                    -Mathf.Sin(0.7f + i * (1.7f / (bulletNb - 1))), 0);
                 launchVector *= bulletSpeed;
 
                 var bullet = bulletPool.pool.Get();
@@ -42,7 +43,5 @@ namespace BulletImplementation
 
             return false;
         }
-
-
     }
 }

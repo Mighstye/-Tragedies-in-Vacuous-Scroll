@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DontDestroyPlayerInfo : MonoBehaviour
@@ -12,7 +10,9 @@ public class DontDestroyPlayerInfo : MonoBehaviour
         playerInfo = gameObject;
 
         if (instance != null && instance != this)
-            Destroy(this.gameObject);
+        {
+            Destroy(gameObject);
+        }
         else
         {
             instance = this;

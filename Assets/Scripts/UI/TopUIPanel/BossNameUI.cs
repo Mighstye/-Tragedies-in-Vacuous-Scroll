@@ -8,8 +8,8 @@ namespace UI.TopUIPanel
     public class BossNameUI : MonoBehaviour
     {
         [SerializeField] private LocalizedString localizedBossName;
-        private TextMeshProUGUI nameLabel;
         public string currentBossName = ""; //Test field
+        private TextMeshProUGUI nameLabel;
 
         private void Start()
         {
@@ -23,12 +23,12 @@ namespace UI.TopUIPanel
             localizedBossName.TableEntryReference = bossName;
             StartCoroutine(Localize());
         }
-        
+
         private IEnumerator Localize()
         {
             var localizedString = localizedBossName.GetLocalizedStringAsync();
             yield return localizedString;
-            if(localizedString.IsDone)nameLabel.text=localizedString.Result;
+            if (localizedString.IsDone) nameLabel.text = localizedString.Result;
         }
     }
 }

@@ -1,15 +1,15 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace DialogueSystem
 {
     public class ChoiceButton : MonoBehaviour
     {
+        [SerializeField] private int choiceID;
         private Button button;
 
         private DialogueSystemManager dialogueSystemManagerRef;
-        [SerializeField] private int choiceID;
+
         private void Start()
         {
             dialogueSystemManagerRef = DialogueSystemManager.instance;

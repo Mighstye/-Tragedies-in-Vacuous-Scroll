@@ -1,5 +1,5 @@
-using UnityEngine;
 using BulletSystem;
+using UnityEngine;
 
 namespace BulletImplementation
 {
@@ -8,7 +8,8 @@ namespace BulletImplementation
         public Vector3 launchVector;
 
         public int x;
-        private int frameCounter = 0;
+        private int frameCounter;
+
         protected override void AddBehaviors()
         {
             behaviors.Add(ShootEveryXFrames);
@@ -16,7 +17,7 @@ namespace BulletImplementation
 
         private bool ShootEveryXFrames()
         {
-            if(frameCounter == x)
+            if (frameCounter == x)
             {
                 var bullet = bulletPool.pool.Get();
                 ((ISimpleBullet)bullet).Launch(transform.position, launchVector);
@@ -25,12 +26,11 @@ namespace BulletImplementation
             }
             else
             {
-                frameCounter++; ;
+                frameCounter++;
+                ;
             }
 
             return false;
         }
-
-
     }
 }

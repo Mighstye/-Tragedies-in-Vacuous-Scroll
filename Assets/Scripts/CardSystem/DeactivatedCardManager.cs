@@ -4,6 +4,5 @@ namespace CardSystem
 {
     public class DeactivatedCardManager : MonoBehaviour
     {
-        
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace Utils.CircularList
 {
-    [Obsolete("FAILED EXPERIMENT, DO NOT USE THIS.",true)]
+    [Obsolete("FAILED EXPERIMENT, DO NOT USE THIS.", true)]
     [RequireComponent(typeof(CircularScrollingList))]
     public class CircularListAdapter : MonoBehaviour
     {

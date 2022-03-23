@@ -1,17 +1,17 @@
-using UnityEngine;
 using BulletSystem;
+using UnityEngine;
 
 namespace BulletImplementation
 {
     public class LaserLauncher1 : BulletLauncher
     {
         public float shootFrequency;
-        private float shootTimer = 0.0f;
 
         public float homingTime;
         public float transitionTime;
         public float laserTime;
         public float laserWidth;
+        private float shootTimer;
 
         protected override void AddBehaviors()
         {
@@ -36,7 +36,5 @@ namespace BulletImplementation
 
             return false;
         }
-
-
     }
 }

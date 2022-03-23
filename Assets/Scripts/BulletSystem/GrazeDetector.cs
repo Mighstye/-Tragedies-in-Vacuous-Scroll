@@ -1,6 +1,5 @@
-using System;
-using UnityEngine;
 using Logic_System;
+using UnityEngine;
 
 namespace BulletSystem
 {
@@ -15,7 +14,6 @@ namespace BulletSystem
 
         private void OnTriggerExit2D(Collider2D col)
         {
-            
             if (!col.gameObject.CompareTag("EnemyBullet")) return;
             var bullet = col.gameObject.GetComponent<Bullet>();
             if (bullet == null)
@@ -31,7 +29,7 @@ namespace BulletSystem
             {
                 ///Debug.Log("Bullet Entered Graze area.");
                 ///Debug.Log(Graze.instance.get());
-                
+
                 //TODO: Call graze VFX here
             }
 

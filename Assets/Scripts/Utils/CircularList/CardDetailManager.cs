@@ -1,39 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CardSystem;
 using Game_Manager;
 using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Utils
 {
     public class CardDetailManager : Singleton<CardDetailManager>
     {
+        private const string ActionMap = "CardDropSelection";
         [SerializeField] private CardDetailUI cardDetailUI;
         [SerializeField] private CircularCardListBank cardListBank;
-        [SerializeField] private GameObject Menu;
-
+        [SerializeField] private GameObject menu;
         [SerializeField] private CircularCardListBank listBank;
-        
+
         private UIManager uiManager;
 
 
         public void Start()
         {
-            this.gameObject.SetActive(true);
-            cardListBank.Init(new List<Card>(
-                GameManagerAPI.instance.rewards.Select(o=>o.GetComponent<Card>())));
-            uiManager = Menu.GetComponent<UIManager>();
+            gameObject.SetActive(true);
+            Init(new List<Card>(
+                GameManagerAPI.instance.rewards.Select(o => o.GetComponent<Card>())));
+            uiManager = menu.GetComponent<UIManager>();
         }
 
-        public void Init(List<Card> cards)
+        private void Init(List<Card> cards)
         {
+            ControlManager.instance.SwitchMap(ActionMap);
             cardListBank.Init(cards);
         }
 
-        public Card RetrieveSelectedCard()
+        private Card RetrieveSelectedCard()
         {
             return cardListBank.selectedCard;
         }
@@ -43,7 +44,13 @@ namespace Utils
             if (context.phase is not InputActionPhase.Performed) return;
             GameManagerAPI.instance.selectCard(RetrieveSelectedCard().gameObject);
             uiManager.Continue();
-            this.gameObject.SetActive(false);
+            ControlManager.instance.SwitchToPlayer();
+            gameObject.SetActive(false);
+        }
+
+        public void MoveSelection(InputAction.CallbackContext context)
+        {
+            listBank.MoveItem(context);
         }
     }
 }

@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using BulletSystem;
 using UnityEngine;
-using UnityEngine.XR.WSA;
 
 namespace BossBehaviour
 {
@@ -22,11 +20,7 @@ namespace BossBehaviour
 
         private void DisableAllLaunchers()
         {
-            foreach (var launcher in launchers)
-            {
-                launcher.gameObject.SetActive(false);
-            }
+            foreach (var launcher in launchers) launcher.gameObject.SetActive(false);
         }
     }
-    
 }

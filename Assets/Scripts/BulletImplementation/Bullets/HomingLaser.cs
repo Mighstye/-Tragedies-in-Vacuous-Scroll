@@ -1,33 +1,32 @@
 using System.Collections.Generic;
-using UnityEngine;
 using BulletSystem;
 using Control;
+using UnityEngine;
 
 namespace BulletImplementation
 {
     public class HomingLaser : Bullet, ISimpleLaser
     {
-        private Vector3 direction;
-
         public float homingTime;
-        private float homingTimer;
 
         public float transitionTime;
-        private float transitionTimer;
 
         public float laserTime;
-        private float laserTimer;
 
         public float laserWidth;
 
-        private Vector3 startPos;
+        public BulletLauncher launcher;
+        private EdgeCollider2D col;
+        private Vector3 direction;
         private Vector3 endPos;
+        private float homingTimer;
 
         private LineRenderer laserLine;
-        private EdgeCollider2D col;
+        private float laserTimer;
 
-        public BulletLauncher launcher;
-        
+        private Vector3 startPos;
+        private float transitionTimer;
+
 
         public void Launch()
         {
@@ -45,6 +44,7 @@ namespace BulletImplementation
             col = GetComponent<EdgeCollider2D>();
             col.enabled = false;
         }
+
         protected override void AddBehaviors()
         {
             behaviors.Add(HomingPhase);
@@ -56,10 +56,7 @@ namespace BulletImplementation
         {
             homingTimer -= Time.deltaTime;
 
-            if (homingTimer <= 0.0f)
-            {
-                return true;
-            }
+            if (homingTimer <= 0.0f) return true;
 
             var PlayerPos = YoumuController.instance.transform.position;
             startPos = launcher.transform.position;
@@ -67,18 +64,16 @@ namespace BulletImplementation
             var homingVector = (PlayerPos - startPos).normalized;
 
             endPos = PlayerPos;
-            while(FieldBoundaries.instance.left < PlayerPos.x && 
-                   PlayerPos.x < FieldBoundaries.instance.right||
-                  FieldBoundaries.instance.down < PlayerPos.y && 
-                  PlayerPos.y < FieldBoundaries.instance.up)
-            {
+            while (FieldBoundaries.instance.left < PlayerPos.x &&
+                   PlayerPos.x < FieldBoundaries.instance.right ||
+                   FieldBoundaries.instance.down < PlayerPos.y &&
+                   PlayerPos.y < FieldBoundaries.instance.up)
                 endPos += homingVector;
-            }
 
             laserLine.SetPosition(0, startPos);
             laserLine.SetPosition(1, endPos);
 
-            this.transform.position = startPos;
+            transform.position = startPos;
 
             return false;
         }
@@ -94,6 +89,7 @@ namespace BulletImplementation
                 grazeable = true;
                 return true;
             }
+
             return false;
         }
 
@@ -101,10 +97,7 @@ namespace BulletImplementation
         {
             laserTimer -= Time.deltaTime;
 
-            if (laserTimer <= 0.0f)
-            {
-                onBulletDeathNatural?.Invoke();
-            }
+            if (laserTimer <= 0.0f) onBulletDeathNatural?.Invoke();
 
             return false;
         }
@@ -120,12 +113,10 @@ namespace BulletImplementation
             //    colliderPoints.Add(new Vector2(point.x, point.y));
             //}
 
-            List<Vector2> colliderPoints = new List<Vector2>();
+            var colliderPoints = new List<Vector2>();
             colliderPoints.Add(new Vector2(0, 0));
             colliderPoints.Add(new Vector2(endPos.x - startPos.x, endPos.y - startPos.y));
             col.points = colliderPoints.ToArray();
         }
-
-
     }
 }

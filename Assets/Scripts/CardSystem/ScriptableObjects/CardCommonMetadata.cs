@@ -2,11 +2,13 @@
 using UnityEngine.Video;
 
 namespace CardSystem
-{    public enum CardType
+{
+    public enum CardType
     {
         Active,
         Passive
     }
+
     [CreateAssetMenu(fileName = "cardCommonMeta", menuName = "CardCommonMeta", order = 0)]
     public class CardCommonMetadata : ScriptableObject
     {

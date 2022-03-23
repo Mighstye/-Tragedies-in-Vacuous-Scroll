@@ -5,15 +5,15 @@ using UnityEngine.InputSystem;
 
 namespace Control.ActiveCardControl
 {
-    public class ActiveCardControlRebind: MonoBehaviour
+    public class ActiveCardControlRebind : MonoBehaviour
     {
-        [SerializeField]private InputActionAsset inputAsset;
         private const string LinkedActionMap = "Player";
         private const string LinkedAction = "TriggerActiveCard";
-        private PlayerInput playerInput;
         private const string TapString = "tap(duration={0})";
         private const string SlowTapString = "slowTap(duration={0})";
         private const string PreciseChargeString = "preciseCharge(pressDuration={0},releaseDuration={1})";
+        [SerializeField] private InputActionAsset inputAsset;
+        private PlayerInput playerInput;
 
 
         private void Start()
@@ -43,12 +43,14 @@ namespace Control.ActiveCardControl
                 if (stackCount > 0) interactionString += ",";
                 interactionString += ConstructSlowTapString(slowTappable);
             }
+
             ChangeParam(interactionString);
         }
+
         private void ChangeParam(string interactionString)
         {
-            inputAsset.FindActionMap(LinkedActionMap).FindAction(LinkedAction).
-                ApplyBindingOverride(new InputBinding{overrideInteractions = interactionString});
+            inputAsset.FindActionMap(LinkedActionMap).FindAction(LinkedAction)
+                .ApplyBindingOverride(new InputBinding { overrideInteractions = interactionString });
         }
 
         private static string ConstructTapString(ITappable tappable)
@@ -66,7 +68,5 @@ namespace Control.ActiveCardControl
         {
             return string.Format(SlowTapString, slowTappable.slowTapTime);
         }
-
     }
-    
 }

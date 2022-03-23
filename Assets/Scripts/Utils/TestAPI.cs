@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Utils
 {
+    [Obsolete]
     public class TestAPI : MonoBehaviour
     {
         public Card cardPrefab;
@@ -12,7 +13,7 @@ namespace Utils
         public CircularCardListBank circularList;
 
         public GameObject detailPanel;
-        
+
         private void Start()
         {
             for (var i = 0; i < 4; i++)
@@ -21,7 +22,7 @@ namespace Utils
                 c.gameObject.name = i.ToString();
                 cards.Add(c);
             }
-            
+
             detailPanel.SetActive(true);
             circularList.Init(cards);
         }

@@ -7,7 +7,7 @@ namespace UI.SelectedCardHover
     public class UISelectedCardControl : MonoBehaviour
     {
         [SerializeField] private CanvasGroup canvasGroup;
-        [SerializeField]private UISelectedCardHover cardImageLight;
+        [SerializeField] private UISelectedCardHover cardImageLight;
         [SerializeField] private UISelectedCardHover cardImageDark;
         [SerializeField] private CoolDownUI coolDownUI;
         private ActiveCard displayedCard;
@@ -16,10 +16,7 @@ namespace UI.SelectedCardHover
         private void Start()
         {
             grazeRef = LogicSystemAPI.instance.graze;
-            grazeRef.onNeedGrazeRefresh += () =>
-            {
-                cardImageLight.Charge(grazeRef.GetSegment());
-            };
+            grazeRef.onNeedGrazeRefresh += () => { cardImageLight.Charge(grazeRef.GetSegment()); };
         }
 
         private void OnTriggerEnter2D(Collider2D col)
@@ -41,6 +38,5 @@ namespace UI.SelectedCardHover
             cardImageLight.UpdateSelectedCard(activeCard);
             cardImageLight.Charge(grazeRef.GetSegment());
         }
-        
     }
 }

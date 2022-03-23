@@ -1,21 +1,20 @@
 using UnityEngine;
 using UnityEngine.Pool;
 using VFX;
-using System;
 
 namespace BulletSystem
 {
     public class BulletPool : MonoBehaviour
     {
-        public int maxPoolSize;
-
-        public Bullet bullet;
-
         public enum PoolType
         {
             Stack,
             LinkedList
         }
+
+        public int maxPoolSize;
+
+        public Bullet bullet;
 
         public PoolType poolType;
 
@@ -30,16 +29,18 @@ namespace BulletSystem
             {
                 if (mPool != null) return mPool;
                 if (poolType == PoolType.Stack)
-                    mPool = new ObjectPool<Bullet>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, collectionChecks, 10, maxPoolSize);
+                    mPool = new ObjectPool<Bullet>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool,
+                        OnDestroyPoolObject, collectionChecks, 10, maxPoolSize);
                 else
-                    mPool = new LinkedPool<Bullet>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, collectionChecks, maxPoolSize);
+                    mPool = new LinkedPool<Bullet>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool,
+                        OnDestroyPoolObject, collectionChecks, maxPoolSize);
                 return mPool;
             }
         }
 
         private Bullet CreatePooledItem()
         {
-            var b = Instantiate(bullet,transform);
+            var b = Instantiate(bullet, transform);
             b.onBulletDeathNatural += () =>
             {
                 b.grazeable = false;

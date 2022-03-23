@@ -1,21 +1,19 @@
-using System.Collections.Generic;
-using UnityEngine;
 using BulletSystem;
 using Control;
+using UnityEngine;
 
 namespace BulletImplementation
 {
     public class HomingBullet : Bullet, ISimpleBullet
     {
-        public Vector3 velocity { get; private set; }
-
         public float launchTime;
-        private float launchTimer;
 
         public float idleTime;
-        private float idleTimer;
-        
+
         private Vector3 homingVector;
+        private float idleTimer;
+        private float launchTimer;
+        public Vector3 velocity { get; private set; }
 
         public void Launch(Vector3 position, Vector3 startVelocity)
         {
@@ -25,6 +23,7 @@ namespace BulletImplementation
             transform.position = new Vector3(position.x, position.y, 0);
             velocity = startVelocity;
         }
+
         protected override void AddBehaviors()
         {
             behaviors.Add(StraightPropagate);
@@ -37,10 +36,7 @@ namespace BulletImplementation
         {
             launchTimer -= Time.deltaTime;
 
-            if(launchTimer <= 0.0f)
-            {
-                return true;
-            }
+            if (launchTimer <= 0.0f) return true;
             transform.position += velocity * Time.deltaTime;
             return false;
         }
@@ -55,8 +51,8 @@ namespace BulletImplementation
         private bool AimForPlayer()
         {
             var playerPos = YoumuController.instance.transform.position;
-            var bulletPos = this.transform.position;
-            var speed = velocity.magnitude*0.7f;
+            var bulletPos = transform.position;
+            var speed = velocity.magnitude * 0.7f;
 
             homingVector = (playerPos - bulletPos).normalized * speed;
 
@@ -68,6 +64,5 @@ namespace BulletImplementation
             transform.position += homingVector * Time.deltaTime;
             return false;
         }
-        
     }
 }

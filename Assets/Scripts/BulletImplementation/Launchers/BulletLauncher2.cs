@@ -1,21 +1,21 @@
-using UnityEngine;
 using BulletSystem;
+using UnityEngine;
 
 namespace BulletImplementation
 {
     public class BulletLauncher2 : BulletLauncher
     {
         public float shootFrequency;
-        private float shootTimer = 0.0f;
 
         public int bulletSpeed;
-        private float angle = 0;
         public float rotationangle;
         public float slideJump;
+        [SerializeField] private GameObject upperleft;
+        [SerializeField] private GameObject lowerright;
+        private float angle;
 
         private Vector3 initpos;
-        [SerializeField]private GameObject upperleft;
-        [SerializeField]private GameObject lowerright;
+        private float shootTimer;
 
         protected override void AddBehaviors()
         {
@@ -25,16 +25,14 @@ namespace BulletImplementation
         private Vector3 RotateVector(Vector3 vector3)
         {
             return new Vector3(vector3.x * Mathf.Cos(angle) - vector3.y * Mathf.Sin(angle),
-                    vector3.x * Mathf.Sin(angle) + vector3.y * Mathf.Cos(angle), vector3.z);
+                vector3.x * Mathf.Sin(angle) + vector3.y * Mathf.Cos(angle), vector3.z);
         }
 
         private Vector3 SlideTransform()
         {
-            if (transform.position.x + slideJump > lowerright.transform.position.x || 
+            if (transform.position.x + slideJump > lowerright.transform.position.x ||
                 transform.position.x + slideJump < upperleft.transform.position.x)
-            {
                 slideJump = -slideJump;
-            }
 
             var transform1 = transform;
             var position = transform1.position;
@@ -45,12 +43,12 @@ namespace BulletImplementation
         {
             shootTimer -= Time.deltaTime;
 
-            Vector3 north = new Vector3(0,1,0) * bulletSpeed;
-            Vector3 east = new Vector3(1,0,0) * bulletSpeed;
-            Vector3 south = new Vector3(0,-1,0) * bulletSpeed;
-            Vector3 west = new Vector3(-1,0,0) * bulletSpeed;
+            var north = new Vector3(0, 1, 0) * bulletSpeed;
+            var east = new Vector3(1, 0, 0) * bulletSpeed;
+            var south = new Vector3(0, -1, 0) * bulletSpeed;
+            var west = new Vector3(-1, 0, 0) * bulletSpeed;
 
-            if(shootTimer <= 0.0f)
+            if (shootTimer <= 0.0f)
             {
                 var bulletN = bulletPool.pool.Get();
                 var bulletE = bulletPool.pool.Get();
@@ -68,14 +66,14 @@ namespace BulletImplementation
                 ((ISimpleBullet)bulletS).Launch(position, south);
                 ((ISimpleBullet)bulletW).Launch(position, west);
 
-                angle += rotationangle % (2*Mathf.PI);
-                
+                angle += rotationangle % (2 * Mathf.PI);
+
                 //position = SlideTransform();
                 //transform.position = position;
 
                 shootTimer = shootFrequency;
             }
-            
+
             return false;
         }
     }

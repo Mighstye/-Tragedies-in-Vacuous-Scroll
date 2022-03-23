@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 using Utils;
 
 namespace BulletSystem
@@ -14,6 +12,7 @@ namespace BulletSystem
         [SerializeField] public string key;
         [SerializeField] public BulletPool pool;
     }
+
     public class ConstantPoolList : Singleton<ConstantPoolList>
     {
         [SerializeField] private List<ConstantPoolListItem> pools;

@@ -10,11 +10,13 @@ namespace UI
         public GameObject gameOverObject;
         public GameObject winObject;
         public GameObject rewardCardMenu;
-        bool paused;
-        bool gameFinished = false;
+        private bool gameFinished;
         private GameManagerAPI gameManagerAPI;
+
+        private bool paused;
+
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
             DisableAllMenu();
             gameManagerAPI = GameManagerAPI.instance;
@@ -46,43 +48,52 @@ namespace UI
 
         public void BackToMenu()
         {
-            if(paused) { UnPause(); }
+            if (paused)
+            {
+                UnPause();
+            }
             else
             {
                 Time.timeScale = 1.0f;
                 DisableAllMenu();
             }
+
             GameManagerAPI.MainMenu();
         }
 
         public void Continue()
         {
-            if (paused) { UnPause(); }
+            if (paused)
+            {
+                UnPause();
+            }
             else
             {
                 Time.timeScale = 1.0f;
                 DisableAllMenu();
             }
+
             gameManagerAPI.NextFight();
         }
 
         public void Restart()
         {
-            if (paused) { UnPause(); }
+            if (paused)
+            {
+                UnPause();
+            }
             else
             {
                 Time.timeScale = 1.0f;
                 DisableAllMenu();
             }
+
             gameManagerAPI.Restart();
         }
 
         private void DisableAllMenu()
         {
-            foreach(Transform child in gameObject.transform)
-            {
-                child.gameObject.SetActive(false);
-            }
+            foreach (Transform child in gameObject.transform) child.gameObject.SetActive(false);
         }
 
         public void WinContinueButton()

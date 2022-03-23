@@ -1,29 +1,26 @@
-using System;
 using System.Collections;
-using CardSystem;
-using UnityEngine;
-using UnityEngine.InputSystem;
-using Control.ActiveCardControl.ControlTypes;
 using System.Collections.Generic;
 using System.Linq;
 using BulletImplementation;
 using BulletSystem;
-using Utils;
+using CardSystem;
 using Control;
+using Control.ActiveCardControl.ControlTypes;
 using UnityEditor;
-using Game_Manager;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using Utils;
 
 namespace ActiveCardImplementation
 {
     public class ArcParry : ActiveCard, ITappable
     {
-        public float tapTime { get; set; }
+        private const string PoolKey = "Standard_Parry";
         [SerializeField] public int angle;
         private BulletPool bulletParriedPool;
-        private MultiPurposeCollider utilCollider;
         private List<Bullet> bullets;
+        private MultiPurposeCollider utilCollider;
         private Transform youmuTransform;
-        private const string PoolKey = "Standard_Parry";
 
         private void Start()
         {
@@ -33,6 +30,15 @@ namespace ActiveCardImplementation
             bulletParriedPool = ConstantPoolList.instance.GetPool(PoolKey);
         }
 
+        private void OnDrawGizmos()
+        {
+            if (!EditorApplication.isPlaying) return;
+            Handles.DrawWireArc(YoumuController.instance.transform.position, Vector3.forward,
+                Quaternion.AngleAxis(-angle, Vector3.forward) * Vector3.up, angle * 2, 2f, 0.2f);
+        }
+
+        public float tapTime { get; set; }
+
         public void OnTapPerformed(InputAction.CallbackContext context)
         {
             if (UseCard()) StartCoroutine(Parry());
@@ -40,7 +46,6 @@ namespace ActiveCardImplementation
 
         public void OnTapCancelled(InputAction.CallbackContext context)
         {
-            return;
         }
 
         private IEnumerator Parry()
@@ -49,32 +54,29 @@ namespace ActiveCardImplementation
             youmuTransform = YoumuController.instance.transform;
             yield return new WaitForSeconds(0.01f);
             bullets = new List<Bullet>(utilCollider.Get());
-            foreach (var bul in from bul in bullets 
+            foreach (var bul in from bul in bullets
                      let angleBetween = Vector2.Angle(Vector2.up,
-                         bul.transform.position-youmuTransform.position) where angleBetween <= angle && 
-                                                                bul.transform.position.y > youmuTransform.position.y select bul)
+                         bul.transform.position - youmuTransform.position)
+                     where angleBetween <= angle &&
+                           bul.transform.position.y > youmuTransform.position.y
+                     select bul)
             {
                 ParryBullet(bul);
                 bul.InvokeBulletParry();
             }
+
             utilCollider.ClearList();
             utilCollider.gameObject.SetActive(false);
         }
 
         private void ParryBullet(Bullet bullet)
         {
-            if (bullet.bulletTags.Any(bulletTag => !BulletInfoRegistry.instance.GetInfo(bulletTag).canBeParried)) return;
+            if (bullet.bulletTags.Any(bulletTag => !BulletInfoRegistry.instance.GetInfo(bulletTag).canBeParried))
+                return;
             var position = bullet.transform.position;
             bullet.InvokeBulletDeath();
             var counterBullet = bulletParriedPool.pool.Get();
             ((StandardStraightParry)counterBullet).Launch(position, Vector3.zero);
-        }
-
-        private void OnDrawGizmos()
-        {
-            if (!EditorApplication.isPlaying) return;
-            Handles.DrawWireArc(YoumuController.instance.transform.position,Vector3.forward,
-                Quaternion.AngleAxis(-angle,Vector3.forward)*Vector3.up,angle*2,2f,0.2f);
         }
     }
 }

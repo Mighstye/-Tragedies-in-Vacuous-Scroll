@@ -13,13 +13,13 @@ namespace CardSystem
     [Serializable]
     public class ActiveCardManager : MonoBehaviour
     {
-        internal Action onSelectedCardChangeInternal;
-        private Dictionary<PoolType, List<ActiveCard>> labeledPools;
         [SerializeField] private Transform cardContainer;
         public ActiveCard selectedCard;
         private PoolType currentActivatedPoolType = PoolType.Normal;
+        private Dictionary<PoolType, List<ActiveCard>> labeledPools;
+        internal Action onSelectedCardChangeInternal;
         private int selectedCardIndex;
-        
+
 
         private void Start()
         {
@@ -33,23 +33,15 @@ namespace CardSystem
         {
             labeledPools ??= new Dictionary<PoolType, List<ActiveCard>>();
             foreach (PoolType poolType in Enum.GetValues(typeof(PoolType)))
-            {
                 if (!labeledPools.ContainsKey(poolType))
-                {
-                    labeledPools.Add(poolType,new List<ActiveCard>());
-                }
-            }
-            
+                    labeledPools.Add(poolType, new List<ActiveCard>());
         }
 
         public void Add(ActiveCard activeCard, PoolType poolType = PoolType.Normal)
         {
             labeledPools[poolType].Add(activeCard);
-            activeCard.gameObject.transform.SetParent(cardContainer,worldPositionStays:false) ;
-            if (selectedCard is null)
-            {
-                SelectNext();
-            }
+            activeCard.gameObject.transform.SetParent(cardContainer, false);
+            if (selectedCard is null) SelectNext();
         }
 
         public void Remove(ActiveCard activeCard, PoolType poolType = PoolType.Normal)
@@ -64,13 +56,10 @@ namespace CardSystem
 
         public void SetActiveStateAll(bool state, PoolType poolType = PoolType.Normal)
         {
-            foreach (var card in labeledPools[poolType])
-            {
-                card.gameObject.SetActive(state);
-            }
+            foreach (var card in labeledPools[poolType]) card.gameObject.SetActive(state);
         }
 
-        public void Arrange(PoolType poolType=PoolType.Normal)
+        public void Arrange(PoolType poolType = PoolType.Normal)
         {
             var index = 0;
             foreach (var card in labeledPools[poolType])
@@ -83,10 +72,7 @@ namespace CardSystem
         public void SwapActivePool(PoolType poolType)
         {
             currentActivatedPoolType = poolType;
-            foreach (var pool in labeledPools.Keys)
-            {
-                SetActiveStateAll(pool==poolType,pool);
-            }
+            foreach (var pool in labeledPools.Keys) SetActiveStateAll(pool == poolType, pool);
 
             selectedCardIndex = 0;
             selectedCard = labeledPools[currentActivatedPoolType][selectedCardIndex];
@@ -103,23 +89,15 @@ namespace CardSystem
         }
 
         public void RunTest()
-        { 
+        {
             //TODO: following code is for testing, delete the fragment afterwards
-            if (labeledPools is null)
-            {
-                InitializeDict();
-            }
+            if (labeledPools is null) InitializeDict();
             var cards = cardContainer.gameObject.GetComponentsInChildren<ActiveCard>();
-            foreach (var card in cards)
-            {
-                labeledPools[PoolType.Normal].Add(card);
-            }
+            foreach (var card in cards) labeledPools[PoolType.Normal].Add(card);
             if (labeledPools[PoolType.Normal].Count <= 0) return;
             selectedCardIndex = 0;
             selectedCard = labeledPools[PoolType.Normal][selectedCardIndex];
             Debug.Log(selectedCard.gameObject.name);
         }
-        
-        
     }
 }

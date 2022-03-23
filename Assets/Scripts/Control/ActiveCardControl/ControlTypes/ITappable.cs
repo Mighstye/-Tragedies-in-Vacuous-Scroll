@@ -2,7 +2,7 @@
 
 namespace Control.ActiveCardControl.ControlTypes
 {
-    public interface ITappable: IControlType
+    public interface ITappable : IControlType
     {
         float tapTime { get; set; }
         void OnTapPerformed(InputAction.CallbackContext context);

@@ -14,7 +14,7 @@ namespace UI
         [SerializeField] private TextMeshProUGUI effectTextField;
         [SerializeField] private TextMeshProUGUI loreTextField;
 
-        
+
         public void OnListCenteredContentChanged(int centeredContentID)
         {
             var content = (Card)scrollingList.listBank.GetListContent(centeredContentID);

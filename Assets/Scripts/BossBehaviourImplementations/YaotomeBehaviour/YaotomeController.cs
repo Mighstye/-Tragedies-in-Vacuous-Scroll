@@ -2,7 +2,7 @@
 
 namespace YaotomeBehaviour
 {
-    public class YaotomeController: BossController
+    public class YaotomeController : BossController
     {
         protected override void AssignAnimationLib()
         {

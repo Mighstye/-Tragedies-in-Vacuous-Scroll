@@ -17,6 +17,5 @@ namespace BossBehaviour
             int layerIndex)
         {
         }
-
     }
 }

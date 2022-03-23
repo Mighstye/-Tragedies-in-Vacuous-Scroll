@@ -9,23 +9,20 @@ namespace UI.TopUIPanel
     public class BossPhaseCountUI : MonoBehaviour
     {
         [SerializeField] private int testPhaseCount;
-        private BattleOutcome battleOutcomeRef;
-        
+
         [SerializeField] private GameObject bossPhaseIconPrefab;
+
+        [SerializeField] private int phasePointer;
+        private BattleOutcome battleOutcomeRef;
 
         private List<GameObject> icons;
 
-        [SerializeField]private int phasePointer;
-        
-        
+
         private void Start()
         {
             Init(testPhaseCount);
             battleOutcomeRef = LogicSystemAPI.instance.battleOutcome;
-            battleOutcomeRef.onPhaseStart += (s,phaseStatistics)=>
-            {
-                ConsumePhase(s);
-            };
+            battleOutcomeRef.onPhaseStart += (s, phaseStatistics) => { ConsumePhase(s); };
         }
 
         public void Init(int bossPhaseCount)
@@ -33,18 +30,13 @@ namespace UI.TopUIPanel
             icons ??= new List<GameObject>();
             phasePointer = bossPhaseCount - 1;
             if (icons.Count < bossPhaseCount)
-            {
                 for (var i = icons.Count; i < bossPhaseCount; i++)
                 {
-                    var icon = Instantiate(bossPhaseIconPrefab, this.transform);
+                    var icon = Instantiate(bossPhaseIconPrefab, transform);
                     icons.Add(icon);
                 }
-            }
 
-            for (var i = 0; i <= phasePointer; i++)
-            {
-                icons[i].SetActive(true);
-            }
+            for (var i = 0; i <= phasePointer; i++) icons[i].SetActive(true);
         }
 
         private void ConsumePhase(string phaseName)
@@ -54,6 +46,5 @@ namespace UI.TopUIPanel
             phasePointer--;
             icons[phasePointer].SetActive(false);
         }
-        
     }
 }

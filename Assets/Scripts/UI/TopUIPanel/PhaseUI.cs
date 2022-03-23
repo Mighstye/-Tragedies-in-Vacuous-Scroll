@@ -8,7 +8,6 @@ namespace UI.TopUIPanel
 {
     public class PhaseUI : MonoBehaviour
     {
-        
         [SerializeField] private BattleOutcome battleOutcomeRef;
         [SerializeField] private TextMeshProUGUI phaseNameText;
         [SerializeField] private TextMeshProUGUI historyText;
@@ -29,6 +28,7 @@ namespace UI.TopUIPanel
                 SetEmpty();
                 return;
             }
+
             localizedPhaseName.TableEntryReference = phaseName;
             StartCoroutine(Localize());
             historyText.text = statistics.spellGetCount + "/" + statistics.encounterCount;
@@ -49,7 +49,7 @@ namespace UI.TopUIPanel
         {
             var localizedString = localizedPhaseName.GetLocalizedStringAsync();
             yield return localizedString;
-            if(localizedString.IsDone)UpdatePhaseName(localizedString.Result);
+            if (localizedString.IsDone) UpdatePhaseName(localizedString.Result);
         }
     }
 }

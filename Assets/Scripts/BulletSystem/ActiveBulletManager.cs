@@ -1,6 +1,4 @@
-﻿using System;
-using Control;
-using UnityEngine;
+﻿using Control;
 using Utils;
 
 namespace BulletSystem

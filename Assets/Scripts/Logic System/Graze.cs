@@ -1,17 +1,14 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Logic_System
 {
     public class Graze : MonoBehaviour
     {
-        private int graze = 0;
-
         public int defaultGrazeGain;
         public int grazeSegments;
         public int maxGraze;
+        private int graze;
 
         public Action onNeedGrazeRefresh { get; set; }
 
@@ -22,15 +19,12 @@ namespace Logic_System
 
         public float GetSegment()
         {
-            return (graze / (maxGraze / (float)grazeSegments));
+            return graze / (maxGraze / (float)grazeSegments);
         }
-        
+
         public bool AddGraze(int g)
         {
-            if (graze == maxGraze)
-            {
-                return false;
-            }
+            if (graze == maxGraze) return false;
 
             if (graze + g > maxGraze)
             {
@@ -43,18 +37,16 @@ namespace Logic_System
             onNeedGrazeRefresh?.Invoke();
             return true;
         }
+
         public bool AddGraze()
         {
             return AddGraze(defaultGrazeGain);
         }
-        
+
         public bool UseGraze(int nbSegments = 1)
         {
-            var g = (maxGraze / grazeSegments) * nbSegments;
-            if (graze - g < 0)
-            {
-                return false;
-            }
+            var g = maxGraze / grazeSegments * nbSegments;
+            if (graze - g < 0) return false;
 
             graze -= g;
             onNeedGrazeRefresh?.Invoke();

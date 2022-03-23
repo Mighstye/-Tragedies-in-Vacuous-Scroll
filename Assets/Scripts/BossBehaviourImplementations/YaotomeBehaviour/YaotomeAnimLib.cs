@@ -9,12 +9,11 @@ namespace YaotomeBehaviour
 
         public override void AnimationMove(float direction)
         {
-            animator.SetFloat(Direction,direction);
+            animator.SetFloat(Direction, direction);
         }
 
         public override void AnimationAttack()
         {
-            
         }
     }
 }

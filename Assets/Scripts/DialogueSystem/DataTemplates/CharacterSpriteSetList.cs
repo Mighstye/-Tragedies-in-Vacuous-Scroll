@@ -11,6 +11,7 @@ namespace DialogueSystem
         [SerializeField] public string characterID;
         [SerializeField] public CharacterSpriteSet spriteSet;
     }
+
     [CreateAssetMenu(fileName = "CharacterSpriteSetList", menuName = "CharacterSpriteSetList", order = 1)]
     public class CharacterSpriteSetList : ScriptableObject
     {

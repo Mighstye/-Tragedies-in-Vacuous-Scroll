@@ -1,19 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using Game_Manager;
 using PlayerInfosAPI;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class CardButtonScript : MonoBehaviour
 {
     public bool toggled;
-    private Image image;
     public GameObject associatedGameObject;
     public Color32 activatedColor;
     public Color32 deactivatedColor;
     private TextMeshProUGUI buttonText;
+    private Image image;
 
     public void Start()
     {
@@ -29,7 +27,7 @@ public class CardButtonScript : MonoBehaviour
 
     public void OnClick()
     {
-        if(!toggled)
+        if (!toggled)
         {
             image.color = activatedColor;
             GameManagerAPI.instance.selectCard(associatedGameObject);
@@ -39,6 +37,7 @@ public class CardButtonScript : MonoBehaviour
             image.color = deactivatedColor;
             GameManagerAPI.instance.unSelectCard(associatedGameObject);
         }
+
         toggled = !toggled;
     }
 }

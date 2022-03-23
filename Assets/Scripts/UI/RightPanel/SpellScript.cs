@@ -16,27 +16,21 @@ namespace UI
             spellRef = LogicSystemAPI.instance.spell;
 
             var i = 0;
-            foreach(var spellUI in gameObject.GetComponentsInChildren<Image>())
+            foreach (var spellUI in gameObject.GetComponentsInChildren<Image>())
             {
                 spells[i] = spellUI;
                 i++;
             }
+
             spellRef.onNeedSpellRefresh += RefreshDisplay;
             RefreshDisplay();
         }
 
         private void RefreshDisplay()
         {
-            for(var i = spellRef.currentSpellAmount; i<spells.Length; i++)
-            {
-                spells[i].enabled = false;
-            }
+            for (var i = spellRef.currentSpellAmount; i < spells.Length; i++) spells[i].enabled = false;
 
-            for (var i = 0; i < spellRef?.currentSpellAmount; i++)
-            {
-                spells[i].enabled = true;
-            }
+            for (var i = 0; i < spellRef?.currentSpellAmount; i++) spells[i].enabled = true;
         }
-
     }
 }

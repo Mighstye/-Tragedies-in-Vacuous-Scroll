@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace CardSystem
 {
     public class PassiveCardManager : MonoBehaviour
     {
-        public List<PassiveCard> currentPassiveCards { get; private set; }
         [SerializeField] private Transform cardContainer;
+        public List<PassiveCard> currentPassiveCards { get; private set; }
 
         private void Start()
         {

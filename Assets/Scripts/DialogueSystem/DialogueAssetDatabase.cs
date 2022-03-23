@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using Utils;
+﻿using Utils;
 
 namespace DialogueSystem
 {

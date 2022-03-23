@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Game_Manager;
+using UnityEngine;
 
 public class phase3 : BossPhase // Only to create Win Menu ect... To be deleted
 {

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using CardSystem;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +15,7 @@ public class SelectedCardHover : MonoBehaviour
     {
         if (!col.gameObject.CompareTag("GrazeBox")) return;
         var color = cardImage.color;
-        color=new Color(color.r,color.g,color.b,0.1f);
+        color = new Color(color.r, color.g, color.b, 0.1f);
         cardImage.color = color;
     }
 
@@ -26,7 +23,7 @@ public class SelectedCardHover : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("GrazeBox")) return;
         var color = cardImage.color;
-        color=new Color(color.r,color.g,color.b,1.0f);
+        color = new Color(color.r, color.g, color.b, 1.0f);
         cardImage.color = color;
     }
 
@@ -34,5 +31,4 @@ public class SelectedCardHover : MonoBehaviour
     {
         cardImage.sprite = activeCard.gameObject.GetComponent<Image>().sprite;
     }
-
 }

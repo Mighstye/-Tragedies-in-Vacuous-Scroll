@@ -8,11 +8,11 @@ namespace DialogueSystem
     [Serializable]
     public struct CharacterSpriteSetItem
     {
-        [SerializeField]public string emotion;
-        [SerializeField]public Sprite sprite;
+        [SerializeField] public string emotion;
+        [SerializeField] public Sprite sprite;
     }
 
-    
+
     [CreateAssetMenu(fileName = "CharacterSpriteSet", menuName = "CharacterSpriteSet", order = 0)]
     public class CharacterSpriteSet : ScriptableObject
     {

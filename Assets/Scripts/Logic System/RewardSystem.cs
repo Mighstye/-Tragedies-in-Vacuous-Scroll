@@ -1,18 +1,16 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
 
 namespace Logic_System
 {
     public class RewardSystem : MonoBehaviour
     {
-        private BattleOutcome stats;
-
         public CardDropDeck dropTable;
 
         public GameObject bonusCardNoSpell;
         public GameObject bonusCardNoHit;
+        private BattleOutcome stats;
 
         private void Start()
         {
@@ -21,7 +19,7 @@ namespace Logic_System
 
         public List<GameObject> getReward()
         {
-            var random = new System.Random();
+            var random = new Random();
             var reward1 = dropTable.dropDeck[random.Next(dropTable.dropDeck.Count)];
             var reward2 = dropTable.dropDeck[random.Next(dropTable.dropDeck.Count)];
             var rewards = new List<GameObject>
@@ -29,13 +27,11 @@ namespace Logic_System
                 reward1,
                 reward2
             };
-            bool hit = false;
-            bool spell = false;
-            foreach(KeyValuePair<string, PhaseStatistics> entry in stats.GetAllStatistics())
-            {
-                if (entry.Value.hit == true) hit = true;
-                else if (entry.Value.spellUse == true) spell = true;
-            }
+            var hit = false;
+            var spell = false;
+            foreach (var entry in stats.GetAllStatistics())
+                if (entry.Value.hit) hit = true;
+                else if (entry.Value.spellUse) spell = true;
             if (!hit) rewards.Add(bonusCardNoHit);
             if (!spell) rewards.Add(bonusCardNoSpell);
             return rewards;

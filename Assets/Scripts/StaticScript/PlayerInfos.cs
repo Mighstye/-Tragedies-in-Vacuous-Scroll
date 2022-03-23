@@ -1,7 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using CardSystem;
+using UnityEngine;
 using Utils;
 
 namespace PlayerInfosAPI
@@ -27,9 +26,11 @@ namespace PlayerInfosAPI
         public void unlockC(GameObject c)
         {
             if (c.GetComponent<ActiveCard>() != null)
-                if (!UnlockedActiveCard.Contains(c)) UnlockedActiveCard.Add(c);
+                if (!UnlockedActiveCard.Contains(c))
+                    UnlockedActiveCard.Add(c);
             if (c.GetComponent<PassiveCard>() != null)
-                if (!UnlockedPassiveCard.Contains(c)) UnlockedPassiveCard.Add(c);
+                if (!UnlockedPassiveCard.Contains(c))
+                    UnlockedPassiveCard.Add(c);
         }
 
         public void lockC(GameObject c)
@@ -43,9 +44,11 @@ namespace PlayerInfosAPI
         public void select(GameObject c)
         {
             if (c.GetComponent<ActiveCard>() != null)
-                if (!SelectedActiveCard.Contains(c)) SelectedActiveCard.Add(c);
+                if (!SelectedActiveCard.Contains(c))
+                    SelectedActiveCard.Add(c);
             if (c.GetComponent<PassiveCard>() != null)
-                if (!SelectedPassiveCard.Contains(c)) SelectedPassiveCard.Add(c);
+                if (!SelectedPassiveCard.Contains(c))
+                    SelectedPassiveCard.Add(c);
         }
 
         public void unselect(GameObject c)

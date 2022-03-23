@@ -1,24 +1,21 @@
-﻿using UnityEngine;
-using UnityEngine.InputSystem;
-using Control.ActiveCardControl.ControlTypes;
+﻿using System.Collections;
 using Logic_System;
-using System.Collections;
+using UnityEngine;
 
 namespace CardSystem
 {
-    public abstract class ActiveCard: Card
+    public abstract class ActiveCard : Card
     {
         public int grazeCostSegment = 1; //DEFAULT VALUE
 
         public float coolDownTime = 3; //DEFAULT VALUE
 
-        public bool coolDown { get; private set; } = false;
+        public float coolDownProgress;
 
-        private float coolDownCounter=0;
+        private float coolDownCounter;
 
-        public float coolDownProgress=0;
-        
-        
+        public bool coolDown { get; private set; }
+
 
         protected bool UseCard()
         {
@@ -38,6 +35,7 @@ namespace CardSystem
                 coolDownProgress = coolDownCounter / coolDownTime;
                 yield return null;
             }
+
             coolDownProgress = 0;
             coolDown = false;
         }

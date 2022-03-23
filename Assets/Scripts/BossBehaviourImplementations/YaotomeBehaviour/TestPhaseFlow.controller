@@ -172,7 +172,7 @@ MonoBehaviour:
   phaseName: Yaotome_P1
   phaseEndType: 0
   phaseType: 0
-  phaseDuration: 30
+  phaseDuration: 2
   phaseHp: 20
 --- !u!1101 &-2566002460355238231
 AnimatorStateTransition:
@@ -233,7 +233,7 @@ MonoBehaviour:
   phaseName: Yaotome_FP
   phaseEndType: 0
   phaseType: 0
-  phaseDuration: 5
+  phaseDuration: 2
   phaseHp: 100
 --- !u!1102 &-538762338028282964
 AnimatorState:

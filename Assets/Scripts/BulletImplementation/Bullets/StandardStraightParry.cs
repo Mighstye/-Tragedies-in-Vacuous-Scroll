@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using BossBehaviour;
-using UnityEngine;
 using BulletSystem;
+using UnityEngine;
 
 namespace BulletImplementation
 {
-    public class StandardStraightParry: Bullet, ISimpleParry
+    public class StandardStraightParry : Bullet, ISimpleParry
     {
+        public float speed = 2;
         private Vector3 direction { get; set; }
-        public float speed=2;
+
         public int damage
         {
             get => 1;
@@ -19,14 +19,15 @@ namespace BulletImplementation
                 damage = value;
             }
         }
-        
 
-        public void Launch(Vector3 position,Vector3 startVelocity)
+
+        public void Launch(Vector3 position, Vector3 startVelocity)
         {
             ResetBullet();
-            transform.position = new Vector3(position.x,position.y,0);
+            transform.position = new Vector3(position.x, position.y, 0);
             direction = startVelocity;
         }
+
         protected override void AddBehaviors()
         {
             behaviors.Add(StraightPropagate);
@@ -41,8 +42,5 @@ namespace BulletImplementation
             transform1.position = position;
             return false;
         }
-
-
-        
     }
 }

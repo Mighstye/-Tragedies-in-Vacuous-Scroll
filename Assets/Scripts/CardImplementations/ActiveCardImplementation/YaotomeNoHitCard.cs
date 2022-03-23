@@ -1,20 +1,12 @@
 using CardSystem;
+using Control.ActiveCardControl.ControlTypes;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Control.ActiveCardControl.ControlTypes;
-using System.Collections.Generic;
-using System.Linq;
-using BulletImplementation;
-using BulletSystem;
-using Utils;
-using Control;
-using System;
 
 namespace ActiveCardImplementation
 {
     public class YaotomeNoHitCard : ActiveCard, ITappable
     {
-        public float tapTime { get; set; }
         public float slowTapTime { get; set; }
         public float pressDuration { get; set; }
         public float releaseDuration { get; set; }
@@ -28,14 +20,15 @@ namespace ActiveCardImplementation
             releaseDuration = 2;
         }
 
+        public float tapTime { get; set; }
+
         public void OnTapPerformed(InputAction.CallbackContext context)
         {
-            if (UseCard() == true) Use();
+            if (UseCard()) Use();
         }
 
         public void OnTapCancelled(InputAction.CallbackContext context)
         {
-            return;
         }
 
         private static void Use()

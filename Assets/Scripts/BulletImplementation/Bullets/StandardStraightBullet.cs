@@ -1,22 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using BulletSystem;
 using UnityEngine;
-using BulletSystem;
-using DG.Tweening;
-using Ink.Parsed;
 
 namespace BulletImplementation
 {
-    public class StandardStraightBullet: Bullet, ISimpleBullet
+    public class StandardStraightBullet : Bullet, ISimpleBullet
     {
         public Vector3 velocity { get; private set; }
-        
 
-        public void Launch(Vector3 position,Vector3 startVelocity)
+
+        public void Launch(Vector3 position, Vector3 startVelocity)
         {
             ResetBullet();
-            transform.position = new Vector3(position.x,position.y,0);
+            transform.position = new Vector3(position.x, position.y, 0);
             velocity = startVelocity;
         }
+
         protected override void AddBehaviors()
         {
             behaviors.Add(StraightPropagate);
@@ -27,8 +25,5 @@ namespace BulletImplementation
             transform.position += velocity * Time.deltaTime;
             return false;
         }
-        
-        
-        
     }
 }

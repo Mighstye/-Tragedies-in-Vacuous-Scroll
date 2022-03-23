@@ -1,30 +1,27 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using BulletSystem;
+using UnityEngine;
 
 namespace Utils
 {
+    [Obsolete]
     public class MultiPurposeCollider : Singleton<MultiPurposeCollider>
     {
+        protected List<Bullet> bullets = new();
         public new Collider2D collider { get; private set; }
-        protected List<Bullet> bullets = new List<Bullet>();
-        
+
         private void Start()
         {
             collider = gameObject.GetComponent<Collider2D>();
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (!collision.gameObject.CompareTag("EnemyBullet")) return;
             var bullet = collision.gameObject.GetComponent<Bullet>();
-            if (bullet != null)
-            {
-                bullets.Add(bullet);
-            }
+            if (bullet != null) bullets.Add(bullet);
         }
 
         /*

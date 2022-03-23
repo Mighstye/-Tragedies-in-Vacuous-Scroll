@@ -1,7 +1,6 @@
 ﻿namespace CardSystem
 {
-    public class PassiveCard: Card
+    public class PassiveCard : Card
     {
-
     }
 }

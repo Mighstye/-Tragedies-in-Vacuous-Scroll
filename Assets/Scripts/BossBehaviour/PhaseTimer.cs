@@ -5,41 +5,29 @@ namespace BossBehaviour
 {
     public class PhaseTimer : MonoBehaviour
     {
-        public static PhaseTimer instance { get; private set; }
-        public Action onPhaseTimeoutReached;
+        [SerializeField] public float currentPhaseTimeout;
+        [SerializeField] public float phaseTimer;
 
         //Display Action
         public Action onNeedTimeoutRefreshDisplay;
         public Action onNeedTimerRefreshDisplay;
         public Action onPhaseEndDisplay;
+        public Action onPhaseTimeoutReached;
+
+        private bool timeoutReached;
+        public static PhaseTimer instance { get; private set; }
 
         public string phaseName { get; set; }
-        [SerializeField] public float currentPhaseTimeout;
-        [SerializeField] public float phaseTimer;
 
-        private bool timeoutReached ;
         private void Awake()
         {
             instance ??= this;
-            if (instance != this)
-            {
-                Destroy(gameObject);
-            }
+            if (instance != this) Destroy(gameObject);
         }
 
         private void Start()
         {
             timeoutReached = true;
-        }
-
-        public void SetUpTimer(float timeout, string pName="Unnamed Phase")
-        {
-            currentPhaseTimeout = timeout;
-            phaseTimer = timeout;
-            phaseName = pName;
-            timeoutReached = false;
-            onNeedTimeoutRefreshDisplay?.Invoke();
-            onNeedTimerRefreshDisplay?.Invoke();
         }
 
         private void Update()
@@ -51,6 +39,16 @@ namespace BossBehaviour
             onPhaseTimeoutReached?.Invoke();
             onPhaseEndDisplay?.Invoke();
             timeoutReached = true;
+        }
+
+        public void SetUpTimer(float timeout, string pName = "Unnamed Phase")
+        {
+            currentPhaseTimeout = timeout;
+            phaseTimer = timeout;
+            phaseName = pName;
+            timeoutReached = false;
+            onNeedTimeoutRefreshDisplay?.Invoke();
+            onNeedTimerRefreshDisplay?.Invoke();
         }
     }
 }

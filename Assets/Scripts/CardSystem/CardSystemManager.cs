@@ -1,13 +1,11 @@
 ﻿using System;
 using Control;
-using Control.ActiveCardControl;
 using Control.ActiveCardControl.ControlTypes;
 using UI.SelectedCardHover;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 using Utils;
-using Debug = UnityEngine.Debug;
 
 namespace CardSystem
 {
@@ -16,22 +14,18 @@ namespace CardSystem
         [SerializeField] public ActiveCardManager activeCardManager;
         [SerializeField] public PassiveCardManager passiveCardManager;
         [SerializeField] public UISelectedCardControl selectedCardHover;
-        
-        public Action<ActiveCard> onSelectedCardChange;
 
         private bool isFirstFrame = true;
+
+        public Action<ActiveCard> onSelectedCardChange;
 
         private void Start()
         {
             activeCardManager.RunTest(); //TODO: This is for test => Delete
             if (activeCardManager.selectedCard == null)
-            {
                 selectedCardHover.gameObject.SetActive(false);
-            }
             else
-            {
                 selectedCardHover.UpdateSelectedCard(activeCardManager.selectedCard);
-            }
             activeCardManager.onSelectedCardChangeInternal += RefreshHover;
         }
 
@@ -56,6 +50,7 @@ namespace CardSystem
                 selectedCardHover.gameObject.SetActive(false);
                 return;
             }
+
             selectedCardHover.gameObject.SetActive(true);
             selectedCardHover.UpdateSelectedCard(activeCardManager.selectedCard);
             onSelectedCardChange?.Invoke(activeCardManager.selectedCard);
@@ -90,7 +85,6 @@ namespace CardSystem
                 case InputActionPhase.Started when context.interaction is SlowTapInteraction:
                     (activeCard as ISlowTappable)?.OnSlowTapStarted(context);
                     break;
-
             }
         }
     }

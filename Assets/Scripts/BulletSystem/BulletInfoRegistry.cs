@@ -10,18 +10,16 @@ namespace BulletSystem
     {
         [SerializeField] public bool canBeParried;
     }
-    public class BulletInfoRegistry: Singleton<BulletInfoRegistry>
+
+    public class BulletInfoRegistry : Singleton<BulletInfoRegistry>
     {
-        private Dictionary<BulletTag, TagInfo> infoRegistry;
         [SerializeField] private DefaultBulletInfo defaultBulletInfo;
+        private Dictionary<BulletTag, TagInfo> infoRegistry;
 
         private void Start()
         {
             infoRegistry = new Dictionary<BulletTag, TagInfo>();
-            foreach (var item in defaultBulletInfo.defaultInfoItems)
-            {
-                infoRegistry.Add(item.tag,item.info);
-            }
+            foreach (var item in defaultBulletInfo.defaultInfoItems) infoRegistry.Add(item.tag, item.info);
         }
 
         public TagInfo GetInfo(BulletTag bulletTag)

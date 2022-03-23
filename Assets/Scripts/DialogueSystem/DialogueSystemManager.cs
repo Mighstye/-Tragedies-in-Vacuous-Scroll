@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 using System.Linq;
 using BossBehaviour;
 using Ink.Runtime;
-using TMPro;
 using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,44 +17,44 @@ namespace DialogueSystem
         Protagonist,
         Antagonist
     }
+
     [Serializable]
     public class DialogueUIItem
     {
-        [SerializeField]public string characterID;
+        [SerializeField] public string characterID;
         [SerializeField] public DialogueUIRole role;
-        [SerializeField]public DialogueUI characterUI;
+        [SerializeField] public DialogueUI characterUI;
     }
+
     public class DialogueSystemManager : Singleton<DialogueSystemManager>
     {
-        private ControlManager controlManagerRef;
+        private const string ActionMap = "Dialogue";
+        private static readonly int PhaseFlowSelectedChoice = Animator.StringToHash("selectedChoice");
         [SerializeField] private TextAsset dialogueAsset;
         [SerializeField] private Animator bossPhaseFlow;
         [SerializeField] private List<DialogueUIItem> dialogueUIList;
-        private LocalizedAsset<TextAsset> localizedAsset;
+        private ControlManager controlManagerRef;
+        private DialogueItem currentDialogueItem = new();
+        private bool inChoice;
+        private bool inDialogue;
         private Story inkStory;
-        private DialogueItem currentDialogueItem = new DialogueItem();
-        private bool inDialogue = false;
-        private bool inChoice = false;
-        private static readonly int PhaseFlowSelectedChoice = Animator.StringToHash("selectedChoice");
+        private LocalizedAsset<TextAsset> localizedAsset;
         public int selectedChoice { get; private set; }
 
         private void Start()
         {
             controlManagerRef = ControlManager.instance;
-            foreach (var ui in dialogueUIList)
-            {
-                ui.characterUI.Hide(HideStyle.Hide);
-            }
+            foreach (var ui in dialogueUIList) ui.characterUI.Hide(HideStyle.Hide);
         }
 
         public void Init(LocalizedAsset<TextAsset> asset)
         {
             inDialogue = true;
             localizedAsset = asset;
-            controlManagerRef.SwitchToDialogue();
+            controlManagerRef.SwitchMap(ActionMap);
             StartCoroutine(InitLocalizedStory());
         }
-        
+
         private IEnumerator InitLocalizedStory()
         {
             var localized = localizedAsset.LoadAssetAsync();
@@ -71,18 +69,19 @@ namespace DialogueSystem
         {
             inDialogue = false;
             inChoice = false;
-            bossPhaseFlow.SetInteger(PhaseFlowSelectedChoice,selectedChoice);
+            bossPhaseFlow.SetInteger(PhaseFlowSelectedChoice, selectedChoice);
             controlManagerRef.SwitchToPlayer();
         }
 
         public void OnDialogueContinue(InputAction.CallbackContext context)
         {
-            if (inChoice||context.phase is not InputActionPhase.Performed) return;
+            if (inChoice || context.phase is not InputActionPhase.Performed) return;
             if (inkStory is null)
             {
                 Debug.LogWarning("Ink story is null.");
                 return;
             }
+
             ContinueDialogue();
         }
 
@@ -99,16 +98,12 @@ namespace DialogueSystem
             //Disable all ui panels if dialogue end is reached
             if (end)
             {
-                foreach (var ui in dialogueUIList)
-                {
-                    ui.characterUI.Hide(HideStyle.Hide);
-                }
+                foreach (var ui in dialogueUIList) ui.characterUI.Hide(HideStyle.Hide);
                 return;
             }
 
             var hideStyle = currentDialogueItem.tags.ContainsKey("solo") ? HideStyle.Hide : HideStyle.Fade;
             foreach (var ui in dialogueUIList)
-            {
                 if (ui.characterID == currentDialogueItem.character)
                 {
                     ui.characterUI.Show();
@@ -118,23 +113,21 @@ namespace DialogueSystem
                 {
                     ui.characterUI.Hide(hideStyle);
                 }
-            }
         }
 
         private void UpdateCurrentDialogueLine()
         {
             var rawLine = inkStory.Continue().Split("::");
-            currentDialogueItem.character = rawLine[0].Replace(" ",""); 
-            currentDialogueItem.line = rawLine[1]; 
+            currentDialogueItem.character = rawLine[0].Replace(" ", "");
+            currentDialogueItem.line = rawLine[1];
             currentDialogueItem.tags = new Dictionary<string, string>();
             foreach (var parsedTag in inkStory.currentTags.Select(inkTag => inkTag.Split(":")))
-            {
                 currentDialogueItem.tags.Add(parsedTag[0], parsedTag.Length == 2 ? parsedTag[1] : null);
-            }
             currentDialogueItem.choices = new List<Choice>();
         }
 
-        private void ContinueDialogue() {
+        private void ContinueDialogue()
+        {
             if (inkStory.canContinue)
             {
                 UpdateCurrentDialogueLine();
@@ -143,7 +136,7 @@ namespace DialogueSystem
             {
                 if (inkStory.currentChoices.Count <= 0)
                 {
-                    inDialogue=false;
+                    inDialogue = false;
                 }
                 else
                 {
@@ -156,11 +149,9 @@ namespace DialogueSystem
                 currentDialogueItem = null;
                 inDialogue = false;
             }
-            UpdateUI(end:!inDialogue);
-            if (!inDialogue)
-            {
-                Exit();
-            }
+
+            UpdateUI(!inDialogue);
+            if (!inDialogue) Exit();
         }
 
         public void AssignUI(BossAsset bossAsset)
@@ -172,7 +163,5 @@ namespace DialogueSystem
                 return;
             }
         }
-        
-        
     }
 }

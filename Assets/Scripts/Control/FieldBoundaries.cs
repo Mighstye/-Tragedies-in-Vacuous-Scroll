@@ -4,27 +4,28 @@ using Utils;
 namespace Control
 {
     /// <summary>
-    /// Class <c>FieldBoundaries</c> will read the positions of the boundaries based on
-    /// the <c>transform.position</c> of 2 <c>GameObjects</c> on class load.
-    /// The two <c>GameObjects</c> should define the <c>Upper Left</c> corner and
-    /// <c>Lower Right</c> corner of the movement field.</summary>
+    ///     Class <c>FieldBoundaries</c> will read the positions of the boundaries based on
+    ///     the <c>transform.position</c> of 2 <c>GameObjects</c> on class load.
+    ///     The two <c>GameObjects</c> should define the <c>Upper Left</c> corner and
+    ///     <c>Lower Right</c> corner of the movement field.
+    /// </summary>
     /// <remarks>This class is a Singleton.</remarks>
     /// <remarks>Will display the boundaries when Gizmos is activated</remarks>
     public class FieldBoundaries : Singleton<FieldBoundaries>
     {
-        
-        public float left { get; private set; }
-        public float right { get; private set; }
-        public float up { get; private set; }
-        public float down { get; private set; }
-        
-        public Vector3 hitRecoveryStartPos { get; private set; }
-        
-        public Vector3 hitRecoveryEndPos { get; private set; }
         [SerializeField] private GameObject upperLeft;
         [SerializeField] private GameObject lowerRight;
         [SerializeField] private GameObject hitRecoveryStartPosition;
         [SerializeField] private GameObject hitRecoveryEndPosition;
+
+        public float left { get; private set; }
+        public float right { get; private set; }
+        public float up { get; private set; }
+        public float down { get; private set; }
+
+        public Vector3 hitRecoveryStartPos { get; private set; }
+
+        public Vector3 hitRecoveryEndPos { get; private set; }
 
         protected override void Awake()
         {
@@ -50,10 +51,10 @@ namespace Control
             var dl = new Vector3(left, down, 0);
             var dr = new Vector3(right, down, 0);
             Gizmos.color = Color.green;
-            Gizmos.DrawLine(ul,ur);
-            Gizmos.DrawLine(ul,dl);
-            Gizmos.DrawLine(ur,dr);
-            Gizmos.DrawLine(dl,dr);
+            Gizmos.DrawLine(ul, ur);
+            Gizmos.DrawLine(ul, dl);
+            Gizmos.DrawLine(ur, dr);
+            Gizmos.DrawLine(dl, dr);
         }
     }
 }

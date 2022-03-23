@@ -8,13 +8,14 @@ namespace DialogueSystem
     [Serializable]
     public struct BubbleStyleSetItem
     {
-        [SerializeField]public string emotion;
-        [SerializeField]public Sprite sprite;
+        [SerializeField] public string emotion;
+        [SerializeField] public Sprite sprite;
     }
+
     [CreateAssetMenu(fileName = "BubbleStyleSet", menuName = "BubbleStyleSet", order = 0)]
     public class BubbleStyleSet : ScriptableObject
     {
-        public List<BubbleStyleSetItem> items = new List<BubbleStyleSetItem>();
+        public List<BubbleStyleSetItem> items = new();
 
         public Sprite GetSpriteByEmotion(string emotion)
         {
@@ -22,6 +23,4 @@ namespace DialogueSystem
             return items.Where(item => item.emotion == emotion).Select(item => item.sprite).FirstOrDefault();
         }
     }
-    
-    
 }

@@ -1,13 +1,12 @@
-﻿using System;
-using BossBehaviour;
+﻿using BossBehaviour;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI
 {
     public class BossTracker : MonoBehaviour
     {
         private BossController bossControllerRef;
+
         private void Start()
         {
             bossControllerRef = BossBehaviourSystemProxy.instance.bossController;

@@ -1,5 +1,4 @@
-﻿using System;
-using DialogueSystem;
+﻿using DialogueSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,12 +6,12 @@ namespace UI
 {
     public class CharacterSpriteAnim : MonoBehaviour
     {
-        private CharacterSpriteSetList characterSpriteSetList;
-        private bool faded = false;
         [SerializeField] private string fadeAnimName;
         [SerializeField] private string restoreAnimName;
         private Animation anim;
         private Image characterSprite;
+        private CharacterSpriteSetList characterSpriteSetList;
+        private bool faded;
 
         private void Start()
         {
@@ -21,7 +20,7 @@ namespace UI
             characterSprite ??= GetComponent<Image>();
         }
 
-        public void SetSprite(string characterID,string emotion)
+        public void SetSprite(string characterID, string emotion)
         {
             characterSpriteSetList ??= DialogueAssetDatabase.instance.characterSpriteSetList;
             anim ??= GetComponent<Animation>();

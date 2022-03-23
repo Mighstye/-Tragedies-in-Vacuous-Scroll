@@ -1,16 +1,16 @@
-﻿using System;
-using Logic_System;
+﻿using Logic_System;
 using UnityEngine;
 
 namespace UI
 {
     public class BossSpellAnim : MonoBehaviour
     {
-        [SerializeField]private Sprite bossSprite;
-        
+        [SerializeField] private Sprite bossSprite;
+
         private Animation anim;
 
         private BattleOutcome battleOutcomeRef;
+
         private void Start()
         {
             anim = GetComponent<Animation>();
@@ -26,8 +26,5 @@ namespace UI
         {
             bossSprite = sprite;
         }
-        
-        
-        
     }
 }

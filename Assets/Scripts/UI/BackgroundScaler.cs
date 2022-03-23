@@ -1,19 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 [ExecuteInEditMode]
 public class BackgroundScaler : MonoBehaviour
 {
-
-    Image backgroundImage;
-    RectTransform rt;
-    float ratio;
+    private Image backgroundImage;
+    private float ratio;
+    private RectTransform rt;
 
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         backgroundImage = GetComponent<Image>();
         rt = backgroundImage.rectTransform;
@@ -21,18 +18,14 @@ public class BackgroundScaler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (!rt)
             return;
 
-        if(Screen.height * ratio >= Screen.width)
-        {
+        if (Screen.height * ratio >= Screen.width)
             rt.sizeDelta = new Vector2(Screen.height * ratio, Screen.height);
-        }
         else
-        {
             rt.sizeDelta = new Vector2(Screen.width, Screen.width / ratio);
-        }
     }
 }

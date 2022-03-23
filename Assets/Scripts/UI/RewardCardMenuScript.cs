@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using Game_Manager;
-using UnityEngine.UI;
-using TMPro;
 using CardSystem;
+using Game_Manager;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 [Obsolete]
 public class RewardCardMenuScript : MonoBehaviour
@@ -13,10 +12,10 @@ public class RewardCardMenuScript : MonoBehaviour
     [SerializeField] private GameObject descriptionSection;
     [SerializeField] private GameObject cardSprite;
     private TextMeshProUGUI descriptionText;
-    private List<GameObject> rewards;
-    private Image imgComponent;
     private GameObject displayedCard;
+    private Image imgComponent;
     private int index;
+    private List<GameObject> rewards;
 
     // Start is called before the first frame update
     private void Start()
@@ -28,6 +27,11 @@ public class RewardCardMenuScript : MonoBehaviour
         UpdateMenu();
     }
 
+    // Update is called once per frame
+    private void Update()
+    {
+    }
+
     private void UpdateMenu()
     {
         displayedCard = Instantiate(rewards[index]);
@@ -35,13 +39,15 @@ public class RewardCardMenuScript : MonoBehaviour
         imgComponent.sprite = displayedCard.GetComponent<Image>().sprite;
         if (displayedCard.GetComponent<ActiveCard>() != null)
         {
-            
         }
         else if (displayedCard.GetComponent<PassiveCard>() != null)
         {
-            
         }
-        else descriptionText.text = "Description not found !";
+        else
+        {
+            descriptionText.text = "Description not found !";
+        }
+
         displayedCard.SetActive(false);
         Destroy(displayedCard);
     }
@@ -54,7 +60,7 @@ public class RewardCardMenuScript : MonoBehaviour
 
     public void Next()
     {
-        if(index < rewards.Count-1)
+        if (index < rewards.Count - 1)
         {
             index++;
             UpdateMenu();
@@ -66,11 +72,5 @@ public class RewardCardMenuScript : MonoBehaviour
         if (index <= 0) return;
         index--;
         UpdateMenu();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

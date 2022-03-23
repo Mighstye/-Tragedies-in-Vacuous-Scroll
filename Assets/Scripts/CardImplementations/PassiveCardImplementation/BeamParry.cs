@@ -1,16 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using CardSystem;
 using BulletSystem;
-using BulletImplementation;
+using CardSystem;
 
 namespace PassiveCardImplementation
 {
     public class BeamParry : PassiveCard
     {
-
         private void OnEnable()
         {
             SetLaserInfo(true);
@@ -26,7 +20,7 @@ namespace PassiveCardImplementation
             //while(BulletInfoRegistry.instance is null){}
             var info = BulletInfoRegistry.instance.GetInfo(BulletTag.Laser);
             info.canBeParried = state;
-            BulletInfoRegistry.instance.UpdateInfo(BulletTag.Laser,info);
+            BulletInfoRegistry.instance.UpdateInfo(BulletTag.Laser, info);
         }
-    } 
+    }
 }

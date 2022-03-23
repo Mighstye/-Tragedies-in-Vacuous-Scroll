@@ -9,15 +9,17 @@ namespace UI.SelectedCardHover
     {
         private Image cardImage;
         private int maxFill;
+
         private void Awake()
         {
             cardImage = GetComponent<Image>();
         }
+
         [Obsolete]
         public void Fade()
         {
             var color = cardImage.color;
-            color=new Color(color.r,color.g,color.b,0.35f);
+            color = new Color(color.r, color.g, color.b, 0.35f);
             cardImage.color = color;
         }
 
@@ -25,7 +27,7 @@ namespace UI.SelectedCardHover
         public void Restore()
         {
             var color = cardImage.color;
-            color=new Color(color.r,color.g,color.b,1.0f);
+            color = new Color(color.r, color.g, color.b, 1.0f);
             cardImage.color = color;
         }
 
@@ -33,7 +35,7 @@ namespace UI.SelectedCardHover
         {
             var color = cardImage.color;
             var amount = Mathf.Clamp(currentGrazeSeg / maxFill, 0f, 1f);
-            color = amount >= 1 ? new Color(255, 255, 255, color.a) : new Color(255,0,0,color.a);
+            color = amount >= 1 ? new Color(255, 255, 255, color.a) : new Color(255, 0, 0, color.a);
             cardImage.fillAmount = amount;
             cardImage.color = color;
         }
@@ -43,6 +45,5 @@ namespace UI.SelectedCardHover
             cardImage.sprite = activeCard.gameObject.GetComponent<Image>().sprite;
             maxFill = activeCard.grazeCostSegment;
         }
-
     }
 }

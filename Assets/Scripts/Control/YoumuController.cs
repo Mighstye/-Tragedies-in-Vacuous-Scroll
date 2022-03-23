@@ -1,41 +1,45 @@
 ﻿using System;
 using System.Collections;
 using BulletSystem;
-using Unity.Mathematics;
+using Logic_System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
-using Logic_System;
 using Utils;
 
 namespace Control
 {
     public class YoumuController : Singleton<YoumuController>
     {
-        //Move related fields
-        private Vector3 moveDirection;
-        private float currentSpeed;
+        private static readonly int HorizontalDirection = Animator.StringToHash("HorizontalSpeed");
         [SerializeField] private float normalSpeed;
         [SerializeField] private float lowSpeed;
-        //Sprite and Animation related fields
-        private float halfSizeX, halfSizeY; //for movement restriction
-        private Animator youmuAnimator;
-        private static readonly int HorizontalDirection = Animator.StringToHash("HorizontalSpeed");
         [SerializeField] private GameObject hitBoxGameObject;
         public int instantSpellFrame = 60;
-        private bool inInstantSpellCheck;
+
+        [SerializeField] private VisualEffect hitBurstVFX;
+
+        [SerializeField] private float hitRecoverySpeed = 1;
+
+        private float currentSpeed;
+
+        //Sprite and Animation related fields
+        private float halfSizeX, halfSizeY; //for movement restriction
+
+        private Health healthRef;
 
         private bool inHitRecovery;
 
-        [SerializeField]
-        private VisualEffect hitBurstVFX;
+        private bool inInstantSpellCheck;
 
-        [SerializeField] private float hitRecoverySpeed=1;
-        //Events
-        public Action onYoumuHit;
+        //Move related fields
+        private Vector3 moveDirection;
+
         public Action onInstantSpellCheck;
 
-        private Health healthRef;
+        //Events
+        public Action onYoumuHit;
+        private Animator youmuAnimator;
 
         private void Start()
         {
@@ -66,12 +70,26 @@ namespace Control
             transform.position = targetPosition;
         }
 
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (healthRef.invincible || inInstantSpellCheck) return;
+            if (!col.gameObject.CompareTag("EnemyBullet")) return;
+            var bullet = col.gameObject.GetComponent<Bullet>();
+            if (bullet == null)
+            {
+                Debug.LogWarning("Bullet without bullet component detected!");
+                return;
+            }
+
+            StartCoroutine(InstantSpellDelay());
+        }
+
         public void OnMove(InputAction.CallbackContext context)
         {
             moveDirection = context.ReadValue<Vector2>().normalized;
-            youmuAnimator.SetFloat(HorizontalDirection,moveDirection.x);
+            youmuAnimator.SetFloat(HorizontalDirection, moveDirection.x);
         }
-        
+
         public void OnSlow(InputAction.CallbackContext context)
         {
             if (context.phase is InputActionPhase.Performed)
@@ -86,20 +104,6 @@ namespace Control
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D col)
-        {
-            if (healthRef.invincible||inInstantSpellCheck) return;
-            if (!col.gameObject.CompareTag("EnemyBullet")) return;
-            var bullet = col.gameObject.GetComponent<Bullet>();
-            if (bullet == null)
-            {
-                Debug.LogWarning("Bullet without bullet component detected!");
-                return;
-            }
-
-            StartCoroutine(InstantSpellDelay());
-        }
-
         private IEnumerator InstantSpellDelay()
         {
             inInstantSpellCheck = true;
@@ -111,14 +115,14 @@ namespace Control
                     inInstantSpellCheck = false;
                     yield break;
                 }
+
                 yield return null;
             }
-            
+
             onYoumuHit?.Invoke();
             inInstantSpellCheck = false;
-            
-            StartCoroutine(HitRecovery());
 
+            StartCoroutine(HitRecovery());
         }
 
         private IEnumerator HitRecovery()
@@ -139,11 +143,8 @@ namespace Control
             }
 
             inHitRecovery = false;
-             hitBurstVFX.Reinit();
-             hitBurstVFX.enabled = false;
-           
-
+            hitBurstVFX.Reinit();
+            hitBurstVFX.enabled = false;
         }
-        
     }
 }
