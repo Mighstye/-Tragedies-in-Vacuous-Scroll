@@ -23,13 +23,14 @@ namespace ActiveCardImplementation
         private MultiPurposeCollider utilCollider;
         private List<Bullet> bullets;
         private Transform youmuTransform;
+        private const string PoolKey = "Standard_Parry";
 
         private void Start()
         {
             tapTime = 0.5f;
             grazeCostSegment = commonMetadata.cost;
             utilCollider = MultiPurposeCollider.instance;
-            bulletParriedPool = GameManagerAPI.instance.parriedPool.GetComponent<BulletPool>();
+            bulletParriedPool = ConstantPoolList.instance.GetPool(PoolKey);
         }
 
         public void OnTapPerformed(InputAction.CallbackContext context)

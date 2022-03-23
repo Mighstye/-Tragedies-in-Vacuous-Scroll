@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 32747909}
   - component: {fileID: 32747908}
   m_Layer: 0
-  m_Name: BG Canvas
+  m_Name: BackGround Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -413,7 +413,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1737134697}
-  m_Father: {fileID: 976474680}
+  m_Father: {fileID: 584193448}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -635,7 +635,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 762386954}
-  m_Father: {fileID: 976474680}
+  m_Father: {fileID: 584193448}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1204,12 +1204,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251731263}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.327607, y: -2.797619, z: 1.7470313}
+  m_LocalPosition: {x: -3.4404988, y: -2.8164282, z: 1.1766365}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1641784159}
-  m_Father: {fileID: 976474680}
+  m_Father: {fileID: 584193448}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &281738435
@@ -2822,9 +2822,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 976474680}
-  - {fileID: 503649551}
+  - {fileID: 32747911}
+  - {fileID: 629658934}
+  - {fileID: 2018637623}
+  - {fileID: 609102826}
+  - {fileID: 251731264}
+  - {fileID: 1158626341}
+  - {fileID: 859586622}
+  - {fileID: 61802096}
+  - {fileID: 777633450}
   - {fileID: 1670110736}
+  - {fileID: 503649551}
   m_Father: {fileID: 1931369220}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2975,7 +2983,7 @@ GameObject:
   - component: {fileID: 609102824}
   - component: {fileID: 609102823}
   m_Layer: 5
-  m_Name: Graze UI
+  m_Name: Graze Gauge UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3056,7 +3064,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1281238968}
-  m_Father: {fileID: 976474680}
+  m_Father: {fileID: 584193448}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3600,7 +3608,7 @@ RectTransform:
   m_Children:
   - {fileID: 1766478815}
   - {fileID: 580223101}
-  m_Father: {fileID: 976474680}
+  m_Father: {fileID: 584193448}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4039,6 +4047,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 653908060}
+  - component: {fileID: 653908061}
   m_Layer: 0
   m_Name: Constant Pools
   m_TagString: Untagged
@@ -4062,6 +4071,21 @@ Transform:
   m_Father: {fileID: 1931369220}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &653908061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653908059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f783d25ea41468cba483e90d59b905d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - key: Standard_Parry
+    pool: {fileID: 956529083}
 --- !u!1 &678407039
 GameObject:
   m_ObjectHideFlags: 0
@@ -4884,7 +4908,7 @@ RectTransform:
   m_Children:
   - {fileID: 4383609737753824737}
   - {fileID: 1093862958}
-  m_Father: {fileID: 976474680}
+  m_Father: {fileID: 584193448}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5860,7 +5884,7 @@ GameObject:
   m_Layer: 0
   m_Name: Dialogue System
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -5895,12 +5919,12 @@ MonoBehaviour:
   dialogueAsset: {fileID: 4900000, guid: 7d404a551bd29044b92eafcbd32e4953, type: 3}
   bossPhaseFlow: {fileID: 1918328453}
   dialogueUIList:
-  - characterID: Youmu
-    role: 0
-    characterUI: {fileID: 4383609737753824766}
   - characterID: Misaki
     role: 1
     characterUI: {fileID: 1093862961}
+  - characterID: Youmu
+    role: 0
+    characterUI: {fileID: 4383609737753824766}
 --- !u!1 &859586621
 GameObject:
   m_ObjectHideFlags: 0
@@ -5934,7 +5958,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 20579749}
-  m_Father: {fileID: 976474680}
+  m_Father: {fileID: 584193448}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6300,7 +6324,7 @@ GameObject:
   - component: {fileID: 956529082}
   - component: {fileID: 956529083}
   m_Layer: 0
-  m_Name: test pool (2)
+  m_Name: Standard Parry Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6488,46 +6512,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0acab54653cfc50459e3c8ec3ad5e2f1, type: 3}
---- !u!1 &976474679
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 976474680}
-  m_Layer: 0
-  m_Name: UI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &976474680
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 976474679}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.11289194, y: -0.018809158, z: -0.5703949}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 32747911}
-  - {fileID: 629658934}
-  - {fileID: 2018637623}
-  - {fileID: 609102826}
-  - {fileID: 251731264}
-  - {fileID: 1158626341}
-  - {fileID: 859586622}
-  - {fileID: 61802096}
-  - {fileID: 777633450}
-  m_Father: {fileID: 584193448}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1000182764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8107,7 +8091,7 @@ GameObject:
   - component: {fileID: 1158626343}
   - component: {fileID: 1158626342}
   m_Layer: 5
-  m_Name: Phase HP
+  m_Name: Phase HP Gauge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8126,7 +8110,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1199671069}
-  m_Father: {fileID: 976474680}
+  m_Father: {fileID: 584193448}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -9061,7 +9045,7 @@ GameObject:
   m_Layer: 0
   m_Name: Card System Manager
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -9210,7 +9194,7 @@ GameObject:
   m_Layer: 6
   m_Name: Hit Burst VFX
   m_TagString: Untagged
-  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -9986,7 +9970,6 @@ GameObject:
   - component: {fileID: 1438012823}
   - component: {fileID: 1438012822}
   - component: {fileID: 1438012821}
-  - component: {fileID: 1438012824}
   m_Layer: 5
   m_Name: Active Cards
   m_TagString: Untagged
@@ -10076,29 +10059,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438012819}
   m_CullTransparentMesh: 1
---- !u!114 &1438012824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1438012819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb784e259602f8448fd9408933013f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  commonMetadata: {fileID: 0}
-  localizableMetadata:
-    m_TableReference:
-      m_TableCollectionName: 
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-  grazeCostSegment: 1
-  coolDownTime: 3
 --- !u!1001 &1453034955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11082,7 +11042,7 @@ GameObject:
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -11101,8 +11061,6 @@ MonoBehaviour:
   activeCard: {fileID: 1438012819}
   passiveCard: {fileID: 563676960}
   parriedPool: {fileID: 956529081}
-  activeCardManagerGameObject: {fileID: 2122291393}
-  passiveCardManagerGameObject: {fileID: 1622581942}
   selectedCardControl: {fileID: 305872936}
   rewards: []
 --- !u!4 &1636044559
@@ -12209,7 +12167,7 @@ GameObject:
   m_Layer: 0
   m_Name: Control Manager
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -13525,7 +13483,7 @@ GameObject:
   m_Layer: 0
   m_Name: Boss Proxy
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -13575,7 +13533,7 @@ GameObject:
   m_Layer: 0
   m_Name: Constants
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -14005,7 +13963,7 @@ RectTransform:
   m_Children:
   - {fileID: 830479356}
   - {fileID: 1015015427}
-  m_Father: {fileID: 976474680}
+  m_Father: {fileID: 584193448}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -14356,7 +14314,7 @@ GameObject:
   m_Layer: 0
   m_Name: Logic System
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -14693,6 +14651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardContainer: {fileID: 1438012820}
+  selectedCard: {fileID: 0}
 --- !u!224 &2125733080 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5860480620814065070, guid: 2c30977b1e3c213459d838313d8c3825, type: 3}

@@ -45,6 +45,17 @@ namespace CardSystem
         {
             if (context.phase is not InputActionPhase.Performed) return;
             activeCardManager.SelectNext();
+            RefreshHover();
+        }
+
+        public void AddActiveCard(ActiveCard card)
+        {
+            activeCardManager.Add(card);
+            RefreshHover();
+        }
+
+        private void RefreshHover()
+        {
             if (activeCardManager.selectedCard == null)
             {
                 selectedCardHover.gameObject.SetActive(false);
@@ -53,11 +64,6 @@ namespace CardSystem
             selectedCardHover.gameObject.SetActive(true);
             selectedCardHover.UpdateSelectedCard(activeCardManager.selectedCard);
             onSelectedCardChange?.Invoke(activeCardManager.selectedCard);
-        }
-
-        public void AddActiveCard(ActiveCard card)
-        {
-            activeCardManager.Add(card);
         }
 
         public void OnTriggerActiveCard(InputAction.CallbackContext context)

@@ -15,7 +15,7 @@ namespace CardSystem
     {
         private Dictionary<PoolType, List<ActiveCard>> labeledPools;
         [SerializeField] private Transform cardContainer;
-        public ActiveCard selectedCard { get; private set; }
+        public ActiveCard selectedCard;
         private PoolType currentActivatedPoolType = PoolType.Normal;
         private int selectedCardIndex;
         
@@ -45,6 +45,10 @@ namespace CardSystem
         {
             labeledPools[poolType].Add(activeCard);
             activeCard.gameObject.transform.SetParent(cardContainer,worldPositionStays:false) ;
+            if (selectedCard is null)
+            {
+                SelectNext();
+            }
         }
 
         public void Remove(ActiveCard activeCard, PoolType poolType = PoolType.Normal)

@@ -24,36 +24,28 @@ namespace Game_Manager
         public Action onWin;
         public Action onLoose;
         public GameObject parriedPool;
-        public GameObject activeCardManagerGameObject;
-        public GameObject passiveCardManagerGameObject;
         public GameObject selectedCardControl;
-        private UISelectedCardControl UISCC;
-        private ActiveCardManager ACM;
-        private PassiveCardManager PCM;
+        private CardSystemManager cardSystemManagerRef;
         public List<GameObject> rewards;
         private string currentFightName;
 
         private void Start()
         {
             boss ??= BossBehaviourSystemProxy.instance.bossController.gameObject;
-            UISCC = selectedCardControl.GetComponent<UISelectedCardControl>();
-            ACM = activeCardManagerGameObject.GetComponent<ActiveCardManager>();
-            PCM = passiveCardManagerGameObject.GetComponent<PassiveCardManager>();
+            cardSystemManagerRef = CardSystemManager.instance;
             //SetActive for cards selected by the player
             foreach (GameObject obj in PlayerInfos.instance.SelectedActiveCard)
             {
                 Debug.Log("New Card instance " + obj.name);
                 var newObj = Instantiate(obj, activeCard.transform, false);
-                ACM.Add(newObj.GetComponent<ActiveCard>());
-                ACM.SelectNext();
-                UISCC.UpdateSelectedCard(newObj.GetComponent<ActiveCard>());
+                CardSystemManager.instance.AddActiveCard(newObj.GetComponent<ActiveCard>());
                 newObj.SetActive(true);
             }
             foreach (GameObject obj in PlayerInfos.instance.SelectedPassiveCard)
             {
                 Debug.Log("New Card instance " + obj.name);
                 var newObj = Instantiate(obj, passiveCard.transform, false);
-                PCM.Add(newObj.GetComponent<PassiveCard>());
+                cardSystemManagerRef.passiveCardManager.Add(newObj.GetComponent<PassiveCard>());
                 newObj.SetActive(true);
             }
 
