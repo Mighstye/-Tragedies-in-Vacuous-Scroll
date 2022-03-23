@@ -2236,7 +2236,6 @@ GameObject:
   - component: {fileID: 99757673879218341}
   - component: {fileID: 99757673879218340}
   - component: {fileID: 99757673879218342}
-  - component: {fileID: 409894326311292796}
   m_Layer: 5
   m_Name: Card Detail UI
   m_TagString: Untagged
@@ -2319,20 +2318,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0.41183233, g: 0, b: 1, a: 1}
   m_EffectDistance: {x: -10, y: -10}
   m_UseGraphicAlpha: 1
---- !u!114 &409894326311292796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 99757673879218338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b564f245f9f4138bb4f660637b31d5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardDetailUI: {fileID: 99757673172140461}
-  cardListBank: {fileID: 99757672655077297}
 --- !u!1 &99757673882451158
 GameObject:
   m_ObjectHideFlags: 0

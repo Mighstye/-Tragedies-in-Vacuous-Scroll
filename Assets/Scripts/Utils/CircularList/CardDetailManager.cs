@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CardSystem;
+using DG.Tweening;
 using Game_Manager;
 using UI;
 using UnityEngine;
@@ -12,6 +14,7 @@ namespace Utils
     public class CardDetailManager : Singleton<CardDetailManager>
     {
         private const string ActionMap = "CardDropSelection";
+       
         [SerializeField] private CardDetailUI cardDetailUI;
         [SerializeField] private CircularCardListBank cardListBank;
         [SerializeField] private GameObject menu;
@@ -19,6 +22,11 @@ namespace Utils
 
         private UIManager uiManager;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            gameObject.SetActive(false);
+        }
 
         public void Start()
         {
@@ -27,6 +35,8 @@ namespace Utils
                 GameManagerAPI.instance.rewards.Select(o => o.GetComponent<Card>())));
             uiManager = menu.GetComponent<UIManager>();
         }
+
+       
 
         private void Init(List<Card> cards)
         {
