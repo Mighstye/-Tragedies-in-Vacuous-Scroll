@@ -6,6 +6,7 @@ namespace UI.SelectedCardHover
 {
     public class UISelectedCardControl : MonoBehaviour
     {
+        [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField]private UISelectedCardHover cardImageLight;
         [SerializeField] private UISelectedCardHover cardImageDark;
         [SerializeField] private CoolDownUI coolDownUI;
@@ -24,15 +25,13 @@ namespace UI.SelectedCardHover
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (!col.gameObject.CompareTag("GrazeBox")) return;
-            cardImageLight.Fade();
-            cardImageDark.Fade();
+            canvasGroup.alpha = 0.25f;
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
             if (!other.gameObject.CompareTag("GrazeBox")) return;
-            cardImageLight.Restore();
-            cardImageDark.Restore();
+            canvasGroup.alpha = 1f;
         }
 
         public void UpdateSelectedCard(ActiveCard activeCard)

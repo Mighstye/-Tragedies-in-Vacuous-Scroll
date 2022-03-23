@@ -12,7 +12,7 @@ namespace CardSystem
 
         public float coolDownTime = 3; //DEFAULT VALUE
 
-        private bool coolDown = false;
+        public bool coolDown { get; private set; } = false;
 
         private float coolDownCounter=0;
 

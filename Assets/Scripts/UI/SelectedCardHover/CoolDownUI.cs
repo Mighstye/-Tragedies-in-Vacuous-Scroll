@@ -8,6 +8,7 @@ namespace UI.SelectedCardHover
     public class CoolDownUI : MonoBehaviour
     {
         [NonSerialized]public ActiveCard trackedCard;
+        [SerializeField] public Image brightnessMask;
 
         private Image coolDownGauge;
         private void Awake()
@@ -18,6 +19,8 @@ namespace UI.SelectedCardHover
         private void Update()
         {
             coolDownGauge.fillAmount = trackedCard.coolDownProgress;
+            brightnessMask.gameObject.SetActive(trackedCard.coolDownProgress > 0);
+            
         }
         
     }

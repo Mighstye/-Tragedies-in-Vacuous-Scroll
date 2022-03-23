@@ -1,3 +1,4 @@
+using System;
 using CardSystem;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +13,7 @@ namespace UI.SelectedCardHover
         {
             cardImage = GetComponent<Image>();
         }
-
+        [Obsolete]
         public void Fade()
         {
             var color = cardImage.color;
@@ -20,6 +21,7 @@ namespace UI.SelectedCardHover
             cardImage.color = color;
         }
 
+        [Obsolete]
         public void Restore()
         {
             var color = cardImage.color;
