@@ -8,6 +8,8 @@ namespace UI.SelectedCardHover
     {
         [SerializeField]private UISelectedCardHover cardImageLight;
         [SerializeField] private UISelectedCardHover cardImageDark;
+        [SerializeField] private CoolDownUI coolDownUI;
+        private ActiveCard displayedCard;
         private Graze grazeRef;
 
         private void Start()
@@ -35,6 +37,7 @@ namespace UI.SelectedCardHover
 
         public void UpdateSelectedCard(ActiveCard activeCard)
         {
+            coolDownUI.trackedCard = activeCard;
             cardImageDark.UpdateSelectedCard(activeCard);
             cardImageLight.UpdateSelectedCard(activeCard);
             cardImageLight.Charge(grazeRef.GetSegment());

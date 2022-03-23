@@ -32,6 +32,7 @@ namespace CardSystem
             {
                 selectedCardHover.UpdateSelectedCard(activeCardManager.selectedCard);
             }
+            activeCardManager.onSelectedCardChangeInternal += RefreshHover;
         }
 
         private void Update()
@@ -45,12 +46,6 @@ namespace CardSystem
         {
             if (context.phase is not InputActionPhase.Performed) return;
             activeCardManager.SelectNext();
-            RefreshHover();
-        }
-
-        public void AddActiveCard(ActiveCard card)
-        {
-            activeCardManager.Add(card);
             RefreshHover();
         }
 

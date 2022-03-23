@@ -38,7 +38,7 @@ namespace Game_Manager
             {
                 Debug.Log("New Card instance " + obj.name);
                 var newObj = Instantiate(obj, activeCard.transform, false);
-                CardSystemManager.instance.AddActiveCard(newObj.GetComponent<ActiveCard>());
+                CardSystemManager.instance.activeCardManager.Add(newObj.GetComponent<ActiveCard>());
                 newObj.SetActive(true);
             }
             foreach (GameObject obj in PlayerInfos.instance.SelectedPassiveCard)

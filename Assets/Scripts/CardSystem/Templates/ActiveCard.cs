@@ -13,6 +13,10 @@ namespace CardSystem
         public float coolDownTime = 3; //DEFAULT VALUE
 
         private bool coolDown = false;
+
+        private float coolDownCounter=0;
+
+        public float coolDownProgress=0;
         
         
 
@@ -27,7 +31,14 @@ namespace CardSystem
 
         private IEnumerator CoolDown()
         {
-            yield return new WaitForSeconds(coolDownTime);
+            coolDownCounter = coolDownTime;
+            while (coolDownCounter > 0)
+            {
+                coolDownCounter -= Time.deltaTime;
+                coolDownProgress = coolDownCounter / coolDownTime;
+                yield return null;
+            }
+            coolDownProgress = 0;
             coolDown = false;
         }
     }

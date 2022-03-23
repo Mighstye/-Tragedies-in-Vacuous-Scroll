@@ -13,6 +13,7 @@ namespace CardSystem
     [Serializable]
     public class ActiveCardManager : MonoBehaviour
     {
+        internal Action onSelectedCardChangeInternal;
         private Dictionary<PoolType, List<ActiveCard>> labeledPools;
         [SerializeField] private Transform cardContainer;
         public ActiveCard selectedCard;
@@ -89,6 +90,7 @@ namespace CardSystem
 
             selectedCardIndex = 0;
             selectedCard = labeledPools[currentActivatedPoolType][selectedCardIndex];
+            onSelectedCardChangeInternal?.Invoke();
         }
 
         public void SelectNext()
@@ -97,6 +99,7 @@ namespace CardSystem
             selectedCardIndex++;
             if (selectedCardIndex >= labeledPools[currentActivatedPoolType].Count) selectedCardIndex = 0;
             selectedCard = labeledPools[currentActivatedPoolType][selectedCardIndex];
+            onSelectedCardChangeInternal?.Invoke();
         }
 
         public void RunTest()
