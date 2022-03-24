@@ -65,7 +65,7 @@ namespace Game_Manager
         public List<GameObject> generateReward()
         {
             //Rewards
-            var reward = LogicSystemAPI.instance.rewardSystem.getReward();
+            var reward = LogicSystemAPI.instance.rewardSystem.GetReward();
             return reward;
         }
 

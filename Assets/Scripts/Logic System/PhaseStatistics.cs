@@ -1,11 +1,16 @@
-﻿namespace Logic_System
+﻿using System;
+using UnityEngine;
+
+namespace Logic_System
 {
+    [Serializable]
     public class PhaseStatistics
     {
-        public bool hit { get; private set; }
-        public bool spellUse { get; private set; }
-        public int encounterCount { get; private set; }
-        public int spellGetCount { get; private set; }
+        [SerializeField] public string phaseID;
+        [NonSerialized] public bool hit;
+        [NonSerialized]public bool spellUse;
+        [SerializeField] public int encounterCount;
+        [SerializeField] public int spellGetCount;
 
         public void RecordSpellUse()
         {

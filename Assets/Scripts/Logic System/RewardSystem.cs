@@ -7,7 +7,6 @@ namespace Logic_System
     public class RewardSystem : MonoBehaviour
     {
         public CardDropDeck dropTable;
-
         public GameObject bonusCardNoSpell;
         public GameObject bonusCardNoHit;
         private BattleOutcome stats;
@@ -17,7 +16,7 @@ namespace Logic_System
             stats = LogicSystemAPI.instance.battleOutcome;
         }
 
-        public List<GameObject> getReward()
+        public List<GameObject> GetReward()
         {
             var random = new Random();
             var reward1 = dropTable.dropDeck[random.Next(dropTable.dropDeck.Count)];
