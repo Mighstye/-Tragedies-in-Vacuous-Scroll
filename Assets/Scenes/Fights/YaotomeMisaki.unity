@@ -16248,7 +16248,7 @@ MonoBehaviour:
     _centeredContentID: 0
     _centerSelectedBox: 1
     _reverseOrder: 0
-    _initializeOnStart: 1
+    _initializeOnStart: 0
     _boxDensity: 1
     _boxPositionCurve:
       serializedVersion: 2

@@ -12,7 +12,7 @@ namespace Utils
         [SerializeField] private CircularScrollingList list;
         public Card selectedCard { get; private set; }
 
-        private void OnEnable()
+        private void OnStart()
         {
             list = GetComponent<CircularScrollingList>();
         }
@@ -22,7 +22,7 @@ namespace Utils
             list = GetComponent<CircularScrollingList>();
             cards = cardList;
             list.Initialize();
-            list.Refresh(0);
+            list.Refresh(-1);
         }
 
         public void OnListCenteredContentChanged(int centeredContentID)
