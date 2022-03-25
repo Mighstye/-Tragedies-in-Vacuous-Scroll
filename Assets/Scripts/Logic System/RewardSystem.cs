@@ -79,9 +79,23 @@ namespace Logic_System
             }
         }
 
+        public string PeekCard(DropDeckType type)
+        {
+            return dropDecks.ContainsKey(type) ? dropDecks[type][0] : null;
+        }
+
         public string DrawCard(DropDeckType type)
         {
             return dropDecks.ContainsKey(type) ? dropDecks[type].PopFirst() : null;
+        }
+
+        public void RemoveCard(string cardID)
+        {
+            foreach (var type in dropDeckFeed.Select(item => item.TryGetTypeFromCard(cardID)).
+                         Where(type => type is not DropDeckType.NullType))
+            {
+                dropDecks[type].Remove(cardID);
+            }
         }
 
         public void Reinsert(string cardID)
@@ -115,26 +129,23 @@ namespace Logic_System
             return rewards;*/
             var list = new List<Card>
             {
-                CardFactory.instance.Make(dropDecks[DropDeckType.NormalActive].PopFirst()),
-                CardFactory.instance.Make(dropDecks[DropDeckType.NormalPassive].PopFirst())
+                GenerateReward(DropDeckType.NormalActive,()=>true),
+                GenerateReward(DropDeckType.NormalPassive,()=>true),
             };
             return GenerateSpecialReward(list);
         }
 
+        private Card GenerateReward(DropDeckType type, Func<bool> condition)
+        {
+            return condition() ? CardFactory.instance.Make(PeekCard(type)) : null;
+        }
+        
         private List<Card> GenerateSpecialReward(List<Card> list)
         {
-            if (stats.HitCount() < 1)
-            {
-                var cardKey = dropDecks[DropDeckType.Special1].PopFirst();
-                list.Add(CardFactory.instance.Make(cardKey));
-            }
-
-            if (stats.HitCount() < 1 && stats.SpellUseCount() < 1)
-            {
-                var cardKey = dropDecks[DropDeckType.Special2].PopFirst();
-                list.Add(CardFactory.instance.Make(cardKey));
-            }
-
+            list.Add(GenerateReward(DropDeckType.Special1, 
+                () => stats.HitCount() < 1));
+            list.Add(GenerateReward(DropDeckType.Special2, 
+                () => stats.HitCount() < 1 && stats.SpellUseCount()<1));
             return list;
         }
     }
