@@ -1,62 +1,63 @@
 using System.Collections.Generic;
 using CardSystem;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utils;
 
 namespace PlayerInfosAPI
 {
     public class PlayerInfos : Singleton<PlayerInfos>
     {
-        public List<GameObject> UnlockedActiveCard;
-        public List<GameObject> UnlockedPassiveCard;
-        public List<GameObject> SelectedActiveCard;
-        public List<GameObject> SelectedPassiveCard;
+        public List<GameObject> unlockedActiveCard;
+        public List<GameObject> unlockedPassiveCard;
+        public List<GameObject> selectedActiveCard;
+        public List<GameObject> selectedPassiveCard;
         public CardList cardList;
 
         private void Start()
         {
-            UnlockedActiveCard = new List<GameObject>();
-            UnlockedPassiveCard = new List<GameObject>();
-            SelectedActiveCard = new List<GameObject>();
-            SelectedPassiveCard = new List<GameObject>();
-            unlockC(cardList.active[0]);
-            select(cardList.active[0]);
+            unlockedActiveCard = new List<GameObject>();
+            unlockedPassiveCard = new List<GameObject>();
+            selectedActiveCard = new List<GameObject>();
+            selectedPassiveCard = new List<GameObject>();
+            UnlockC(cardList.active[0]);
+            Select(cardList.active[0]);
         }
 
-        public void unlockC(GameObject c)
+        public void UnlockC(GameObject c)
         {
             if (c.GetComponent<ActiveCard>() != null)
-                if (!UnlockedActiveCard.Contains(c))
-                    UnlockedActiveCard.Add(c);
-            if (c.GetComponent<PassiveCard>() != null)
-                if (!UnlockedPassiveCard.Contains(c))
-                    UnlockedPassiveCard.Add(c);
+                if (!unlockedActiveCard.Contains(c))
+                    unlockedActiveCard.Add(c);
+            if (c.GetComponent<PassiveCard>() == null) return;
+            if (!unlockedPassiveCard.Contains(c))
+                unlockedPassiveCard.Add(c);
         }
 
-        public void lockC(GameObject c)
+        public void LockC(GameObject c)
         {
             if (c.GetComponent<ActiveCard>() != null)
-                UnlockedActiveCard.Remove(c);
+                unlockedActiveCard.Remove(c);
             if (c.GetComponent<PassiveCard>() != null)
-                UnlockedPassiveCard.Remove(c);
+                unlockedPassiveCard.Remove(c);
         }
 
-        public void select(GameObject c)
+        public void Select(GameObject c)
         {
             if (c.GetComponent<ActiveCard>() != null)
-                if (!SelectedActiveCard.Contains(c))
-                    SelectedActiveCard.Add(c);
+                if (!selectedActiveCard.Contains(c))
+                    selectedActiveCard.Add(c);
             if (c.GetComponent<PassiveCard>() != null)
-                if (!SelectedPassiveCard.Contains(c))
-                    SelectedPassiveCard.Add(c);
+                if (!selectedPassiveCard.Contains(c))
+                    selectedPassiveCard.Add(c);
         }
 
-        public void unselect(GameObject c)
+        public void Unselect(GameObject c)
         {
             if (c.GetComponent<ActiveCard>() != null)
-                SelectedActiveCard.Remove(c);
+                selectedActiveCard.Remove(c);
             if (c.GetComponent<PassiveCard>() != null)
-                SelectedPassiveCard.Remove(c);
+                selectedPassiveCard.Remove(c);
         }
     }
 }

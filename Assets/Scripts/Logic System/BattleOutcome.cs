@@ -88,6 +88,11 @@ namespace Logic_System
             return activeKeys.Sum(phase => outcome[phase].SpellGet() ? 1 : 0);
         }
 
+        public int SpellUseCount()
+        {
+            return activeKeys.Sum(phase => outcome[phase].spellUse ? 1 : 0);
+        }
+
         public int HitCount()
         {
             return activeKeys.Sum(phase => outcome[phase].hit ? 1 : 0);

@@ -17,8 +17,8 @@ public class CardButtonScript : MonoBehaviour
     {
         buttonText = gameObject.GetComponentInChildren<TextMeshProUGUI>();
         image = gameObject.GetComponent<Image>();
-        if (PlayerInfos.instance.SelectedActiveCard.Contains(associatedGameObject)) toggled = true;
-        else if (PlayerInfos.instance.SelectedPassiveCard.Contains(associatedGameObject)) toggled = true;
+        if (PlayerInfos.instance.selectedActiveCard.Contains(associatedGameObject)) toggled = true;
+        else if (PlayerInfos.instance.selectedPassiveCard.Contains(associatedGameObject)) toggled = true;
         else toggled = false;
         if (toggled) image.color = activatedColor;
         else image.color = deactivatedColor;
@@ -30,12 +30,12 @@ public class CardButtonScript : MonoBehaviour
         if (!toggled)
         {
             image.color = activatedColor;
-            GameManagerAPI.instance.selectCard(associatedGameObject);
+            GameManagerAPI.instance.SelectCard(associatedGameObject);
         }
         else
         {
             image.color = deactivatedColor;
-            GameManagerAPI.instance.unSelectCard(associatedGameObject);
+            GameManagerAPI.instance.UnSelectCard(associatedGameObject);
         }
 
         toggled = !toggled;

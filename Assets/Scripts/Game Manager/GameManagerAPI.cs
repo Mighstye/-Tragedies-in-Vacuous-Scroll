@@ -15,9 +15,7 @@ namespace Game_Manager
     {
         public GameObject activeCard;
         public GameObject passiveCard;
-        public GameObject parriedPool;
-        public GameObject selectedCardControl;
-        public List<GameObject> rewards;
+        public List<Card> rewards;
 
         private GameObject boss;
         private CardSystemManager cardSystemManagerRef;
@@ -30,7 +28,7 @@ namespace Game_Manager
             boss ??= BossBehaviourSystemProxy.instance.bossController.gameObject;
             cardSystemManagerRef = CardSystemManager.instance;
             //SetActive for cards selected by the player
-            foreach (var obj in PlayerInfos.instance.SelectedActiveCard)
+            foreach (var obj in PlayerInfos.instance.selectedActiveCard)
             {
                 Debug.Log("New Card instance " + obj.name);
                 var newObj = Instantiate(obj, activeCard.transform, false);
@@ -38,7 +36,7 @@ namespace Game_Manager
                 newObj.SetActive(true);
             }
 
-            foreach (var obj in PlayerInfos.instance.SelectedPassiveCard)
+            foreach (var obj in PlayerInfos.instance.selectedPassiveCard)
             {
                 Debug.Log("New Card instance " + obj.name);
                 var newObj = Instantiate(obj, passiveCard.transform, false);
@@ -59,34 +57,34 @@ namespace Game_Manager
             if (victory) onWin?.Invoke();
             else onLoose?.Invoke();
 
-            rewards = generateReward();
+            rewards = GenerateReward();
         }
 
-        public List<GameObject> generateReward()
+        public List<Card> GenerateReward()
         {
             //Rewards
             var reward = LogicSystemAPI.instance.rewardSystem.GetReward();
             return reward;
         }
 
-        public void selectCard(GameObject obj)
+        public void SelectCard(GameObject obj)
         {
-            PlayerInfos.instance.select(obj);
+            PlayerInfos.instance.Select(obj);
         }
 
-        public void unSelectCard(GameObject obj)
+        public void UnSelectCard(GameObject obj)
         {
-            PlayerInfos.instance.unselect(obj);
+            PlayerInfos.instance.Unselect(obj);
         }
 
-        public void unlockCard(GameObject obj)
+        public void UnlockCard(GameObject obj)
         {
-            PlayerInfos.instance.unlockC(obj);
+            PlayerInfos.instance.UnlockC(obj);
         }
 
-        public void lockCard(GameObject obj)
+        public void LockCard(GameObject obj)
         {
-            PlayerInfos.instance.lockC(obj);
+            PlayerInfos.instance.LockC(obj);
         }
 
         public void NextFight()

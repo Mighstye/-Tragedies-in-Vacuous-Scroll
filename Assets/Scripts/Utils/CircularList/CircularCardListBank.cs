@@ -23,6 +23,7 @@ namespace Utils
             cards = cardList;
             list.Initialize();
             list.Refresh(-1);
+            list.MoveOneUnitUp();
         }
 
         public void OnListCenteredContentChanged(int centeredContentID)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AirFishLab.ScrollingList;
 using CardSystem;
 using UnityEngine;
 
@@ -10,9 +11,8 @@ namespace Utils
     {
         public Card cardPrefab;
         public List<Card> cards;
-        public CircularCardListBank circularList;
-
-        public GameObject detailPanel;
+        public ArrangeableListBank circularList;
+        
 
         private void Start()
         {
@@ -22,8 +22,7 @@ namespace Utils
                 c.gameObject.name = i.ToString();
                 cards.Add(c);
             }
-
-            detailPanel.SetActive(true);
+            
             circularList.Init(cards);
         }
     }

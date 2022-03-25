@@ -52,7 +52,7 @@ namespace Utils
         public void PassSelectedCard(InputAction.CallbackContext context)
         {
             if (context.phase is not InputActionPhase.Performed) return;
-            GameManagerAPI.instance.selectCard(RetrieveSelectedCard().gameObject);
+            GameManagerAPI.instance.SelectCard(RetrieveSelectedCard().gameObject);
             uiManager.Continue();
             ControlManager.instance.SwitchToPlayer();
             gameObject.SetActive(false);

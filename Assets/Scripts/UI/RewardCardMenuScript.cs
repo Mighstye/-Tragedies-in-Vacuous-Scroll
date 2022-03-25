@@ -9,13 +9,13 @@ using UnityEngine.UI;
 [Obsolete]
 public class RewardCardMenuScript : MonoBehaviour
 {
-    [SerializeField] private GameObject descriptionSection;
+    /*[SerializeField] private GameObject descriptionSection;
     [SerializeField] private GameObject cardSprite;
     private TextMeshProUGUI descriptionText;
     private GameObject displayedCard;
     private Image imgComponent;
     private int index;
-    private List<GameObject> rewards;
+    private List<Card> rewards;
 
     // Start is called before the first frame update
     private void Start()
@@ -54,8 +54,8 @@ public class RewardCardMenuScript : MonoBehaviour
 
     public void GetThisCard()
     {
-        GameManagerAPI.instance.unlockCard(rewards[index]);
-        GameManagerAPI.instance.selectCard(rewards[index]);
+        GameManagerAPI.instance.UnlockCard(rewards[index]);
+        GameManagerAPI.instance.SelectCard(rewards[index]);
     }
 
     public void Next()
@@ -72,5 +72,5 @@ public class RewardCardMenuScript : MonoBehaviour
         if (index <= 0) return;
         index--;
         UpdateMenu();
-    }
+    }*/
 }
