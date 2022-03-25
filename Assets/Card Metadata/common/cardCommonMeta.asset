@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: arc_parry
   cost: 2
+  coolDown: 1
   cardType: 0
+  defaultDropType: 1
   cardSprite: {fileID: 21300000, guid: 71c849f38f87e0c45b3b1c3b0c70376e, type: 3}
   demoVideo: {fileID: 0}

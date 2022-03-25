@@ -2270,6 +2270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f35232ecd2cb0a4b958716be59a5316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  feedType: 0
   dropDeckFeed:
   - type: 1
     deck: {fileID: 11400000, guid: 0cd3fb1a50a76db43a588fed94c923da, type: 2}
@@ -2279,6 +2280,7 @@ MonoBehaviour:
     deck: {fileID: 11400000, guid: d20aa5071a0dff545b7be0a1f56e09c1, type: 2}
   - type: 4
     deck: {fileID: 11400000, guid: 5aba5b94798e8bb45ab2949f09d5cb29, type: 2}
+  jsonFeedSource: /Resources/DropSource.json
 --- !u!1001 &432495178
 PrefabInstance:
   m_ObjectHideFlags: 0

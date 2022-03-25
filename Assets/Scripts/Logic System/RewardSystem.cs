@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using CardSystem;
 using UnityEngine;
 using Utils;
@@ -18,6 +19,12 @@ namespace Logic_System
         Special2
     }
 
+    public enum FeedType
+    {
+        ScriptableObjectFeed,
+        JsonFeed
+    }
+
     [Serializable]
     public struct DropDeckFeedItem
     {
@@ -33,7 +40,9 @@ namespace Logic_System
     #endregion
     public class RewardSystem : MonoBehaviour
     {
-        public List<DropDeckFeedItem> dropDeckFeed;
+        [SerializeField] private FeedType feedType; 
+        [SerializeField] private List<DropDeckFeedItem> dropDeckFeed;
+        [SerializeField] private string jsonFeedSource = "Resources/DropTable.json";
         private Dictionary<DropDeckType, List<string>> dropDecks;
         private BattleOutcome stats;
 
@@ -44,6 +53,24 @@ namespace Logic_System
         }
         
         #region deckControl
+
+        private void LoadFromJson()
+        {
+            var json = System.IO.File.ReadAllText(Application.dataPath+jsonFeedSource);
+            //Debug.Log(json);
+            var list = JsonHelper.FromJson<CardDropDeckJson>(json);
+            dropDecks = list.ToDictionary(item => item.type, item => item.keys);
+        }
+
+        private void SaveToJson()
+        {
+            var keys = dropDecks.Keys;
+            var list = keys.Select(key => new CardDropDeckJson { type = key, keys = dropDecks[key] }).ToList();
+            var json = JsonHelper.ToJson(list.ToArray());
+            //Debug.Log(json);
+            System.IO.File.WriteAllText(Application.dataPath+jsonFeedSource,json);
+            
+        }
 
         private void InitializeDecks()
         {
