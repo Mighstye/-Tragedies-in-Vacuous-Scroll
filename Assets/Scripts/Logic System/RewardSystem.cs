@@ -79,7 +79,7 @@ namespace Logic_System
             }
         }
 
-        public string PeekCard(DropDeckType type)
+        private string PeekCard(DropDeckType type)
         {
             return dropDecks.ContainsKey(type) ? dropDecks[type][0] : null;
         }
@@ -107,7 +107,7 @@ namespace Logic_System
             }
         }
 
-        public List<string> PeekMultiple(DropDeckType type, int amount)
+        private IEnumerable<string> PeekMultiple(DropDeckType type, int amount)
         {
             if (!dropDecks.ContainsKey(type)) return null;
             var list = new List<string>();

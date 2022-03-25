@@ -8,8 +8,6 @@ namespace CardSystem
     {
         public int grazeCostSegment = 1; //DEFAULT VALUE
 
-        public float coolDownTime = 3; //DEFAULT VALUE
-
         public float coolDownProgress;
 
         private float coolDownCounter;
@@ -28,11 +26,11 @@ namespace CardSystem
 
         private IEnumerator CoolDown()
         {
-            coolDownCounter = coolDownTime;
+            coolDownCounter = commonMetadata.coolDown;
             while (coolDownCounter > 0)
             {
                 coolDownCounter -= Time.deltaTime;
-                coolDownProgress = coolDownCounter / coolDownTime;
+                coolDownProgress = coolDownCounter / commonMetadata.coolDown;
                 yield return null;
             }
 

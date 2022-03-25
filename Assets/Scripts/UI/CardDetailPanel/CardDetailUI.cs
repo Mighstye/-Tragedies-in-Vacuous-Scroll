@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using AirFishLab.ScrollingList;
 using CardSystem;
 using TMPro;
@@ -13,6 +14,7 @@ namespace UI
         [SerializeField] private TextMeshProUGUI cardName;
         [SerializeField] private TextMeshProUGUI effectTextField;
         [SerializeField] private TextMeshProUGUI loreTextField;
+        [SerializeField] private TextMeshProUGUI cooldownField;
 
 
         public void OnListCenteredContentChanged(int centeredContentID)
@@ -30,6 +32,7 @@ namespace UI
             cardName.text = locMeta.cardName;
             effectTextField.text = locMeta.effectText;
             loreTextField.text = locMeta.loreText;
+            cooldownField.text = $"{commonMeta.coolDown:N2}";
         }
     }
 }
