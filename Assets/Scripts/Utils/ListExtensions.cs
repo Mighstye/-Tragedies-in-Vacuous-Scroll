@@ -22,5 +22,12 @@ namespace Utils
             ts.Remove(firstItem);
             return firstItem;
         }
+
+        public static T PeekAndTuck<T>(this List<T> ts)
+        {
+            var t = ts.PopFirst();
+            ts.Add(t);
+            return t;
+        }
     }
 }

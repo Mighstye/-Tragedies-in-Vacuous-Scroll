@@ -106,6 +106,18 @@ namespace Logic_System
                 dropDecks[type].Add(cardID);
             }
         }
+
+        public List<string> PeekMultiple(DropDeckType type, int amount)
+        {
+            if (!dropDecks.ContainsKey(type)) return null;
+            var list = new List<string>();
+            amount = Mathf.Min(dropDecks[type].Count,amount);
+            for (var i = 0; i < amount; i++)
+            {
+                list.Add(dropDecks[type].PeekAndTuck());
+            }
+            return list;
+        }
         
         #endregion
 
@@ -138,6 +150,15 @@ namespace Logic_System
         private Card GenerateReward(DropDeckType type, Func<bool> condition)
         {
             return condition() ? CardFactory.instance.Make(PeekCard(type)) : null;
+        }
+
+        private List<Card> GenerateRewardMultiple(DropDeckType type, int amount, Func<bool> condition)
+        {
+            var list = new List<Card>();
+            if (!condition()) return list;
+            var keys = PeekMultiple(type, amount);
+            list.AddRange(keys.Select(key => CardFactory.instance.Make(key)));
+            return list;
         }
         
         private List<Card> GenerateSpecialReward(List<Card> list)
