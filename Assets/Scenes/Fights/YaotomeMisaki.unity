@@ -2270,7 +2270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f35232ecd2cb0a4b958716be59a5316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  feedType: 0
+  feedType: 1
   dropDeckFeed:
   - type: 1
     deck: {fileID: 11400000, guid: 0cd3fb1a50a76db43a588fed94c923da, type: 2}

@@ -31,8 +31,7 @@ namespace Utils
         public void Start()
         {
             gameObject.SetActive(true);
-            Init(new List<Card>(
-                GameManagerAPI.instance.rewards.Select(o => o.GetComponent<Card>())));
+            Init(GameManagerAPI.instance.rewards);
             uiManager = menu.GetComponent<UIManager>();
         }
 

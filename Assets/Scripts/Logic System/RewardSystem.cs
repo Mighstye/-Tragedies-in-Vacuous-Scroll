@@ -74,10 +74,20 @@ namespace Logic_System
 
         private void InitializeDecks()
         {
-            dropDecks ??= new Dictionary<DropDeckType, List<string>>();
-            foreach (var feed in dropDeckFeed)
+            switch (feedType)
             {
-                dropDecks.Add(feed.type,feed.deck.ToDynamicList().Shuffle());
+                case FeedType.JsonFeed:
+                    LoadFromJson();
+                    break;
+                case FeedType.ScriptableObjectFeed:
+                {
+                    dropDecks = new Dictionary<DropDeckType, List<string>>();
+                    foreach (var feed in dropDeckFeed)
+                    {
+                        dropDecks.Add(feed.type,feed.deck.ToDynamicList().Shuffle());
+                    }
+                    break;
+                }
             }
         }
 
@@ -190,10 +200,10 @@ namespace Logic_System
         
         private List<Card> GenerateSpecialReward(List<Card> list)
         {
-            list.Add(GenerateReward(DropDeckType.Special1, 
-                () => stats.HitCount() < 1));
-            list.Add(GenerateReward(DropDeckType.Special2, 
-                () => stats.HitCount() < 1 && stats.SpellUseCount()<1));
+            var sp1 = GenerateReward(DropDeckType.Special1, () => stats.HitCount() < 1);
+            if(sp1 is not null)list.Add(sp1);
+            var sp2 = GenerateReward(DropDeckType.Special2, () => stats.HitCount() < 1 && stats.SpellUseCount() < 1);
+            if(sp2 is not null)list.Add(sp2);
             return list;
         }
     }
