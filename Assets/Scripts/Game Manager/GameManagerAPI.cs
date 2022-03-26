@@ -8,6 +8,7 @@ using PlayerInfosAPI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils;
+using Utils.Events;
 
 namespace Game_Manager
 {
@@ -22,6 +23,7 @@ namespace Game_Manager
         private string currentFightName;
         public Action onLoose;
         public Action onWin;
+        public GameEvent onBossDefeat;
 
         private void Start()
         {
@@ -54,7 +56,11 @@ namespace Game_Manager
             //Time.timeScale = 0f;
             boss.SetActive(false);
             ActiveBulletManager.instance.Wipe();
-            if (victory) onWin?.Invoke();
+            if (victory)
+            {
+                onWin?.Invoke();
+                onBossDefeat.Invoke();
+            }
             else onLoose?.Invoke();
 
             rewards = GenerateReward();

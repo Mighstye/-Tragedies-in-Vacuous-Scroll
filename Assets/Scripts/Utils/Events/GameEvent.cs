@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utils
+namespace Utils.Events
 {
-    [CreateAssetMenu(fileName = "Event", menuName = "Events/Base Game Event", order = 0)]
+    [CreateAssetMenu(fileName = "Event", menuName = "Events/Base Game Event (void->void)", order = 0)]
     public class GameEvent : ScriptableObject
     {
         private readonly List<GameEventSubscriber> subscribers = 
             new List<GameEventSubscriber>();
 
-        public void FireEvent()
+        public void Invoke()
         {
             foreach (var t in subscribers)
             {

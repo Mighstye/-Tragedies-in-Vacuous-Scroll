@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CardSystem;
+using CardSystem.DataContainers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Utils;

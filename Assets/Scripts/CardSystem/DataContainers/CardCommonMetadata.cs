@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Video;
 
-namespace CardSystem
+namespace CardSystem.DataContainers
 {
     public enum CardType
     {

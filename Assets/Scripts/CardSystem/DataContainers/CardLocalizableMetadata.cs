@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CardSystem
+namespace CardSystem.DataContainers
 {
     [CreateAssetMenu(fileName = "CardLocMeta", menuName = "Card Meta/Card Loc Meta", order = 0)]
     public class CardLocalizableMetadata : ScriptableObject

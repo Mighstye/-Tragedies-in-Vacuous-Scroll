@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using UnityEngine;
 
-namespace CardSystem
+namespace CardSystem.DataContainers
 {
     [Serializable]
     public class CardDropDeckJson

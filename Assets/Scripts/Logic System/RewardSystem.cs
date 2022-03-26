@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using CardSystem;
+using CardSystem.DataContainers;
 using UnityEngine;
 using Utils;
 using Random = System.Random;
