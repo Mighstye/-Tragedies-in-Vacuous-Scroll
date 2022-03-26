@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CardSystem
 {
-    [CreateAssetMenu(fileName = "Card Database", menuName = "Card Database", order = 0)]
+    [CreateAssetMenu(fileName = "Card Database", menuName = "Card/Card Database", order = 0)]
     public class CardDatabase : ScriptableObject
     {
         public List<GameObject> database;

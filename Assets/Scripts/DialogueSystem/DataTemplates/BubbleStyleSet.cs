@@ -12,7 +12,7 @@ namespace DialogueSystem
         [SerializeField] public Sprite sprite;
     }
 
-    [CreateAssetMenu(fileName = "BubbleStyleSet", menuName = "BubbleStyleSet", order = 0)]
+    [CreateAssetMenu(fileName = "BubbleStyleSet", menuName = "Dialogue/Bubble Style Set", order = 3)]
     public class BubbleStyleSet : ScriptableObject
     {
         public List<BubbleStyleSetItem> items = new();

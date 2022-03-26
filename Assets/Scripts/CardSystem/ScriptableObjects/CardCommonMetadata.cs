@@ -10,7 +10,7 @@ namespace CardSystem
         Passive
     }
 
-    [CreateAssetMenu(fileName = "cardCommonMeta", menuName = "CardCommonMeta", order = 0)]
+    [CreateAssetMenu(fileName = "cardCommonMeta", menuName = "Card Meta/Card Common Meta", order = 0)]
     public class CardCommonMetadata : ScriptableObject
     {
         public string key;

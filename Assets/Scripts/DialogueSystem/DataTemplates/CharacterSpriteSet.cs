@@ -13,7 +13,7 @@ namespace DialogueSystem
     }
 
 
-    [CreateAssetMenu(fileName = "CharacterSpriteSet", menuName = "CharacterSpriteSet", order = 0)]
+    [CreateAssetMenu(fileName = "CharacterSpriteSet", menuName = "Dialogue/Character Sprite Set", order = 3)]
     public class CharacterSpriteSet : ScriptableObject
     {
         public List<CharacterSpriteSetItem> items;

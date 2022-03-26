@@ -12,7 +12,7 @@ namespace DialogueSystem
         [SerializeField] public CharacterSpriteSet spriteSet;
     }
 
-    [CreateAssetMenu(fileName = "CharacterSpriteSetList", menuName = "CharacterSpriteSetList", order = 1)]
+    [CreateAssetMenu(fileName = "CharacterSpriteSetList", menuName = "Dialogue/Character Sprite Set List", order = 3)]
     public class CharacterSpriteSetList : ScriptableObject
     {
         public List<CharacterSpriteDictItem> items;
