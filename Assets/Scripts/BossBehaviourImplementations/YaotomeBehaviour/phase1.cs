@@ -1,3 +1,4 @@
+using BossBehaviour.PhaseTemplates;
 using UnityEngine;
 
 public class phase1 : BossPhase

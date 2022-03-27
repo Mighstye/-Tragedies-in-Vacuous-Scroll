@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BossBehaviour
+namespace BossBehaviour.PhaseTemplates
 {
     public abstract class BossPhaseFragment : StateMachineBehaviour
     {

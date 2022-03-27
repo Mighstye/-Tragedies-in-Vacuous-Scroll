@@ -1,4 +1,5 @@
 using BossBehaviour;
+using BossBehaviour.PhaseTemplates;
 using Control;
 using DG.Tweening;
 using UnityEngine;

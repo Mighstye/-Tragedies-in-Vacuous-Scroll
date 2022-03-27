@@ -2,7 +2,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace BossBehaviour
+namespace BossBehaviour.PhaseTemplates
 {
     public abstract class BossPhaseMovementFragment : BossPhaseFragment
     {

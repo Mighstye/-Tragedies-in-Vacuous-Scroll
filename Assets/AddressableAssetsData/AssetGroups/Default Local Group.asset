@@ -16,7 +16,11 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: d608b2cea7a789441803a1f6d3fd5bd4
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 8f06837ae81c6f94886f71acec5a3111
+    m_Address: Assets/Fonts/GenShinGothic/GenShinGothic-Heavy SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: cee2434807314c341a6bde9a0b18276a, type: 2}
   m_SchemaSet:

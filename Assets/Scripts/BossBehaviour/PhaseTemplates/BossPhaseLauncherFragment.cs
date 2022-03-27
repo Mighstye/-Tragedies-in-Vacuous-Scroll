@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BossBehaviour.PhaseTemplates;
 using UnityEngine;
 
 namespace BossBehaviour
