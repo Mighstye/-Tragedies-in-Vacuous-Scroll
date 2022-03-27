@@ -8,7 +8,7 @@ namespace Utils
     {
         public void Shake()
         {
-            Camera.current.DOShakePosition(1.5f, Vector3.one);
+            Camera.main.DOShakePosition(1.5f, new Vector3(1,1,0));
         }
     }
 }
