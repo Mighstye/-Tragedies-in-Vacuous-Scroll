@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CardSystem;
 using DG.Tweening;
-using Game_Manager;
+using GameManager;
 using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;

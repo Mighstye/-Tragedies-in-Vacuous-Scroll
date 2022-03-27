@@ -13,6 +13,7 @@ namespace BossBehaviour
 
         public int currentPhaseMaxHp;
         [SerializeField] private int currentHp;
+        [SerializeField] public Animator phaseFlow;
         public AnimationLib animationLib;
         public Sequence motionSequence;
         private Animator animator;

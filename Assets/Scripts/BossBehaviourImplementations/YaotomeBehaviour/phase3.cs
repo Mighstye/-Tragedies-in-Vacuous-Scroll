@@ -1,5 +1,5 @@
 using BossBehaviour.PhaseTemplates;
-using Game_Manager;
+using GameManager;
 using UnityEngine;
 
 public class phase3 : BossPhase // Only to create Win Menu ect... To be deleted

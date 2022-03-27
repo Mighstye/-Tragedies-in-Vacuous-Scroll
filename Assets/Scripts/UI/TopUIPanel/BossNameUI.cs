@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using BossBehaviour;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -15,10 +16,16 @@ namespace UI.TopUIPanel
         {
             localizedBossName.TableReference = "Character Names";
             nameLabel = GetComponent<TextMeshProUGUI>();
-            UpdateBossName(currentBossName); //Test
+            TestBossNameUpdate(currentBossName); //Test
         }
 
-        public void UpdateBossName(string bossName)
+        public void UpdateBossName(BossAsset asset)
+        {
+            localizedBossName.TableEntryReference = asset.characterID;
+            StartCoroutine(Localize());
+        }
+
+        private void TestBossNameUpdate(string bossName)
         {
             localizedBossName.TableEntryReference = bossName;
             StartCoroutine(Localize());

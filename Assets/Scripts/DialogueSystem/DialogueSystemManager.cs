@@ -45,6 +45,7 @@ namespace DialogueSystem
         {
             controlManagerRef = ControlManager.instance;
             foreach (var ui in dialogueUIList) ui.characterUI.Hide(HideStyle.Hide);
+            bossPhaseFlow = BossBehaviourSystemProxy.instance.bossController.phaseFlow;
         }
 
         public void Init(LocalizedAsset<TextAsset> asset)

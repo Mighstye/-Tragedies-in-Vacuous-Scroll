@@ -1,4 +1,5 @@
-﻿using Logic_System;
+﻿using BossBehaviour;
+using Logic_System;
 using UnityEngine;
 
 namespace UI
@@ -22,9 +23,9 @@ namespace UI
             };
         }
 
-        public void Init(Sprite sprite)
+        public void Init(BossAsset asset)
         {
-            bossSprite = sprite;
+            bossSprite = asset.spellSprite;
         }
     }
 }

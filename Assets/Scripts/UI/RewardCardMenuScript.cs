@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using CardSystem;
-using Game_Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

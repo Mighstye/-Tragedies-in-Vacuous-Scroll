@@ -1,5 +1,5 @@
 ﻿using BossBehaviour.PhaseTemplates;
-using Game_Manager;
+using GameManager;
 using Logic_System;
 using UnityEngine;
 using Utils;

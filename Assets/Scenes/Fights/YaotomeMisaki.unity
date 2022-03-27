@@ -279,6 +279,7 @@ GameObject:
   - component: {fileID: 20579751}
   - component: {fileID: 20579750}
   - component: {fileID: 20579753}
+  - component: {fileID: 20579754}
   m_Layer: 0
   m_Name: Boss Card
   m_TagString: Untagged
@@ -373,6 +374,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossSprite: {fileID: 0}
+--- !u!114 &20579754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20579748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9db2f5e5c9942eca09366fc824ef5ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: d4d6abe633039924f898b54dbb3bc0cc, type: 2}
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 20579753}
+        m_TargetAssemblyTypeName: UI.BossSpellAnim, Assembly-CSharp
+        m_MethodName: Init
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &27424082
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +505,7 @@ GameObject:
   - component: {fileID: 32747909}
   - component: {fileID: 32747908}
   - component: {fileID: 32747912}
+  - component: {fileID: 32747913}
   m_Layer: 0
   m_Name: BackGround Canvas
   m_TagString: Untagged
@@ -579,6 +609,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backGroundImage: {fileID: 1737134698}
+--- !u!114 &32747913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32747907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9db2f5e5c9942eca09366fc824ef5ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: d4d6abe633039924f898b54dbb3bc0cc, type: 2}
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 32747912}
+        m_TargetAssemblyTypeName: UI.BackGround, Assembly-CSharp
+        m_MethodName: UpdateBackGround
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &43780356
 GameObject:
   m_ObjectHideFlags: 0
@@ -3279,10 +3337,11 @@ GameObject:
   - component: {fileID: 580223104}
   - component: {fileID: 580223103}
   - component: {fileID: 580223102}
+  - component: {fileID: 580223105}
   m_Layer: 0
   m_Name: Boss Info
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3372,6 +3431,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580223100}
   m_CullTransparentMesh: 1
+--- !u!114 &580223105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580223100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9db2f5e5c9942eca09366fc824ef5ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: d4d6abe633039924f898b54dbb3bc0cc, type: 2}
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 352565891}
+        m_TargetAssemblyTypeName: UI.TopUIPanel.BossNameUI, Assembly-CSharp
+        m_MethodName: UpdateBossName
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 464553237}
+        m_TargetAssemblyTypeName: UI.TopUIPanel.BossPhaseCountUI, Assembly-CSharp
+        m_MethodName: InitWithAsset
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &584193447
 GameObject:
   m_ObjectHideFlags: 0
@@ -6459,6 +6558,7 @@ GameObject:
   m_Component:
   - component: {fileID: 853927490}
   - component: {fileID: 853927491}
+  - component: {fileID: 853927492}
   m_Layer: 0
   m_Name: Dialogue System
   m_TagString: Untagged
@@ -6503,6 +6603,34 @@ MonoBehaviour:
   - characterID: Youmu
     role: 0
     characterUI: {fileID: 4383609737753824766}
+--- !u!114 &853927492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853927489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9db2f5e5c9942eca09366fc824ef5ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: d4d6abe633039924f898b54dbb3bc0cc, type: 2}
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 853927491}
+        m_TargetAssemblyTypeName: DialogueSystem.DialogueSystemManager, Assembly-CSharp
+        m_MethodName: AssignUI
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &859586621
 GameObject:
   m_ObjectHideFlags: 0
@@ -6519,7 +6647,7 @@ GameObject:
   m_Layer: 0
   m_Name: Boss Spell Opening
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -9369,7 +9497,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 349, y: 98}
+  m_AnchoredPosition: {x: 352, y: 290}
   m_SizeDelta: {x: 292.86, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1297828308
@@ -9482,9 +9610,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stayTime: 1
-  centralPoint: {x: -193, y: 98}
-  startPoint: {x: -783, y: 98}
-  endPoint: {x: 349, y: 98}
+  centralPoint: {x: -208, y: 290}
+  startPoint: {x: -782, y: 290}
+  endPoint: {x: 352, y: 290}
   tweenTime: 0.75
 --- !u!1 &1306116715
 GameObject:
@@ -11725,6 +11853,58 @@ MonoBehaviour:
   m_TrackedDeviceOrientationAction: {fileID: 8117184722910131506, guid: 681059e03c0077046b9078984a785421, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
+--- !u!1 &1657614534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1657614536}
+  - component: {fileID: 1657614535}
+  m_Layer: 0
+  m_Name: Stage Flow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!95 &1657614535
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657614534}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dde591bdf2901b44781ceec177985e2d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!4 &1657614536
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657614534}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.18664378, y: -0.2044221, z: -0.009297004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1668400322
 GameObject:
   m_ObjectHideFlags: 0
@@ -14047,6 +14227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1908175034}
   - component: {fileID: 1908175033}
+  - component: {fileID: 1908175035}
   m_Layer: 0
   m_Name: Boss Proxy
   m_TagString: Untagged
@@ -14082,6 +14263,34 @@ Transform:
   m_Father: {fileID: 1931369220}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1908175035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908175032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 564372d919c44300b16c33bd4b006f7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: d0d823d03c59e604aaea4295500ed568, type: 2}
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1908175033}
+        m_TargetAssemblyTypeName: BossBehaviour.BossBehaviourSystemProxy, Assembly-CSharp
+        m_MethodName: ReassignController
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &1918328453 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3893763865913088400, guid: 3549ab6a5a5688d45b974298043c43bb, type: 3}
@@ -18570,6 +18779,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Test Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 3893763865739420665, guid: 3549ab6a5a5688d45b974298043c43bb, type: 3}
+      propertyPath: phaseFlow
+      value: 
+      objectReference: {fileID: 1918328453}
     - target: {fileID: 3893763865739420669, guid: 3549ab6a5a5688d45b974298043c43bb, type: 3}
       propertyPath: m_RootOrder
       value: 1

@@ -1,4 +1,4 @@
-using Game_Manager;
+using GameManager;
 using PlayerInfosAPI;
 using TMPro;
 using UnityEngine;

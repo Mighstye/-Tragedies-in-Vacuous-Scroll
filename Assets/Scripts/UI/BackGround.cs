@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BossBehaviour;
+using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 
@@ -8,9 +9,9 @@ namespace UI
     {
         [SerializeField] private Image backGroundImage;
 
-        public void UpdateBackGround(Sprite sprite)
+        public void UpdateBackGround(BossAsset asset)
         {
-            backGroundImage.sprite = sprite;
+            backGroundImage.sprite = asset.background;
         }
     }
 }

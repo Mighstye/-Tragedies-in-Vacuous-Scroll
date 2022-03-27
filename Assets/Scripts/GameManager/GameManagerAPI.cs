@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 using Utils;
 using Utils.Events;
 
-namespace Game_Manager
+namespace GameManager
 {
     public class GameManagerAPI : Singleton<GameManagerAPI>
     {

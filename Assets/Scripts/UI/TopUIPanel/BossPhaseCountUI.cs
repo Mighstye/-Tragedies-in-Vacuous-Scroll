@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BossBehaviour;
 using Logic_System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,7 +26,12 @@ namespace UI.TopUIPanel
             battleOutcomeRef.onPhaseStart += (s, phaseStatistics) => { ConsumePhase(s); };
         }
 
-        public void Init(int bossPhaseCount)
+        public void InitWithAsset(BossAsset asset)
+        {
+            Init(asset.spellCount);
+        }
+
+        private void Init(int bossPhaseCount)
         {
             icons ??= new List<GameObject>();
             phasePointer = bossPhaseCount - 1;
