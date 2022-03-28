@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Utils.Events;
 
 namespace DialogueSystem
 {
-    public class ChoiceButton : MonoBehaviour
+    public class ChoiceButton : MonoBehaviour, ISelectHandler
     {
         [SerializeField] private int choiceID;
+        [SerializeField] private GameEvent onChoiceMove;
         private Button button;
 
         private DialogueSystemManager dialogueSystemManagerRef;
@@ -20,6 +23,11 @@ namespace DialogueSystem
         private void SendChoiceID()
         {
             dialogueSystemManagerRef.MakeChoice(choiceID);
+        }
+
+        public void OnSelect(BaseEventData eventData)
+        {
+            onChoiceMove.Invoke();
         }
     }
 }

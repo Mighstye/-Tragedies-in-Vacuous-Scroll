@@ -6,6 +6,7 @@ using Control;
 using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using Utils;
+using Utils.Events;
 
 namespace Logic_System
 {
@@ -13,6 +14,7 @@ namespace Logic_System
     {
         public Action<string, PhaseStatistics> onPhaseEnd;
         public Action<string, PhaseStatistics> onPhaseStart;
+        [SerializeField] private GameEvent onSpellPhaseStart;
         private Spell spellRef;
         public Dictionary<string, PhaseStatistics> outcome { get; private set; }
         public string currentPhaseName { get; private set; }
@@ -40,6 +42,7 @@ namespace Logic_System
             }
 
             onPhaseStart?.Invoke(phaseName, currentPhaseStatistics);
+            if (phaseName is not null) onSpellPhaseStart.Invoke();
         }
 
         public void RegisterCurrentPhase()

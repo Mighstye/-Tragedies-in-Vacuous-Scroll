@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Localization;
 using Utils;
+using Utils.Events;
 
 namespace DialogueSystem
 {
@@ -33,6 +34,8 @@ namespace DialogueSystem
         [SerializeField] private TextAsset dialogueAsset;
         [SerializeField] private Animator bossPhaseFlow;
         [SerializeField] private List<DialogueUIItem> dialogueUIList;
+        [SerializeField] private GameEvent onDialogueContinue;
+        [SerializeField] private GameEvent onChoiceConfirm;
         private ControlManager controlManagerRef;
         private DialogueItem currentDialogueItem = new();
         private bool inChoice;
@@ -82,7 +85,7 @@ namespace DialogueSystem
                 Debug.LogWarning("Ink story is null.");
                 return;
             }
-
+            onDialogueContinue.Invoke();
             ContinueDialogue();
         }
 
@@ -91,6 +94,7 @@ namespace DialogueSystem
             selectedChoice = choiceID;
             inkStory.ChooseChoiceIndex(choiceID);
             inChoice = false;
+            onChoiceConfirm.Invoke();
             ContinueDialogue();
         }
 

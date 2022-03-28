@@ -4,12 +4,14 @@ using Logic_System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using Utils.Events;
 
 namespace VFX
 {
     public class InstantSpellCheckVFX : MonoBehaviour
     {
         [SerializeField] private Camera camera;
+        [SerializeField] private GameEvent onInstantSpellCheck;
         [SerializeField] private Color success = Color.green;
         [SerializeField] private Color other = Color.red;
         private Health healthRef;
@@ -25,6 +27,7 @@ namespace VFX
 
         private IEnumerator StartEffect()
         {
+            onInstantSpellCheck.Invoke();
             vignette.active = true;
             var effectKeepFrame = YoumuController.instance.instantSpellFrame / 2;
             while (vignette.intensity.value < 1 || effectKeepFrame > 0)

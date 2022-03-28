@@ -2053,6 +2053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 519420031}
+  onInstantSpellCheck: {fileID: 11400000, guid: 742f1570e0c75324f97a48847f835d5c, type: 2}
   success: {r: 0.46343637, g: 1, b: 0.4470588, a: 1}
   other: {r: 1, g: 0.050943315, b: 0.050943315, a: 1}
 --- !u!224 &343587589 stripped
@@ -2817,6 +2818,8 @@ MonoBehaviour:
   cardListBank: {fileID: 99757673814812665}
   menu: {fileID: 1817404312}
   listBank: {fileID: 99757673814812665}
+  onCardFocusChange: {fileID: 11400000, guid: 4ae07fa95fb4bd84795057d03069c232, type: 2}
+  onCardConfirm: {fileID: 11400000, guid: 3e69aa82c3bdc4f41a1a7d8fdf67d520, type: 2}
 --- !u!114 &503649548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5044,6 +5047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ff70022c7647a7a18f8ba5cc2a842a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onSpellPhaseStart: {fileID: 11400000, guid: 3dad01bebacb08349902129d8982f5db, type: 2}
 --- !u!1 &701121118
 GameObject:
   m_ObjectHideFlags: 0
@@ -5225,6 +5229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPhaseTimeout: 0
   phaseTimer: 0
+  tickCount: 5
+  onFinalCountdownTick: {fileID: 11400000, guid: aece5bc3db7975848be8540dd13680e3, type: 2}
 --- !u!1001 &741480730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6603,6 +6609,8 @@ MonoBehaviour:
   - characterID: Youmu
     role: 0
     characterUI: {fileID: 4383609737753824766}
+  onDialogueContinue: {fileID: 11400000, guid: a64e8911e55842840bf6d0829ba4be05, type: 2}
+  onChoiceConfirm: {fileID: 11400000, guid: 0bd2840f7b8fa4c4c85252135c08e085, type: 2}
 --- !u!114 &853927492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12420,6 +12428,7 @@ MonoBehaviour:
   spellDuration: 3
   defaultSpellAmount: 3
   maxSpell: 8
+  onSpell: {fileID: 11400000, guid: d58598fa328332744a14cb5507a6a992, type: 2}
 --- !u!1 &1703232101
 GameObject:
   m_ObjectHideFlags: 0
@@ -18370,6 +18379,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -90.295
       objectReference: {fileID: 0}
+    - target: {fileID: 3829553041337768991, guid: e5dd2dab4ae678f41ae5e9e9ec7ffe26, type: 3}
+      propertyPath: onChoiceMove
+      value: 
+      objectReference: {fileID: 11400000, guid: 1717bb60fafa54240a12644cd198c417, type: 2}
     - target: {fileID: 3829553041941025824, guid: e5dd2dab4ae678f41ae5e9e9ec7ffe26, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -18486,6 +18499,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -153.825
       objectReference: {fileID: 0}
+    - target: {fileID: 3829553042983810506, guid: e5dd2dab4ae678f41ae5e9e9ec7ffe26, type: 3}
+      propertyPath: onChoiceMove
+      value: 
+      objectReference: {fileID: 11400000, guid: 1717bb60fafa54240a12644cd198c417, type: 2}
     - target: {fileID: 3829553043291037217, guid: e5dd2dab4ae678f41ae5e9e9ec7ffe26, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -18502,6 +18519,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -26.765
       objectReference: {fileID: 0}
+    - target: {fileID: 3829553043291037221, guid: e5dd2dab4ae678f41ae5e9e9ec7ffe26, type: 3}
+      propertyPath: onChoiceMove
+      value: 
+      objectReference: {fileID: 11400000, guid: 1717bb60fafa54240a12644cd198c417, type: 2}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: e5dd2dab4ae678f41ae5e9e9ec7ffe26, type: 3}
@@ -18529,6 +18550,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -90.295
       objectReference: {fileID: 0}
+    - target: {fileID: 2464055869403510060, guid: 7d7746e1529f41e44a7e15f26f803511, type: 3}
+      propertyPath: onChoiceMove
+      value: 
+      objectReference: {fileID: 11400000, guid: 1717bb60fafa54240a12644cd198c417, type: 2}
     - target: {fileID: 2464055870065014753, guid: 7d7746e1529f41e44a7e15f26f803511, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -18645,6 +18670,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -26.765
       objectReference: {fileID: 0}
+    - target: {fileID: 2464055870939969302, guid: 7d7746e1529f41e44a7e15f26f803511, type: 3}
+      propertyPath: onChoiceMove
+      value: 
+      objectReference: {fileID: 11400000, guid: 1717bb60fafa54240a12644cd198c417, type: 2}
     - target: {fileID: 2464055870978759925, guid: 7d7746e1529f41e44a7e15f26f803511, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -18661,6 +18690,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -153.825
       objectReference: {fileID: 0}
+    - target: {fileID: 2464055870978759929, guid: 7d7746e1529f41e44a7e15f26f803511, type: 3}
+      propertyPath: onChoiceMove
+      value: 
+      objectReference: {fileID: 11400000, guid: 1717bb60fafa54240a12644cd198c417, type: 2}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d7746e1529f41e44a7e15f26f803511, type: 3}

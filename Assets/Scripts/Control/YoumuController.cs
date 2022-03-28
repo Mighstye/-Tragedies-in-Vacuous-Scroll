@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 using Utils;
+using Utils.Events;
 
 namespace Control
 {
@@ -36,6 +37,7 @@ namespace Control
         private Vector3 moveDirection;
 
         public Action onInstantSpellCheck;
+        
 
         //Events
         public Action onYoumuHit;

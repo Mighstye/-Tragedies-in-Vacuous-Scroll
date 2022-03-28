@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utils.Events;
 
 namespace Logic_System
 {
@@ -14,6 +15,7 @@ namespace Logic_System
         private LogicSystemAPI logic;
 
         public Action onSpellUse;
+        [SerializeField] private GameEvent onSpell;
         public int currentSpellAmount { get; private set; }
         public Action onNeedSpellRefresh { get; set; }
 
@@ -48,6 +50,7 @@ namespace Logic_System
             UseSpell();
             inSpellEffect = true;
             onSpellUse?.Invoke();
+            onSpell.Invoke();
             logic.health.StartInvincible(spellDuration);
         }
 

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
+using Utils.Events;
 
 namespace BossBehaviour
 {
@@ -7,12 +9,16 @@ namespace BossBehaviour
     {
         [SerializeField] public float currentPhaseTimeout;
         [SerializeField] public float phaseTimer;
+        private bool inCountDown;
 
         //Display Action
         public Action onNeedTimeoutRefreshDisplay;
         public Action onNeedTimerRefreshDisplay;
         public Action onPhaseEndDisplay;
         public Action onPhaseTimeoutReached;
+
+        [SerializeField] private int tickCount = 5;
+        [SerializeField] private GameEvent onFinalCountdownTick;
 
         private bool timeoutReached;
         public static PhaseTimer instance { get; private set; }
@@ -35,6 +41,11 @@ namespace BossBehaviour
             if (timeoutReached) return;
             phaseTimer -= Time.deltaTime;
             onNeedTimerRefreshDisplay?.Invoke();
+            if (phaseTimer - tickCount < 0 && !inCountDown)
+            {
+                inCountDown = true;
+                StartCoroutine(CountDownTick());
+            }
             if (!(phaseTimer <= 0)) return;
             onPhaseTimeoutReached?.Invoke();
             onPhaseEndDisplay?.Invoke();
@@ -43,12 +54,22 @@ namespace BossBehaviour
 
         public void SetUpTimer(float timeout, string pName = "Unnamed Phase")
         {
+            inCountDown = false;
             currentPhaseTimeout = timeout;
             phaseTimer = timeout;
             phaseName = pName;
             timeoutReached = false;
             onNeedTimeoutRefreshDisplay?.Invoke();
             onNeedTimerRefreshDisplay?.Invoke();
+        }
+
+        private IEnumerator CountDownTick()
+        {
+            for (var i = 0; i < tickCount; i++)
+            {
+                onFinalCountdownTick.Invoke();
+                yield return new WaitForSeconds(1);
+            }
         }
     }
 }

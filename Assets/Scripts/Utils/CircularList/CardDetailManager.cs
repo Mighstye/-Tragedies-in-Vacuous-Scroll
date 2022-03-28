@@ -8,6 +8,7 @@ using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using Utils.Events;
 
 namespace Utils
 {
@@ -19,6 +20,8 @@ namespace Utils
         [SerializeField] private CircularCardListBank cardListBank;
         [SerializeField] private GameObject menu;
         [SerializeField] private CircularCardListBank listBank;
+        [SerializeField] private GameEvent onCardFocusChange;
+        [SerializeField] private GameEvent onCardConfirm;
 
         private UIManager uiManager;
 
@@ -51,6 +54,7 @@ namespace Utils
         public void PassSelectedCard(InputAction.CallbackContext context)
         {
             if (context.phase is not InputActionPhase.Performed) return;
+            onCardConfirm.Invoke();
             GameManagerAPI.instance.SelectCard(RetrieveSelectedCard().gameObject);
             uiManager.Continue();
             ControlManager.instance.SwitchToPlayer();
@@ -60,6 +64,7 @@ namespace Utils
         public void MoveSelection(InputAction.CallbackContext context)
         {
             listBank.MoveItem(context);
+            onCardFocusChange.Invoke();
         }
     }
 }
