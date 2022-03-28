@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9655322d694109b8b81f89961ea325, type: 3}
   m_Name: OnCardFocusChange
   m_EditorClassIdentifier: 
+  eventDescription: Called when player scrolls up or down in the reward menu

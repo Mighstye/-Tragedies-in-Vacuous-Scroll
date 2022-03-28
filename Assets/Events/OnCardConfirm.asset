@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9655322d694109b8b81f89961ea325, type: 3}
   m_Name: OnCardConfirm
   m_EditorClassIdentifier: 
+  eventDescription: Called when player confirms his/her choice of card on the reward
+    menu

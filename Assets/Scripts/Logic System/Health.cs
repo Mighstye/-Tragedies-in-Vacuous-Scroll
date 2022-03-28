@@ -1,6 +1,7 @@
 using System;
 using Control;
 using UnityEngine;
+using Utils.Events;
 
 namespace Logic_System
 {
@@ -21,6 +22,8 @@ namespace Logic_System
         public Action onNeedPlayerRefresh { get; set; }
 
         public Action onPlayerDeath { get; set; }
+
+        [SerializeField] private GameEvent onHitResolve;
 
         private void Start()
         {
@@ -59,6 +62,7 @@ namespace Logic_System
         private bool LoseHealth(int h = 1)
         {
             GainHealth(-h);
+            onHitResolve.Invoke();
             if (currentHealth <= 0) return true;
             logic.spell.SpellResetOnLifeLost();
             onNeedPlayerRefresh?.Invoke();
