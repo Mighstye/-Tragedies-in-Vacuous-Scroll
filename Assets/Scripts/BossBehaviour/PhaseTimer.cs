@@ -41,7 +41,7 @@ namespace BossBehaviour
             if (timeoutReached) return;
             phaseTimer -= Time.deltaTime;
             onNeedTimerRefreshDisplay?.Invoke();
-            if (phaseTimer - tickCount < 0 && !inCountDown)
+            if (!inCountDown && phaseTimer - tickCount < 0 && phaseName is not null)
             {
                 inCountDown = true;
                 StartCoroutine(CountDownTick());
@@ -52,7 +52,7 @@ namespace BossBehaviour
             timeoutReached = true;
         }
 
-        public void SetUpTimer(float timeout, string pName = "Unnamed Phase")
+        public void SetUpTimer(float timeout, string pName = null)
         {
             inCountDown = false;
             currentPhaseTimeout = timeout;

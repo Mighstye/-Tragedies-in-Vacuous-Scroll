@@ -9622,6 +9622,7 @@ MonoBehaviour:
   startPoint: {x: -782, y: 290}
   endPoint: {x: 352, y: 290}
   tweenTime: 0.75
+  onSpellBreak: {fileID: 11400000, guid: 22bd2e96c6af57b45b7b6a824b3101b5, type: 2}
 --- !u!1 &1306116715
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ namespace Utils.Events
     [CreateAssetMenu(fileName = "Event", menuName = "Events/Base Game Event (void->void)", order = 0)]
     public class GameEvent : ScriptableObject
     {
+        [TextArea] [SerializeField] private string eventDescription;
         private readonly List<GameEventSubscriber> subscribers = 
             new List<GameEventSubscriber>();
 

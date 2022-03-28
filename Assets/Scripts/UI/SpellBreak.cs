@@ -3,6 +3,7 @@ using System.Collections;
 using DG.Tweening;
 using Logic_System;
 using UnityEngine;
+using Utils.Events;
 
 namespace UI
 {
@@ -15,6 +16,7 @@ namespace UI
         [SerializeField] private Vector2 startPoint;
         [SerializeField] private Vector2 endPoint;
         [SerializeField] private float tweenTime=1;
+        [SerializeField] private GameEvent onSpellBreak;
 
         
         private void Start()
@@ -34,6 +36,7 @@ namespace UI
         private void TweenIn()
         {
             panelRoot.anchoredPosition = startPoint;
+            onSpellBreak.Invoke();
             Tween(centralPoint).OnComplete(() => { StartCoroutine(Stay());});
         }
 
