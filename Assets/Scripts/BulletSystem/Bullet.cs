@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Control;
 using DG.Tweening;
 using UnityEngine;
@@ -45,10 +46,10 @@ namespace BulletSystem
         //Graze
         public bool grazeable { get; set; }
 
-        private void Start()
+        private void Awake()
         {
-            ResetBullet();
             AddBehaviors();
+            ResetBullet();
         }
 
 
@@ -60,7 +61,18 @@ namespace BulletSystem
             if (behaviors[behaviorPointer] != null && behaviors[behaviorPointer].Invoke()) behaviorPointer++;
         }
 
-        protected abstract void AddBehaviors();
+        protected virtual void AddBehaviors()
+        {
+            var methodInfos = this.GetType().GetMethods();
+            foreach (var methodInfo in methodInfos) {
+                var methodAttributes = methodInfo.GetCustomAttributes(true);
+                foreach (Attribute attr in methodAttributes) {
+                    if (attr is not BulletBehaviorFunc) continue;
+                    var del = (BulletBehavior)Delegate.CreateDelegate(typeof(BulletBehavior),this, methodInfo);
+                    behaviors.Add(del);
+                }
+            }
+        }
 
         /// <summary>
         ///     Child class may overwrite this to provide extra update actions after bullet behaviour update.

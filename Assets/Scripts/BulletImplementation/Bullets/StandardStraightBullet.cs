@@ -15,12 +15,8 @@ namespace BulletImplementation
             velocity = startVelocity;
         }
 
-        protected override void AddBehaviors()
-        {
-            behaviors.Add(StraightPropagate);
-        }
-
-        private bool StraightPropagate()
+        [BulletBehaviorFunc]
+        public bool StraightPropagate()
         {
             transform.position += velocity * Time.deltaTime;
             return false;
