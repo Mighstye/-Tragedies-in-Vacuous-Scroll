@@ -16,7 +16,7 @@ namespace BulletImplementation
         }
 
         [BulletBehaviorFunc]
-        public bool StraightPropagate()
+        private bool StraightPropagate()
         {
             transform.position += velocity * Time.deltaTime;
             return false;

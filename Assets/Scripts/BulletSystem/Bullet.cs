@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Control;
 using DG.Tweening;
 using UnityEngine;
@@ -63,7 +64,7 @@ namespace BulletSystem
 
         protected virtual void AddBehaviors()
         {
-            var methodInfos = this.GetType().GetMethods();
+            var methodInfos = this.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Instance);
             foreach (var methodInfo in methodInfos) {
                 var methodAttributes = methodInfo.GetCustomAttributes(true);
                 foreach (Attribute attr in methodAttributes) {
