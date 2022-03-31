@@ -684,6 +684,7 @@ MonoBehaviour:
   startingHealth: 8
   maxHealth: 8
   invincibilityTime: 5
+  onZeroLife: {fileID: 11400000, guid: 9269ed63331bdd24abce6b1ce707489c, type: 2}
   onHitResolve: {fileID: 11400000, guid: 64ac2e11fa721fd469b907bb6ffd8973, type: 2}
 --- !u!1 &50214303
 GameObject:
@@ -2796,6 +2797,7 @@ GameObject:
   - component: {fileID: 503649549}
   - component: {fileID: 503649548}
   - component: {fileID: 503649547}
+  - component: {fileID: 503649552}
   m_Layer: 5
   m_Name: Card Detail UI canvas
   m_TagString: Untagged
@@ -2815,9 +2817,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b564f245f9f4138bb4f660637b31d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entryDelay: 3.5
+  uiRoot: {fileID: 99757672857923818}
   cardDetailUI: {fileID: 99757672155044325}
   cardListBank: {fileID: 99757673814812665}
-  menu: {fileID: 1817404312}
   listBank: {fileID: 99757673814812665}
   onCardFocusChange: {fileID: 11400000, guid: 4ae07fa95fb4bd84795057d03069c232, type: 2}
   onCardConfirm: {fileID: 11400000, guid: 3e69aa82c3bdc4f41a1a7d8fdf67d520, type: 2}
@@ -2904,6 +2907,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &503649552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503649546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8baaefe3f742c4b2b10e153f763cdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: b44bdd90b1a11a143a9d3c515d85c922, type: 2}
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 503649547}
+        m_TargetAssemblyTypeName: Utils.CardDetailManager, Assembly-CSharp
+        m_MethodName: OnBossDefeatWrapper
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -11661,9 +11692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158a50a9d0b64574490de59e2b4dd9e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeCard: {fileID: 1438012819}
-  passiveCard: {fileID: 563676960}
-  rewards: []
+  onZeroLife: {fileID: 0}
   onBossDefeat: {fileID: 11400000, guid: b44bdd90b1a11a143a9d3c515d85c922, type: 2}
 --- !u!4 &1636044559
 Transform:

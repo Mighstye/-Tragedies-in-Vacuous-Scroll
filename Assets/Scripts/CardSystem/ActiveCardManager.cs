@@ -21,7 +21,7 @@ namespace CardSystem
         private int selectedCardIndex;
 
 
-        private void Start()
+        private void Awake()
         {
             InitializeDict();
             if (labeledPools[PoolType.Normal].Count <= 0) return;

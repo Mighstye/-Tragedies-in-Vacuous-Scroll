@@ -14,22 +14,21 @@ namespace GameManager
 {
     public class GameManagerAPI : Singleton<GameManagerAPI>
     {
-        public GameObject activeCard;
-        public GameObject passiveCard;
-        public List<Card> rewards;
-
-        private GameObject boss;
-        private CardSystemManager cardSystemManagerRef;
+        //public GameObject activeCard;
+        //public GameObject passiveCard;
+        //public List<Card> rewards
+        //private GameObject boss;
+        //private CardSystemManager cardSystemManagerRef;
         private string currentFightName;
-        public Action onLoose;
-        public Action onWin;
+        public GameEvent onZeroLife;
         public GameEvent onBossDefeat;
 
         private void Start()
         {
-            boss ??= BossBehaviourSystemProxy.instance.bossController.gameObject;
-            cardSystemManagerRef = CardSystemManager.instance;
+            //boss ??= BossBehaviourSystemProxy.instance.bossController.gameObject;
+            //cardSystemManagerRef = CardSystemManager.instance;
             //SetActive for cards selected by the player
+            /*
             foreach (var obj in PlayerInfos.instance.selectedActiveCard)
             {
                 Debug.Log("New Card instance " + obj.name);
@@ -45,27 +44,27 @@ namespace GameManager
                 cardSystemManagerRef.passiveCardManager.Add(newObj.GetComponent<PassiveCard>());
                 newObj.SetActive(true);
             }
-
-            LogicSystemAPI.instance.health.onPlayerDeath += () => { EndFight(false); };
+            */
+            
             currentFightName = SceneManager.GetActiveScene().name;
             // ^ This get the next scene name for the next fight
         }
 
+        [Obsolete("Refactored",true)]
         public void EndFight(bool victory)
         {
             //Time.timeScale = 0f;
-            boss.SetActive(false);
-            ActiveBulletManager.instance.Wipe();
+            //boss.SetActive(false);
             if (victory)
             {
-                onWin?.Invoke();
                 onBossDefeat.Invoke();
             }
-            else onLoose?.Invoke();
+            else onZeroLife.Invoke();
 
-            rewards = GenerateReward();
+            //rewards = GenerateReward();
         }
 
+        [Obsolete("Refactored",true)]
         public List<Card> GenerateReward()
         {
             //Rewards

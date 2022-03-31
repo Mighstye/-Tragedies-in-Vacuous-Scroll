@@ -467,9 +467,10 @@ MonoBehaviour:
   phaseFsmIndexNumber: 0
   phaseName: 
   phaseEndType: 0
-  phaseType: 0
+  phaseType: 1
   phaseDuration: 0
   phaseHp: 0
+  onBossDefeat: {fileID: 11400000, guid: b44bdd90b1a11a143a9d3c515d85c922, type: 2}
 --- !u!114 &8208626942541520847
 MonoBehaviour:
   m_ObjectHideFlags: 1

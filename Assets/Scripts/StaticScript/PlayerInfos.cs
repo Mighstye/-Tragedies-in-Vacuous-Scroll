@@ -23,6 +23,26 @@ namespace PlayerInfosAPI
             selectedPassiveCard = new List<GameObject>();
             UnlockC(cardList.active[0]);
             Select(cardList.active[0]);
+            InitCards();
+        }
+
+        private void InitCards()
+        {
+            foreach (var obj in PlayerInfos.instance.selectedActiveCard)
+            {
+                Debug.Log("New Card instance " + obj.name);
+                var newObj = Instantiate(obj);
+                CardSystemManager.instance.activeCardManager.Add(newObj.GetComponent<ActiveCard>());
+                newObj.SetActive(true);
+            }
+
+            foreach (var obj in PlayerInfos.instance.selectedPassiveCard)
+            {
+                Debug.Log("New Card instance " + obj.name);
+                var newObj = Instantiate(obj);
+                CardSystemManager.instance.passiveCardManager.Add(newObj.GetComponent<PassiveCard>());
+                newObj.SetActive(true);
+            }
         }
 
         public void UnlockC(GameObject c)

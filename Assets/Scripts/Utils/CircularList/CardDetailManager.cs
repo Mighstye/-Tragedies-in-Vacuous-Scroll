@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CardSystem;
 using DG.Tweening;
 using GameManager;
+using Logic_System;
 using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,27 +17,36 @@ namespace Utils
     public class CardDetailManager : Singleton<CardDetailManager>
     {
         private const string ActionMap = "CardDropSelection";
-       
+
+        [SerializeField] private float entryDelay = 2.5f;
+        [SerializeField] private GameObject uiRoot;
         [SerializeField] private CardDetailUI cardDetailUI;
         [SerializeField] private CircularCardListBank cardListBank;
-        [SerializeField] private GameObject menu;
         [SerializeField] private CircularCardListBank listBank;
         [SerializeField] private GameEvent onCardFocusChange;
         [SerializeField] private GameEvent onCardConfirm;
 
+        private RewardSystem rewardSystem;
         private UIManager uiManager;
 
         protected override void Awake()
         {
             base.Awake();
-            gameObject.SetActive(false);
+            uiRoot.SetActive(false);
         }
 
-        public void Start()
+        public void OnBossDefeatWrapper()
         {
-            gameObject.SetActive(true);
-            Init(GameManagerAPI.instance.rewards);
-            uiManager = menu.GetComponent<UIManager>();
+            StartCoroutine(OnBossDefeat());
+        }
+
+        private IEnumerator OnBossDefeat()
+        {
+            rewardSystem = LogicSystemAPI.instance.rewardSystem;
+            Init(rewardSystem.GetReward());
+            yield return new WaitForSeconds(entryDelay);
+            uiRoot.SetActive(true);
+            //uiManager = menu.GetComponent<UIManager>();
         }
 
        
@@ -55,8 +66,8 @@ namespace Utils
         {
             if (context.phase is not InputActionPhase.Performed) return;
             onCardConfirm.Invoke();
-            GameManagerAPI.instance.SelectCard(RetrieveSelectedCard().gameObject);
-            uiManager.Continue();
+            GameManagerAPI.instance.SelectCard(RetrieveSelectedCard().gameObject); //TODO: refactor this
+            //uiManager.Continue();
             ControlManager.instance.SwitchToPlayer();
             gameObject.SetActive(false);
         }

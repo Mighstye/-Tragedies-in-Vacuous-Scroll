@@ -11,7 +11,6 @@ namespace UI
         public GameObject winObject;
         public GameObject rewardCardMenu;
         private bool gameFinished;
-        private GameManagerAPI gameManagerAPI;
 
         private bool paused;
 
@@ -19,20 +18,7 @@ namespace UI
         private void Start()
         {
             DisableAllMenu();
-            gameManagerAPI = GameManagerAPI.instance;
             paused = false;
-
-            gameManagerAPI.onLoose += () =>
-            {
-                gameFinished = true;
-                GameOver();
-            };
-
-            gameManagerAPI.onWin += () =>
-            {
-                gameFinished = true;
-                Win();
-            };
         }
 
         public void OnPause(InputAction.CallbackContext context)
@@ -73,7 +59,7 @@ namespace UI
                 DisableAllMenu();
             }
 
-            gameManagerAPI.NextFight();
+            //gameManagerAPI.NextFight();
         }
 
         public void Restart()
@@ -88,7 +74,7 @@ namespace UI
                 DisableAllMenu();
             }
 
-            gameManagerAPI.Restart();
+            //gameManagerAPI.Restart();
         }
 
         private void DisableAllMenu()

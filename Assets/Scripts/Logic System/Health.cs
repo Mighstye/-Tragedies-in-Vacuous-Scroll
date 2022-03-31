@@ -21,7 +21,7 @@ namespace Logic_System
 
         public Action onNeedPlayerRefresh { get; set; }
 
-        public Action onPlayerDeath { get; set; }
+        [SerializeField] private GameEvent onZeroLife;
 
         [SerializeField] private GameEvent onHitResolve;
 
@@ -36,7 +36,7 @@ namespace Logic_System
                 if (LoseHealth())
                 {
                     if (currentHealth == 0) onNeedPlayerRefresh?.Invoke();
-                    onPlayerDeath?.Invoke();
+                    onZeroLife.Invoke();
                     return;
                 }
 
