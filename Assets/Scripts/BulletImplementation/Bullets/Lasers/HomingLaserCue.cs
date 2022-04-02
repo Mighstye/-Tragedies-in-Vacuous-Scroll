@@ -51,10 +51,10 @@ namespace BulletImplementation
             var homingVector = (PlayerPos - startPos).normalized;
 
             endPos = PlayerPos;
-            while (FieldBoundaries.instance.left < endPos.x &&
-                   endPos.x < FieldBoundaries.instance.right ||
-                   FieldBoundaries.instance.down < endPos.y &&
-                   endPos.y < FieldBoundaries.instance.up)
+            while ((FieldBoundaries.instance.left < endPos.x &&
+                   endPos.x < FieldBoundaries.instance.right) ||
+                   (FieldBoundaries.instance.down < endPos.y &&
+                   endPos.y < FieldBoundaries.instance.up))
                 endPos += homingVector;
 
             laserCueLine.SetPosition(0, startPos);
