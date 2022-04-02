@@ -1,13 +1,18 @@
 ﻿using Control;
+using System.Collections.Generic;
 using Utils;
+using UnityEngine;
 
 namespace BulletSystem
 {
     public class ActiveBulletManager : Singleton<ActiveBulletManager>
     {
+        public List<string> wipeableBulletTags = new List<string>();
+
         private void Start()
         {
             YoumuController.instance.onYoumuHit += Wipe;
+            wipeableBulletTags.Add("EnemyBullet");
             //Spell.instance.onSpellUse += Wipe;
         }
 
@@ -22,11 +27,15 @@ namespace BulletSystem
                 if (bullet.gameObject.CompareTag("FriendlyBullet")) return;
                 bullet.InvokeBulletDeath();
             } */
-
             foreach (var bullet in GetComponentsInChildren<Bullet>())
             {
-                if (bullet.gameObject.CompareTag("FriendlyBullet")) return;
-                bullet.InvokeBulletDeath();
+                foreach (string wipeableBulletTag in wipeableBulletTags)
+                {
+                    if (bullet.gameObject.CompareTag(wipeableBulletTag))
+                    {
+                        bullet.InvokeBulletDeath();
+                    }
+                }
             }
         }
     }

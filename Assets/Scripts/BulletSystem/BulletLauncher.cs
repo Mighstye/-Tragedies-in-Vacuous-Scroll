@@ -7,7 +7,7 @@ namespace BulletSystem
     {
         public BulletPool bulletPool;
         protected readonly List<BulletLauncherBehavior> behaviors = new();
-        private int behaviorPointer;
+        protected private int behaviorPointer;
 
         private void Start()
         {

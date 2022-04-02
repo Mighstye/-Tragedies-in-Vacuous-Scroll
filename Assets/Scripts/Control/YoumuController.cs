@@ -75,7 +75,7 @@ namespace Control
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (healthRef.invincible || inInstantSpellCheck) return;
-            if (!col.gameObject.CompareTag("EnemyBullet")) return;
+            if (!col.gameObject.CompareTag("EnemyBullet") && !col.gameObject.CompareTag("EnemyLaser")) return;
             var bullet = col.gameObject.GetComponent<Bullet>();
             if (bullet == null)
             {

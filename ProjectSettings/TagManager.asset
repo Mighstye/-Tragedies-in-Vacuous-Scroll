@@ -10,6 +10,7 @@ TagManager:
   - SpellArea
   - VFX
   - FriendlyBullet
+  - EnemyLaser
   layers:
   - Default
   - TransparentFX
