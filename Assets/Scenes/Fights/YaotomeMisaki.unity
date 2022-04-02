@@ -1923,8 +1923,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2bf5fb0458465241a9a7deec2e13777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPool: {fileID: 757965537}
-  shootFrequency: 10
+  bulletPool: {fileID: 1959741361}
+  laserPool: {fileID: 757965539}
+  timeBetweenShoots: 2
   homingTime: 2
   transitionTime: 2
   laserTime: 3
@@ -5279,6 +5280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c3c97c115064aa5b562d9adef554730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wipeableBulletTags: []
 --- !u!4 &640134419
 Transform:
   m_ObjectHideFlags: 0
@@ -5885,7 +5887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 757965538}
-  - component: {fileID: 757965537}
+  - component: {fileID: 757965539}
   m_Layer: 0
   m_Name: Laser Pool 1
   m_TagString: Untagged
@@ -5893,22 +5895,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &757965537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757965536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cef5d7de0ad99245a41b4ac4e073f58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxPoolSize: 500
-  bullet: {fileID: 6996476641902316699, guid: 63f13e0c89b2aad40a863c7bdb9206d6, type: 3}
-  poolType: 1
-  collectionChecks: 1
 --- !u!4 &757965538
 Transform:
   m_ObjectHideFlags: 0
@@ -5924,6 +5910,22 @@ Transform:
   m_Father: {fileID: 1552837319}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &757965539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757965536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84de1a1fca2520b49a9000a6d36b9546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPoolSize: 500
+  bullet: {fileID: 6996476641902316699, guid: 63f13e0c89b2aad40a863c7bdb9206d6, type: 3}
+  poolType: 1
+  collectionChecks: 1
 --- !u!224 &759583565 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5860480620814065070, guid: 2c30977b1e3c213459d838313d8c3825, type: 3}
@@ -6282,7 +6284,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &795598505
 Transform:
   m_ObjectHideFlags: 0
@@ -6296,6 +6298,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1552837319}
+  - {fileID: 1413472601}
   - {fileID: 235775626}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -11121,6 +11124,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0acab54653cfc50459e3c8ec3ad5e2f1, type: 3}
+--- !u!1 &1413472600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1413472601}
+  m_Layer: 0
+  m_Name: Laser Cue Pools
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1413472601
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413472600}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.29402655, y: 0.91328585, z: -3.9013226}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1959741360}
+  m_Father: {fileID: 795598505}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1421506945
 GameObject:
   m_ObjectHideFlags: 0
@@ -12212,7 +12247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1552837319}
   m_Layer: 0
-  m_Name: Laser Pool
+  m_Name: Laser Pools
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15477,6 +15512,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1950509003}
   minimumCallInterval: 0.15
+--- !u!1 &1959741359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1959741360}
+  - component: {fileID: 1959741361}
+  m_Layer: 0
+  m_Name: Laser Cue Pool 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1959741360
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959741359}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1413472601}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1959741361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959741359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cef5d7de0ad99245a41b4ac4e073f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPoolSize: 500
+  bullet: {fileID: 4074938281466908772, guid: bc91a42f984f17845acd035d139f2005, type: 3}
+  poolType: 1
+  collectionChecks: 1
 --- !u!1 &1963374435
 GameObject:
   m_ObjectHideFlags: 0
@@ -20130,6 +20213,10 @@ PrefabInstance:
     - target: {fileID: 3893763865739420659, guid: 3549ab6a5a5688d45b974298043c43bb, type: 3}
       propertyPath: m_Name
       value: Test Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893763865739420659, guid: 3549ab6a5a5688d45b974298043c43bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3893763865739420665, guid: 3549ab6a5a5688d45b974298043c43bb, type: 3}
       propertyPath: phaseFlow

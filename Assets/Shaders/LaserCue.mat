@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LasetMat
+  m_Name: LaserCue
   m_Shader: {fileID: -6465566751694194690, guid: 08ef13198b5d27645846ed331d8df739, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -43,7 +43,7 @@ Material:
     - _density: 5
     - _smoothness: 5
     m_Colors:
-    - _Color: {r: 1, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 0.58431375}
   m_BuildTextureStacks: []
 --- !u!114 &9126277845787780571
 MonoBehaviour:

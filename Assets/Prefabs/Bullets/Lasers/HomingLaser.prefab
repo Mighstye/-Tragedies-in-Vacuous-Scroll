@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5992835450641620472}
   m_Layer: 7
   m_Name: HomingLaser
-  m_TagString: EnnemyLaser
+  m_TagString: EnemyLaser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
