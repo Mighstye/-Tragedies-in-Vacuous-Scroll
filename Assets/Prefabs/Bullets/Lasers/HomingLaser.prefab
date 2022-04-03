@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5992835450641620472}
   m_Layer: 7
   m_Name: HomingLaser
-  m_TagString: EnemyLaser
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateMethod: 0
-  bulletTags: 
+  bulletTags: 01000000
   laserTime: 0
   laserWidth: 0
   launcher: {fileID: 0}

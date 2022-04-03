@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using Utils;
 using UnityEngine;
+using System.Linq;
 
 namespace BulletSystem
 {
     public class ActiveBulletManager : Singleton<ActiveBulletManager>
     {
-        public List<string> wipeableBulletTags = new List<string>();
-
         private void Start()
         {
             YoumuController.instance.onYoumuHit += Wipe;
-            wipeableBulletTags.Add("EnemyBullet");
             //Spell.instance.onSpellUse += Wipe;
         }
 
@@ -29,12 +27,9 @@ namespace BulletSystem
             } */
             foreach (var bullet in GetComponentsInChildren<Bullet>())
             {
-                foreach (string wipeableBulletTag in wipeableBulletTags)
+                if (bullet.gameObject.CompareTag("EnemyBullet") && bullet.bulletTags.Any(bulletTag => BulletInfoRegistry.instance.GetInfo(bulletTag).canBeWipedByPostHit))
                 {
-                    if (bullet.gameObject.CompareTag(wipeableBulletTag))
-                    {
-                        bullet.InvokeBulletDeath();
-                    }
+                    bullet.InvokeBulletDeath();
                 }
             }
         }

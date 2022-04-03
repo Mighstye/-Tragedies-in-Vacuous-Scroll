@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using BulletSystem;
 using Logic_System;
 using UnityEngine;
@@ -46,6 +47,7 @@ public class SpellEffect : MonoBehaviour
     {
         if (!col.gameObject.CompareTag("EnemyBullet")) return;
         var bullet = col.gameObject.GetComponent<Bullet>();
+        if(bullet.bulletTags.Any(bulletTag => !BulletInfoRegistry.instance.GetInfo(bulletTag).canBeWipedBySpell))
         if (bullet != null) bullet.InvokeBulletDeath();
     }
 

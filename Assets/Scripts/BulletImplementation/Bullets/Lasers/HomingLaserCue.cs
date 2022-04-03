@@ -52,7 +52,7 @@ namespace BulletImplementation
 
             endPos = PlayerPos;
             while ((FieldBoundaries.instance.left < endPos.x &&
-                   endPos.x < FieldBoundaries.instance.right) ||
+                   endPos.x < FieldBoundaries.instance.right) &&
                    (FieldBoundaries.instance.down < endPos.y &&
                    endPos.y < FieldBoundaries.instance.up))
                 endPos += homingVector;

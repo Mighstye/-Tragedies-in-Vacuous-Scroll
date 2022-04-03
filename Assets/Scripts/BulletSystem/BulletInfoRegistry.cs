@@ -9,6 +9,8 @@ namespace BulletSystem
     public struct TagInfo
     {
         [SerializeField] public bool canBeParried;
+        [SerializeField] public bool canBeWipedByPostHit;
+        [SerializeField] public bool canBeWipedBySpell;
     }
 
     public class BulletInfoRegistry : Singleton<BulletInfoRegistry>
