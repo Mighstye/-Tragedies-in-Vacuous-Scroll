@@ -1,5 +1,5 @@
 # 東方渡霊録～Tragedies in Vacuous Scroll
-
+# NOTE: The private fork of this repo has been created. See you when the game is released! #
 ## WORDS FROM THE DEVS ##
 
 This is a public project, so you may observe how we created the different systems (so, in short, a case for case study). You may study, reference, or directly use any code that is in the project but the code is not guarantied to work in all situations. This project contains several artistic resource (mostly placeholders, so, yeah), you may use them as long as it comes from this public repository. Note that this repository will not contain the final product, as we intend to protect any further artistic resource added to the project (better sprites, story script, music, pattern design, etc.), there will be a private fork of this project where we continue to add concrete content. 
