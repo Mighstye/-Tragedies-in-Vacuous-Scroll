@@ -16,6 +16,10 @@ MonoBehaviour:
   - tag: 0
     info:
       canBeParried: 1
+      canBeWipedByPostHit: 1
+      canBeWipedBySpell: 1
   - tag: 1
     info:
       canBeParried: 0
+      canBeWipedByPostHit: 0
+      canBeWipedBySpell: 0

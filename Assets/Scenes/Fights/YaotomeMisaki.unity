@@ -5280,7 +5280,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c3c97c115064aa5b562d9adef554730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wipeableBulletTags: []
 --- !u!4 &640134419
 Transform:
   m_ObjectHideFlags: 0
