@@ -42,10 +42,11 @@ namespace Utils
 
         private IEnumerator OnBossDefeat()
         {
-            rewardSystem = LogicSystemAPI.instance.rewardSystem;
-            Init(rewardSystem.GetReward());
             yield return new WaitForSeconds(entryDelay);
             uiRoot.SetActive(true);
+            rewardSystem = LogicSystemAPI.instance.rewardSystem;
+            Init(rewardSystem.GetReward());
+            
             //uiManager = menu.GetComponent<UIManager>();
         }
 

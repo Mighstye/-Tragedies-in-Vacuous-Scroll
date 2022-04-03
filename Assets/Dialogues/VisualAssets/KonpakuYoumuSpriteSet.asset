@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - emotion: default
-    sprite: {fileID: 871668474, guid: d0d478bdd762e6f4fa79a883cae0a42a, type: 3}
+    sprite: {fileID: 21300000, guid: f07f0a03db2f2b342bcd843fb8f2029d, type: 3}
