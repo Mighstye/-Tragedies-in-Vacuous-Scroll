@@ -10,7 +10,7 @@ public class phase1 : BossPhase
     {
         Debug.Log("Phase 1 started");
         
-        BulletLauncher1 Launcher = new BulletLauncher1();
+        ///BulletLauncher1 Launcher = new BulletLauncher1();
         
     }
 }
